@@ -1,0 +1,122 @@
+
+#include "VEDLib.h"
+
+int main()
+    {
+    txCreateWindow (800, 600);
+
+    double x = 8000;
+    double y = 8000;
+
+    double wx = 2000;
+    double wy = 2000;
+
+    txLine (x - wx, y - wy, x - wx, y + wy);
+    txLine (x - wx, y - wy, x + wx, y - wy);
+    txLine (x + wx, y - wy, x + wx, y + wy);
+    txLine (x + wx, y + wy, x - wx, y + wy);
+
+    getch ();
+
+    //double alx = 15;
+    //double aly = 0;
+    txSetFillColor (TX_BLACK);
+    txClear();
+
+    //double fa = sqrt (wx * wx + wy * wy);
+
+    //printf ("fa = %f\n", fa);
+    //double alox = asin (wx/fa);
+    //printf ("alox = %f", alox);
+    //double aloy = asin (wy/fa);
+    //double biasx = (cos (alox) * wx - cos (alox + alx) * wx);
+    double al = 15;
+    double z  = 50;
+    double wz = 0.5;
+
+    //biasy = (cos (aloy) * wy - cos (alox + aly) * wy);
+    //txLine (x - sin (alox - alx) * fa, y - sin (aloy - aly) * fa, x - sin (alox - alx) * fa, y + sin (aloy - aly) * fa);
+    //txLine (x - sin (alox - alx) * fa, y - sin (aloy - aly) * fa, x + sin (alox - alx) * fa, y - sin (aloy - aly) * fa);
+    //txLine (x + sin (alox - alx) * fa, y - sin (aloy - aly) * fa, x + sin (alox - alx) * fa, y + sin (aloy - aly) * fa);
+    //txLine (x + sin (alox - alx) * fa, y + sin (aloy - aly) * fa, x - sin (alox - alx) * fa, y + sin (aloy - aly) * fa);
+
+    double cosalwx = cos (al) * wx;
+    double sinalwy = sin (al) * wy;
+    double sinalwx = sin (al) * wx;
+    double cosalwy = cos (al) * wy;
+    double sinalwz = sin (al) * wz;
+    double cosalwz = cos (al) * wz;
+    //txLine (x - wx, y - wy, x - wx, y + wy);
+    //txLine (x - wx, y - wy, x + wx, y - wy);
+    //txLine (x + wx, y - wy, x + wx, y + wy);
+    //txLine (x + wx, y + wy, x - wx, y + wy);
+
+    txLine (x + cosalwx - sinalwy, y + sinalwx + cosalwy, x + cosalwx + sinalwy, y + sinalwx - cosalwy);
+    txLine (x - cosalwy - sinalwx, y - sinalwy + cosalwx, x - cosalwy + sinalwx, y - sinalwy - cosalwx);
+    txLine (x + cosalwx - sinalwy, y + sinalwx + cosalwy, x - cosalwy - sinalwx, y - sinalwy + cosalwx);
+    txLine (x + cosalwx + sinalwy, y + sinalwx - cosalwy, x - cosalwy + sinalwx, y - sinalwy - cosalwx);
+
+
+    //=============================================================================
+     getch();
+     txClear();
+
+    VEDline (x + cosalwx - sinalwz , y - wz , z + sinalwx + cosalwz,   x + cosalwx + sinalwz , y - wz , z + sinalwx - cosalwz);
+    VEDline (x - cosalwz - sinalwx , y - wz , z - sinalwz + cosalwx,   x - cosalwz + sinalwx , y - wz , z - sinalwz - cosalwx);
+    VEDline (x + cosalwx - sinalwz , y - wz , z + sinalwx + cosalwz,   x - cosalwz - sinalwx , y - wz , z - sinalwz + cosalwx);
+    VEDline (x + cosalwx + sinalwz , y - wz , z + sinalwx - cosalwz,   x - cosalwz + sinalwx , y - wz , z - sinalwz - cosalwx);
+
+    //       /----------/
+    //      /          /
+    //     /----------/
+     /*
+    VEDline (x - wx , y - wy , z - wz,   x - wx , y + wy , z - wz);
+    VEDline (x - wx , y + wy , z - wz,   x - wx , y + wy , z + wz);
+    VEDline (x - wx , y + wy , z + wz,   x - wx , y - wy , z + wz);
+
+
+    //       /----------/
+    //      /|         /
+    //     /----------/
+    //     | |
+    //     | /
+    //     |/
+    //     /
+
+    VEDline (x - wx , y + wy , z - wz,   x + wx , y + wy , z - wz);
+    VEDline (x + wx , y + wy , z - wz,   x + wx , y + wy , z + wz);
+    VEDline (x + wx , y + wy , z + wz,   x - wx , y + wy , z + wz);
+
+    //       /----------/
+    //      /|         /
+    //     /----------/
+    //     | |
+    //     | /---------/
+    //     |/         /
+    //     /---------/
+
+
+
+    VEDline (x + wx , y + wy , z - wz,   x + wx , y - wy , z - wz);
+    VEDline (x + wx , y + wy , z + wz,   x + wx , y - wy , z + wz);
+
+    //       /----------/
+    //      /|         /|
+    //     /----------/ |
+    //     | |        | |
+    //     | /--------+-/
+    //     |/         |/
+    //     /----------/
+
+
+
+
+
+
+
+
+
+
+     */
+    return 0;
+    }

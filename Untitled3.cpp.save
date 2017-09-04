@@ -1,0 +1,11 @@
+
+#include "TXLib.h"
+
+int main()
+    {
+    txCreateWindow (800, 600);
+    
+    system
+
+    return 0;
+    }

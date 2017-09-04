@@ -1,0 +1,15 @@
+
+#include "TXLib.h"
+
+int main()
+    {
+    txCreateWindow (800, 600);
+
+    FILE *afhead;
+    
+    afhead = fopen ("afhead.obj", "r");
+    
+    
+
+    return 0;
+    }

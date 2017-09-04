@@ -1,0 +1,26 @@
+
+#include "VEDLibh.h"
+
+int main()
+    {
+    txCreateWindow (800, 600);
+    ARRSIZ s1 = {4, 4};
+    ARRSIZ s2 = {4, 4};
+    ARRSIZ s3 = {4, 4};
+
+    double num1[allmsx][allmsy] = {{1, 0, 0, 0},
+                                   {0, 0, 0, 0},
+                                   {0, 0, 0, 0},
+                                   {0, 0, 0, 0}};
+    double num2[allmsx][allmsy] = {{0, 0, 0, 0},
+                                   {0, 0, 0, 0},
+                                   {0, 0, 0, 0},
+                                   {0, 0, 0, 0}};
+    double num3[allmsx][allmsy] = {};
+
+    multimat (s1, num1, s2, num2, s3, num3);
+    printmat (s3, num3);
+    printf ("%f", num3[1][0]);
+
+    return 0;
+    }
