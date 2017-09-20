@@ -7,7 +7,7 @@ int main()
     {
     txCreateWindow (GetSystemMetrics(SM_CXSCREEN), GetSystemMetrics(SM_CYSCREEN));
     VEDTranslate (0, 0, 2);
-
+    VEDScale (13,   13,     0);
     while (!GetAsyncKeyState (VK_ESCAPE))
         {
 

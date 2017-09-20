@@ -15,7 +15,9 @@ struct MYP
     double y;
     double z;
     };
-
+double allXR = 0;
+double allYR = 0;
+double allZR = 0;
 int printmat (ARRSIZ sm, double m[ALLMSX][ALLMSY]);
 int VEDRotateZ (double a);
 int VEDjVertex (double x, double y, double z, double x1, double y1, double z1);
@@ -62,13 +64,23 @@ int VEDScale (double wx, double wy, double wz)
 
 int VEDRotateX (double a)
     {
-    double madealx [ALLMSX][ALLMSY] = {{0,      0,       0, 1},
-                                       {0,  cos(a/57.3), sin(a/57.3), 0},
-                                       {0, -sin(a/57.3), cos(a/57.3), 0},
+    /*double madealx [ALLMSX][ALLMSY] = {{0,      0,       0, 1},
+                                       {0,  cos(a/60), sin(a/60), 0},
+                                       {0, -sin(a/60), cos(a/60), 0},
                                        {1,      0,       0, 0}};
 
 
-    multimat (SDEF, DEFORMATION, SAL, madealx, SDEF, DEFORMATION);
+    *///multimat (SDEF, DEFORMATION, SAL, madealx, SDEF, DEFORMATION);
+    allXR += a;
+    ALX [1][1] = cos(allXR/60);
+    ALX [1][2] = sin(allXR/60);
+    ALX [2][1] =-sin(allXR/60);
+    ALX [2][2] = cos(allXR/60);
+    //      {{0,      0,       0, 1},
+    //       {0,  cos(a/60), sin(a/60), 0},
+    //       {0, -sin(a/60), cos(a/60), 0},
+    //       {1,      0,       0, 0}};
+
     txClearConsole();
     return 1;
     }
@@ -76,12 +88,22 @@ int VEDRotateX (double a)
 
 int VEDRotateY (double a)
     {
-    double madealy [ALLMSX][ALLMSY] = {{cos(a/57.3), 0, -sin(a/57.3), 0},
+    /*double madealy [ALLMSX][ALLMSY] = {{cos(a/57.3), 0, -sin(a/57.3), 0},
                                        {     0, 1,       0, 0},
                                        {sin(a/57.3), 0,  cos(a/57.3), 0},
                                        {     0, 0,       0, 1}};
     multimat (SDEF, DEFORMATION, SAL, madealy, SDEF, DEFORMATION);
-    return 1;
+    */
+    allYR += a;
+    ALY [0][0] = cos(allYR/60);
+    ALY [0][2] =-sin(allYR/60);
+    ALY [2][0] = sin(allYR/60);
+    ALY [2][2] = cos(allYR/60);
+    /*ALY = {{cos(a/57.3), 0, -sin(a/57.3), 0},
+                  {     0, 1,       0, 0},
+             {sin(a/57.3), 0,  cos(a/57.3), 0},
+                  {     0, 0,       0, 1}};
+    */return 1;
     }
 
 
@@ -89,12 +111,22 @@ int VEDRotateY (double a)
 
 int VEDRotateZ (double a)
     {
-    double madealz [ALLMSX][ALLMSY] = {{cos(a/57.3), -sin(a/57.3), 0, 0},
+    /*double madealz [ALLMSX][ALLMSY] = {{cos(a/57.3), -sin(a/57.3), 0, 0},
                                        {sin(a/57.3),  cos(a/57.3), 0, 0},
                                        {     0,       0, 1, 0},
                                        {     0,       0, 0, 1}};
     multimat (SDEF, DEFORMATION, SAL, madealz, SDEF, DEFORMATION);
-    return 1;
+    */
+    allZR += a;
+    ALZ [0][0] = cos(allZR/60);
+    ALZ [0][1] =-sin(allZR/60);
+    ALZ [1][0] = sin(allZR/60);
+    ALZ [1][1] = cos(allZR/60);
+    /*ALZ = {{cos(a/57.3), -sin(a/57.3), 0, 0},
+           {sin(a/57.3),  cos(a/57.3), 0, 0},
+           {     0,       0, 1, 0},
+           {     0,       0, 0, 1}};
+    */return 1;
     }
 
 
@@ -117,8 +149,16 @@ int VEDVertex (MYP old, MYP NEW)
     //double ncord0 [ALLMSX][ALLMSY] = {};
     //double ncord1 [ALLMSX][ALLMSY] = {};
 
+    //multimat (SCORD, cord0, SDEF, DEFORMATION, SCORD, cord0);
+    multimat (SCORD, cord0, SDEF, ALX, SCORD, cord0);
+    multimat (SCORD, cord0, SDEF, ALY, SCORD, cord0);
+    multimat (SCORD, cord0, SDEF, ALZ, SCORD, cord0);
     multimat (SCORD, cord0, SDEF, DEFORMATION, SCORD, cord0);
     multimat (SCORD, cord0, STRAN, TRAN, SCORD, cord0);
+
+    multimat (SCORD, cord1, SDEF, ALX, SCORD, cord1);
+    multimat (SCORD, cord1, SDEF, ALY, SCORD, cord1);
+    multimat (SCORD, cord1, SDEF, ALZ, SCORD, cord1);
     multimat (SCORD, cord1, SDEF, DEFORMATION, SCORD, cord1);
     multimat (SCORD, cord1, STRAN, TRAN, SCORD, cord1);
 
