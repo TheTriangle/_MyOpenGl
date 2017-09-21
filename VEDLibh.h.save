@@ -17,7 +17,7 @@ struct MYP
     };
 double allXR = 0;
 double allYR = 0;
-doublr allZR = 0;
+double allZR = 0;
 int printmat (ARRSIZ sm, double m[ALLMSX][ALLMSY]);
 int VEDRotateZ (double a);
 int VEDjVertex (double x, double y, double z, double x1, double y1, double z1);
@@ -73,9 +73,9 @@ int VEDRotateX (double a)
     *///multimat (SDEF, DEFORMATION, SAL, madealx, SDEF, DEFORMATION);
     allXR += a;
     ALX [1][1] = cos(allXR/60);
-    ALX [1][2] = sin(a/60);
-    ALX [2][1] =-sin(a/60);
-    ALX [2][2] = cos(a/60);
+    ALX [1][2] = sin(allXR/60);
+    ALX [2][1] =-sin(allXR/60);
+    ALX [2][2] = cos(allXR/60);
     //      {{0,      0,       0, 1},
     //       {0,  cos(a/60), sin(a/60), 0},
     //       {0, -sin(a/60), cos(a/60), 0},
@@ -94,10 +94,11 @@ int VEDRotateY (double a)
                                        {     0, 0,       0, 1}};
     multimat (SDEF, DEFORMATION, SAL, madealy, SDEF, DEFORMATION);
     */
-    ALY [0][0] = cos(a/60);
-    ALY [0][2] =-sin(a/60);
-    ALY [2][0] = sin(a/60);
-    ALY [2][2] = cos(a/60);
+    allYR += a;
+    ALY [0][0] = cos(allYR/60);
+    ALY [0][2] =-sin(allYR/60);
+    ALY [2][0] = sin(allYR/60);
+    ALY [2][2] = cos(allYR/60);
     /*ALY = {{cos(a/57.3), 0, -sin(a/57.3), 0},
                   {     0, 1,       0, 0},
              {sin(a/57.3), 0,  cos(a/57.3), 0},
@@ -116,10 +117,11 @@ int VEDRotateZ (double a)
                                        {     0,       0, 0, 1}};
     multimat (SDEF, DEFORMATION, SAL, madealz, SDEF, DEFORMATION);
     */
-    ALZ [0][0] = cos(a/60);
-    ALZ [0][1] =-sin(a/60);
-    ALZ [1][0] = sin(a/60);
-    ALZ [1][1] = cos(a/60);
+    allZR += a;
+    ALZ [0][0] = cos(allZR/60);
+    ALZ [0][1] =-sin(allZR/60);
+    ALZ [1][0] = sin(allZR/60);
+    ALZ [1][1] = cos(allZR/60);
     /*ALZ = {{cos(a/57.3), -sin(a/57.3), 0, 0},
            {sin(a/57.3),  cos(a/57.3), 0, 0},
            {     0,       0, 1, 0},
@@ -142,7 +144,7 @@ int VEDTranslate (double x, double y, double z)
 
 int VEDVertex (MYP old, MYP NEW)
     {
-    double cord0 [ALLMSX][ALLMSY] = {{old.x, old.y, old.z, 1}, {0, 0, 0, 0}, {0, 0, 0, 0}, {0, 0, 0, 0}};
+    double cord0 [ALLMSX][ALLMSY] = {{0, old.y, old.z, 1}, {0, 0, 0, 0}, {0, 0, 0, 0}, {0, 0, 0, 0}};
     double cord1 [ALLMSX][ALLMSY] = {{NEW.x, NEW.y, NEW.z, 1}, {0, 0, 0, 0}, {0, 0, 0, 0}, {0, 0, 0, 0}};
     //double ncord0 [ALLMSX][ALLMSY] = {};
     //double ncord1 [ALLMSX][ALLMSY] = {};

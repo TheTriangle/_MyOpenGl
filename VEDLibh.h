@@ -166,10 +166,10 @@ int VEDVertex (MYP old, MYP NEW)
     if (fabs(cord1[0][2]) <= 0.0015) cord1[0][2] = 0.0015;
 
 
-    txLine (txGetExtentX()/2 + (cord0[0][0]) / (0.05 * (cord0[0][2])),
-            txGetExtentY()/2 + (cord0[0][1]) / (0.05 * (cord0[0][2])),
-            txGetExtentX()/2 + (cord1[0][0]) / (0.05 * (cord1[0][2])),
-            txGetExtentY()/2 + (cord1[0][1]) / (0.05 * (cord1[0][2])));
+    txLine (txGetExtentX()/2 + (cord0[0][0]) / (0.1 * (cord0[0][2])),
+            txGetExtentY()/2 + (cord0[0][1]) / (0.1 * (cord0[0][2])),
+            txGetExtentX()/2 + (cord1[0][0]) / (0.1 * (cord1[0][2])),
+            txGetExtentY()/2 + (cord1[0][1]) / (0.1 * (cord1[0][2])));
 
     return 0;
     }
