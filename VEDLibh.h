@@ -1,5 +1,6 @@
 
 #include "TXLib.h"
+#define ctg(x) 1/tan(x)
 const int ALLMSX = 4;
 const int ALLMSY = 4;
 struct ARRSIZ
@@ -15,6 +16,11 @@ struct MYP
     double y;
     double z;
     };
+
+
+double TALX = 0;
+double TALY = 0;
+double TALZ = 0;
 
 int printmat (ARRSIZ sm, double m[ALLMSX][ALLMSY]);
 int VEDRotateZ (double a);
@@ -37,6 +43,13 @@ double ALY [ALLMSX][ALLMSY] = {{1, 0, 0, 0}, {0, 1, 0, 0}, {0, 0, 1, 0}, {0, 0, 
 double ALZ [ALLMSX][ALLMSY] = {{1, 0, 0, 0}, {0, 1, 0, 0}, {0, 0, 1, 0}, {0, 0, 0, 1}};
 
 ARRSIZ SCORD = {4, 4};
+                                   //TODO merge all deformation matrix into one,
+                                   //TODO make arrays dynamic
+double PERSPECTIVE [ALLMSX][ALLMSY] = {{ctg(40 * 0.01745)/(4/3), 0, 0, 0},
+                      {0, ctg(40 * 0.01745), 0, 0},
+                      {0, 0, (5 + 3)/(5 - 3), 1},
+                      {0, 0, (-2*5*3)/(5 - 3), 0}};
+
 
 double DEFORMATION [ALLMSX][ALLMSY] = {{1, 0, 0, 0}, {0, 1, 0, 0}, {0, 0, 1, 0}, {0, 0, 0, 1}};
 
@@ -62,26 +75,38 @@ int VEDScale (double wx, double wy, double wz)
 
 int VEDRotateX (double a)
     {
-    double madealx [ALLMSX][ALLMSY] = {{0,      0,       0, 1},
-                                       {0,  cos(a/57.3), sin(a/57.3), 0},
-                                       {0, -sin(a/57.3), cos(a/57.3), 0},
+    TALX += a;
+    /*double madealx [ALLMSX][ALLMSY] = {{0,      0,       0, 1},
+                                       {0,  cos(TALX/57.3), sin(TALX/57.3), 0},
+                                       {0, -sin(TALX/57.3), cos(TALX/57.3), 0},
                                        {1,      0,       0, 0}};
 
 
     multimat (SDEF, DEFORMATION, SAL, madealx, SDEF, DEFORMATION);
     txClearConsole();
+    */
+    ALX[1][1] = cos(TALX/60);
+    ALX[1][2] = sin(TALX/60);
+    ALX[2][1] =-sin(TALX/60);
+    ALX[2][2] = cos(TALX/60);
     return 1;
     }
 
 
 int VEDRotateY (double a)
     {
-    double madealy [ALLMSX][ALLMSY] = {{cos(a/57.3), 0, -sin(a/57.3), 0},
+    TALY += a;
+
+    ALY[0][0] = cos(TALY/60);
+    ALY[0][2] =-sin(TALY/60);
+    ALY[2][0] = sin(TALY/60);
+    ALY[2][2] = cos(TALY/60);
+    /*double madealy [ALLMSX][ALLMSY] = {{cos(a/57.3), 0, -sin(a/57.3), 0},
                                        {     0, 1,       0, 0},
                                        {sin(a/57.3), 0,  cos(a/57.3), 0},
                                        {     0, 0,       0, 1}};
     multimat (SDEF, DEFORMATION, SAL, madealy, SDEF, DEFORMATION);
-    return 1;
+    */return 1;
     }
 
 
@@ -89,11 +114,13 @@ int VEDRotateY (double a)
 
 int VEDRotateZ (double a)
     {
-    double madealz [ALLMSX][ALLMSY] = {{cos(a/57.3), -sin(a/57.3), 0, 0},
-                                       {sin(a/57.3),  cos(a/57.3), 0, 0},
-                                       {     0,       0, 1, 0},
-                                       {     0,       0, 0, 1}};
-    multimat (SDEF, DEFORMATION, SAL, madealz, SDEF, DEFORMATION);
+
+    TALZ += a;
+
+    ALZ[0][0] = cos(TALZ/60);
+    ALZ[0][1] = sin(TALZ/60);
+    ALZ[1][0] = sin(TALZ/60);
+    ALZ[1][1] = cos(TALZ/60);
     return 1;
     }
 
@@ -117,19 +144,28 @@ int VEDVertex (MYP old, MYP NEW)
     //double ncord0 [ALLMSX][ALLMSY] = {};
     //double ncord1 [ALLMSX][ALLMSY] = {};
 
-    multimat (SCORD, cord0, SDEF, DEFORMATION, SCORD, cord0);
+    multimat (SCORD, cord0, SAL, DEFORMATION, SCORD, cord0);
+    multimat (SCORD, cord0, SAL, ALX, SCORD, cord0);
+    multimat (SCORD, cord0, SAL, ALY, SCORD, cord0);
+    multimat (SCORD, cord0, SAL, ALZ, SCORD, cord0);
     multimat (SCORD, cord0, STRAN, TRAN, SCORD, cord0);
+    //multimat (SCORD, cord0, STRAN, PERSPECTIVE, SCORD, cord0);
+
     multimat (SCORD, cord1, SDEF, DEFORMATION, SCORD, cord1);
+    multimat (SCORD, cord1, SAL, ALX, SCORD, cord1);
+    multimat (SCORD, cord1, SAL, ALY, SCORD, cord1);
+    multimat (SCORD, cord1, SAL, ALZ, SCORD, cord1);
     multimat (SCORD, cord1, STRAN, TRAN, SCORD, cord1);
+    //multimat (SCORD, cord1, STRAN, PERSPECTIVE, SCORD, cord1);
 
     if (fabs(cord0[0][2]) <= 0.0015) cord0[0][2] = 0.0015;
     if (fabs(cord1[0][2]) <= 0.0015) cord1[0][2] = 0.0015;
 
 
-    txLine (txGetExtentX()/2 + (cord0[0][0]) / (0.05 * (cord0[0][2])),
-            txGetExtentY()/2 + (cord0[0][1]) / (0.05 * (cord0[0][2])),
-            txGetExtentX()/2 + (cord1[0][0]) / (0.05 * (cord1[0][2])),
-            txGetExtentY()/2 + (cord1[0][1]) / (0.05 * (cord1[0][2])));
+    txLine (txGetExtentX()/2 + (cord0[0][0]), // ((0.015*cord0[0][2])),
+            txGetExtentY()/2 + (cord0[0][1]), // ((0.015*cord0[0][2])),
+            txGetExtentX()/2 + (cord1[0][0]), // ((0.015*cord1[0][2])),
+            txGetExtentY()/2 + (cord1[0][1])); // ((0.015*cord1[0][2])));
 
     return 0;
     }

@@ -6,8 +6,8 @@ void control (double speed = 1);
 int main()
     {
     txCreateWindow (GetSystemMetrics(SM_CXSCREEN), GetSystemMetrics(SM_CYSCREEN));
-    VEDTranslate (0, 0, 2);
-
+    VEDTranslate (0, 0, 8);
+    VEDScale (8, 8, 1);
     while (!GetAsyncKeyState (VK_ESCAPE))
         {
 
@@ -38,12 +38,12 @@ void control (double speed)
 
 
 
-    if (GetAsyncKeyState ('D')) VEDTranslate ( 1.2 * speed,  0,   0);
-    if (GetAsyncKeyState ('A')) VEDTranslate (-1.2 * speed,  0,   0);
-    if (GetAsyncKeyState ('W')) VEDTranslate ( 0, -1.2 * speed,   0);
-    if (GetAsyncKeyState ('S')) VEDTranslate ( 0,  1.2 * speed,   0);
-    if (GetAsyncKeyState ('Q')) VEDTranslate ( 0,  0,   1.2 * speed);
-    if (GetAsyncKeyState ('E')) VEDTranslate ( 0,  0,  -1.2 * speed);
+    if (GetAsyncKeyState ('D')) VEDTranslate ( 12 * speed,  0,   0);
+    if (GetAsyncKeyState ('A')) VEDTranslate (-12 * speed,  0,   0);
+    if (GetAsyncKeyState ('W')) VEDTranslate ( 0, -12 * speed,   0);
+    if (GetAsyncKeyState ('S')) VEDTranslate ( 0,  12 * speed,   0);
+    if (GetAsyncKeyState ('Q')) VEDTranslate ( 0,  0,   12 * speed);
+    if (GetAsyncKeyState ('E')) VEDTranslate ( 0,  0,  -12 * speed);
 
 
     if (GetAsyncKeyState ('O'))
