@@ -1,0 +1,81 @@
+
+#include "VEDLibh.h"
+#include <vector>
+
+void drawVec (MYP Vector[]);
+int FillVec (MYP Vector[]);
+int main()
+    {
+    using namespace std;
+    txCreateWindow (800, 600);
+    MYP PointsVec[500];
+    FillVec (PointsVec);
+    while(!GetAsyncKeyState(VK_ESCAPE))
+        {
+        drawVec (PointsVec);
+        txSleep(10);
+        }
+    return 0;
+    }
+
+int FillVec (MYP Vector[])
+    {
+    FILE *model;
+    if ((model = fopen ("african_head.obj", "r")) == NULL)
+        {
+        printf ("Cannot open obj");
+        exit(1);
+        }
+    char type[20];
+    double ScX;
+    double ScY;
+    double ScZ;
+    int i = 0;
+    while (!feof(model))
+        {
+        fscanf (model, "%s%lf%lf%lf", type, &ScX, &ScY, &ScZ);
+        fprin
+        if (type[0] == 'v' && type[1] != 't' && type[1] != 'n')
+            {
+            //getch();
+            Vector[i].x = ScX;
+            Vector[i].y = ScY;
+            Vector[i].z = ScZ;
+            printf ("%s %f %f %f\n", type, Vector[i].x, Vector[i].y, Vector[i].z);
+
+            }
+        else
+            {
+            getch();
+            printf ("'%s'!= 'v'\n", type);
+            }
+        i++;
+        }
+    fclose(model);
+    return i;
+    }
+
+void drawVec (MYP Vector[])
+    {
+    FILE *model;
+    if ((model = fopen ("african_head.obj", "r")) == NULL)
+        {
+        printf ("Cannot open obj");
+        exit(1);
+        }
+    char type[20];
+    int fnum;
+    int snum;
+    int tnum;
+    int i = 0;
+    while (!feof(model))
+        {
+        fscanf (model, "%s%d/%d/%d", type, &fnum, &snum, &tnum);
+        if (type[0] == 'f')
+            {
+            VEDTriangle (Vector[fnum], Vector[snum], Vector[tnum]);
+            printf ("%s %d/%d/%d", type, fnum, snum, tnum);
+            }
+        else printf ("'%s' != 'f'", type);
+        }
+    }
