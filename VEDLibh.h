@@ -22,10 +22,12 @@ double TALX = 0;
 double TALY = 0;
 double TALZ = 0;
 
-void VED3dTriangle (MYP first, MYP second, MYP third);
+int VEDLine (double x1, double y1, double x2, double y2, MYP col1, MYP col2);
+void VED3dTriangle (MYP first, MYP second, MYP third, MYP col1, MYP col2, MYP col3);
 void makeAllDeforms (double cord [ALLMSX][ALLMSY], bool isper);
-int VEDTriangle (MYP first, MYP second, MYP third);
-int VEDHorTriangle(MYP left, MYP right, MYP third);
+int VEDTriangle (MYP first, MYP second, MYP third, MYP fcol, MYP scol, MYP tcol);
+void swap (double* s1, double* s2);
+int VEDHorTriangle(MYP left, MYP right, MYP third, MYP lcol, MYP rcol, MYP tcol);
 void makePerspective (double mat[ALLMSX][ALLMSY], double n, double f);
 void copymatrix (ARRSIZ size, double To[ALLMSX][ALLMSY], double From[ALLMSX][ALLMSY]);
 int makemat (ARRSIZ SM, double A[ALLMSX][ALLMSY], double B[ALLMSX][ALLMSY]);
@@ -142,7 +144,7 @@ int VEDTranslate (double x, double y, double z)
     return 1;
     }
 
-int VEDTriangle (MYP first, MYP second, MYP third)
+int VEDTriangle (MYP first, MYP second, MYP third, MYP fcol, MYP scol, MYP tcol)
     {
     //txSetColor (TX_GREEN);
     //VEDVertex (first, second, false);
@@ -151,67 +153,91 @@ int VEDTriangle (MYP first, MYP second, MYP third)
     //txSetColor (TX_WHITE);
     //VEDVertex (first, third, false);
 
-    MYP down;
-    MYP mid;
-    MYP up;
+    MYP down = {};
+    MYP mid = {};
+    MYP up = {};
+    MYP dcol = {};
+    MYP mcol = {};
+    MYP ucol = {};
+
 //--------------------------------------
     if (first.y < second.y)           //
         {                              //
         if (first.y < third.y)        //
             {                         //
             down = first;             //
+            dcol = fcol;              //
             if (second.y < third.y)   //
                 {                     //
                 mid = second;         //
+                mcol = scol;          //
                 up = third;           //
+                ucol = tcol;          //
                 }                     //
             else                      //
                 {                     //
                 mid = third;          //
+                mcol = tcol;          //
                 up = second;          //
+                ucol = scol;          //
                 }                     //
             }                         //
         else                          //
             {                         //
             down = third;             //
+            dcol = tcol;              //
             if (first.y < second.y)   //
                 {                     //
                 mid = first;          //
+                mcol = fcol;          //
                 up = second;          //
+                ucol = scol;          //
                 }                     //
             else                      //
                 {                     //
                 mid = second;         //
+                mcol = scol;          //
                 up = first;           //
+                ucol = fcol;          //
                 }                     //
             }                         //
         }                             //
     else if (second.y < third.y)        // sorting
         {                               // points
         down = second;                //
+        dcol = scol;                  //
         if (first.y < third.y)        //
             {                         //
+            mcol = fcol;              //
             mid = first;              //
             up = third;               //
+            ucol = tcol;              //
             }                         //
         else                          //
             {                         //
             mid = third;              //
+            mcol = tcol;              //
             up = first;               //
+            ucol = fcol;              //
             }                         //
         }                             //
     else                               //
         {                             //
         down = third;                 //
+        dcol = tcol;                  //
         if (first.y < second.y)       //
             {                         //
+            mcol = fcol;              //
             mid = first;              //
             up = second;              //
+            ucol = scol;              //
             }                         //
         else                          //
             {                         //
             mid = second;             //
+            mcol = scol;              //
             up = first;               //
+            ucol = fcol;              //
             }                         //
         }                             //
 //--------------------------------------
@@ -219,23 +245,24 @@ int VEDTriangle (MYP first, MYP second, MYP third)
     double allheight = up.y - down.y;
     double allhwidth = up.x - down.x;
     double sectorheight = mid.y - down.y;
-    printf ("mid.y == %f, down.y == %f\n", mid.y, down.y);
-    printf ("sech == %f\n", sectorheight);
+    double help = sectorheight/allheight;
+    //printf ("mid.y == %f, down.y == %f\n", mid.y, down.y);
+    //printf ("sech == %f\n", sectorheight);
 
-    VEDHorTriangle ({(sectorheight/allheight)*allhwidth + down.x, down.y + sectorheight, 0}, mid, down);
-    VEDHorTriangle ({(sectorheight/allheight)*allhwidth + down.x, down.y + sectorheight, 0}, mid, up);
-    return 0;
-    }
+    VEDHorTriangle ({help*allhwidth + down.x, down.y + sectorheight, 0}, mid, down, {help * (ucol.x - dcol.x) + dcol.x, help * (ucol.y - dcol.y) + dcol.y, help * (ucol.z - dcol.z) + dcol.z}, mcol, dcol);
+    VEDHorTriangle ({help*allhwidth + down.x, down.y + sectorheight, 0}, mid, up, {help * (ucol.x - dcol.x) + dcol.x, help * (ucol.y - dcol.y) + dcol.y, help * (ucol.z - dcol.z) + dcol.z}, mcol, ucol);
+    return 0;                        //линейна€ интерпол€ци€
+    }                                              //x = x0 + t*(x1-x0)
 
 
-int VEDHorTriangle(MYP left, MYP right, MYP third)
+int VEDHorTriangle(MYP left, MYP right, MYP third, MYP lcol, MYP rcol, MYP tcol)
     {
     double allheight = third.y - left.y;
     //printf ("third.y == %f\n left.y == %f", third.y, left.y);
     if (fabs (allheight) < 0.015)
         {
         //getch();
-        txLine (left.x, left.y, right.x, right.y);
+        VEDLine (left.x, left.y, right.x, right.y, lcol, rcol);
         return 0;
         //printf ("i've returned");
         }
@@ -248,6 +275,7 @@ int VEDHorTriangle(MYP left, MYP right, MYP third)
     double nowheight = 0;
     double leftwidth = third.x - left.x;
     double rightwidth = third.x - right.x;
+    double help = 0;
     for (double nowy = left.y; exit; nowy += signum)
         {
         //txSleep(10);
@@ -257,7 +285,11 @@ int VEDHorTriangle(MYP left, MYP right, MYP third)
         //printf ("b\n");
         //getch();
         assert (fabs (allheight) >= 0.015);
-        txLine (left.x + (nowheight/allheight)*leftwidth, left.y + nowheight, right.x + (nowheight/allheight)*rightwidth, right.y + nowheight);
+        help = nowheight/allheight;
+        VEDLine (left.x + help*leftwidth, left.y + nowheight,
+                 right.x + help*rightwidth, right.y + nowheight,
+                 {lcol.x + help*(tcol.x - lcol.x), lcol.y + help*(tcol.y - lcol.y), lcol.z + help*(tcol.z - lcol.z)},
+                 {rcol.x + help*(tcol.x - rcol.x), rcol.y + help*(tcol.y - rcol.y), rcol.z + help*(tcol.z - rcol.z)});
         }
     return 0;
     }
@@ -266,94 +298,28 @@ int VEDVertex (MYP old, MYP NEW, bool isper)
     {
     double cord0 [ALLMSX][ALLMSY] = {{old.x, 0, 0, 0}, {old.y, 0, 0, 0}, {old.z, 0, 0, 0}, {1, 0, 0, 0}};
     double cord1 [ALLMSX][ALLMSY] = {{NEW.x, 0, 0, 0}, {NEW.y, 0, 0, 0}, {NEW.z, 0, 0, 0}, {1, 0, 0, 0}};
-    //multimat (SAL, DEFORMATION, SAL, ALX, SAL, DEFORMATION);
-    //multimat (SAL, DEFORMATION, SAL, ALY, SAL, DEFORMATION);
-    //multimat (SAL, DEFORMATION, SAL, ALZ, SAL, DEFORMATION);
-
-    //multimat (SAL, DEFORMATION, SCORD, cord0, SCORD, cord0);
-    //multimat (SAL, ALZ, SCORD, cord0, SCORD, cord0);
-    //multimat (SCORD, cord0, SAL, ALX, SCORD, cord0);
-    //multimat (SCORD, cord0, SAL, ALY, SCORD, cord0);
-    //multimat (SAL, ALZ, SCORD, cord0, SCORD, cord0);
-    //multimat (STRAN, TRAN, SCORD, ncord0, SCORD, ncord0);
-    //multimat (SCORD, cord0, STRAN, PERSPECTIVE, SCORD, cord0);
-
-    //multimat (SDEF, DEFORMATION, SCORD, cord1, SCORD, cord1);
-    //multimat (SAL, ALZ, SCORD, cord1, SCORD, cord1);
-    //multimat (SCORD, cord1, SAL, ALX, SCORD, cord1);
-    //multimat (SCORD, cord1, SAL, ALY, SCORD, cord1);
-    //multimat (SAL, ALZ, SCORD, cord1, SCORD, cord1);
-    //multimat (STRAN, TRAN, SCORD, ncord1, SCORD, ncord1);
-    //multimat (SCORD, cord1, STRAN, PERSPECTIVE, SCORD, cord1);
-
-    //if (fabs(ncord0[0][2]) <= 0.0015) cord0[0][2] = 0.0015;
-    //if (fabs(ncord1[0][2]) <= 0.0015) cord1[0][2] = 0.0015;
-    //printmat(SAL, ALZ);
-    //double MyDef [ALLMSX][ALLMSY] = {{1, 0, 0, 0}, {0, 1, 0, 0}, {0, 0, 1, 0}, {0, 0, 0, 1}};
-    //multimat (SAL, ALZ, SDEF, MyDef, SDEF, MyDef);
-    //multimat (SAL, ALX, SDEF, MyDef, SDEF, MyDef);
-    //multimat (SAL, ALY, SDEF, MyDef, SDEF, MyDef);
-
-    //multimat (SAL, MyDef, SCORD, ncord0, SCORD, ncord0);
-
-    //multimat (SAL, DEFORMATION, SCORD, cord0, SCORD, cord0);
-    //copymatrix (SCORD, cord0, cord0);
-
-    //multimat (SAL, ALY, SCORD, cord0, SCORD, cord0);
-    //copymatrix (SCORD, cord0, cord0);
-
-    //multimat (SAL, ALX, SCORD, cord0, SCORD, cord0);
-    //copymatrix (SCORD, cord0, cord0);
-
-    //multimat (SAL, ALZ, SCORD, cord0, SCORD, cord0);
-    //copymatrix (SCORD, cord0, cord0);
-
-    //multimat (SAL, TRAN, SCORD, cord0, SCORD, cord0);
-    //if (isper) multimat (STRAN, PERSPECTIVE, SCORD, cord0, SCORD, cord0);
 
     makeAllDeforms(cord0, isper);
     makeAllDeforms(cord1, isper);
 
-    //multimat (SAL, ALZ, SCORD, cord1, SCORD, cord1);
-    //multimat (SAL, ALX, SCORD, cord1, SCORD, cord1);
-    //multimat (SAL, ALY, SCORD, cord1, SCORD, cord1);
-
-    //multimat (SAL, DEFORMATION, SCORD, cord1, SCORD, cord1);
-    //copymatrix (SCORD, cord1, cord1);
-
-    //multimat (SAL, ALY, SCORD, cord1, SCORD, cord1);
-    //copymatrix (SCORD, cord1, cord1);
-
-    //multimat (SAL, ALX, SCORD, cord1, SCORD, cord1);
-    //copymatrix (SCORD, cord1, cord1);
-
-    //multimat (SAL, ALZ, SCORD, cord1, SCORD, cord1);
-    //copymatrix (SCORD, cord1, cord1);
-
-    //multimat (SAL, TRAN, SCORD, cord1, SCORD, cord1);
-    //if (isper) multimat (STRAN, PERSPECTIVE, SCORD, cord1, SCORD, cord1);
-
-    if (fabs(cord0[2][0]) <= 0.0015) cord0[2][0] = 0.0015;
-    if (fabs(cord1[2][0]) <= 0.0015) cord1[2][0] = 0.0015;
-    txLine (txGetExtentX()/2 + cord0[0][0]/0.0015/cord0[2][0],
-            txGetExtentY()/2 + cord0[1][0]/0.0015/cord0[2][0],
-            txGetExtentX()/2 + cord1[0][0]/0.0015/cord1[2][0],
-            txGetExtentY()/2 + cord1[1][0]/0.0015/cord1[2][0]);
-
-   /* txLine (txGetExtentX()/2 + (cord0[0][0]), // ((0.015*cord0[0][2])),
-            txGetExtentY()/2 + (cord0[1][0]), // ((0.015*cord0[0][2])),
-            txGetExtentX()/2, // ((0.015*cord1[0][2])),
-            txGetExtentY()/2); // ((0.015*cord1[0][2])));  //*/
-
+    VEDLine (txGetExtentX()/2 + cord0[0][0],
+             txGetExtentY()/2 + cord0[1][0],
+             txGetExtentX()/2 + cord1[0][0],
+             txGetExtentY()/2 + cord1[1][0], {255, 255, 255}, {200, 200, 200});
     return 0;
     }
 
-void VED3dTriangle (MYP first, MYP second, MYP third)
+void VED3dTriangle (MYP first, MYP second, MYP third, MYP col1, MYP col2, MYP col3)
     {
-    double cord1 [ALLMSX][ALLMSY] = {{first.x, 0, 0, 0}, {first.y, 0, 0, 0}, {first.z, 0, 0, 0}};
-    double cord2 [ALLMSX][ALLMSY] = {{second.x, 0, 0, 0}, {second.y, 0, 0, 0}, {second.z, 0, 0, 0}};
-    double cord3 [ALLMSX][ALLMSY] = {{third.x, 0, 0, 0}, {third.y, 0, 0, 0}, {third.z, 0, 0, 0}};
-
+    double cord1 [ALLMSX][ALLMSY] = {{first.x, 0, 0, 0}, {first.y, 0, 0, 0}, {first.z, 0, 0, 0}, {1, 0, 0, 0}};
+    double cord2 [ALLMSX][ALLMSY] = {{second.x, 0, 0, 0}, {second.y, 0, 0, 0}, {second.z, 0, 0, 0}, {1, 0, 0, 0}};
+    double cord3 [ALLMSX][ALLMSY] = {{third.x, 0, 0, 0}, {third.y, 0, 0, 0}, {third.z, 0, 0, 0}, {1, 0, 0, 0}};
+    makeAllDeforms (cord1, false);
+    makeAllDeforms (cord2, false);
+    makeAllDeforms (cord3, false);
+    VEDTriangle ({txGetExtentX()/2 + cord1[0][0], txGetExtentY()/2 + cord1[1][0], 0},
+                 {txGetExtentX()/2 + cord2[0][0], txGetExtentY()/2 + cord2[1][0], 0},
+                 {txGetExtentX()/2 + cord3[0][0], txGetExtentY()/2 + cord3[1][0], 0}, col1, col2, col3);
     }
 
 void makeAllDeforms (double cord[ALLMSX][ALLMSY], bool isper)
@@ -369,6 +335,58 @@ void makeAllDeforms (double cord[ALLMSX][ALLMSY], bool isper)
     multimat (SAL, TRAN, SCORD, cord, SCORD, cord);
 
     if (isper) multimat (STRAN, PERSPECTIVE, SCORD, cord, SCORD, cord);
+
+    if (fabs(cord[2][0]) <= 0.0015) cord[2][0] = 0.0015;
+    cord[0][0] = cord[0][0]/0.0015/cord[2][0];
+    cord[1][0] = cord[1][0]/0.0015/cord[2][0];
+    }
+
+int VEDLine (double x1, double y1, double x2, double y2, MYP col1, MYP col2)
+    {
+    //printf ("%f, %f, %f, %f\n", x2, y2, x1, y1);
+    //txSetFillColor (RGB (col1.x, col1.y, col1.z));
+    //txSetColor (RGB (col1.x, col1.y, col1.z));
+    //txCircle (x1, y1, 10);
+    //txSetFillColor (RGB (col2.x, col2.y, col2.z));
+    //txSetColor (RGB (col2.x, col2.y, col2.z));
+    //txCircle (x2, y2, 10);
+    //getch();
+    if (x1 > x2)
+        {
+        swap (&x1, &x2);
+        swap (&y1, &y2);
+        }
+    if (fabs(x2 - x1) < 1 && fabs (y2 - y1) < 1) return 0;
+    bool swapped = false;
+    if (fabs(x2 - x1) < fabs(y2 - y1))
+        {
+        swapped = true;
+        swap (&x1, &y1);
+        swap (&x2, &y2);
+        }
+
+    double help = 0;
+    for (int xn = (int)x1; xn < x2; xn++)
+        {
+        //if (big2 - big1 == 0)
+        //    {
+            //if (swapped) printf ("swapped\n");
+            //else printf ("not swapped\n");
+            //printf ("x/y1 == %d (-) x/y2 == %d", big2, big1);
+            //getch();
+        //    }
+        help = (xn - x1)/(x2 - x1);
+        if (swapped) txSetPixel (y1 + help*(y2 - y1), xn, RGB (help*(col2.x - col1.x) + col1.x, help*(col2.y - col1.y) + col1.y, help*(col2.z - col1.z) + col1.z));
+        else         txSetPixel (xn, y1 + help*(y2 - y1), RGB (help*(col2.x - col1.x) + col1.x, help*(col2.y - col1.y) + col1.y, help*(col2.z - col1.z) + col1.z));
+        }
+    return 0;
+    }
+
+void swap (double* s1, double* s2)
+    {
+    double help = *s1;
+    *s1 = *s2;
+    *s2 = help;
     }
 
 
@@ -385,16 +403,28 @@ void makePerspective (double mat[ALLMSX][ALLMSY], double n, double f)
 
 int VEDCube (bool isper)
     {
-    VEDVertex ({-1, -1, -1}, {-1, -1, +1}, isper);
-    VEDVertex ({-1, -1, +1}, {+1, -1, +1}, isper);
-    VEDVertex ({+1, -1, +1}, {+1, -1, -1}, isper);
-    VEDVertex ({+1, -1, -1}, {-1, -1, -1}, isper);
+    MYP c1 = {-1, -1, -1};             //    2/--------/3
+    MYP c2 = {-1, -1,  1};             //    /|       /|
+    MYP c3 = { 1, -1,  1};             //  1/-+------/4|
+    MYP c4 = { 1, -1, -1};             //   | |      | |
+    MYP c5 = {-1,  1, -1};             //   | |      | |
+    MYP c6 = {-1,  1,  1};             //   |6/------|-/7
+    MYP c7 = { 1,  1,  1};             //   |/       |/
+    MYP c8 = { 1,  1, -1};             //  5/--------/8
+    MYP mred = {255, 0, 0};
+    MYP mgreen = {0, 255, 0};
+    MYP mmid = {127, 0, 127};
+    if (isper) //TODO you know what to do
+    /*VEDVertex ({-1, -1, -1}, {-1, -1, +1}, isper);
+    //VEDVertex ({-1, -1, +1}, {+1, -1, +1}, isper);
+    //VEDVertex ({+1, -1, +1}, {+1, -1, -1}, isper);
+    //VEDVertex ({+1, -1, -1}, {-1, -1, -1}, isper);
     //       /----------/
     //      /          /
     //     /----------/
-    VEDVertex ({-1, -1, -1}, {-1, +1, -1}, isper);
-    VEDVertex ({-1, +1, -1}, {-1, +1, +1}, isper);
-    VEDVertex ({-1, +1, +1}, {-1, -1, +1}, isper);
+    //VEDVertex ({-1, -1, -1}, {-1, +1, -1}, isper);
+    //VEDVertex ({-1, +1, -1}, {-1, +1, +1}, isper);
+    //VEDVertex ({-1, +1, +1}, {-1, -1, +1}, isper);
 
 
     //       /----------/
@@ -405,9 +435,9 @@ int VEDCube (bool isper)
     //     |/
     //     /
 
-    VEDVertex ({-1, +1, -1}, {+1, +1, -1}, isper);
-    VEDVertex ({+1, +1, -1}, {+1, +1, +1}, isper);
-    VEDVertex ({+1, +1, +1}, {-1, +1, +1}, isper);
+    //VEDVertex ({-1, +1, -1}, {+1, +1, -1}, isper);
+    //VEDVertex ({+1, +1, -1}, {+1, +1, +1}, isper);
+    //VEDVertex ({+1, +1, +1}, {-1, +1, +1}, isper);
 
     //       /----------/
     //      /|         /
@@ -418,7 +448,7 @@ int VEDCube (bool isper)
     //     /---------/
 
 
-    VEDVertex ({+1, +1, -1}, {+1, -1, -1}, isper);
+    //VEDVertex ({+1, +1, -1}, {+1, -1, -1}, isper);
     //txSetColor (TX_WHITE);
     txSetColor (TX_GREEN);
     VEDVertex ({+1, +1, +1}, {+1, -1, +1}, isper);
@@ -431,10 +461,23 @@ int VEDCube (bool isper)
     //     | |        | |
     //     | /--------+-/
     //     |/         |/
-    //     /----------/
-
-    return 0;
+    //     /----------/  //*/
+    VED3dTriangle (c1, c2, c3, mred, mmid, mmid);
+    VED3dTriangle (c1, c4, c3, mred, mmid, mmid);
+    VED3dTriangle (c1, c2, c6, mred, mmid, mmid);             //     2/--------/3
+    VED3dTriangle (c1, c5, c6, mred, mmid, mmid);             //     /|       /|
+    VED3dTriangle (c2, c6, c7, mred, mmid, mgreen);           //red1/-+------/4|
+    VED3dTriangle (c2, c3, c7, mmid, mmid, mgreen);           //    | |      | |
+    VED3dTriangle (c1, c4, c5, mred, mmid, mmid);             //    | |      | |
+    VED3dTriangle (c5, c8, c4, mmid, mmid, mmid);             //    |6/------|-/7green
+    VED3dTriangle (c4, c3, c7, mmid, mmid, mgreen);           //    |/       |/
+    VED3dTriangle (c4, c8, c7, mmid, mmid, mgreen);           //   5/--------/8
+    VED3dTriangle (c5, c6, c7, mmid, mmid, mgreen);
+    VED3dTriangle (c5, c8, c7, mmid, mmid, mgreen);
+    return 0;                                          //*/
     }
+
+//void VEDLine (x1, y1, x2, y2
 
 int printmat (ARRSIZ SM, double m[ALLMSX][ALLMSY])
     {

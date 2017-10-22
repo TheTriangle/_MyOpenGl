@@ -22,6 +22,8 @@ double TALX = 0;
 double TALY = 0;
 double TALZ = 0;
 
+void VED3dTriangle (MYP first, MYP second, MYP third);
+void makeAllDeforms (double cord [ALLMSX][ALLMSY], bool isper);
 int VEDTriangle (MYP first, MYP second, MYP third);
 int VEDHorTriangle(MYP left, MYP right, MYP third);
 void makePerspective (double mat[ALLMSX][ALLMSY], double n, double f);
@@ -217,8 +219,8 @@ int VEDTriangle (MYP first, MYP second, MYP third)
     double allheight = up.y - down.y;
     double allhwidth = up.x - down.x;
     double sectorheight = mid.y - down.y;
-    printf ("mid.y == %f, down.y == %f\n", mid.y, down.y);
-    printf ("sech == %f\n", sectorheight);
+    //printf ("mid.y == %f, down.y == %f\n", mid.y, down.y);
+    //printf ("sech == %f\n", sectorheight);
 
     VEDHorTriangle ({(sectorheight/allheight)*allhwidth + down.x, down.y + sectorheight, 0}, mid, down);
     VEDHorTriangle ({(sectorheight/allheight)*allhwidth + down.x, down.y + sectorheight, 0}, mid, up);
@@ -264,94 +266,46 @@ int VEDVertex (MYP old, MYP NEW, bool isper)
     {
     double cord0 [ALLMSX][ALLMSY] = {{old.x, 0, 0, 0}, {old.y, 0, 0, 0}, {old.z, 0, 0, 0}, {1, 0, 0, 0}};
     double cord1 [ALLMSX][ALLMSY] = {{NEW.x, 0, 0, 0}, {NEW.y, 0, 0, 0}, {NEW.z, 0, 0, 0}, {1, 0, 0, 0}};
-    //multimat (SAL, DEFORMATION, SAL, ALX, SAL, DEFORMATION);
-    //multimat (SAL, DEFORMATION, SAL, ALY, SAL, DEFORMATION);
-    //multimat (SAL, DEFORMATION, SAL, ALZ, SAL, DEFORMATION);
 
-    //multimat (SAL, DEFORMATION, SCORD, cord0, SCORD, cord0);
-    //multimat (SAL, ALZ, SCORD, cord0, SCORD, cord0);
-    //multimat (SCORD, cord0, SAL, ALX, SCORD, cord0);
-    //multimat (SCORD, cord0, SAL, ALY, SCORD, cord0);
-    //multimat (SAL, ALZ, SCORD, cord0, SCORD, cord0);
-    //multimat (STRAN, TRAN, SCORD, ncord0, SCORD, ncord0);
-    //multimat (SCORD, cord0, STRAN, PERSPECTIVE, SCORD, cord0);
+    makeAllDeforms(cord0, isper);
+    makeAllDeforms(cord1, isper);
 
-    //multimat (SDEF, DEFORMATION, SCORD, cord1, SCORD, cord1);
-    //multimat (SAL, ALZ, SCORD, cord1, SCORD, cord1);
-    //multimat (SCORD, cord1, SAL, ALX, SCORD, cord1);
-    //multimat (SCORD, cord1, SAL, ALY, SCORD, cord1);
-    //multimat (SAL, ALZ, SCORD, cord1, SCORD, cord1);
-    //multimat (STRAN, TRAN, SCORD, ncord1, SCORD, ncord1);
-    //multimat (SCORD, cord1, STRAN, PERSPECTIVE, SCORD, cord1);
-
-    //if (fabs(ncord0[0][2]) <= 0.0015) cord0[0][2] = 0.0015;
-    //if (fabs(ncord1[0][2]) <= 0.0015) cord1[0][2] = 0.0015;
-    //printmat(SAL, ALZ);
-    //double MyDef [ALLMSX][ALLMSY] = {{1, 0, 0, 0}, {0, 1, 0, 0}, {0, 0, 1, 0}, {0, 0, 0, 1}};
-    //multimat (SAL, ALZ, SDEF, MyDef, SDEF, MyDef);
-    //multimat (SAL, ALX, SDEF, MyDef, SDEF, MyDef);
-    //multimat (SAL, ALY, SDEF, MyDef, SDEF, MyDef);
-
-    //multimat (SAL, MyDef, SCORD, ncord0, SCORD, ncord0);
-
-    multimat (SAL, DEFORMATION, SCORD, cord0, SCORD, cord0);
-    copymatrix (SCORD, cord0, cord0);
-
-    multimat (SAL, ALY, SCORD, cord0, SCORD, cord0);
-    copymatrix (SCORD, cord0, cord0);
-
-    multimat (SAL, ALX, SCORD, cord0, SCORD, cord0);
-    copymatrix (SCORD, cord0, cord0);
-
-    multimat (SAL, ALZ, SCORD, cord0, SCORD, cord0);
-    copymatrix (SCORD, cord0, cord0);
-
-    multimat (SAL, TRAN, SCORD, cord0, SCORD, cord0);
-    if (isper) multimat (STRAN, PERSPECTIVE, SCORD, cord0, SCORD, cord0);
-
-    //multimat (SAL, ALZ, SCORD, cord1, SCORD, cord1);
-    //multimat (SAL, ALX, SCORD, cord1, SCORD, cord1);
-    //multimat (SAL, ALY, SCORD, cord1, SCORD, cord1);
-
-    multimat (SAL, DEFORMATION, SCORD, cord1, SCORD, cord1);
-    copymatrix (SCORD, cord1, cord1);
-
-    multimat (SAL, ALY, SCORD, cord1, SCORD, cord1);
-    copymatrix (SCORD, cord1, cord1);
-
-    multimat (SAL, ALX, SCORD, cord1, SCORD, cord1);
-    copymatrix (SCORD, cord1, cord1);
-
-    multimat (SAL, ALZ, SCORD, cord1, SCORD, cord1);
-    copymatrix (SCORD, cord1, cord1);
-
-    multimat (SAL, TRAN, SCORD, cord1, SCORD, cord1);
-    if (isper) multimat (STRAN, PERSPECTIVE, SCORD, cord1, SCORD, cord1);
-
-    if (fabs(cord0[2][0]) <= 0.0015) cord0[2][0] = 0.0015;
-    if (fabs(cord1[2][0]) <= 0.0015) cord1[2][0] = 0.0015;
-    txLine (txGetExtentX()/2 + cord0[0][0]/0.0015/cord0[2][0],
-            txGetExtentY()/2 + cord0[1][0]/0.0015/cord0[2][0],
-            txGetExtentX()/2 + cord1[0][0]/0.0015/cord1[2][0],
-            txGetExtentY()/2 + cord1[1][0]/0.0015/cord1[2][0]);
-
-   /* txLine (txGetExtentX()/2 + (cord0[0][0]), // ((0.015*cord0[0][2])),
-            txGetExtentY()/2 + (cord0[1][0]), // ((0.015*cord0[0][2])),
-            txGetExtentX()/2, // ((0.015*cord1[0][2])),
-            txGetExtentY()/2); // ((0.015*cord1[0][2])));  //*/
-
+    txLine (txGetExtentX()/2 + cord0[0][0],
+            txGetExtentY()/2 + cord0[1][0],
+            txGetExtentX()/2 + cord1[0][0],
+            txGetExtentY()/2 + cord1[1][0]);
     return 0;
     }
 
 void VED3dTriangle (MYP first, MYP second, MYP third)
     {
-    double [ALLMSX][ALLMSY] cord1 = {{first.x, 0, 0, 0}, {first.y, 0, 0, 0}, {first.z, 0, 0, 0}};
-    double [ALLMSX][ALLMSY] cord2 = {{second.x, 0, 0, 0}, {second.y, 0, 0, 0}, {second.z, 0, 0, 0}};
-    double [ALLMSX][ALLMSY] cord3 = {{third.x, 0, 0, 0}, {third.y, 0, 0, 0}, {third.z, 0, 0, 0}};
-     
+    double cord1 [ALLMSX][ALLMSY] = {{first.x, 0, 0, 0}, {first.y, 0, 0, 0}, {first.z, 0, 0, 0}, {1, 0, 0, 0}};
+    double cord2 [ALLMSX][ALLMSY] = {{second.x, 0, 0, 0}, {second.y, 0, 0, 0}, {second.z, 0, 0, 0}, {1, 0, 0, 0}};
+    double cord3 [ALLMSX][ALLMSY] = {{third.x, 0, 0, 0}, {third.y, 0, 0, 0}, {third.z, 0, 0, 0}, {1, 0, 0, 0}};
+    makeAllDeforms (cord1, false);
+    makeAllDeforms (cord2, false);
+    makeAllDeforms (cord3, false);
+    VEDTriangle ({txGetExtentX()/2 + cord1[0][0], txGetExtentY()/2 + cord1[1][0], 0}, {txGetExtentX()/2 + cord2[0][0], txGetExtentY()/2 + cord2[1][0], 0}, {txGetExtentX()/2 + cord3[0][0], txGetExtentY()/2 + cord3[1][0], 0});
     }
 
-void makeAllDeforms(double 
+void makeAllDeforms (double cord[ALLMSX][ALLMSY], bool isper)
+    {
+    multimat (SAL, DEFORMATION, SCORD, cord, SCORD, cord);
+
+    multimat (SAL, ALY, SCORD, cord, SCORD, cord);
+
+    multimat (SAL, ALX, SCORD, cord, SCORD, cord);
+
+    multimat (SAL, ALZ, SCORD, cord, SCORD, cord);
+
+    multimat (SAL, TRAN, SCORD, cord, SCORD, cord);
+
+    if (isper) multimat (STRAN, PERSPECTIVE, SCORD, cord, SCORD, cord);
+
+    if (fabs(cord[2][0]) <= 0.0015) cord[2][0] = 0.0015;
+    cord[0][0] = cord[0][0]/0.0015/cord[2][0];
+    cord[1][0] = cord[1][0]/0.0015/cord[2][0];
+    }
 
 
 void makePerspective (double mat[ALLMSX][ALLMSY], double n, double f)
@@ -367,6 +321,15 @@ void makePerspective (double mat[ALLMSX][ALLMSY], double n, double f)
 
 int VEDCube (bool isper)
     {
+    MYP c1 = {-1, -1, -1};             //    2/--------/3
+    MYP c2 = {-1, -1,  1};             //    /|       /|
+    MYP c3 = { 1, -1,  1};             //  1/-+------/4|
+    MYP c4 = { 1, -1, -1};             //   | |      | |
+    MYP c5 = {-1,  1, -1};             //   | |      | |
+    MYP c6 = {-1,  1,  1};             //   |6/------|-/7
+    MYP c7 = { 1,  1,  1};             //   |/       |/
+    MYP c8 = { 1,  1, -1};             //  5/--------/8
+
     VEDVertex ({-1, -1, -1}, {-1, -1, +1}, isper);
     VEDVertex ({-1, -1, +1}, {+1, -1, +1}, isper);
     VEDVertex ({+1, -1, +1}, {+1, -1, -1}, isper);
@@ -414,9 +377,24 @@ int VEDCube (bool isper)
     //     | /--------+-/
     //     |/         |/
     //     /----------/
-
+    VED3dTriangle (c1, c2, c3);
+    VED3dTriangle (c1, c4, c3);
+    VED3dTriangle (c1, c2, c6);             //    2/--------/3
+    VED3dTriangle (c1, c5, c6);             //    /|       /|
+    VED3dTriangle (c2, c6, c7);             //  1/-+------/4|
+    VED3dTriangle (c2, c3, c7);             //   | |      | |
+    VED3dTriangle (c1, c4, c5);             //   | |      | |
+    VED3dTriangle (c5, c8, c4);             //   |6/------|-/7
+    VED3dTriangle (c4, c3, c7);             //   |/       |/
+    VED3dTriangle (c4, c8, c7);             //  5/--------/8
+    VED3dTriangle (c5, c6, c7);
+    VED3dTriangle (c5, c8, c7);
+    VED3dTriangle (c1, c2, c3);
+    VED3dTriangle (c1, c2, c3);
     return 0;
     }
+
+void VEDLine (x1, y1, x2, y2
 
 int printmat (ARRSIZ SM, double m[ALLMSX][ALLMSY])
     {
