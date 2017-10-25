@@ -23,6 +23,7 @@ double TALY = 0;
 double TALZ = 0;
 
 int VEDLine (double x1, double y1, double x2, double y2, MYP col1, MYP col2);
+void MYPSwap (MYP* pt1, MYP* pt2);
 void VED3dTriangle (MYP first, MYP second, MYP third, MYP col1, MYP col2, MYP col3);
 void makeAllDeforms (double cord [ALLMSX][ALLMSY], bool isper);
 int VEDTriangle (MYP first, MYP second, MYP third, MYP fcol, MYP scol, MYP tcol);
@@ -208,8 +209,8 @@ int VEDTriangle (MYP first, MYP second, MYP third, MYP fcol, MYP scol, MYP tcol)
         dcol = scol;                  //
         if (first.y < third.y)        //
             {                         //
-            mcol = fcol;              //
             mid = first;              //
+            mcol = fcol;              //
             up = third;               //
             ucol = tcol;              //
             }                         //
@@ -227,8 +228,8 @@ int VEDTriangle (MYP first, MYP second, MYP third, MYP fcol, MYP scol, MYP tcol)
         dcol = tcol;                  //
         if (first.y < second.y)       //
             {                         //
-            mcol = fcol;              //
             mid = first;              //
+            mcol = fcol;              //
             up = second;              //
             ucol = scol;              //
             }                         //
@@ -249,8 +250,18 @@ int VEDTriangle (MYP first, MYP second, MYP third, MYP fcol, MYP scol, MYP tcol)
     //printf ("mid.y == %f, down.y == %f\n", mid.y, down.y);
     //printf ("sech == %f\n", sectorheight);
 
+    txSetColor (TX_WHITE);
+    txSetFillColor (RGB(dcol.x, dcol.y, dcol.z));
+    txCircle (down.x, down.y, 10);
+
+    txSetFillColor (RGB(mcol.x, mcol.y, mcol.z));
+    txCircle (mid.x, mid.y, 10);
+
+    txSetFillColor (RGB(ucol.x, ucol.y, ucol.z));
+    txCircle (up.x, up.y, 10);
+
     VEDHorTriangle ({help*allhwidth + down.x, down.y + sectorheight, 0}, mid, down, {help * (ucol.x - dcol.x) + dcol.x, help * (ucol.y - dcol.y) + dcol.y, help * (ucol.z - dcol.z) + dcol.z}, mcol, dcol);
-    VEDHorTriangle ({help*allhwidth + down.x, down.y + sectorheight, 0}, mid, up, {help * (ucol.x - dcol.x) + dcol.x, help * (ucol.y - dcol.y) + dcol.y, help * (ucol.z - dcol.z) + dcol.z}, mcol, ucol);
+    VEDHorTriangle ({help*allhwidth + down.x, down.y + sectorheight, 0}, mid,   up, {help * (ucol.x - dcol.x) + dcol.x, help * (ucol.y - dcol.y) + dcol.y, help * (ucol.z - dcol.z) + dcol.z}, mcol, ucol);
     return 0;                        //линейна€ интерпол€ци€
     }                                              //x = x0 + t*(x1-x0)
 
@@ -286,7 +297,7 @@ int VEDHorTriangle(MYP left, MYP right, MYP third, MYP lcol, MYP rcol, MYP tcol)
         //getch();
         assert (fabs (allheight) >= 0.015);
         help = nowheight/allheight;
-        VEDLine (left.x + help*leftwidth, left.y + nowheight,
+        VEDLine ( left.x + help* leftwidth,  left.y + nowheight,
                  right.x + help*rightwidth, right.y + nowheight,
                  {lcol.x + help*(tcol.x - lcol.x), lcol.y + help*(tcol.y - lcol.y), lcol.z + help*(tcol.z - lcol.z)},
                  {rcol.x + help*(tcol.x - rcol.x), rcol.y + help*(tcol.y - rcol.y), rcol.z + help*(tcol.z - rcol.z)});
@@ -317,6 +328,7 @@ void VED3dTriangle (MYP first, MYP second, MYP third, MYP col1, MYP col2, MYP co
     makeAllDeforms (cord1, false);
     makeAllDeforms (cord2, false);
     makeAllDeforms (cord3, false);
+
     VEDTriangle ({txGetExtentX()/2 + cord1[0][0], txGetExtentY()/2 + cord1[1][0], 0},
                  {txGetExtentX()/2 + cord2[0][0], txGetExtentY()/2 + cord2[1][0], 0},
                  {txGetExtentX()/2 + cord3[0][0], txGetExtentY()/2 + cord3[1][0], 0}, col1, col2, col3);
@@ -354,6 +366,7 @@ int VEDLine (double x1, double y1, double x2, double y2, MYP col1, MYP col2)
     if (x1 > x2)
         {
         swap (&x1, &x2);
+        MYPSwap (&col1, &col2);
         swap (&y1, &y2);
         }
     if (fabs(x2 - x1) < 1 && fabs (y2 - y1) < 1) return 0;
@@ -389,6 +402,14 @@ void swap (double* s1, double* s2)
     *s2 = help;
     }
 
+void MYPSwap (MYP* pt1, MYP* pt2)
+    {
+    MYP help = *pt1;
+    *pt1 = *pt2;
+    *pt2 = help;
+    }
+
+
 
 void makePerspective (double mat[ALLMSX][ALLMSY], double n, double f)
     {
@@ -413,7 +434,8 @@ int VEDCube (bool isper)
     MYP c8 = { 1,  1, -1};             //  5/--------/8
     MYP mred = {255, 0, 0};
     MYP mgreen = {0, 255, 0};
-    MYP mmid = {127, 0, 127};
+    MYP mmid1 = {170, 85, 0};
+    MYP mmid2 = {85, 170, 0};
     if (isper) //TODO you know what to do
     /*VEDVertex ({-1, -1, -1}, {-1, -1, +1}, isper);
     //VEDVertex ({-1, -1, +1}, {+1, -1, +1}, isper);
@@ -462,18 +484,20 @@ int VEDCube (bool isper)
     //     | /--------+-/
     //     |/         |/
     //     /----------/  //*/
-    VED3dTriangle (c1, c2, c3, mred, mmid, mmid);
-    VED3dTriangle (c1, c4, c3, mred, mmid, mmid);
-    VED3dTriangle (c1, c2, c6, mred, mmid, mmid);             //     2/--------/3
-    VED3dTriangle (c1, c5, c6, mred, mmid, mmid);             //     /|       /|
-    VED3dTriangle (c2, c6, c7, mred, mmid, mgreen);           //red1/-+------/4|
-    VED3dTriangle (c2, c3, c7, mmid, mmid, mgreen);           //    | |      | |
-    VED3dTriangle (c1, c4, c5, mred, mmid, mmid);             //    | |      | |
-    VED3dTriangle (c5, c8, c4, mmid, mmid, mmid);             //    |6/------|-/7green
-    VED3dTriangle (c4, c3, c7, mmid, mmid, mgreen);           //    |/       |/
-    VED3dTriangle (c4, c8, c7, mmid, mmid, mgreen);           //   5/--------/8
-    VED3dTriangle (c5, c6, c7, mmid, mmid, mgreen);
-    VED3dTriangle (c5, c8, c7, mmid, mmid, mgreen);
+    VED3dTriangle (c4, c3, c7, mmid1, mmid2, mgreen);
+    VED3dTriangle (c4, c8, c7, mmid1, mmid2, mgreen);
+    VED3dTriangle (c5, c6, c7, mmid1, mmid2, mgreen);
+    VED3dTriangle (c5, c8, c7, mmid1, mmid2, mgreen);
+    VED3dTriangle (c1, c2, c3, mred, mmid1, mmid2);              //     2/--------/3
+    VED3dTriangle (c1, c4, c3, mred, mmid1, mmid2);              //     /|       /|
+    VED3dTriangle (c1, c2, c6, mred, mmid1, mmid2);              //red1/-+------/4|
+    VED3dTriangle (c1, c5, c6, mred, mmid1, mmid2);              //    | |      | |
+    VED3dTriangle (c2, c6, c7, mmid1, mmid2, mgreen);            //    | |      | |
+    VED3dTriangle (c2, c3, c7, mmid1, mmid2, mgreen);            //    |6/------|-/7green
+    VED3dTriangle (c1, c4, c5, mred, mmid1, mmid1);              //    |/       |/
+    VED3dTriangle (c5, c8, c4, mmid1, mmid2, mmid1);             //   5/--------/8
+    assert (fabs(mred.x - 255) <= 0.5 && fabs(mred.y) <= 0.5 && fabs(mred.z) <= 0.5);
+    assert (fabs(mgreen.x) <= 0.5 && fabs(mgreen.y - 255) <= 0.5 && fabs(mgreen.z) <= 0.5);
     return 0;                                          //*/
     }
 
