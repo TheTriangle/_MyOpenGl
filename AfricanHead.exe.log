@@ -1,0 +1,73 @@
+
+--------------------------------------------------
+TXLib сообщает:
+
+Программа: D:\Документыы\GitHub\MyFiles\_MyOpenGl\AfricanHead.exe, файл: G:\TX\TXLib.h, строка: 10584, функция: HPEN__* {anonymous}::TX::txSetColor(COLORREF, double, HDC),
+
+Сообщение: Параметр "dc" неверен. Возможно, этот холст не создан, или уже уничтожен, или не загрузилась картинка.
+
+#1: TXLib [Ver: 00173a, Rev: 105], Instance: 0x005042E0 (32-bit), Flags: CMdRe0, Thread: 0x21C4 (Main), GetLastError(): 13 (Недопустимые данные). 
+
+--------------------------------------------------
+Стек вызовов:
+
+# 0 0x004195B6 in D:\Документыы\GitHub\MyFiles\_MyOpenGl\AfricanHead.exe: txSetColor() at G:/TX/TXLib.h (10584)
+
+# 1 0x00427E8A in D:\Документыы\GitHub\MyFiles\_MyOpenGl\AfricanHead.exe: VEDTriangle() at D:/Документыы/GitHub/MyFiles/_MyOpenGl/VEDLibh.h (259):
+
+    257:     //printf ("sech == %f\n", sectorheight);
+    258: 
+=>  259:     txSetColor (TX_WHITE, 1, MyScreen);
+    260:     txSetFillColor (RGB(dcol.x, dcol.y, dcol.z), MyScreen);
+    261:     txEllipse (down.x - 10, down.y - 10, down.x + 10, down.y + 10, MyScreen);
+
+# 2 0x0042B372 in D:\Документыы\GitHub\MyFiles\_MyOpenGl\AfricanHead.exe: drawVec() at D:/Документыы/GitHub/MyFiles/_MyOpenGl/AfricanHead.cpp (83):
+
+     81:         if (type[0] == 'f' && type[1] == NULL)
+     82:             {
+=>   83:             VEDTriangle (Vector[fnum], Vector[snum], Vector[tnum], {255, 255, 255}, {255, 255, 255}, {255, 255, 255});
+     84:             printf ("%s %d/%d/%d\n", type, fnum, snum, tnum);
+     85:             getch();
+
+# 3 0x0042AFD0 in D:\Документыы\GitHub\MyFiles\_MyOpenGl\AfricanHead.exe: main() at D:/Документыы/GitHub/MyFiles/_MyOpenGl/AfricanHead.cpp (20):
+
+     18:         control(1);
+     19:         if (GetAsyncKeyState(VK_LSHIFT)) control (2);
+=>   20:         drawVec (PointsVec);
+     21:         getch();
+     22:         txClear();
+
+--------------------------------------------------
+Стек вызовов TX:
+
+# 0 in HPEN__* {anonymous}::TX::txSetColor(COLORREF, double, HDC) at G:\TX\TXLib.h (10584):
+
+  10582: HPEN txSetColor (COLORREF color, double thickness /*= 1*/, HDC dc /*= txDC()*/)
+  10583:     {
+=>10584: $1  if (_TX_DEFAULT_HDC_FAILED (dc)) return NULL;
+  10585: 
+  10586: $   HPEN pen = Win32::CreatePen ((color == TX_TRANSPARENT? PS_NULL : PS_SOLID), ROUND (thickness), color);
+
+# 1 in int VEDTriangle(MYP, MYP, MYP, MYP, MYP, MYP) at D:\Документыы\GitHub\MyFiles\_MyOpenGl\VEDLibh.h (259):
+
+    257:     //printf ("sech == %f\n", sectorheight);
+    258: 
+=>  259:     txSetColor (TX_WHITE, 1, MyScreen);
+    260:     txSetFillColor (RGB(dcol.x, dcol.y, dcol.z), MyScreen);
+    261:     txEllipse (down.x - 10, down.y - 10, down.x + 10, down.y + 10, MyScreen);
+
+--------------------------------------------------
+Developed with:
+
+The Dumb Artist Library (TX Library) - TXLib [Ver: 00173a, Rev: 105]
+Copyright (C) Ded (Ilya Dedinsky, http://txlib.ru) <mail@txlib.ru>
+See license on: http://txlib.ru
+
+TXLib file:	G:\TX\TXLib.h
+Compiled:	Oct 29 2017 21:23:46, GNU g++ 4.8.1, std=201103L, MinGW Runtime 3.20, 32-bit, DEBUG
+Started:	Oct 29 2017 21:23:53
+
+Run file:	D:\Документыы\GitHub\MyFiles\_MyOpenGl\AfricanHead.exe
+Directory:	D:\Документыы\GitHub\MyFiles\_MyOpenGl
+
+--------------------------------------------------

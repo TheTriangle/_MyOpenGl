@@ -5,28 +5,36 @@ bool control (double speed = 1);
 
 int main()
     {
-    txCreateWindow (GetSystemMetrics(SM_CXSCREEN), GetSystemMetrics(SM_CYSCREEN));
-    VEDTranslate (0, 0, 50);
-    VEDScale (20, 20, 10);
+    tx_auto_func(delete [] ZBuffer);
+    SzScr = POINT{GetSystemMetrics(SM_CXSCREEN), GetSystemMetrics(SM_CYSCREEN)};
+    ZBuffer = new double[SzScr.x * SzScr.y];
+    MakeBufferDefault();
+    txCreateWindow (SzScr.x, SzScr.y);
+    MyScreen = txCreateDIBSection(SzScr.x, SzScr.y, &MyPixels);
+    VEDTranslate (0, 0, 100);
+    VEDScale (40, 40, 20);
     VEDCube(false);
     while (!GetAsyncKeyState (VK_ESCAPE))
         {
 
         txSleep (10);
-        txSetFillColor (TX_BLACK);
+        //getch();
+        txSetFillColor (TX_BLACK, MyScreen);
         //txClearConsole();
 
         //txSetColor (TX_WHITE);
         //VEDVertex ({100, 100, 0}, {0, 0, 0});
         //txSetColor (TX_GREEN);
         //VEDCube(true);
-        txSetColor (TX_WHITE);
+        txSetColor (TX_WHITE, 1, MyScreen);
         if (control(3))
             {
-            txClear();
+            txClear(MyScreen);
             VEDCube(false);
             }
         if (GetAsyncKeyState (VK_LSHIFT)) control (5);
+        txBitBlt (0, 0, MyScreen);
+        MakeBufferDefault();
         }
 
     return 0;
@@ -36,6 +44,16 @@ int main()
 bool control (double speed)
     {
     bool returning = false;
+    if (GetAsyncKeyState ('R'))
+        {
+        ShowMeZBuffer = true;
+        returning = true;
+        }
+    else
+        {
+        returning = true;
+        ShowMeZBuffer = false;
+        }
     if (GetAsyncKeyState (VK_RIGHT))  {returning = true; VEDScale (1.3 * speed,   0,     0);}
     if (GetAsyncKeyState (VK_LEFT ))  {returning = true; VEDScale (0.7 * speed,   0,     0);}
     if (GetAsyncKeyState (VK_UP   ))  {returning = true; VEDScale (  0, 1.3 * speed,     0);}

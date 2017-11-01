@@ -1,6 +1,30 @@
 
 #include "TXLib.h"
 #define ctg(x) 1/tan(x)
+struct MYP
+    {
+    double x;
+    double y;
+    double z;
+    };
+POINT SzScr = {0, 0};
+int BufferDefault = 5000;
+
+bool ShowMeZBuffer = false;
+HDC MyScreen = NULL;
+RGBQUAD *MyPixels = NULL;
+double *ZBuffer = NULL;
+#define MyPix(_x, _y, _z, _r, _g, _b)  int thisPixPos = (int)((_x) + (int)(SzScr.y - _y)*SzScr.x);\
+    if (fabs(ZBuffer[thisPixPos] - BufferDefault) < 0.0015 || _z < ZBuffer[thisPixPos]) \
+        {     \
+        if (ShowMeZBuffer) MyPixels[thisPixPos] = RGBQUAD {(BYTE)(_z), (BYTE)(_z), (BYTE)(_z)}; \
+        else MyPixels[thisPixPos] = RGBQUAD {(BYTE)(_b), (BYTE)(_g), (BYTE)(_r)}; \
+        ZBuffer[thisPixPos] = _z;     \
+        }                                  \
+    //else \
+        { \
+        MyPixels[thisPixPos] = RGBQUAD {255, 255, 255}; \
+        }
 const int ALLMSX = 4;
 const int ALLMSY = 4;
 struct ARRSIZ
@@ -10,19 +34,14 @@ struct ARRSIZ
     };
 
 
-struct MYP
-    {
-    double x;
-    double y;
-    double z;
-    };
 
 
 double TALX = 0;
 double TALY = 0;
 double TALZ = 0;
 
-int VEDLine (double x1, double y1, double x2, double y2, MYP col1, MYP col2);
+void MakeBufferDefault ();
+int VEDLine (double x1, double y1, double z1, double x2, double y2, double z2, MYP col1, MYP col2);
 void MYPSwap (MYP* pt1, MYP* pt2);
 void VED3dTriangle (MYP first, MYP second, MYP third, MYP col1, MYP col2, MYP col3);
 void makeAllDeforms (double cord [ALLMSX][ALLMSY], bool isper);
@@ -250,20 +269,42 @@ int VEDTriangle (MYP first, MYP second, MYP third, MYP fcol, MYP scol, MYP tcol)
     //printf ("mid.y == %f, down.y == %f\n", mid.y, down.y);
     //printf ("sech == %f\n", sectorheight);
 
-    txSetColor (TX_WHITE);
-    txSetFillColor (RGB(dcol.x, dcol.y, dcol.z));
-    txCircle (down.x, down.y, 10);
+    txSetColor (TX_WHITE, 1, MyScreen);
+    txSetFillColor (RGB(dcol.x, dcol.y, dcol.z), MyScreen);
+    txEllipse (down.x - 10, down.y - 10, down.x + 10, down.y + 10, MyScreen);
+    char helpch[16] = {};
+    sprintf (helpch, "%f", down.z);
+    txDrawText (down.x - 80, down.y - 50, down.x + 80, down.y - 20, helpch, DT_CENTER, MyScreen);
 
-    txSetFillColor (RGB(mcol.x, mcol.y, mcol.z));
-    txCircle (mid.x, mid.y, 10);
+    txSetFillColor (RGB(mcol.x, mcol.y, mcol.z), MyScreen);
+    txEllipse (mid.x - 10, mid.y - 10, mid.x + 10, mid.y + 10, MyScreen);
+    sprintf (helpch, "%f", down.z);
+    txDrawText (mid.x - 80, mid.y - 50, mid.x + 80, mid.y - 20, helpch, DT_CENTER, MyScreen);
 
-    txSetFillColor (RGB(ucol.x, ucol.y, ucol.z));
-    txCircle (up.x, up.y, 10);
+    txSetFillColor (RGB(ucol.x, ucol.y, ucol.z), MyScreen);
+    txEllipse (up.x - 10, up.y - 10, up.x + 10, up.y + 10, MyScreen);
+    sprintf (helpch, "%f", down.z);
+    txDrawText (up.x - 80, up.y - 50, up.x + 80, up.y - 20, helpch, DT_CENTER, MyScreen);
 
-    VEDHorTriangle ({help*allhwidth + down.x, down.y + sectorheight, 0}, mid, down, {help * (ucol.x - dcol.x) + dcol.x, help * (ucol.y - dcol.y) + dcol.y, help * (ucol.z - dcol.z) + dcol.z}, mcol, dcol);
-    VEDHorTriangle ({help*allhwidth + down.x, down.y + sectorheight, 0}, mid,   up, {help * (ucol.x - dcol.x) + dcol.x, help * (ucol.y - dcol.y) + dcol.y, help * (ucol.z - dcol.z) + dcol.z}, mcol, ucol);
-    return 0;                        //линейная интерполяция
-    }                                              //x = x0 + t*(x1-x0)
+    VEDHorTriangle ({help*allhwidth + down.x,
+                     down.y + sectorheight,
+                     down.z + help*(mid.z - down.z)},
+                     mid, down,
+                    {help*(ucol.x - dcol.x) + dcol.x,
+                     help * (ucol.y - dcol.y) + dcol.y,
+                     help * (ucol.z - dcol.z) + dcol.z},
+                     mcol, dcol);
+
+    VEDHorTriangle ({down.x + help*allhwidth,
+                     down.y + sectorheight,
+                     down.z + help*(mid.z - down.z)},
+                     mid, up,
+                    {help * (ucol.x - dcol.x) + dcol.x,
+                     help * (ucol.y - dcol.y) + dcol.y,
+                     help * (ucol.z - dcol.z) + dcol.z},
+                     mcol, ucol);
+    return 0;                                                               //линейная интерполяция
+    }                                                                         //x = x0 + t*(x1-x0)
 
 
 int VEDHorTriangle(MYP left, MYP right, MYP third, MYP lcol, MYP rcol, MYP tcol)
@@ -273,7 +314,7 @@ int VEDHorTriangle(MYP left, MYP right, MYP third, MYP lcol, MYP rcol, MYP tcol)
     if (fabs (allheight) < 0.015)
         {
         //getch();
-        VEDLine (left.x, left.y, right.x, right.y, lcol, rcol);
+        VEDLine (left.x, left.y, left.z, right.x, right.y, right.z, lcol, rcol);
         return 0;
         //printf ("i've returned");
         }
@@ -291,14 +332,14 @@ int VEDHorTriangle(MYP left, MYP right, MYP third, MYP lcol, MYP rcol, MYP tcol)
         {
         //txSleep(10);
         nowheight = third.y - nowy;
-        if (signum > 0 && nowy + signum > third.y) exit = false;
-        if (signum < 0 && nowy + signum < third.y) exit = false;
+        if (signum > 0 && nowy + signum >= third.y) exit = false;
+        if (signum < 0 && nowy + signum <= third.y) exit = false;
         //printf ("b\n");
         //getch();
         assert (fabs (allheight) >= 0.015);
         help = nowheight/allheight;
-        VEDLine ( left.x + help* leftwidth,  left.y + nowheight,
-                 right.x + help*rightwidth, right.y + nowheight,
+        VEDLine ( left.x + help* leftwidth,  left.y + nowheight,  left.z + help*(third.z -  left.z),
+                 right.x + help*rightwidth, right.y + nowheight, right.z + help*(third.z - right.z),
                  {lcol.x + help*(tcol.x - lcol.x), lcol.y + help*(tcol.y - lcol.y), lcol.z + help*(tcol.z - lcol.z)},
                  {rcol.x + help*(tcol.x - rcol.x), rcol.y + help*(tcol.y - rcol.y), rcol.z + help*(tcol.z - rcol.z)});
         }
@@ -313,10 +354,10 @@ int VEDVertex (MYP old, MYP NEW, bool isper)
     makeAllDeforms(cord0, isper);
     makeAllDeforms(cord1, isper);
 
-    VEDLine (txGetExtentX()/2 + cord0[0][0],
-             txGetExtentY()/2 + cord0[1][0],
-             txGetExtentX()/2 + cord1[0][0],
-             txGetExtentY()/2 + cord1[1][0], {255, 255, 255}, {200, 200, 200});
+    VEDLine (SzScr.x/2 + cord0[0][0],
+             SzScr.y/2 + cord0[1][0], cord0[2][0],
+             SzScr.x/2 + cord1[0][0],
+             SzScr.y/2 + cord1[1][0], cord1[2][0], {255, 255, 255}, {200, 200, 200});
     return 0;
     }
 
@@ -325,13 +366,14 @@ void VED3dTriangle (MYP first, MYP second, MYP third, MYP col1, MYP col2, MYP co
     double cord1 [ALLMSX][ALLMSY] = {{first.x, 0, 0, 0}, {first.y, 0, 0, 0}, {first.z, 0, 0, 0}, {1, 0, 0, 0}};
     double cord2 [ALLMSX][ALLMSY] = {{second.x, 0, 0, 0}, {second.y, 0, 0, 0}, {second.z, 0, 0, 0}, {1, 0, 0, 0}};
     double cord3 [ALLMSX][ALLMSY] = {{third.x, 0, 0, 0}, {third.y, 0, 0, 0}, {third.z, 0, 0, 0}, {1, 0, 0, 0}};
+
     makeAllDeforms (cord1, false);
     makeAllDeforms (cord2, false);
     makeAllDeforms (cord3, false);
 
-    VEDTriangle ({txGetExtentX()/2 + cord1[0][0], txGetExtentY()/2 + cord1[1][0], 0},
-                 {txGetExtentX()/2 + cord2[0][0], txGetExtentY()/2 + cord2[1][0], 0},
-                 {txGetExtentX()/2 + cord3[0][0], txGetExtentY()/2 + cord3[1][0], 0}, col1, col2, col3);
+    VEDTriangle ({SzScr.x/2 + cord1[0][0], SzScr.y/2 + cord1[1][0], cord1[2][0]},
+                 {SzScr.x/2 + cord2[0][0], SzScr.y/2 + cord2[1][0], cord2[2][0]},
+                 {SzScr.x/2 + cord3[0][0], SzScr.y/2 + cord3[1][0], cord3[2][0]}, col1, col2, col3);
     }
 
 void makeAllDeforms (double cord[ALLMSX][ALLMSY], bool isper)
@@ -353,7 +395,7 @@ void makeAllDeforms (double cord[ALLMSX][ALLMSY], bool isper)
     cord[1][0] = cord[1][0]/0.0015/cord[2][0];
     }
 
-int VEDLine (double x1, double y1, double x2, double y2, MYP col1, MYP col2)
+int VEDLine (double x1, double y1, double z1, double x2, double y2, double z2, MYP col1, MYP col2)
     {
     //printf ("%f, %f, %f, %f\n", x2, y2, x1, y1);
     //txSetFillColor (RGB (col1.x, col1.y, col1.z));
@@ -368,6 +410,7 @@ int VEDLine (double x1, double y1, double x2, double y2, MYP col1, MYP col2)
         swap (&x1, &x2);
         MYPSwap (&col1, &col2);
         swap (&y1, &y2);
+        swap (&z1, &z2);
         }
     if (fabs(x2 - x1) < 1 && fabs (y2 - y1) < 1) return 0;
     bool swapped = false;
@@ -389,8 +432,34 @@ int VEDLine (double x1, double y1, double x2, double y2, MYP col1, MYP col2)
             //getch();
         //    }
         help = (xn - x1)/(x2 - x1);
-        if (swapped) txSetPixel (y1 + help*(y2 - y1), xn, RGB (help*(col2.x - col1.x) + col1.x, help*(col2.y - col1.y) + col1.y, help*(col2.z - col1.z) + col1.z));
-        else         txSetPixel (xn, y1 + help*(y2 - y1), RGB (help*(col2.x - col1.x) + col1.x, help*(col2.y - col1.y) + col1.y, help*(col2.z - col1.z) + col1.z));
+        if (swapped)
+            {
+            if (y1 + help*(y2 - y1) < SzScr.x && y1 + help*(y2 - y1) > 0 &&
+                xn < SzScr.y && xn > 0)
+                {
+                MyPix (y1 + help * (y2 - y1), xn, (help*(z2 - z1) + z1)*10,
+                      (help * (col2.x - col1.x) + col1.x),
+                      (help * (col2.y - col1.y) + col1.y),
+                      (help * (col2.z - col1.z) + col1.z));
+                }
+            }
+        else
+            {
+            if (y1 + help*(y2 - y1) < SzScr.y && y1 + help*(y2 - y1) > 0 &&
+                xn < SzScr.x && xn > 0)
+                {
+                //printf ("thisz == %lf\n", (double)(help*(z2 - z1) + z1));
+                //getch();
+                //printf ("buffer[half][half] == %lf\n", (double)(ZBuffer[SzScr.x/2 + SzScr.y/2 * SzScr.x]));
+                //getch();
+                //printf ("colorof[half][half] == %d, %d, %d", (int)(MyPixels[SzScr.x/2 + SzScr.y/2 * SzScr.x].rgbRed), (int)(MyPixels[SzScr.x/2 + SzScr.y/2 * SzScr.x].rgbBlue), (int)(MyPixels[SzScr.x/2 + SzScr.y/2 * SzScr.x].rgbGreen));
+                //getch();
+                MyPix (xn, y1 + help * (y2 - y1), (help*(z2 - z1) + z1)*10,
+                       (help * (col2.x - col1.x) + col1.x),
+                       (help * (col2.y - col1.y) + col1.y),
+                       (help * (col2.z - col1.z) + col1.z));
+                }
+            }
         }
     return 0;
     }
@@ -432,72 +501,50 @@ int VEDCube (bool isper)
     MYP c6 = {-1,  1,  1};             //   |6/------|-/7
     MYP c7 = { 1,  1,  1};             //   |/       |/
     MYP c8 = { 1,  1, -1};             //  5/--------/8
-    MYP mred = {255, 0, 0};
-    MYP mgreen = {0, 255, 0};
-    MYP mmid1 = {170, 85, 0};
-    MYP mmid2 = {85, 170, 0};
+    //MYP mred = {255, 0, 0};
+    //MYP mgreen = {0, 255, 0};
+    //MYP mmid1 = {170, 85, 0};
+    //MYP mmid2 = {85, 170, 0};
+    //MYP mred = {255, 0, 0};
+    ///MYP mgreen = {0, 0, 0};
+    //MYP mmid1 = {0, 0, 0};
+    //MYP mmid2 = {0, 0, 0};
+    MYP fircol = {255, 0, 0};
+    MYP seccol = {0, 255, 0};
+    MYP thicol = {0, 0, 255};
+    MYP forcol = {255, 255, 0};
+    MYP fifcol = {0, 255, 255};
+    MYP sixcol = {255, 0, 255};
     if (isper) //TODO you know what to do
-    /*VEDVertex ({-1, -1, -1}, {-1, -1, +1}, isper);
-    //VEDVertex ({-1, -1, +1}, {+1, -1, +1}, isper);
-    //VEDVertex ({+1, -1, +1}, {+1, -1, -1}, isper);
-    //VEDVertex ({+1, -1, -1}, {-1, -1, -1}, isper);
-    //       /----------/
-    //      /          /
-    //     /----------/
-    //VEDVertex ({-1, -1, -1}, {-1, +1, -1}, isper);
-    //VEDVertex ({-1, +1, -1}, {-1, +1, +1}, isper);
-    //VEDVertex ({-1, +1, +1}, {-1, -1, +1}, isper);
+    VED3dTriangle (c5, c8, c4, fifcol, fifcol, fifcol);              //   5/--------/8
+    VED3dTriangle (c1, c4, c5, fifcol, fifcol, fifcol);              //    |/  fr   |/
+    VED3dTriangle (c1, c5, c6, fircol, fircol, fircol);              //    | |   sx | |
+    VED3dTriangle (c2, c6, c7, sixcol, sixcol, sixcol);              //    |f| fv   |s|
+    VED3dTriangle (c5, c6, c7, forcol, forcol, forcol);
+    VED3dTriangle (c4, c8, c7, seccol, seccol, seccol);
+    VED3dTriangle (c5, c8, c7, forcol, forcol, forcol);
+    VED3dTriangle (c1, c2, c6, fircol, fircol, fircol);              //   1/-+------/4|
+    VED3dTriangle (c4, c3, c7, seccol, seccol, seccol);
+    VED3dTriangle (c1, c4, c3, thicol, thicol, thicol);              //     /| t     /|
+    VED3dTriangle (c1, c2, c3, thicol, thicol, thicol);              //     2/--------/3
+    VED3dTriangle (c2, c3, c7, sixcol, sixcol, sixcol);              //    |6/------|-/7
 
 
-    //       /----------/
-    //      /|         /
-    //     /-+--------/
-    //     | |
-    //     | /
-    //     |/
-    //     /
-
-    //VEDVertex ({-1, +1, -1}, {+1, +1, -1}, isper);
-    //VEDVertex ({+1, +1, -1}, {+1, +1, +1}, isper);
-    //VEDVertex ({+1, +1, +1}, {-1, +1, +1}, isper);
-
-    //       /----------/
-    //      /|         /
-    //     /-+--------/
-    //     | |
-    //     | /---------/
-    //     |/         /
-    //     /---------/
-
-
-    //VEDVertex ({+1, +1, -1}, {+1, -1, -1}, isper);
-    //txSetColor (TX_WHITE);
-    txSetColor (TX_GREEN);
-    VEDVertex ({+1, +1, +1}, {+1, -1, +1}, isper);
-    txSetColor (TX_WHITE, 5);
-    VEDVertex ({0, 0, -2}, {0, 0, 2}, isper);
-
-    //       /----------/
-    //      /|         /|
-    //     /-+--------/ |
-    //     | |        | |
-    //     | /--------+-/
-    //     |/         |/
-    //     /----------/  //*/
-    VED3dTriangle (c4, c3, c7, mmid1, mmid2, mgreen);
+    /*VED3dTriangle (c4, c3, c7, mmid1, mmid2, mgreen);
     VED3dTriangle (c4, c8, c7, mmid1, mmid2, mgreen);
     VED3dTriangle (c5, c6, c7, mmid1, mmid2, mgreen);
-    VED3dTriangle (c5, c8, c7, mmid1, mmid2, mgreen);
+    VED3dTriangle (c5, c8, c7, mmid1, mmid2, mgreen);              //reddish          //greenish
     VED3dTriangle (c1, c2, c3, mred, mmid1, mmid2);              //     2/--------/3
     VED3dTriangle (c1, c4, c3, mred, mmid1, mmid2);              //     /|       /|
-    VED3dTriangle (c1, c2, c6, mred, mmid1, mmid2);              //red1/-+------/4|
+    VED3dTriangle (c1, c2, c6, mred, mmid1, mmid2);              //red1/-+------/4|  //reddish
     VED3dTriangle (c1, c5, c6, mred, mmid1, mmid2);              //    | |      | |
     VED3dTriangle (c2, c6, c7, mmid1, mmid2, mgreen);            //    | |      | |
-    VED3dTriangle (c2, c3, c7, mmid1, mmid2, mgreen);            //    |6/------|-/7green
-    VED3dTriangle (c1, c4, c5, mred, mmid1, mmid1);              //    |/       |/
-    VED3dTriangle (c5, c8, c4, mmid1, mmid2, mmid1);             //   5/--------/8
-    assert (fabs(mred.x - 255) <= 0.5 && fabs(mred.y) <= 0.5 && fabs(mred.z) <= 0.5);
-    assert (fabs(mgreen.x) <= 0.5 && fabs(mgreen.y - 255) <= 0.5 && fabs(mgreen.z) <= 0.5);
+    VED3dTriangle (c2, c3, c7, mmid1, mmid2, mgreen);            //gree|6/------|-/7green
+    VED3dTriangle (c1, c4, c5, mred, mmid1, mmid1);              // nish/       |/
+    VED3dTriangle (c5, c8, c4, mmid1, mmid2, mmid1);             //   5/--------/8 //greenish
+                                                                   //reddish
+    //*///assert (fabs(mred.x - 255) <= 0.5 && fabs(mred.y) <= 0.5 && fabs(mred.z) <= 0.5);
+    //assert (fabs(mgreen.x) <= 0.5 && fabs(mgreen.y - 255) <= 0.5 && fabs(mgreen.z) <= 0.5);
     return 0;                                          //*/
     }
 
@@ -575,6 +622,14 @@ void copymatrix (ARRSIZ size, double To[ALLMSX][ALLMSY], double From[ALLMSX][ALL
         }
     }
 
+void MakeBufferDefault ()
+    {
+    for (int i = 0; i < SzScr.x * SzScr.y; i++)
+        {
+        ZBuffer[i] = BufferDefault;
+        }
+    }
+
 /*Я вдруг понял, что мой код не содержит НИ ЕДИНОГО КОТА. Нужно было срочно исправлять
 это недоразумение.    _    -,    /|
     _.-|   |          |\__/,|   (`\
@@ -600,5 +655,57 @@ void copymatrix (ARRSIZ size, double To[ALLMSX][ALLMSY], double From[ALLMSX][ALL
                      `"'--...___...--'"`
 */
 
+//=============================================================================
+
+//кладбище комментов
 
 
+//=============================================================================
+
+    /*VEDVertex ({-1, -1, -1}, {-1, -1, +1}, isper);
+    //VEDVertex ({-1, -1, +1}, {+1, -1, +1}, isper);
+    //VEDVertex ({+1, -1, +1}, {+1, -1, -1}, isper);
+    //VEDVertex ({+1, -1, -1}, {-1, -1, -1}, isper);
+    //       /----------/
+    //      /          /
+    //     /----------/
+    //VEDVertex ({-1, -1, -1}, {-1, +1, -1}, isper);
+    //VEDVertex ({-1, +1, -1}, {-1, +1, +1}, isper);
+    //VEDVertex ({-1, +1, +1}, {-1, -1, +1}, isper);
+
+
+    //       /----------/
+    //      /|         /
+    //     /-+--------/
+    //     | |
+    //     | /
+    //     |/
+    //     /
+
+    //VEDVertex ({-1, +1, -1}, {+1, +1, -1}, isper);
+    //VEDVertex ({+1, +1, -1}, {+1, +1, +1}, isper);
+    //VEDVertex ({+1, +1, +1}, {-1, +1, +1}, isper);
+
+    //       /----------/
+    //      /|         /
+    //     /-+--------/
+    //     | |
+    //     | /---------/
+    //     |/         /
+    //     /---------/
+
+
+    //VEDVertex ({+1, +1, -1}, {+1, -1, -1}, isper);
+    //txSetColor (TX_WHITE);
+    txSetColor (TX_GREEN);
+    VEDVertex ({+1, +1, +1}, {+1, -1, +1}, isper);
+    txSetColor (TX_WHITE, 5);
+    VEDVertex ({0, 0, -2}, {0, 0, 2}, isper);
+
+    //       /----------/
+    //      /|         /|
+    //     /-+--------/ |
+    //     | |        | |
+    //     | /--------+-/
+    //     |/         |/
+    //     /----------/  //*/

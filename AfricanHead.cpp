@@ -80,7 +80,7 @@ void drawVec (MYP Vector[])
         fscanf (model, "%s%d/%d/%d", type, &fnum, &snum, &tnum);
         if (type[0] == 'f' && type[1] == NULL)
             {
-            VEDTriangle (Vector[fnum], Vector[snum], Vector[tnum]);
+            VEDTriangle (Vector[fnum], Vector[snum], Vector[tnum], {255, 255, 255}, {255, 255, 255}, {255, 255, 255});
             printf ("%s %d/%d/%d\n", type, fnum, snum, tnum);
             getch();
             }
