@@ -10,13 +10,15 @@ struct MYP
 POINT SzScr = {0, 0};
 int BufferDefault = 5000;
 
+bool ShowMeZBuffer = false;
 HDC MyScreen = NULL;
 RGBQUAD *MyPixels = NULL;
 double *ZBuffer = NULL;
 #define MyPix(_x, _y, _z, _r, _g, _b)  int thisPixPos = (int)((_x) + (int)(SzScr.y - _y)*SzScr.x);\
     if (fabs(ZBuffer[thisPixPos] - BufferDefault) < 0.0015 || _z < ZBuffer[thisPixPos]) \
         {     \
-        MyPixels[thisPixPos] = RGBQUAD {(BYTE)(_b), (BYTE)(_g), (BYTE)(_r)}; \
+        if (ShowMeZBuffer) MyPixels[thisPixPos] = RGBQUAD {(BYTE)(_z), (BYTE)(_z), (BYTE)(_z)}; \
+        else MyPixels[thisPixPos] = RGBQUAD {(BYTE)(_b), (BYTE)(_g), (BYTE)(_r)}; \
         ZBuffer[thisPixPos] = _z;     \
         }                                  \
     //else \
@@ -270,13 +272,19 @@ int VEDTriangle (MYP first, MYP second, MYP third, MYP fcol, MYP scol, MYP tcol)
     txSetColor (TX_WHITE, 1, MyScreen);
     txSetFillColor (RGB(dcol.x, dcol.y, dcol.z), MyScreen);
     txEllipse (down.x - 10, down.y - 10, down.x + 10, down.y + 10, MyScreen);
-    txDrawText (down.x - 20, down.y - 40, down.
+    char helpch[16] = {};
+    sprintf (helpch, "%f", down.z);
+    txDrawText (down.x - 80, down.y - 50, down.x + 80, down.y - 20, helpch, DT_CENTER, MyScreen);
 
     txSetFillColor (RGB(mcol.x, mcol.y, mcol.z), MyScreen);
     txEllipse (mid.x - 10, mid.y - 10, mid.x + 10, mid.y + 10, MyScreen);
+    sprintf (helpch, "%f", down.z);
+    txDrawText (mid.x - 80, mid.y - 50, mid.x + 80, mid.y - 20, helpch, DT_CENTER, MyScreen);
 
     txSetFillColor (RGB(ucol.x, ucol.y, ucol.z), MyScreen);
     txEllipse (up.x - 10, up.y - 10, up.x + 10, up.y + 10, MyScreen);
+    sprintf (helpch, "%f", down.z);
+    txDrawText (up.x - 80, up.y - 50, up.x + 80, up.y - 20, helpch, DT_CENTER, MyScreen);
 
     VEDHorTriangle ({help*allhwidth + down.x,
                      down.y + sectorheight,

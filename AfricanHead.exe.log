@@ -71,3 +71,396 @@ Run file:	D:\Документыы\GitHub\MyFiles\_MyOpenGl\AfricanHead.exe
 Directory:	D:\Документыы\GitHub\MyFiles\_MyOpenGl
 
 --------------------------------------------------
+
+--------------------------------------------------
+TXLib сообщает:
+
+Программа: D:\Документыы\GitHub\MyFiles\_MyOpenGl\AfricanHead.exe, файл: G:\TX\TXLib.h, строка: 10584, функция: HPEN__* {anonymous}::TX::txSetColor(COLORREF, double, HDC),
+
+Сообщение: Параметр "dc" неверен. Возможно, этот холст не создан, или уже уничтожен, или не загрузилась картинка.
+
+#1: TXLib [Ver: 00173a, Rev: 105], Instance: 0x005042E0 (32-bit), Flags: CMdRe0, Thread: 0x31A0 (Main), GetLastError(): 13 (Недопустимые данные). 
+
+--------------------------------------------------
+Стек вызовов:
+
+# 0 0x004195B6 in D:\Документыы\GitHub\MyFiles\_MyOpenGl\AfricanHead.exe: txSetColor() at G:/TX/TXLib.h (10584)
+
+# 1 0x00427E8A in D:\Документыы\GitHub\MyFiles\_MyOpenGl\AfricanHead.exe: VEDTriangle() at D:/Документыы/GitHub/MyFiles/_MyOpenGl/VEDLibh.h (272):
+
+    270:     //printf ("sech == %f\n", sectorheight);
+    271: 
+=>  272:     txSetColor (TX_WHITE, 1, MyScreen);
+    273:     txSetFillColor (RGB(dcol.x, dcol.y, dcol.z), MyScreen);
+    274:     txEllipse (down.x - 10, down.y - 10, down.x + 10, down.y + 10, MyScreen);
+
+# 2 0x0042B7CD in D:\Документыы\GitHub\MyFiles\_MyOpenGl\AfricanHead.exe: drawVec() at D:/Документыы/GitHub/MyFiles/_MyOpenGl/AfricanHead.cpp (83):
+
+     81:         if (type[0] == 'f' && type[1] == NULL)
+     82:             {
+=>   83:             VEDTriangle (Vector[fnum], Vector[snum], Vector[tnum], {255, 255, 255}, {255, 255, 255}, {255, 255, 255});
+     84:             //printf ("%s %d/%d/%d\n", type, fnum, snum, tnum);
+     85:             //getch();
+
+# 3 0x0042B42B in D:\Документыы\GitHub\MyFiles\_MyOpenGl\AfricanHead.exe: main() at D:/Документыы/GitHub/MyFiles/_MyOpenGl/AfricanHead.cpp (20):
+
+     18:         control(1);
+     19:         if (GetAsyncKeyState(VK_LSHIFT)) control (2);
+=>   20:         drawVec (PointsVec);
+     21:         getch();
+     22:         txClear();
+
+--------------------------------------------------
+Стек вызовов TX:
+
+# 0 in HPEN__* {anonymous}::TX::txSetColor(COLORREF, double, HDC) at G:\TX\TXLib.h (10584):
+
+  10582: HPEN txSetColor (COLORREF color, double thickness /*= 1*/, HDC dc /*= txDC()*/)
+  10583:     {
+=>10584: $1  if (_TX_DEFAULT_HDC_FAILED (dc)) return NULL;
+  10585: 
+  10586: $   HPEN pen = Win32::CreatePen ((color == TX_TRANSPARENT? PS_NULL : PS_SOLID), ROUND (thickness), color);
+
+# 1 in int VEDTriangle(MYP, MYP, MYP, MYP, MYP, MYP) at D:\Документыы\GitHub\MyFiles\_MyOpenGl\VEDLibh.h (272):
+
+    270:     //printf ("sech == %f\n", sectorheight);
+    271: 
+=>  272:     txSetColor (TX_WHITE, 1, MyScreen);
+    273:     txSetFillColor (RGB(dcol.x, dcol.y, dcol.z), MyScreen);
+    274:     txEllipse (down.x - 10, down.y - 10, down.x + 10, down.y + 10, MyScreen);
+
+--------------------------------------------------
+Developed with:
+
+The Dumb Artist Library (TX Library) - TXLib [Ver: 00173a, Rev: 105]
+Copyright (C) Ded (Ilya Dedinsky, http://txlib.ru) <mail@txlib.ru>
+See license on: http://txlib.ru
+
+TXLib file:	G:\TX\TXLib.h
+Compiled:	Nov 14 2017 17:45:08, GNU g++ 4.8.1, std=201103L, MinGW Runtime 3.20, 32-bit, DEBUG
+Started:	Nov 14 2017 17:45:13
+
+Run file:	D:\Документыы\GitHub\MyFiles\_MyOpenGl\AfricanHead.exe
+Directory:	D:\Документыы\GitHub\MyFiles\_MyOpenGl
+
+--------------------------------------------------
+
+--------------------------------------------------
+TXLib предупреждает:
+
+Программа: D:\Документыы\GitHub\MyFiles\_MyOpenGl\AfricanHead.exe,
+
+ВНЕЗАПНО: Недопустимая операция с плавающей точкой.
+
+#1: Исключение EXCEPTION_FLT_INVALID_OPERATION (0xC0000090) при выполнении кода по адресу 0x00427F9A в функции VEDTriangle() в файле D:/Документыы/GitHub/MyFiles/_MyOpenGl/VEDLibh.h на строке 268. Спасибо _txVectoredExceptionHandler(), что сообщил. Люблю его <3
+
+#1: TXLib [Ver: 00173a, Rev: 105], Instance: 0x005052E0 (32-bit), Flags: CMdRe0, Thread: 0x7DC (Main). 
+
+--------------------------------------------------
+Стек вызовов:
+
+# 0 0x00427F9A in D:\Документыы\GitHub\MyFiles\_MyOpenGl\AfricanHead.exe: VEDTriangle() at D:/Документыы/GitHub/MyFiles/_MyOpenGl/VEDLibh.h (268):
+
+    266:     double allhwidth = up.x - down.x;
+    267:     double sectorheight = mid.y - down.y;
+=>  268:     double help = sectorheight/allheight;
+    269:     //printf ("mid.y == %f, down.y == %f\n", mid.y, down.y);
+    270:     //printf ("sech == %f\n", sectorheight);
+
+# 1 0x0042BAD4 in D:\Документыы\GitHub\MyFiles\_MyOpenGl\AfricanHead.exe: drawVec() at D:/Документыы/GitHub/MyFiles/_MyOpenGl/AfricanHead.cpp (90):
+
+     88:         if (type[0] == 'f' && type[1] == NULL)
+     89:             {
+=>   90:             VEDTriangle (Vector[fnum], Vector[snum], Vector[tnum], {255, 255, 255}, {255, 255, 255}, {255, 255, 255});
+     91:             //printf ("%s %d/%d/%d\n", type, fnum, snum, tnum);
+     92:             //getch();
+
+# 2 0x0042B6BA in D:\Документыы\GitHub\MyFiles\_MyOpenGl\AfricanHead.exe: main() at D:/Документыы/GitHub/MyFiles/_MyOpenGl/AfricanHead.cpp (26):
+
+     24:         control(1);
+     25:         if (GetAsyncKeyState(VK_LSHIFT)) control (2);
+=>   26:         drawVec (PointsVec);
+     27:         txBitBlt (0, 0, MyScreen);
+     28:         getch();
+
+--------------------------------------------------
+Стек вызовов TX:
+
+# 0 in int VEDTriangle(MYP, MYP, MYP, MYP, MYP, MYP) at D:\Документыы\GitHub\MyFiles\_MyOpenGl\VEDLibh.h (287):
+
+    285:     txEllipse (up.x - 10, up.y - 10, up.x + 10, up.y + 10, MyScreen);
+    286:     sprintf (helpch, "%f", down.z);
+=>  287:     txDrawText (up.x - 80, up.y - 50, up.x + 80, up.y - 20, helpch, DT_CENTER, MyScreen);
+    288: 
+    289:     VEDHorTriangle ({help * allhwidth + down.x,
+
+--------------------------------------------------
+Developed with:
+
+The Dumb Artist Library (TX Library) - TXLib [Ver: 00173a, Rev: 105]
+Copyright (C) Ded (Ilya Dedinsky, http://txlib.ru) <mail@txlib.ru>
+See license on: http://txlib.ru
+
+TXLib file:	G:\TX\TXLib.h
+Compiled:	Nov 14 2017 17:47:11, GNU g++ 4.8.1, std=201103L, MinGW Runtime 3.20, 32-bit, DEBUG
+Started:	Nov 14 2017 17:47:16
+
+Run file:	D:\Документыы\GitHub\MyFiles\_MyOpenGl\AfricanHead.exe
+Directory:	D:\Документыы\GitHub\MyFiles\_MyOpenGl
+
+--------------------------------------------------
+
+--------------------------------------------------
+TXLib соболезнует...
+
+Программа: D:\Документыы\GitHub\MyFiles\_MyOpenGl\AfricanHead.exe,
+
+ВНЕЗАПНО: signal (8, 0x00): SIGFPE: Грубая ошибка в вычислениях. 
+
+Недопустимая операция с плавающей точкой.
+
+#1: Исключение EXCEPTION_FLT_INVALID_OPERATION (0xC0000090) при выполнении кода по адресу 0x00427F9A в функции VEDTriangle() в файле D:/Документыы/GitHub/MyFiles/_MyOpenGl/VEDLibh.h на строке 268. Спасибо _txVectoredExceptionHandler(), что сообщил. Люблю его <3
+
+С помощью функции signal() вы можете сами обработать эту ошибку.
+
+#2: TXLib [Ver: 00173a, Rev: 105], Instance: 0x005052E0 (32-bit), Flags: CMdRe0, Thread: 0x7DC (Main). 
+
+--------------------------------------------------
+Стек вызовов:
+
+# 0 0x00427F9A in D:\Документыы\GitHub\MyFiles\_MyOpenGl\AfricanHead.exe: VEDTriangle() at D:/Документыы/GitHub/MyFiles/_MyOpenGl/VEDLibh.h (268):
+
+    266:     double allhwidth = up.x - down.x;
+    267:     double sectorheight = mid.y - down.y;
+=>  268:     double help = sectorheight/allheight;
+    269:     //printf ("mid.y == %f, down.y == %f\n", mid.y, down.y);
+    270:     //printf ("sech == %f\n", sectorheight);
+
+# 1 0x0042BAD4 in D:\Документыы\GitHub\MyFiles\_MyOpenGl\AfricanHead.exe: drawVec() at D:/Документыы/GitHub/MyFiles/_MyOpenGl/AfricanHead.cpp (90):
+
+     88:         if (type[0] == 'f' && type[1] == NULL)
+     89:             {
+=>   90:             VEDTriangle (Vector[fnum], Vector[snum], Vector[tnum], {255, 255, 255}, {255, 255, 255}, {255, 255, 255});
+     91:             //printf ("%s %d/%d/%d\n", type, fnum, snum, tnum);
+     92:             //getch();
+
+# 2 0x0042B6BA in D:\Документыы\GitHub\MyFiles\_MyOpenGl\AfricanHead.exe: main() at D:/Документыы/GitHub/MyFiles/_MyOpenGl/AfricanHead.cpp (26):
+
+     24:         control(1);
+     25:         if (GetAsyncKeyState(VK_LSHIFT)) control (2);
+=>   26:         drawVec (PointsVec);
+     27:         txBitBlt (0, 0, MyScreen);
+     28:         getch();
+
+--------------------------------------------------
+Стек вызовов TX:
+
+# 0 in int VEDTriangle(MYP, MYP, MYP, MYP, MYP, MYP) at D:\Документыы\GitHub\MyFiles\_MyOpenGl\VEDLibh.h (287):
+
+    285:     txEllipse (up.x - 10, up.y - 10, up.x + 10, up.y + 10, MyScreen);
+    286:     sprintf (helpch, "%f", down.z);
+=>  287:     txDrawText (up.x - 80, up.y - 50, up.x + 80, up.y - 20, helpch, DT_CENTER, MyScreen);
+    288: 
+    289:     VEDHorTriangle ({help * allhwidth + down.x,
+
+--------------------------------------------------
+Developed with:
+
+The Dumb Artist Library (TX Library) - TXLib [Ver: 00173a, Rev: 105]
+Copyright (C) Ded (Ilya Dedinsky, http://txlib.ru) <mail@txlib.ru>
+See license on: http://txlib.ru
+
+TXLib file:	G:\TX\TXLib.h
+Compiled:	Nov 14 2017 17:47:11, GNU g++ 4.8.1, std=201103L, MinGW Runtime 3.20, 32-bit, DEBUG
+Started:	Nov 14 2017 17:47:16
+
+Run file:	D:\Документыы\GitHub\MyFiles\_MyOpenGl\AfricanHead.exe
+Directory:	D:\Документыы\GitHub\MyFiles\_MyOpenGl
+
+--------------------------------------------------
+
+--------------------------------------------------
+TXLib предупреждает:
+
+Программа: D:\Документыы\GitHub\MyFiles\_MyOpenGl\AfricanHead.exe,
+
+ВНЕЗАПНО: Недопустимая операция с плавающей точкой.
+
+#1: Исключение EXCEPTION_FLT_INVALID_OPERATION (0xC0000090) при выполнении кода по адресу 0x00427F9A в функции VEDTriangle() в файле D:/Документыы/GitHub/MyFiles/_MyOpenGl/VEDLibh.h на строке 268. Спасибо _txVectoredExceptionHandler(), что сообщил. Люблю его <3
+
+#1: TXLib [Ver: 00173a, Rev: 105], Instance: 0x005052E0 (32-bit), Flags: CMdRe0, Thread: 0x3458 (Main). 
+
+--------------------------------------------------
+Стек вызовов:
+
+# 0 0x00427F9A in D:\Документыы\GitHub\MyFiles\_MyOpenGl\AfricanHead.exe: VEDTriangle() at D:/Документыы/GitHub/MyFiles/_MyOpenGl/VEDLibh.h (268):
+
+    266:     double allhwidth = up.x - down.x;
+    267:     double sectorheight = mid.y - down.y;
+=>  268:     double help = sectorheight/allheight;
+    269:     //printf ("mid.y == %f, down.y == %f\n", mid.y, down.y);
+    270:     //printf ("sech == %f\n", sectorheight);
+
+# 1 0x0042BAC1 in D:\Документыы\GitHub\MyFiles\_MyOpenGl\AfricanHead.exe: drawVec() at D:/Документыы/GitHub/MyFiles/_MyOpenGl/AfricanHead.cpp (90):
+
+     88:         if (type[0] == 'f' && type[1] == NULL)
+     89:             {
+=>   90:             VEDTriangle (Vector[fnum], Vector[snum], Vector[tnum], {255, 255, 255}, {255, 255, 255}, {255, 255, 255});
+     91:             //printf ("%s %d/%d/%d\n", type, fnum, snum, tnum);
+     92:             //getch();
+
+# 2 0x0042B6BA in D:\Документыы\GitHub\MyFiles\_MyOpenGl\AfricanHead.exe: main() at D:/Документыы/GitHub/MyFiles/_MyOpenGl/AfricanHead.cpp (26):
+
+     24:         control(1);
+     25:         if (GetAsyncKeyState(VK_LSHIFT)) control (2);
+=>   26:         drawVec (PointsVec);
+     27:         txBitBlt (0, 0, MyScreen);
+     28:         getch();
+
+--------------------------------------------------
+Стек вызовов TX:
+
+# 0 in int VEDTriangle(MYP, MYP, MYP, MYP, MYP, MYP) at D:\Документыы\GitHub\MyFiles\_MyOpenGl\VEDLibh.h (287):
+
+    285:     txEllipse (up.x - 10, up.y - 10, up.x + 10, up.y + 10, MyScreen);
+    286:     sprintf (helpch, "%f", down.z);
+=>  287:     txDrawText (up.x - 80, up.y - 50, up.x + 80, up.y - 20, helpch, DT_CENTER, MyScreen);
+    288: 
+    289:     VEDHorTriangle ({help * allhwidth + down.x,
+
+--------------------------------------------------
+Developed with:
+
+The Dumb Artist Library (TX Library) - TXLib [Ver: 00173a, Rev: 105]
+Copyright (C) Ded (Ilya Dedinsky, http://txlib.ru) <mail@txlib.ru>
+See license on: http://txlib.ru
+
+TXLib file:	G:\TX\TXLib.h
+Compiled:	Nov 14 2017 17:47:51, GNU g++ 4.8.1, std=201103L, MinGW Runtime 3.20, 32-bit, DEBUG
+Started:	Nov 14 2017 17:47:56
+
+Run file:	D:\Документыы\GitHub\MyFiles\_MyOpenGl\AfricanHead.exe
+Directory:	D:\Документыы\GitHub\MyFiles\_MyOpenGl
+
+--------------------------------------------------
+
+--------------------------------------------------
+TXLib соболезнует...
+
+Программа: D:\Документыы\GitHub\MyFiles\_MyOpenGl\AfricanHead.exe,
+
+ВНЕЗАПНО: signal (8, 0x00): SIGFPE: Грубая ошибка в вычислениях. 
+
+Недопустимая операция с плавающей точкой.
+
+#1: Исключение EXCEPTION_FLT_INVALID_OPERATION (0xC0000090) при выполнении кода по адресу 0x00427F9A в функции VEDTriangle() в файле D:/Документыы/GitHub/MyFiles/_MyOpenGl/VEDLibh.h на строке 268. Спасибо _txVectoredExceptionHandler(), что сообщил. Люблю его <3
+
+С помощью функции signal() вы можете сами обработать эту ошибку.
+
+#2: TXLib [Ver: 00173a, Rev: 105], Instance: 0x005052E0 (32-bit), Flags: CMdRe0, Thread: 0x3458 (Main). 
+
+--------------------------------------------------
+Стек вызовов:
+
+# 0 0x00427F9A in D:\Документыы\GitHub\MyFiles\_MyOpenGl\AfricanHead.exe: VEDTriangle() at D:/Документыы/GitHub/MyFiles/_MyOpenGl/VEDLibh.h (268):
+
+    266:     double allhwidth = up.x - down.x;
+    267:     double sectorheight = mid.y - down.y;
+=>  268:     double help = sectorheight/allheight;
+    269:     //printf ("mid.y == %f, down.y == %f\n", mid.y, down.y);
+    270:     //printf ("sech == %f\n", sectorheight);
+
+# 1 0x0042BAC1 in D:\Документыы\GitHub\MyFiles\_MyOpenGl\AfricanHead.exe: drawVec() at D:/Документыы/GitHub/MyFiles/_MyOpenGl/AfricanHead.cpp (90):
+
+     88:         if (type[0] == 'f' && type[1] == NULL)
+     89:             {
+=>   90:             VEDTriangle (Vector[fnum], Vector[snum], Vector[tnum], {255, 255, 255}, {255, 255, 255}, {255, 255, 255});
+     91:             //printf ("%s %d/%d/%d\n", type, fnum, snum, tnum);
+     92:             //getch();
+
+# 2 0x0042B6BA in D:\Документыы\GitHub\MyFiles\_MyOpenGl\AfricanHead.exe: main() at D:/Документыы/GitHub/MyFiles/_MyOpenGl/AfricanHead.cpp (26):
+
+     24:         control(1);
+     25:         if (GetAsyncKeyState(VK_LSHIFT)) control (2);
+=>   26:         drawVec (PointsVec);
+     27:         txBitBlt (0, 0, MyScreen);
+     28:         getch();
+
+--------------------------------------------------
+Стек вызовов TX:
+
+# 0 in int VEDTriangle(MYP, MYP, MYP, MYP, MYP, MYP) at D:\Документыы\GitHub\MyFiles\_MyOpenGl\VEDLibh.h (287):
+
+    285:     txEllipse (up.x - 10, up.y - 10, up.x + 10, up.y + 10, MyScreen);
+    286:     sprintf (helpch, "%f", down.z);
+=>  287:     txDrawText (up.x - 80, up.y - 50, up.x + 80, up.y - 20, helpch, DT_CENTER, MyScreen);
+    288: 
+    289:     VEDHorTriangle ({help * allhwidth + down.x,
+
+--------------------------------------------------
+Developed with:
+
+The Dumb Artist Library (TX Library) - TXLib [Ver: 00173a, Rev: 105]
+Copyright (C) Ded (Ilya Dedinsky, http://txlib.ru) <mail@txlib.ru>
+See license on: http://txlib.ru
+
+TXLib file:	G:\TX\TXLib.h
+Compiled:	Nov 14 2017 17:47:51, GNU g++ 4.8.1, std=201103L, MinGW Runtime 3.20, 32-bit, DEBUG
+Started:	Nov 14 2017 17:47:55
+
+Run file:	D:\Документыы\GitHub\MyFiles\_MyOpenGl\AfricanHead.exe
+Directory:	D:\Документыы\GitHub\MyFiles\_MyOpenGl
+
+--------------------------------------------------
+
+--------------------------------------------------
+TXLib соболезнует...
+
+Программа: D:\Документыы\GitHub\MyFiles\_MyOpenGl\AfricanHead.exe, файл: D:\Документыы\GitHub\MyFiles\_MyOpenGl\VEDLibh.h, строка: 268, функция: int VEDTriangle(MYP, MYP, MYP, MYP, MYP, MYP),
+
+Сообщение: ВНЕЗАПНО: Логическая ошибка: Неверно, что "allheight != 0".
+
+#1: TXLib [Ver: 00173a, Rev: 105], Instance: 0x005052E0 (32-bit), Flags: CMdRe0, Thread: 0x14D0 (Main). 
+
+--------------------------------------------------
+Стек вызовов:
+
+# 0 0x00427FDF in D:\Документыы\GitHub\MyFiles\_MyOpenGl\AfricanHead.exe: VEDTriangle() at D:/Документыы/GitHub/MyFiles/_MyOpenGl/VEDLibh.h (268):
+
+    266:     double allhwidth = up.x - down.x;
+    267:     double sectorheight = mid.y - down.y;
+=>  268:     assert (allheight != 0);
+    269:     double help = sectorheight/allheight;
+    270:     //printf ("mid.y == %f, down.y == %f\n", mid.y, down.y);
+
+# 1 0x0042BB47 in D:\Документыы\GitHub\MyFiles\_MyOpenGl\AfricanHead.exe: drawVec() at D:/Документыы/GitHub/MyFiles/_MyOpenGl/AfricanHead.cpp (90):
+
+     88:         if (type[0] == 'f' && type[1] == NULL)
+     89:             {
+=>   90:             VEDTriangle (Vector[fnum], Vector[snum], Vector[tnum], {255, 255, 255}, {255, 255, 255}, {255, 255, 255});
+     91:             //printf ("%s %d/%d/%d\n", type, fnum, snum, tnum);
+     92:             //getch();
+
+# 2 0x0042B740 in D:\Документыы\GitHub\MyFiles\_MyOpenGl\AfricanHead.exe: main() at D:/Документыы/GitHub/MyFiles/_MyOpenGl/AfricanHead.cpp (26):
+
+     24:         control(1);
+     25:         if (GetAsyncKeyState(VK_LSHIFT)) control (2);
+=>   26:         drawVec (PointsVec);
+     27:         txBitBlt (0, 0, MyScreen);
+     28:         getch();
+
+--------------------------------------------------
+Developed with:
+
+The Dumb Artist Library (TX Library) - TXLib [Ver: 00173a, Rev: 105]
+Copyright (C) Ded (Ilya Dedinsky, http://txlib.ru) <mail@txlib.ru>
+See license on: http://txlib.ru
+
+TXLib file:	G:\TX\TXLib.h
+Compiled:	Nov 14 2017 17:49:09, GNU g++ 4.8.1, std=201103L, MinGW Runtime 3.20, 32-bit, DEBUG
+Started:	Nov 14 2017 17:49:14
+
+Run file:	D:\Документыы\GitHub\MyFiles\_MyOpenGl\AfricanHead.exe
+Directory:	D:\Документыы\GitHub\MyFiles\_MyOpenGl
+
+--------------------------------------------------
