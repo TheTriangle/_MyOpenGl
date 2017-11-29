@@ -60,8 +60,9 @@ struct MYP
     };
 POINT SzScr = {0, 0};
 int BufferDefault = 5000;
+const double ZScalingCoeff = 0.0015;
 
-const double MaterialReflective = 35;
+const double MaterialReflective = 25;
 
 bool ShowMeZBuffer = false;
 HDC MyScreen = NULL;
@@ -81,6 +82,7 @@ double *ZBuffer = NULL;
         }
 const int ALLMSX = 4;
 const int ALLMSY = 4;
+MYP DefaultLightPos = {4, 4, -2};
 struct ARRSIZ
     {
     const int x;
@@ -94,12 +96,15 @@ double TALX = 0;
 double TALY = 0;
 double TALZ = 0;
 
+MYP makeAllVecDeforms (MYP getVec, bool isper);
 bool control (double speed = 1);
+void drawVec (MYP start, MYP vec, COLORREF color = TX_GREEN, COLORREF pointcolor = TX_RED, int width = 1, int pointrad = 15);
+MYP makeAllVecDeforms (MYP* getVec, bool isper = false);
 void MakeBufferDefault ();
 MYP VectorMultip (MYP a, MYP b);
 int VEDLine (double x1, double y1, double z1, double x2, double y2, double z2, MYP col1, MYP col2);
 void MYPSwap (MYP* pt1, MYP* pt2);
-void VED3dTriangle (MYP first, MYP second, MYP third, MYP col1, MYP col2, MYP col3, MYP lightpos = {270, 270, 3}, MYP lightcol = {255, 255, 255}, MYP viewpos = {0, 0, -5});
+void VED3dTriangle (MYP first, MYP second, MYP third, MYP col1, MYP col2, MYP col3, MYP lightpos = DefaultLightPos, MYP lightcol = {255, 155, 155}, MYP viewpos = {0, 0, -5});
 void makeAllDeforms (double cord [ALLMSX][ALLMSY], bool isper);
 int VEDTriangle (MYP first, MYP second, MYP third, MYP fcol, MYP scol, MYP tcol);
 void swap (double* s1, double* s2);
@@ -428,35 +433,60 @@ int VEDVertex (MYP old, MYP NEW, bool isper)
     return 0;
     }
 
+
+
 void VED3dTriangle (MYP first, MYP second, MYP third, MYP col1, MYP col2, MYP col3, MYP lightpos, MYP lightcol, MYP viewpos)
     {
     double cord1 [ALLMSX][ALLMSY] = {{first.x, 0, 0, 0}, {first.y, 0, 0, 0}, {first.z, 0, 0, 0}, {1, 0, 0, 0}};
     double cord2 [ALLMSX][ALLMSY] = {{second.x, 0, 0, 0}, {second.y, 0, 0, 0}, {second.z, 0, 0, 0}, {1, 0, 0, 0}};
     double cord3 [ALLMSX][ALLMSY] = {{third.x, 0, 0, 0}, {third.y, 0, 0, 0}, {third.z, 0, 0, 0}, {1, 0, 0, 0}};
 
-    col1 = col1 * (0.003922);//1/255
-    col2 = col2 * (0.003922);
-    col3 = col3 * (0.003922);
-    lightcol = lightcol * (0.003922);
-    MYP environmentcol = {0.2, 0.2, 0.2};
+    col1 = col1 / 255;//1/255
+    col2 = col2 / 255;
+    col3 = col3 / 255;
+    lightcol = lightcol / 255;
+    //MYP environmentcol = {0.2, 0.2, 0.2};
     //printf ("before1col1 == %f, %f, %f\n", col1.x, col1.y, col1.z);
+    //makeAllVecDeforms (Normal);
+
+    MYP VecFS = second - first;
+    MYP VecFT = third  - first;
+    MYP VecST = third  - second;
+    MYP Normal  = VectorMultip (VecFS, VecFT);
+
+    Normal = makeAllVecDeforms (Normal, false);
 
     makeAllDeforms (cord1, false);
     makeAllDeforms (cord2, false);
     makeAllDeforms (cord3, false);
+    lightpos.x = lightpos.x/ZScalingCoeff/lightpos.z;
+    lightpos.y = lightpos.y/ZScalingCoeff/lightpos.z;
 
-    first = {cord1[0][0], cord1[1][0], cord1[2][0]};
+    first  = {cord1[0][0], cord1[1][0], cord1[2][0]};
     second = {cord2[0][0], cord2[1][0], cord2[2][0]};
-    third = {cord3[0][0], cord3[1][0], cord3[2][0]};
+    third  = {cord3[0][0], cord3[1][0], cord3[2][0]};
 
-    MYP VecFS = second - first;
-    MYP VecFT = third  - first;
 
-    MYP Normal  = VectorMultip (VecFS, VecFT);
+    //MYP Normal  = VectorMultip (VecFS, VecFT);
+    if (GetAsyncKeyState ('N'))
+        {
+        drawVec (first, Normal);
+        drawVec (second, Normal);
+        drawVec (third, Normal);
+        }
+    //MYP Normal2 = VectorMultip (VecFS * -1, VecST);
+    //MYP Normal3 = VectorMultip (VecST * -1, VecFT * -1);
     //Normal = Normal / Normal.length();
-    //txLine (SzScr.x/2 + first.x, SzScr.y/2 + first.y, SzScr.x/2 + first.x + Normal.x/0.0015/Normal.z * 100, SzScr.y/2 + first.y + Normal.y/0.0015/Normal.z * 100, MyScreen);
-    //txSetColor (TX_YELLOW, 10);
-    //txLine (lightpos.x/0.0015/lightpos.z, lightpos.y/0.0015/lightpos.z, SzScr.x/2, SzScr.y/2, MyScreen);
+    //txLine (SzScr.x/2 + first.x, SzScr.y/2 + first.y, SzScr.x/2 + first.x - Normal.x/ZScalingCoeff/Normal.z * 100, SzScr.y/2 + first.y - Normal.y/ZScalingCoeff/Normal.z * 100, MyScreen);
+    //txLine (SzScr.x/2 + first.x, SzScr.y/2 + first.y, SzScr.x/2 + first.x + Normal.x/ZScalingCoeff/Normal.z * 100, SzScr.y/2 + first.y + Normal.y/ZScalingCoeff/Normal.z * 100, MyScreen);
+    txSetColor (TX_YELLOW, 10, MyScreen);
+    if (GetAsyncKeyState('M'))
+        {
+        drawVec (first, lightpos - first);
+        drawVec (second, lightpos - second);
+        drawVec (third, lightpos - third);
+        }
+        //txLine (SzScr.x/2 + lightpos.x/ZScalingCoeff/lightpos.z, SzScr.y/2 + lightpos.y/ZScalingCoeff/lightpos.z, SzScr.x/2, SzScr.y/2, MyScreen);
 
     MYP View1Dir = viewpos - first;
     MYP View2Dir = viewpos - second;
@@ -466,7 +496,14 @@ void VED3dTriangle (MYP first, MYP second, MYP third, MYP col1, MYP col2, MYP co
     MYP Light2Dir = second - lightpos;
     MYP Light3Dir = third - lightpos;
 
-    if (acos(Normal^Light1Dir) > PI/2) Normal = Normal * -1;
+    if ((Normal^Light1Dir) < 0) lightcol = {0, 0, 0};
+                                      //TODO сгенерировать массив треугольников усечённой сферы и нарисовать его.
+    //if (acos(Normal2^Light1Dir) > PI/2) Normal2 = Normal2 * -1;
+    //if (acos(Normal3^Light1Dir) > PI/2) Normal3 = Normal3 * -1;
+
+    //assert (fabs (Normal2.x - Normal.x) < 0.00015 && fabs (Normal3.x - Normal.x) < 0.00015);
+    //assert (fabs (Normal2.z - Normal.z) < 0.00015 && fabs (Normal3.z - Normal.z) < 0.00015);
+    //assert (fabs (Normal2.y - Normal.y) < 0.00015 && fabs (Normal3.y - Normal.y) < 0.00015);
 
     MYP Light1DirRef = Normal * 2 * (Light1Dir * Normal) - Light1Dir;
     MYP Light2DirRef = Normal * 2 * (Light2Dir * Normal) - Light2Dir;
@@ -510,9 +547,9 @@ void VED3dTriangle (MYP first, MYP second, MYP third, MYP col1, MYP col2, MYP co
     txClear();
     txClearConsole();    */
 
-    col1 = /*(environmentcol % col1) + */col1 % lightcol * diffuse1 + lightcol * MatSpec1;
-    col2 = /*(environmentcol % col2) + */col2 % lightcol * diffuse2 + lightcol * MatSpec2;
-    col3 = /*(environmentcol % col3) + */col3 % lightcol * diffuse3 + lightcol * MatSpec3;
+    col1 = /*(environmentcol % col1) + */col1 % lightcol * diffuse1 + lightcol * MatSpec1; //*/
+    col2 = /*(environmentcol % col2) + */col2 % lightcol * diffuse2 + lightcol * MatSpec2; //*/
+    col3 = /*(environmentcol % col3) + */col3 % lightcol * diffuse3 + lightcol * MatSpec3; //*/
 
     //printf ("after  col1 == %f, %f, %f\n", col1.x, col1.y, col1.z);
     //getch();
@@ -552,6 +589,18 @@ void VED3dTriangle (MYP first, MYP second, MYP third, MYP col1, MYP col2, MYP co
                  {SzScr.x/2 + cord3[0][0], SzScr.y/2 + cord3[1][0], cord3[2][0]}, col1, col2, col3);
     }
 
+MYP makeAllVecDeforms (MYP getVec, bool isper)
+    {
+    double getVecMat[ALLMSX][ALLMSY] = {{getVec.x, 0, 0, 0}, {getVec.y, 0, 0, 0}, {getVec.z, 0, 0, 0}, {1, 0, 0, 0}};
+    makeAllDeforms (getVecMat, isper);
+    getVec.x = getVecMat[0][0];
+    getVec.y = getVecMat[1][0];
+    getVec.z = getVecMat[2][0];
+    return getVec;
+    }
+
+
+
 void makeAllDeforms (double cord[ALLMSX][ALLMSY], bool isper)
     {
     multimat (SAL, DEFORMATION, SCORD, cord, SCORD, cord);
@@ -566,9 +615,9 @@ void makeAllDeforms (double cord[ALLMSX][ALLMSY], bool isper)
 
     if (isper) multimat (STRAN, PERSPECTIVE, SCORD, cord, SCORD, cord);
 
-    if (fabs(cord[2][0]) <= 0.0015) cord[2][0] = 0.0015;
-    cord[0][0] = cord[0][0]/0.0015/cord[2][0];
-    cord[1][0] = cord[1][0]/0.0015/cord[2][0];
+    if (fabs(cord[2][0]) <= ZScalingCoeff) cord[2][0] = ZScalingCoeff;
+    cord[0][0] = cord[0][0]/ZScalingCoeff/cord[2][0];
+    cord[1][0] = cord[1][0]/ZScalingCoeff/cord[2][0];
     }
 
 int VEDLine (double x1, double y1, double z1, double x2, double y2, double z2, MYP col1, MYP col2)
@@ -692,19 +741,19 @@ int VEDCube (bool isper)
     MYP fifcol = {0, 255, 255};
     MYP sixcol = {255, 0, 255};
     if (isper) //TODO you know what to do
-    VED3dTriangle (c5, c4, c8, fifcol, fifcol, fifcol);
-    VED3dTriangle (c5, c4, c8, fifcol, fifcol, fifcol);              //   1/-+------/4|//   5/--------/8
-    VED3dTriangle (c1, c4, c5, fifcol, fifcol, fifcol);              //    |/  fr   |/
-    VED3dTriangle (c1, c5, c6, fircol, fircol, fircol);              //    | |   sx | |
-    VED3dTriangle (c2, c6, c7, sixcol, sixcol, sixcol);              //    |f| fv   |s|
-    VED3dTriangle (c5, c6, c7, forcol, forcol, forcol);
-    VED3dTriangle (c4, c8, c7, seccol, seccol, seccol);              //     /| t     /|
-    VED3dTriangle (c5, c8, c7, forcol, forcol, forcol);              //     2/--------/3
-    VED3dTriangle (c1, c2, c6, fircol, fircol, fircol);              //    |6/------|-/7
-    VED3dTriangle (c4, c3, c7, seccol, seccol, seccol);
-    VED3dTriangle (c1, c4, c3, thicol, thicol, thicol);
-    VED3dTriangle (c1, c2, c3, thicol, thicol, thicol);
-    VED3dTriangle (c2, c3, c7, sixcol, sixcol, sixcol);
+    VED3dTriangle (c5, c4, c8, fifcol, fifcol, fifcol);//
+    VED3dTriangle (c5, c4, c8, fifcol, fifcol, fifcol);//              //   1/-+------/4|//   5/--------/8
+    VED3dTriangle (c1, c4, c5, fifcol, fifcol, fifcol);//              //    |/  fr   |/
+    VED3dTriangle (c1, c5, c6, fircol, fircol, fircol);//              //    | |   sx | |
+    VED3dTriangle (c2, c6, c7, sixcol, sixcol, sixcol);//              //    |f| fv   |s|
+    VED3dTriangle (c7, c6, c5, forcol, forcol, forcol);//
+    VED3dTriangle (c7, c4, c8, seccol, seccol, seccol);//              //     /| t     /|
+    VED3dTriangle (c5, c8, c7, forcol, forcol, forcol);//              //     2/--------/3
+    VED3dTriangle (c6, c2, c1, fircol, fircol, fircol);//              //    |6/------|-/7
+    VED3dTriangle (c7, c3, c4, seccol, seccol, seccol);//
+    VED3dTriangle (c1, c3, c4, thicol, thicol, thicol);//
+    VED3dTriangle (c1, c2, c3, thicol, thicol, thicol);//
+    VED3dTriangle (c2, c7, c3, sixcol, sixcol, sixcol);//
 
 
     /*VED3dTriangle (c4, c3, c7, mmid1, mmid2, mgreen);
@@ -814,6 +863,20 @@ MYP VectorMultip (MYP a, MYP b)
             a.x * b.y - a.y * b.x};
     }
 
+void drawVec (MYP start, MYP vec, COLORREF color, COLORREF pointcolor, int width, int pointrad)
+    {
+    txSetColor (color, width);
+    txLine (SzScr.x/2 + start.x, SzScr.y/2 + start.y,
+            SzScr.x/2 + start.x + vec.x,
+            SzScr.y/2 + start.y + vec.y, MyScreen);
+
+    txSetColor (pointcolor, 1);
+    txSetFillColor (pointcolor);
+    txEllipse (SzScr.x/2 + start.x + vec.x + pointrad,
+               SzScr.y/2 + start.y + vec.y + pointrad,
+               SzScr.x/2 + start.x + vec.x - pointrad,
+               SzScr.y/2 + start.y + vec.y - pointrad, MyScreen);
+    }
 
 bool control (double speed)
     {
@@ -929,6 +992,30 @@ bool control (double speed)
         {
         returning = true;
         VEDTranslate (0,  4 * speed,   0);
+        }
+
+    if (GetAsyncKeyState ('L'))
+        {
+        DefaultLightPos.x -= 0.05 * speed;
+        returning = true;
+        }
+
+    if (GetAsyncKeyState ('J'))
+        {
+        DefaultLightPos.x += 0.05 * speed;
+        returning = true;
+        }
+
+    if (GetAsyncKeyState ('I'))
+        {
+        DefaultLightPos.y += 0.05 * speed;
+        returning = true;
+        }
+
+    if (GetAsyncKeyState ('K'))
+        {
+        DefaultLightPos.y -= 0.05 * speed;
+        returning = true;
         }
 
     if (GetAsyncKeyState ('Q'))

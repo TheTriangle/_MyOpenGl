@@ -1,23 +1,77 @@
 
 #include "TXLib.h"
-#define ctg(x) 1/tan(x)
+#define ctg(x) (1/tan(x))
+#define DEGREEMODIFIER 0.01745
+#define PI 3.141593
 struct MYP
     {
     double x;
     double y;
     double z;
+    double length()
+        {
+        return sqrt(x * x + y * y + z * z);
+        }
+
+    MYP operator- (MYP right)
+        {
+        return {x - right.x, y - right.y, z - right.z};
+        }
+
+    MYP operator+ (MYP right)
+        {
+        return {x + right.x, y + right.y, z + right.z};
+        }
+
+    double operator^ (MYP right)
+        {
+        return (*this * right)/this->length()/right.length();
+        }
+
+    MYP operator/ (double right)
+        {
+        return {x / right, y / right, z / right};
+        }
+
+    MYP operator* (double right)
+        {
+        return {x * right, y * right, z * right};
+        }
+
+    MYP operator* (int right)
+        {
+        return {x * right, y * right, z * right};
+        }
+
+    double operator* (MYP right)
+        {
+        return {x * right.x + y * right.y + z * right.z};
+        }
+
+    MYP operator% (MYP right)
+        {
+        return {x * right.x, y * right.y, z * right.z};
+        }
+
+    MYP operator+ (double right)
+        {
+        return {x + right, y + right, z + right};
+        }
     };
 POINT SzScr = {0, 0};
 int BufferDefault = 5000;
 
+const double MaterialReflective = 35;
+
 bool ShowMeZBuffer = false;
 HDC MyScreen = NULL;
+
 RGBQUAD *MyPixels = NULL;
 double *ZBuffer = NULL;
 #define MyPix(_x, _y, _z, _r, _g, _b)  int thisPixPos = (int)((_x) + (int)(SzScr.y - _y)*SzScr.x);\
-    if (fabs(ZBuffer[thisPixPos] - BufferDefault) < 0.0015 || _z < ZBuffer[thisPixPos]) \
+    if (_z < ZBuffer[thisPixPos]) \
         {     \
-        if (ShowMeZBuffer) MyPixels[thisPixPos] = RGBQUAD {(BYTE)(_z), (BYTE)(_z), (BYTE)(_z)}; \
+        if (ShowMeZBuffer) MyPixels[thisPixPos] = RGBQUAD {(BYTE)(_z/2), (BYTE)(_z/2), (BYTE)(_z/2)}; \
         else MyPixels[thisPixPos] = RGBQUAD {(BYTE)(_b), (BYTE)(_g), (BYTE)(_r)}; \
         ZBuffer[thisPixPos] = _z;     \
         }                                  \
@@ -40,10 +94,12 @@ double TALX = 0;
 double TALY = 0;
 double TALZ = 0;
 
+bool control (double speed = 1);
 void MakeBufferDefault ();
+MYP VectorMultip (MYP a, MYP b);
 int VEDLine (double x1, double y1, double z1, double x2, double y2, double z2, MYP col1, MYP col2);
 void MYPSwap (MYP* pt1, MYP* pt2);
-void VED3dTriangle (MYP first, MYP second, MYP third, MYP col1, MYP col2, MYP col3);
+void VED3dTriangle (MYP first, MYP second, MYP third, MYP col1, MYP col2, MYP col3, MYP lightpos = {270, 270, 3}, MYP lightcol = {255, 255, 255}, MYP viewpos = {0, 0, -5});
 void makeAllDeforms (double cord [ALLMSX][ALLMSY], bool isper);
 int VEDTriangle (MYP first, MYP second, MYP third, MYP fcol, MYP scol, MYP tcol);
 void swap (double* s1, double* s2);
@@ -264,40 +320,51 @@ int VEDTriangle (MYP first, MYP second, MYP third, MYP fcol, MYP scol, MYP tcol)
 
     double allheight = up.y - down.y;
     double allhwidth = up.x - down.x;
+
     double sectorheight = mid.y - down.y;
+
+    if (fabs (allheight) <= 0.00015) return 0;
+
     double help = sectorheight/allheight;
+
     //printf ("mid.y == %f, down.y == %f\n", mid.y, down.y);
     //printf ("sech == %f\n", sectorheight);
 
     txSetColor (TX_WHITE, 1, MyScreen);
     txSetFillColor (RGB(dcol.x, dcol.y, dcol.z), MyScreen);
+
     txEllipse (down.x - 10, down.y - 10, down.x + 10, down.y + 10, MyScreen);
+
     char helpch[16] = {};
     sprintf (helpch, "%f", down.z);
     txDrawText (down.x - 80, down.y - 50, down.x + 80, down.y - 20, helpch, DT_CENTER, MyScreen);
 
     txSetFillColor (RGB(mcol.x, mcol.y, mcol.z), MyScreen);
+
     txEllipse (mid.x - 10, mid.y - 10, mid.x + 10, mid.y + 10, MyScreen);
+
     sprintf (helpch, "%f", down.z);
     txDrawText (mid.x - 80, mid.y - 50, mid.x + 80, mid.y - 20, helpch, DT_CENTER, MyScreen);
 
     txSetFillColor (RGB(ucol.x, ucol.y, ucol.z), MyScreen);
+
     txEllipse (up.x - 10, up.y - 10, up.x + 10, up.y + 10, MyScreen);
+
     sprintf (helpch, "%f", down.z);
     txDrawText (up.x - 80, up.y - 50, up.x + 80, up.y - 20, helpch, DT_CENTER, MyScreen);
 
-    VEDHorTriangle ({help*allhwidth + down.x,
+    VEDHorTriangle ({help * allhwidth + down.x,
                      down.y + sectorheight,
-                     down.z + help*(mid.z - down.z)},
+                     help * (up.z - down.z) + down.z},
                      mid, down,
-                    {help*(ucol.x - dcol.x) + dcol.x,
+                    {help * (ucol.x - dcol.x) + dcol.x,
                      help * (ucol.y - dcol.y) + dcol.y,
                      help * (ucol.z - dcol.z) + dcol.z},
                      mcol, dcol);
 
-    VEDHorTriangle ({down.x + help*allhwidth,
+    VEDHorTriangle ({down.x + help * allhwidth,
                      down.y + sectorheight,
-                     down.z + help*(mid.z - down.z)},
+                     down.z + help * (up.z - down.z)},
                      mid, up,
                     {help * (ucol.x - dcol.x) + dcol.x,
                      help * (ucol.y - dcol.y) + dcol.y,
@@ -361,15 +428,124 @@ int VEDVertex (MYP old, MYP NEW, bool isper)
     return 0;
     }
 
-void VED3dTriangle (MYP first, MYP second, MYP third, MYP col1, MYP col2, MYP col3)
+void VED3dTriangle (MYP first, MYP second, MYP third, MYP col1, MYP col2, MYP col3, MYP lightpos, MYP lightcol, MYP viewpos)
     {
     double cord1 [ALLMSX][ALLMSY] = {{first.x, 0, 0, 0}, {first.y, 0, 0, 0}, {first.z, 0, 0, 0}, {1, 0, 0, 0}};
     double cord2 [ALLMSX][ALLMSY] = {{second.x, 0, 0, 0}, {second.y, 0, 0, 0}, {second.z, 0, 0, 0}, {1, 0, 0, 0}};
     double cord3 [ALLMSX][ALLMSY] = {{third.x, 0, 0, 0}, {third.y, 0, 0, 0}, {third.z, 0, 0, 0}, {1, 0, 0, 0}};
 
+    col1 = col1 * (0.003922);//1/255
+    col2 = col2 * (0.003922);
+    col3 = col3 * (0.003922);
+    lightcol = lightcol * (0.003922);
+    MYP environmentcol = {0.2, 0.2, 0.2};
+    //printf ("before1col1 == %f, %f, %f\n", col1.x, col1.y, col1.z);
+
     makeAllDeforms (cord1, false);
     makeAllDeforms (cord2, false);
     makeAllDeforms (cord3, false);
+
+    first = {cord1[0][0], cord1[1][0], cord1[2][0]};
+    second = {cord2[0][0], cord2[1][0], cord2[2][0]};
+    third = {cord3[0][0], cord3[1][0], cord3[2][0]};
+
+    MYP VecFS = second - first;
+    MYP VecFT = third  - first;
+
+    MYP Normal  = VectorMultip (VecFS, VecFT);
+    //Normal = Normal / Normal.length();
+    //txLine (SzScr.x/2 + first.x, SzScr.y/2 + first.y, SzScr.x/2 + first.x + Normal.x/0.0015/Normal.z * 100, SzScr.y/2 + first.y + Normal.y/0.0015/Normal.z * 100, MyScreen);
+    //txSetColor (TX_YELLOW, 10);
+    //txLine (lightpos.x/0.0015/lightpos.z, lightpos.y/0.0015/lightpos.z, SzScr.x/2, SzScr.y/2, MyScreen);
+
+    MYP View1Dir = viewpos - first;
+    MYP View2Dir = viewpos - second;
+    MYP View3Dir = viewpos - third;
+
+    MYP Light1Dir = first - lightpos;
+    MYP Light2Dir = second - lightpos;
+    MYP Light3Dir = third - lightpos;
+
+    //if (acos(Normal^Light1Dir) > PI/2) Normal = Normal * -1;
+
+    MYP Light1DirRef = Normal * 2 * (Light1Dir * Normal) - Light1Dir;
+    MYP Light2DirRef = Normal * 2 * (Light2Dir * Normal) - Light2Dir;
+    MYP Light3DirRef = Normal * 2 * (Light3Dir * Normal) - Light3Dir;
+    //копипаста названий
+    double Spec1 = Light1DirRef^View1Dir;
+    double Spec2 = Light2DirRef^View2Dir;
+    double Spec3 = Light3DirRef^View3Dir;
+    if (Spec1 < 0) Spec1 = 0;
+    if (Spec2 < 0) Spec2 = 0;
+    if (Spec3 < 0) Spec3 = 0;
+    double MatSpec1 = pow (Spec1, MaterialReflective);
+    double MatSpec2 = pow (Spec2, MaterialReflective);
+    double MatSpec3 = pow (Spec3, MaterialReflective);
+
+    double BrightnessMultiplier = 1;
+
+    double diffuse1 = Normal^(Light1Dir/Light1Dir.length());
+    double diffuse2 = Normal^(Light2Dir/Light2Dir.length());
+    double diffuse3 = Normal^(Light3Dir/Light3Dir.length());
+    if (diffuse1 < 0) diffuse1 = 0;
+    if (diffuse2 < 0) diffuse2 = 0;
+    if (diffuse3 < 0) diffuse3 = 0;
+    //printf ("\nenv0/0col1.x                 == %f\n", (environmentcol % col1).x);
+    //printf ("lightcol * MatSpec1.x          == %f\n", (lightcol * MatSpec1).x);
+
+    //getch();
+    //printf ("before col1 == %f, %f, %f\n", col1.x, col1.y, col1.z);
+
+    /*printf ("col1.x == %f, col1.y == %f, col1.z == %f. \nDiffuse == %f (angle == %f)\n == Normal(%f, %f, %f)^\n^Light1Dir(%f, %f, %f)\n"
+            "col1 0/0 lightcol * diffuse1.x == %f\n", col1.x * 255, col1.y * 255, col1.z * 255,
+                                                      diffuse1, acos(diffuse1)/DEGREEMODIFIER,
+                                                      Normal.x, Normal.y, Normal.z,
+                                                      Light1Dir.x * 100, Light1Dir.y * 100, Light1Dir.z * 100,
+                                                      (col1 % lightcol * diffuse1).x * 255);
+    txSetFillColor (TX_WHITE);
+    txSetColor (RGB((col1 % lightcol * diffuse1).x * 255, (col1 % lightcol * diffuse1).y * 255, (col1 % lightcol * diffuse1).z));
+    txCircle (SzScr.x/2 + cord1[0][0], SzScr.y/2 + cord1[1][0], 10);
+    getch();
+    txSetFillColor (TX_BLACK);
+    txClear();
+    txClearConsole();    */
+
+    col1 = /*(environmentcol % col1) + */col1 % lightcol * diffuse1 + lightcol * MatSpec1;
+    col2 = /*(environmentcol % col2) + */col2 % lightcol * diffuse2 + lightcol * MatSpec2;
+    col3 = /*(environmentcol % col3) + */col3 % lightcol * diffuse3 + lightcol * MatSpec3;
+
+    //printf ("after  col1 == %f, %f, %f\n", col1.x, col1.y, col1.z);
+    //getch();
+    col1 = col1 *  255;
+    col2 = col2 *  255;
+    col3 = col3 *  255;
+
+    if (col1.x > 254) col1.x = 254;
+    if (col1.y > 254) col1.y = 254;
+    if (col1.z > 254) col1.z = 254;
+
+    if (col2.x > 254) col2.x = 254;
+    if (col2.y > 254) col2.y = 254;
+    if (col2.z > 254) col2.z = 254;
+
+    if (col3.x > 254) col3.x = 254;
+    if (col3.y > 254) col3.y = 254;
+    if (col3.z > 254) col3.z = 254;
+
+    //if (col1.x > 255) {BrightnessMultiplier = 255/col1.x; col1 = col1 * BrightnessMultiplier;}
+    //if (col1.y > 255) {BrightnessMultiplier = 255/col1.y; col1 = col1 * BrightnessMultiplier;}
+    //if (col1.z > 255) {BrightnessMultiplier = 255/col1.z; col1 = col1 * BrightnessMultiplier;}
+
+    //col2 = (col2 + lightcol * (1/255)) + lightcol * MatSpec2;
+    //if (col2.x > 255) {BrightnessMultiplier = 255/col2.x; col2 = col2 * BrightnessMultiplier;}
+    //if (col2.y > 255) {BrightnessMultiplier = 255/col2.y; col2 = col2 * BrightnessMultiplier;}
+    //if (col2.z > 255) {BrightnessMultiplier = 255/col2.z; col2 = col2 * BrightnessMultiplier;}
+
+    //col3 = (col3 + lightcol * (1/255)) + lightcol * MatSpec3;
+    //if (col3.x > 255) {BrightnessMultiplier = 255/col3.x; col3 = col3 * BrightnessMultiplier;}
+    //if (col3.y > 255) {BrightnessMultiplier = 255/col3.y; col3 = col3 * BrightnessMultiplier;}
+    //if (col3.z > 255) {BrightnessMultiplier = 255/col3.z; col3 = col3 * BrightnessMultiplier;}
+
 
     VEDTriangle ({SzScr.x/2 + cord1[0][0], SzScr.y/2 + cord1[1][0], cord1[2][0]},
                  {SzScr.x/2 + cord2[0][0], SzScr.y/2 + cord2[1][0], cord2[2][0]},
@@ -501,7 +677,7 @@ int VEDCube (bool isper)
     MYP c6 = {-1,  1,  1};             //   |6/------|-/7
     MYP c7 = { 1,  1,  1};             //   |/       |/
     MYP c8 = { 1,  1, -1};             //  5/--------/8
-    //MYP mred = {255, 0, 0};
+    //MYP fircol = {255, 0, 0};
     //MYP mgreen = {0, 255, 0};
     //MYP mmid1 = {170, 85, 0};
     //MYP mmid2 = {85, 170, 0};
@@ -516,18 +692,19 @@ int VEDCube (bool isper)
     MYP fifcol = {0, 255, 255};
     MYP sixcol = {255, 0, 255};
     if (isper) //TODO you know what to do
-    VED3dTriangle (c5, c8, c4, fifcol, fifcol, fifcol);              //   5/--------/8
-    VED3dTriangle (c1, c4, c5, fifcol, fifcol, fifcol);              //    |/  fr   |/
-    VED3dTriangle (c1, c5, c6, fircol, fircol, fircol);              //    | |   sx | |
+    VED3dTriangle (c5, c4, c8, fifcol, fifcol, fifcol);//
+    VED3dTriangle (c5, c4, c8, fifcol, fifcol, fifcol);              //   1/-+------/4|//   5/--------/8
+    VED3dTriangle (c1, c5, c5, fifcol, fifcol, fifcol);              //    |/  fr   |/
+    VED3dTriangle (c1, c6, c5, fircol, fircol, fircol);//              //    | |   sx | |
     VED3dTriangle (c2, c6, c7, sixcol, sixcol, sixcol);              //    |f| fv   |s|
     VED3dTriangle (c5, c6, c7, forcol, forcol, forcol);
-    VED3dTriangle (c4, c8, c7, seccol, seccol, seccol);
-    VED3dTriangle (c5, c8, c7, forcol, forcol, forcol);
-    VED3dTriangle (c1, c2, c6, fircol, fircol, fircol);              //   1/-+------/4|
+    VED3dTriangle (c4, c8, c7, seccol, seccol, seccol);              //     /| t     /|
+    VED3dTriangle (c5, c8, c7, forcol, forcol, forcol);              //     2/--------/3
+    VED3dTriangle (c1, c2, c6, fircol, fircol, fircol);//              //    |6/------|-/7
     VED3dTriangle (c4, c3, c7, seccol, seccol, seccol);
-    VED3dTriangle (c1, c4, c3, thicol, thicol, thicol);              //     /| t     /|
-    VED3dTriangle (c1, c2, c3, thicol, thicol, thicol);              //     2/--------/3
-    VED3dTriangle (c2, c3, c7, sixcol, sixcol, sixcol);              //    |6/------|-/7
+    VED3dTriangle (c1, c3, c4, thicol, thicol, thicol);//
+    VED3dTriangle (c1, c2, c3, thicol, thicol, thicol);//
+    VED3dTriangle (c2, c3, c7, sixcol, sixcol, sixcol);
 
 
     /*VED3dTriangle (c4, c3, c7, mmid1, mmid2, mgreen);
@@ -630,6 +807,147 @@ void MakeBufferDefault ()
         }
     }
 
+MYP VectorMultip (MYP a, MYP b)
+    {
+    return {a.y * b.z - a.z * b.y,
+            a.z * b.x - a.x * b.z,
+            a.x * b.y - a.y * b.x};
+    }
+
+
+bool control (double speed)
+    {
+    bool returning = false;
+    static POINT OldMousePos = txMousePos();
+    POINT NewMousePos = txMousePos();
+    if (NewMousePos.x != OldMousePos.x)
+        {
+        if (GetAsyncKeyState (VK_LBUTTON))
+            {
+            VEDRotateY (0.036 * speed * (OldMousePos.x - NewMousePos.x));
+            OldMousePos.x = NewMousePos.x;
+            }
+        else
+            {
+            OldMousePos.x = txMousePos().x;
+            }
+        returning = true;
+        }
+
+    if (NewMousePos.y != OldMousePos.y)
+        {
+        if (GetAsyncKeyState (VK_LBUTTON))
+            {
+            VEDRotateX (0.036 * speed * (NewMousePos.y - OldMousePos.y));
+            OldMousePos.y = NewMousePos.y;
+            }
+        else
+            {
+            OldMousePos.y = txMousePos().y;
+            }
+        returning = true;
+        }
+
+    if (GetAsyncKeyState ('Z'))
+        {
+        VEDRotateZ ( 0.0175 * speed);
+        returning = true;
+        }
+
+    if (GetAsyncKeyState ('X'))
+        {
+        VEDRotateZ (-0.0175 * speed);
+        returning = true;
+        }
+
+    if (GetAsyncKeyState ('R'))
+        {
+        ShowMeZBuffer = true;
+        returning = true;
+        }
+    else
+        {
+        returning = true;
+        ShowMeZBuffer = false;
+        }
+    if (GetAsyncKeyState (VK_RIGHT))
+        {
+        returning = true;
+        VEDScale (1.3 * speed,   0,     0);
+        }
+
+    if (GetAsyncKeyState (VK_LEFT))
+        {
+        returning = true;
+        VEDScale (0.7 * speed,   0,     0);
+        }
+
+    if (GetAsyncKeyState (VK_UP))
+        {
+        returning = true;
+        VEDScale (0, 1.3 * speed,     0);
+        }
+
+    if (GetAsyncKeyState (VK_DOWN))
+        {
+        returning = true;
+        VEDScale (0, 0.7 * speed,     0);
+        }
+
+    if (GetAsyncKeyState (VK_RSHIFT))
+        {
+        returning = true;
+        VEDScale (0,   0,   1.1 * speed);
+        }
+
+    if (GetAsyncKeyState (VK_RETURN))
+        {
+        returning = true;
+        VEDScale (0,   0,   0.9 * speed);
+        }
+
+
+    if (GetAsyncKeyState ('D'))
+        {
+        returning = true;
+        VEDTranslate (4 * speed,  0,   0);
+        }
+
+    if (GetAsyncKeyState ('A'))
+        {
+        returning = true;
+        VEDTranslate (-4 * speed,  0,   0);
+        }
+
+    if (GetAsyncKeyState ('W'))
+        {
+        returning = true;
+        VEDTranslate (0, -4 * speed,   0);
+        }
+
+    if (GetAsyncKeyState ('S'))
+        {
+        returning = true;
+        VEDTranslate (0,  4 * speed,   0);
+        }
+
+    if (GetAsyncKeyState ('Q'))
+        {
+        returning = true;
+        VEDTranslate (0,  0,   4 * speed);
+        }
+
+    if (GetAsyncKeyState ('E'))
+        {
+        returning = true;
+        VEDTranslate (0,  0,  -4 * speed);
+        }
+
+
+    return returning;
+    }
+
+
 /*Я вдруг понял, что мой код не содержит НИ ЕДИНОГО КОТА. Нужно было срочно исправлять
 это недоразумение.    _    -,    /|
     _.-|   |          |\__/,|   (`\
@@ -709,3 +1027,168 @@ void MakeBufferDefault ()
     //     | /--------+-/
     //     |/         |/
     //     /----------/  //*/
+
+/*if (GetAsyncKeyState ('O'))
+        {
+        if (GetAsyncKeyState ('Z'))
+            {
+            VEDRotateZ (-0.0175 * speed);
+            returning = true;
+            }
+
+        if (GetAsyncKeyState ('X'))
+            {
+            VEDRotateX (-1.75 * speed);
+            returning = true;
+            }
+
+        if (GetAsyncKeyState ('Y'))
+            {
+            VEDRotateY (-1.75 * speed);
+            returning = true;
+            }
+        }
+
+    if (GetAsyncKeyState ('P'))
+        {
+        if (GetAsyncKeyState ('Z'))
+            {
+            VEDRotateZ (0.0175 * speed);
+            returning = true;
+            }
+
+        if (GetAsyncKeyState ('X'))
+            {
+            VEDRotateX (1.75 * speed);
+            returning = true;
+            }
+
+        if (GetAsyncKeyState ('Y'))
+            {
+            VEDRotateY (1.75 * speed);
+            returning = true;
+            }
+        }
+
+
+    if (GetAsyncKeyState ('N'))
+        {
+        if (GetAsyncKeyState (31))
+            {
+            returning = true;
+            NPLANE = 1;
+            }
+
+        if (GetAsyncKeyState (32))
+            {
+            returning = true;
+            NPLANE = 2;
+            }
+
+        if (GetAsyncKeyState (33))
+            {
+            returning = true;
+            NPLANE = 3;
+            }
+
+        if (GetAsyncKeyState (34))
+            {
+            returning = true;
+            NPLANE = 4;
+            }
+
+        if (GetAsyncKeyState (35))
+            {
+            returning = true;
+            NPLANE = 5;
+            }
+
+        if (GetAsyncKeyState (36))
+            {
+            returning = true;
+            NPLANE = 6;
+            }
+
+        if (GetAsyncKeyState (37))
+            {
+            returning = true;
+            NPLANE = 7;
+            }
+
+        if (GetAsyncKeyState (38))
+            {
+            returning = true;
+            NPLANE = 8;
+            }
+
+        if (GetAsyncKeyState (39))
+            {
+            returning = true;
+            NPLANE = 9;
+            }
+        }
+
+    if (GetAsyncKeyState ('F'))
+        {
+        if (GetAsyncKeyState (31))
+            {
+            returning = true;
+            FPLANE = 1;
+            }
+
+        if (GetAsyncKeyState (32))
+            {
+            returning = true;
+            FPLANE = 2;
+            }
+
+        if (GetAsyncKeyState (33))
+            {
+            returning = true;
+            FPLANE = 3;
+            }
+
+        if (GetAsyncKeyState (34))
+            {
+            returning = true;
+            FPLANE = 4;
+            }
+
+        if (GetAsyncKeyState (35))
+            {
+            returning = true;
+            FPLANE = 5;
+            }
+
+        if (GetAsyncKeyState (36))
+            {
+            returning = true;
+            FPLANE = 6;
+            }
+
+        if (GetAsyncKeyState (37))
+            {
+            returning = true;
+            FPLANE = 7;
+            }
+
+        if (GetAsyncKeyState (38))
+            {
+            returning = true;
+            FPLANE = 8;
+            }
+
+        if (GetAsyncKeyState (39))
+            {
+            returning = true;
+            FPLANE = 9;
+            }
+        }
+
+
+
+    */
+
+
+
+
