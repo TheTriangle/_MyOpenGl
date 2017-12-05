@@ -10234,3 +10234,1096 @@ Run file:	D:\Документыы\GitHub\MyFiles\_MyOpenGl\Untitled1h.exe
 Directory:	D:\Документыы\GitHub\MyFiles\_MyOpenGl
 
 --------------------------------------------------
+
+--------------------------------------------------
+TXLib предупреждает:
+
+Программа: D:\Документыы\GitHub\MyFiles\_MyOpenGl\Untitled1h.exe,
+
+ВНЕЗАПНО: Нарушение доступа к памяти.
+
+#1: Исключение EXCEPTION_ACCESS_VIOLATION (0xC0000005) при выполнении кода по адресу 0x00421958 в функции initSphere(). Попытка записать данные по адресу 0x00290000. Спасибо _txVectoredExceptionHandler(), что сообщил. Люблю его <3
+
+#1: TXLib [Ver: 00173a, Rev: 105], Instance: 0x004FB300 (32-bit), Flags: CMdRe0, Thread: 0x2E7C (Main). 
+
+--------------------------------------------------
+Стек вызовов:
+
+# 0 0x00421958 in D:\Документыы\GitHub\MyFiles\_MyOpenGl\Untitled1h.exe: initSphere()
+# 1 0x00422BC7 in D:\Документыы\GitHub\MyFiles\_MyOpenGl\Untitled1h.exe: main()
+
+--------------------------------------------------
+Developed with:
+
+The Dumb Artist Library (TX Library) - TXLib [Ver: 00173a, Rev: 105]
+Copyright (C) Ded (Ilya Dedinsky, http://txlib.ru) <mail@txlib.ru>
+See license on: http://txlib.ru
+
+TXLib file:	G:\TX\TXLib.h
+Compiled:	Dec  3 2017 15:40:54, GNU g++ 4.8.1, std=201103L, MinGW Runtime 3.20, 32-bit, Debug
+Started:	Dec 03 2017 15:40:58
+
+Run file:	D:\Документыы\GitHub\MyFiles\_MyOpenGl\Untitled1h.exe
+Directory:	D:\Документыы\GitHub\MyFiles\_MyOpenGl
+
+--------------------------------------------------
+
+--------------------------------------------------
+TXLib соболезнует...
+
+Программа: D:\Документыы\GitHub\MyFiles\_MyOpenGl\Untitled1h.exe,
+
+ВНЕЗАПНО: Нарушение доступа к памяти.
+
+#16: Исключение EXCEPTION_ACCESS_VIOLATION (0xC0000005) при выполнении кода по адресу NULL. Попытка прочесть данные по адресу NULL. Также превышен лимит фатальных исключений _TX_FATAL_EXCEPTIONS_LIMIT (16). Спасибо _txVectoredExceptionHandler(), что сообщил. Люблю его <3
+
+С помощью функции _set_se_translator() вы можете сами обработать эту ошибку.
+
+#2: TXLib [Ver: 00173a, Rev: 105], Instance: 0x004FB300 (32-bit), Flags: CMdRe0, Thread: 0x2E7C (Main). 
+
+--------------------------------------------------
+Стек вызовов:
+
+# 1 0x776034C9 in C:\Windows\SysWOW64\ntdll.dll: RtlDestroyEnvironment()
+# 2 0x7760349B in C:\Windows\SysWOW64\ntdll.dll: RtlDestroyEnvironment()
+# 3 0x775B0143 in C:\Windows\SysWOW64\ntdll.dll: KiUserExceptionDispatcher()
+# 4 0x7760349B in C:\Windows\SysWOW64\ntdll.dll: RtlDestroyEnvironment()
+# 5 0x775B0143 in C:\Windows\SysWOW64\ntdll.dll: KiUserExceptionDispatcher()
+# 6 0x7760349B in C:\Windows\SysWOW64\ntdll.dll: RtlDestroyEnvironment()
+# 7 0x775B0143 in C:\Windows\SysWOW64\ntdll.dll: KiUserExceptionDispatcher()
+# 8 0x7760349B in C:\Windows\SysWOW64\ntdll.dll: RtlDestroyEnvironment()
+# 9 0x775B0143 in C:\Windows\SysWOW64\ntdll.dll: KiUserExceptionDispatcher()
+#10 0x7760349B in C:\Windows\SysWOW64\ntdll.dll: RtlDestroyEnvironment()
+#11 0x775B0143 in C:\Windows\SysWOW64\ntdll.dll: KiUserExceptionDispatcher()
+#12 0x7760349B in C:\Windows\SysWOW64\ntdll.dll: RtlDestroyEnvironment()
+#13 0x775B0143 in C:\Windows\SysWOW64\ntdll.dll: KiUserExceptionDispatcher()
+#14 0x7760349B in C:\Windows\SysWOW64\ntdll.dll: RtlDestroyEnvironment()
+#15 0x775B0143 in C:\Windows\SysWOW64\ntdll.dll: KiUserExceptionDispatcher()
+#16 0x7760349B in C:\Windows\SysWOW64\ntdll.dll: RtlDestroyEnvironment()
+#17 0x775B0143 in C:\Windows\SysWOW64\ntdll.dll: KiUserExceptionDispatcher()
+#18 0x7760349B in C:\Windows\SysWOW64\ntdll.dll: RtlDestroyEnvironment()
+#19 0x775B0143 in C:\Windows\SysWOW64\ntdll.dll: KiUserExceptionDispatcher()
+#20 0x7760349B in C:\Windows\SysWOW64\ntdll.dll: RtlDestroyEnvironment()
+#21 0x775B0143 in C:\Windows\SysWOW64\ntdll.dll: KiUserExceptionDispatcher()
+#22 0x7760349B in C:\Windows\SysWOW64\ntdll.dll: RtlDestroyEnvironment()
+#23 0x775B0143 in C:\Windows\SysWOW64\ntdll.dll: KiUserExceptionDispatcher()
+#24 0x7760349B in C:\Windows\SysWOW64\ntdll.dll: RtlDestroyEnvironment()
+#25 0x775B0143 in C:\Windows\SysWOW64\ntdll.dll: KiUserExceptionDispatcher()
+#26 0x7760349B in C:\Windows\SysWOW64\ntdll.dll: RtlDestroyEnvironment()
+#27 0x775B0143 in C:\Windows\SysWOW64\ntdll.dll: KiUserExceptionDispatcher()
+#28 0x7760349B in C:\Windows\SysWOW64\ntdll.dll: RtlDestroyEnvironment()
+#29 0x775B0143 in C:\Windows\SysWOW64\ntdll.dll: KiUserExceptionDispatcher()
+#30 0x7760349B in C:\Windows\SysWOW64\ntdll.dll: RtlDestroyEnvironment()
+#31 0x775B0143 in C:\Windows\SysWOW64\ntdll.dll: KiUserExceptionDispatcher()
+#32 0x00422BC7 in D:\Документыы\GitHub\MyFiles\_MyOpenGl\Untitled1h.exe: main()
+
+--------------------------------------------------
+Developed with:
+
+The Dumb Artist Library (TX Library) - TXLib [Ver: 00173a, Rev: 105]
+Copyright (C) Ded (Ilya Dedinsky, http://txlib.ru) <mail@txlib.ru>
+See license on: http://txlib.ru
+
+TXLib file:	G:\TX\TXLib.h
+Compiled:	Dec  3 2017 15:40:54, GNU g++ 4.8.1, std=201103L, MinGW Runtime 3.20, 32-bit, Debug
+Started:	Dec 03 2017 15:40:57
+
+Run file:	D:\Документыы\GitHub\MyFiles\_MyOpenGl\Untitled1h.exe
+Directory:	D:\Документыы\GitHub\MyFiles\_MyOpenGl
+
+--------------------------------------------------
+
+--------------------------------------------------
+TXLib предупреждает:
+
+Программа: D:\Документыы\GitHub\MyFiles\_MyOpenGl\Untitled1h.exe,
+
+ВНЕЗАПНО: Нарушение доступа к памяти.
+
+#1: Исключение EXCEPTION_ACCESS_VIOLATION (0xC0000005) при выполнении кода по адресу 0x00421958 в функции initSphere(). Попытка записать данные по адресу 0x00290000. Спасибо _txVectoredExceptionHandler(), что сообщил. Люблю его <3
+
+#1: TXLib [Ver: 00173a, Rev: 105], Instance: 0x004FB300 (32-bit), Flags: CMdRe0, Thread: 0x3D08 (Main). 
+
+--------------------------------------------------
+Стек вызовов:
+
+# 0 0x00421958 in D:\Документыы\GitHub\MyFiles\_MyOpenGl\Untitled1h.exe: initSphere()
+# 1 0x00422BC7 in D:\Документыы\GitHub\MyFiles\_MyOpenGl\Untitled1h.exe: main()
+
+--------------------------------------------------
+Developed with:
+
+The Dumb Artist Library (TX Library) - TXLib [Ver: 00173a, Rev: 105]
+Copyright (C) Ded (Ilya Dedinsky, http://txlib.ru) <mail@txlib.ru>
+See license on: http://txlib.ru
+
+TXLib file:	G:\TX\TXLib.h
+Compiled:	Dec  3 2017 15:40:54, GNU g++ 4.8.1, std=201103L, MinGW Runtime 3.20, 32-bit, Debug
+Started:	Dec 03 2017 15:44:21
+
+Run file:	D:\Документыы\GitHub\MyFiles\_MyOpenGl\Untitled1h.exe
+Directory:	D:\Документыы\GitHub\MyFiles\_MyOpenGl
+
+--------------------------------------------------
+
+--------------------------------------------------
+TXLib соболезнует...
+
+Программа: D:\Документыы\GitHub\MyFiles\_MyOpenGl\Untitled1h.exe,
+
+ВНЕЗАПНО: Нарушение доступа к памяти.
+
+#16: Исключение EXCEPTION_ACCESS_VIOLATION (0xC0000005) при выполнении кода по адресу NULL. Попытка прочесть данные по адресу NULL. Также превышен лимит фатальных исключений _TX_FATAL_EXCEPTIONS_LIMIT (16). Спасибо _txVectoredExceptionHandler(), что сообщил. Люблю его <3
+
+С помощью функции _set_se_translator() вы можете сами обработать эту ошибку.
+
+#2: TXLib [Ver: 00173a, Rev: 105], Instance: 0x004FB300 (32-bit), Flags: CMdRe0, Thread: 0x3D08 (Main). 
+
+--------------------------------------------------
+Стек вызовов:
+
+# 1 0x776034C9 in C:\Windows\SysWOW64\ntdll.dll: RtlDestroyEnvironment()
+# 2 0x7760349B in C:\Windows\SysWOW64\ntdll.dll: RtlDestroyEnvironment()
+# 3 0x775B0143 in C:\Windows\SysWOW64\ntdll.dll: KiUserExceptionDispatcher()
+# 4 0x7760349B in C:\Windows\SysWOW64\ntdll.dll: RtlDestroyEnvironment()
+# 5 0x775B0143 in C:\Windows\SysWOW64\ntdll.dll: KiUserExceptionDispatcher()
+# 6 0x7760349B in C:\Windows\SysWOW64\ntdll.dll: RtlDestroyEnvironment()
+# 7 0x775B0143 in C:\Windows\SysWOW64\ntdll.dll: KiUserExceptionDispatcher()
+# 8 0x7760349B in C:\Windows\SysWOW64\ntdll.dll: RtlDestroyEnvironment()
+# 9 0x775B0143 in C:\Windows\SysWOW64\ntdll.dll: KiUserExceptionDispatcher()
+#10 0x7760349B in C:\Windows\SysWOW64\ntdll.dll: RtlDestroyEnvironment()
+#11 0x775B0143 in C:\Windows\SysWOW64\ntdll.dll: KiUserExceptionDispatcher()
+#12 0x7760349B in C:\Windows\SysWOW64\ntdll.dll: RtlDestroyEnvironment()
+#13 0x775B0143 in C:\Windows\SysWOW64\ntdll.dll: KiUserExceptionDispatcher()
+#14 0x7760349B in C:\Windows\SysWOW64\ntdll.dll: RtlDestroyEnvironment()
+#15 0x775B0143 in C:\Windows\SysWOW64\ntdll.dll: KiUserExceptionDispatcher()
+#16 0x7760349B in C:\Windows\SysWOW64\ntdll.dll: RtlDestroyEnvironment()
+#17 0x775B0143 in C:\Windows\SysWOW64\ntdll.dll: KiUserExceptionDispatcher()
+#18 0x7760349B in C:\Windows\SysWOW64\ntdll.dll: RtlDestroyEnvironment()
+#19 0x775B0143 in C:\Windows\SysWOW64\ntdll.dll: KiUserExceptionDispatcher()
+#20 0x7760349B in C:\Windows\SysWOW64\ntdll.dll: RtlDestroyEnvironment()
+#21 0x775B0143 in C:\Windows\SysWOW64\ntdll.dll: KiUserExceptionDispatcher()
+#22 0x7760349B in C:\Windows\SysWOW64\ntdll.dll: RtlDestroyEnvironment()
+#23 0x775B0143 in C:\Windows\SysWOW64\ntdll.dll: KiUserExceptionDispatcher()
+#24 0x7760349B in C:\Windows\SysWOW64\ntdll.dll: RtlDestroyEnvironment()
+#25 0x775B0143 in C:\Windows\SysWOW64\ntdll.dll: KiUserExceptionDispatcher()
+#26 0x7760349B in C:\Windows\SysWOW64\ntdll.dll: RtlDestroyEnvironment()
+#27 0x775B0143 in C:\Windows\SysWOW64\ntdll.dll: KiUserExceptionDispatcher()
+#28 0x7760349B in C:\Windows\SysWOW64\ntdll.dll: RtlDestroyEnvironment()
+#29 0x775B0143 in C:\Windows\SysWOW64\ntdll.dll: KiUserExceptionDispatcher()
+#30 0x7760349B in C:\Windows\SysWOW64\ntdll.dll: RtlDestroyEnvironment()
+#31 0x775B0143 in C:\Windows\SysWOW64\ntdll.dll: KiUserExceptionDispatcher()
+#32 0x00422BC7 in D:\Документыы\GitHub\MyFiles\_MyOpenGl\Untitled1h.exe: main()
+
+--------------------------------------------------
+Developed with:
+
+The Dumb Artist Library (TX Library) - TXLib [Ver: 00173a, Rev: 105]
+Copyright (C) Ded (Ilya Dedinsky, http://txlib.ru) <mail@txlib.ru>
+See license on: http://txlib.ru
+
+TXLib file:	G:\TX\TXLib.h
+Compiled:	Dec  3 2017 15:40:54, GNU g++ 4.8.1, std=201103L, MinGW Runtime 3.20, 32-bit, Debug
+Started:	Dec 03 2017 15:44:21
+
+Run file:	D:\Документыы\GitHub\MyFiles\_MyOpenGl\Untitled1h.exe
+Directory:	D:\Документыы\GitHub\MyFiles\_MyOpenGl
+
+--------------------------------------------------
+
+--------------------------------------------------
+TXLib предупреждает:
+
+Программа: D:\Документыы\GitHub\MyFiles\_MyOpenGl\Untitled1h.exe,
+
+ВНЕЗАПНО: Нарушение доступа к памяти.
+
+#1: Исключение EXCEPTION_ACCESS_VIOLATION (0xC0000005) при выполнении кода по адресу 0x00421954 в функции initSphere(). Попытка записать данные по адресу 0x00290000. Спасибо _txVectoredExceptionHandler(), что сообщил. Люблю его <3
+
+#1: TXLib [Ver: 00173a, Rev: 105], Instance: 0x004FB300 (32-bit), Flags: CMdRe0, Thread: 0x3A10 (Main). 
+
+--------------------------------------------------
+Стек вызовов:
+
+# 0 0x00421954 in D:\Документыы\GitHub\MyFiles\_MyOpenGl\Untitled1h.exe: initSphere()
+# 1 0x00422BC3 in D:\Документыы\GitHub\MyFiles\_MyOpenGl\Untitled1h.exe: main()
+
+--------------------------------------------------
+Developed with:
+
+The Dumb Artist Library (TX Library) - TXLib [Ver: 00173a, Rev: 105]
+Copyright (C) Ded (Ilya Dedinsky, http://txlib.ru) <mail@txlib.ru>
+See license on: http://txlib.ru
+
+TXLib file:	G:\TX\TXLib.h
+Compiled:	Dec  3 2017 16:42:02, GNU g++ 4.8.1, std=201103L, MinGW Runtime 3.20, 32-bit, Debug
+Started:	Dec 03 2017 16:42:08
+
+Run file:	D:\Документыы\GitHub\MyFiles\_MyOpenGl\Untitled1h.exe
+Directory:	D:\Документыы\GitHub\MyFiles\_MyOpenGl
+
+--------------------------------------------------
+
+--------------------------------------------------
+TXLib соболезнует...
+
+Программа: D:\Документыы\GitHub\MyFiles\_MyOpenGl\Untitled1h.exe,
+
+ВНЕЗАПНО: Нарушение доступа к памяти.
+
+#16: Исключение EXCEPTION_ACCESS_VIOLATION (0xC0000005) при выполнении кода по адресу NULL. Попытка прочесть данные по адресу NULL. Также превышен лимит фатальных исключений _TX_FATAL_EXCEPTIONS_LIMIT (16). Спасибо _txVectoredExceptionHandler(), что сообщил. Люблю его <3
+
+С помощью функции _set_se_translator() вы можете сами обработать эту ошибку.
+
+#2: TXLib [Ver: 00173a, Rev: 105], Instance: 0x004FB300 (32-bit), Flags: CMdRe0, Thread: 0x3A10 (Main). 
+
+--------------------------------------------------
+Стек вызовов:
+
+# 1 0x776034C9 in C:\Windows\SysWOW64\ntdll.dll: RtlDestroyEnvironment()
+# 2 0x7760349B in C:\Windows\SysWOW64\ntdll.dll: RtlDestroyEnvironment()
+# 3 0x775B0143 in C:\Windows\SysWOW64\ntdll.dll: KiUserExceptionDispatcher()
+# 4 0x7760349B in C:\Windows\SysWOW64\ntdll.dll: RtlDestroyEnvironment()
+# 5 0x775B0143 in C:\Windows\SysWOW64\ntdll.dll: KiUserExceptionDispatcher()
+# 6 0x7760349B in C:\Windows\SysWOW64\ntdll.dll: RtlDestroyEnvironment()
+# 7 0x775B0143 in C:\Windows\SysWOW64\ntdll.dll: KiUserExceptionDispatcher()
+# 8 0x7760349B in C:\Windows\SysWOW64\ntdll.dll: RtlDestroyEnvironment()
+# 9 0x775B0143 in C:\Windows\SysWOW64\ntdll.dll: KiUserExceptionDispatcher()
+#10 0x7760349B in C:\Windows\SysWOW64\ntdll.dll: RtlDestroyEnvironment()
+#11 0x775B0143 in C:\Windows\SysWOW64\ntdll.dll: KiUserExceptionDispatcher()
+#12 0x7760349B in C:\Windows\SysWOW64\ntdll.dll: RtlDestroyEnvironment()
+#13 0x775B0143 in C:\Windows\SysWOW64\ntdll.dll: KiUserExceptionDispatcher()
+#14 0x7760349B in C:\Windows\SysWOW64\ntdll.dll: RtlDestroyEnvironment()
+#15 0x775B0143 in C:\Windows\SysWOW64\ntdll.dll: KiUserExceptionDispatcher()
+#16 0x7760349B in C:\Windows\SysWOW64\ntdll.dll: RtlDestroyEnvironment()
+#17 0x775B0143 in C:\Windows\SysWOW64\ntdll.dll: KiUserExceptionDispatcher()
+#18 0x7760349B in C:\Windows\SysWOW64\ntdll.dll: RtlDestroyEnvironment()
+#19 0x775B0143 in C:\Windows\SysWOW64\ntdll.dll: KiUserExceptionDispatcher()
+#20 0x7760349B in C:\Windows\SysWOW64\ntdll.dll: RtlDestroyEnvironment()
+#21 0x775B0143 in C:\Windows\SysWOW64\ntdll.dll: KiUserExceptionDispatcher()
+#22 0x7760349B in C:\Windows\SysWOW64\ntdll.dll: RtlDestroyEnvironment()
+#23 0x775B0143 in C:\Windows\SysWOW64\ntdll.dll: KiUserExceptionDispatcher()
+#24 0x7760349B in C:\Windows\SysWOW64\ntdll.dll: RtlDestroyEnvironment()
+#25 0x775B0143 in C:\Windows\SysWOW64\ntdll.dll: KiUserExceptionDispatcher()
+#26 0x7760349B in C:\Windows\SysWOW64\ntdll.dll: RtlDestroyEnvironment()
+#27 0x775B0143 in C:\Windows\SysWOW64\ntdll.dll: KiUserExceptionDispatcher()
+#28 0x7760349B in C:\Windows\SysWOW64\ntdll.dll: RtlDestroyEnvironment()
+#29 0x775B0143 in C:\Windows\SysWOW64\ntdll.dll: KiUserExceptionDispatcher()
+#30 0x7760349B in C:\Windows\SysWOW64\ntdll.dll: RtlDestroyEnvironment()
+#31 0x775B0143 in C:\Windows\SysWOW64\ntdll.dll: KiUserExceptionDispatcher()
+#32 0x00422BC3 in D:\Документыы\GitHub\MyFiles\_MyOpenGl\Untitled1h.exe: main()
+
+--------------------------------------------------
+Developed with:
+
+The Dumb Artist Library (TX Library) - TXLib [Ver: 00173a, Rev: 105]
+Copyright (C) Ded (Ilya Dedinsky, http://txlib.ru) <mail@txlib.ru>
+See license on: http://txlib.ru
+
+TXLib file:	G:\TX\TXLib.h
+Compiled:	Dec  3 2017 16:42:02, GNU g++ 4.8.1, std=201103L, MinGW Runtime 3.20, 32-bit, Debug
+Started:	Dec 03 2017 16:42:08
+
+Run file:	D:\Документыы\GitHub\MyFiles\_MyOpenGl\Untitled1h.exe
+Directory:	D:\Документыы\GitHub\MyFiles\_MyOpenGl
+
+--------------------------------------------------
+
+--------------------------------------------------
+TXLib соболезнует...
+
+Программа: D:\Документыы\GitHub\MyFiles\_MyOpenGl\Untitled1h.exe, файл: D:\Документыы\GitHub\MyFiles\_MyOpenGl\VEDLibh.h, строка: 862, функция: int initSphere(double, Triangle*),
+
+Сообщение: ВНЕЗАПНО: Логическая ошибка: Неверно, что "latitude + 1 + (longitude + 1) * pointsnum < pointsnum * pointsnum".
+
+#1: TXLib [Ver: 00173a, Rev: 105], Instance: 0x004FB300 (32-bit), Flags: CMdRe0, Thread: 0x1118 (Main). 
+
+--------------------------------------------------
+Стек вызовов:
+
+# 0 0x004214B7 in D:\Документыы\GitHub\MyFiles\_MyOpenGl\Untitled1h.exe: initSphere()
+# 1 0x00422C88 in D:\Документыы\GitHub\MyFiles\_MyOpenGl\Untitled1h.exe: main()
+
+--------------------------------------------------
+Developed with:
+
+The Dumb Artist Library (TX Library) - TXLib [Ver: 00173a, Rev: 105]
+Copyright (C) Ded (Ilya Dedinsky, http://txlib.ru) <mail@txlib.ru>
+See license on: http://txlib.ru
+
+TXLib file:	G:\TX\TXLib.h
+Compiled:	Dec  3 2017 17:14:24, GNU g++ 4.8.1, std=201103L, MinGW Runtime 3.20, 32-bit, Debug
+Started:	Dec 03 2017 17:14:29
+
+Run file:	D:\Документыы\GitHub\MyFiles\_MyOpenGl\Untitled1h.exe
+Directory:	D:\Документыы\GitHub\MyFiles\_MyOpenGl
+
+--------------------------------------------------
+
+--------------------------------------------------
+TXLib соболезнует...
+
+Программа: D:\Документыы\GitHub\MyFiles\_MyOpenGl\Untitled1h.exe, файл: D:\Документыы\GitHub\MyFiles\_MyOpenGl\VEDLibh.h, строка: 854, функция: int initSphere(double, Triangle*),
+
+Сообщение: ВНЕЗАПНО: Логическая ошибка: Неверно, что "turnover < pointsnum * pointsnum".
+
+#1: TXLib [Ver: 00173a, Rev: 105], Instance: 0x004FB300 (32-bit), Flags: CMdRe0, Thread: 0x38C0 (Main). 
+
+--------------------------------------------------
+Стек вызовов:
+
+# 0 0x004213D5 in D:\Документыы\GitHub\MyFiles\_MyOpenGl\Untitled1h.exe: initSphere()
+# 1 0x00422B20 in D:\Документыы\GitHub\MyFiles\_MyOpenGl\Untitled1h.exe: main()
+
+--------------------------------------------------
+Developed with:
+
+The Dumb Artist Library (TX Library) - TXLib [Ver: 00173a, Rev: 105]
+Copyright (C) Ded (Ilya Dedinsky, http://txlib.ru) <mail@txlib.ru>
+See license on: http://txlib.ru
+
+TXLib file:	G:\TX\TXLib.h
+Compiled:	Dec  3 2017 21:27:35, GNU g++ 4.8.1, std=201103L, MinGW Runtime 3.20, 32-bit, Debug
+Started:	Dec 03 2017 21:27:39
+
+Run file:	D:\Документыы\GitHub\MyFiles\_MyOpenGl\Untitled1h.exe
+Directory:	D:\Документыы\GitHub\MyFiles\_MyOpenGl
+
+--------------------------------------------------
+
+--------------------------------------------------
+TXLib соболезнует...
+
+Программа: D:\Документыы\GitHub\MyFiles\_MyOpenGl\Untitled1h.exe, файл: D:\Документыы\GitHub\MyFiles\_MyOpenGl\VEDLibh.h, строка: 843, функция: int initSphere(double, Triangle*),
+
+Сообщение: ВНЕЗАПНО: Логическая ошибка: Неверно, что "turnover != pointsnum".
+
+#1: TXLib [Ver: 00173a, Rev: 105], Instance: 0x004FB300 (32-bit), Flags: CMdRe0, Thread: 0x3CF8 (Main). 
+
+--------------------------------------------------
+Стек вызовов:
+
+# 0 0x004212F0 in D:\Документыы\GitHub\MyFiles\_MyOpenGl\Untitled1h.exe: initSphere()
+# 1 0x00422B88 in D:\Документыы\GitHub\MyFiles\_MyOpenGl\Untitled1h.exe: main()
+
+--------------------------------------------------
+Developed with:
+
+The Dumb Artist Library (TX Library) - TXLib [Ver: 00173a, Rev: 105]
+Copyright (C) Ded (Ilya Dedinsky, http://txlib.ru) <mail@txlib.ru>
+See license on: http://txlib.ru
+
+TXLib file:	G:\TX\TXLib.h
+Compiled:	Dec  3 2017 21:28:22, GNU g++ 4.8.1, std=201103L, MinGW Runtime 3.20, 32-bit, Debug
+Started:	Dec 03 2017 21:28:26
+
+Run file:	D:\Документыы\GitHub\MyFiles\_MyOpenGl\Untitled1h.exe
+Directory:	D:\Документыы\GitHub\MyFiles\_MyOpenGl
+
+--------------------------------------------------
+
+--------------------------------------------------
+TXLib соболезнует...
+
+Программа: D:\Документыы\GitHub\MyFiles\_MyOpenGl\Untitled1h.exe, файл: D:\Документыы\GitHub\MyFiles\_MyOpenGl\VEDLibh.h, строка: 843, функция: int initSphere(double, Triangle*),
+
+Сообщение: ВНЕЗАПНО: Логическая ошибка: Неверно, что "turnover != pointsnum".
+
+#1: TXLib [Ver: 00173a, Rev: 105], Instance: 0x004FB300 (32-bit), Flags: CMdRe0, Thread: 0x3A78 (Main). 
+
+--------------------------------------------------
+Стек вызовов:
+
+# 0 0x004212F0 in D:\Документыы\GitHub\MyFiles\_MyOpenGl\Untitled1h.exe: initSphere()
+# 1 0x00422B88 in D:\Документыы\GitHub\MyFiles\_MyOpenGl\Untitled1h.exe: main()
+
+--------------------------------------------------
+Developed with:
+
+The Dumb Artist Library (TX Library) - TXLib [Ver: 00173a, Rev: 105]
+Copyright (C) Ded (Ilya Dedinsky, http://txlib.ru) <mail@txlib.ru>
+See license on: http://txlib.ru
+
+TXLib file:	G:\TX\TXLib.h
+Compiled:	Dec  3 2017 21:28:22, GNU g++ 4.8.1, std=201103L, MinGW Runtime 3.20, 32-bit, Debug
+Started:	Dec 03 2017 21:42:12
+
+Run file:	D:\Документыы\GitHub\MyFiles\_MyOpenGl\Untitled1h.exe
+Directory:	D:\Документыы\GitHub\MyFiles\_MyOpenGl
+
+--------------------------------------------------
+
+--------------------------------------------------
+TXLib соболезнует...
+
+Программа: D:\Документыы\GitHub\MyFiles\_MyOpenGl\Untitled1h.exe, файл: D:\Документыы\GitHub\MyFiles\_MyOpenGl\VEDLibh.h, строка: 855, функция: int initSphere(double, Triangle*),
+
+Сообщение: ВНЕЗАПНО: Логическая ошибка: Неверно, что "turnover < pointsnum * pointsnum".
+
+#1: TXLib [Ver: 00173a, Rev: 105], Instance: 0x004FB300 (32-bit), Flags: CMdRe0, Thread: 0x3A68 (Main). 
+
+--------------------------------------------------
+Стек вызовов:
+
+# 0 0x004213D5 in D:\Документыы\GitHub\MyFiles\_MyOpenGl\Untitled1h.exe: initSphere()
+# 1 0x00422B20 in D:\Документыы\GitHub\MyFiles\_MyOpenGl\Untitled1h.exe: main()
+
+--------------------------------------------------
+Developed with:
+
+The Dumb Artist Library (TX Library) - TXLib [Ver: 00173a, Rev: 105]
+Copyright (C) Ded (Ilya Dedinsky, http://txlib.ru) <mail@txlib.ru>
+See license on: http://txlib.ru
+
+TXLib file:	G:\TX\TXLib.h
+Compiled:	Dec  3 2017 21:42:45, GNU g++ 4.8.1, std=201103L, MinGW Runtime 3.20, 32-bit, Debug
+Started:	Dec 03 2017 21:42:49
+
+Run file:	D:\Документыы\GitHub\MyFiles\_MyOpenGl\Untitled1h.exe
+Directory:	D:\Документыы\GitHub\MyFiles\_MyOpenGl
+
+--------------------------------------------------
+
+--------------------------------------------------
+TXLib предупреждает:
+
+Программа: D:\Документыы\GitHub\MyFiles\_MyOpenGl\Untitled1h.exe,
+
+ВНЕЗАПНО: Нарушение доступа к памяти.
+
+#1: Исключение EXCEPTION_ACCESS_VIOLATION (0xC0000005) при выполнении кода по адресу 0x775D2A72 в функции RtlQueryPerformanceCounter(). Попытка прочесть данные по адресу 0x00000004. Спасибо _txVectoredExceptionHandler(), что сообщил. Люблю его <3
+
+#1: TXLib [Ver: 00173a, Rev: 105], Instance: 0x004FB300 (32-bit), Flags: CMdRe0, Thread: 0x387C (Main). 
+
+--------------------------------------------------
+Стек вызовов:
+
+# 0 0x775D2A72 in C:\Windows\SysWOW64\ntdll.dll: RtlQueryPerformanceCounter()
+# 1 0x775D2CFA in C:\Windows\SysWOW64\ntdll.dll: RtlQueryPerformanceCounter()
+# 2 0x775D2BE5 in C:\Windows\SysWOW64\ntdll.dll: RtlQueryPerformanceCounter()
+# 3 0x757498CD in C:\Windows\syswow64\msvcrt.dll: free()
+# 4 0x00420F39 in D:\Документыы\GitHub\MyFiles\_MyOpenGl\Untitled1h.exe: initSphere(double, Triangle*)::{lambda()#1}::operator()()
+# 5 0x00422CFD in D:\Документыы\GitHub\MyFiles\_MyOpenGl\Untitled1h.exe: (anonymous namespace)::TX::_tx_auto_func_<initSphere(double, Triangle*)::{lambda()#1}>::~_tx_auto_func_()
+# 6 0x00421728 in D:\Документыы\GitHub\MyFiles\_MyOpenGl\Untitled1h.exe: initSphere()
+# 7 0x004229AB in D:\Документыы\GitHub\MyFiles\_MyOpenGl\Untitled1h.exe: main()
+
+--------------------------------------------------
+Developed with:
+
+The Dumb Artist Library (TX Library) - TXLib [Ver: 00173a, Rev: 105]
+Copyright (C) Ded (Ilya Dedinsky, http://txlib.ru) <mail@txlib.ru>
+See license on: http://txlib.ru
+
+TXLib file:	G:\TX\TXLib.h
+Compiled:	Dec  4 2017 20:39:49, GNU g++ 4.8.1, std=201103L, MinGW Runtime 3.20, 32-bit, Debug
+Started:	Dec 04 2017 20:39:56
+
+Run file:	D:\Документыы\GitHub\MyFiles\_MyOpenGl\Untitled1h.exe
+Directory:	D:\Документыы\GitHub\MyFiles\_MyOpenGl
+
+--------------------------------------------------
+
+--------------------------------------------------
+TXLib соболезнует...
+
+Программа: D:\Документыы\GitHub\MyFiles\_MyOpenGl\Untitled1h.exe,
+
+ВНЕЗАПНО: signal (11, 0x00): SIGSEGV: Доступ по неверному указателю. Ставьте ассерты! 
+
+Нарушение доступа к памяти.
+
+#1: Исключение EXCEPTION_ACCESS_VIOLATION (0xC0000005) при выполнении кода по адресу 0x775D2A72 в функции RtlQueryPerformanceCounter(). Попытка прочесть данные по адресу 0x00000004. Спасибо _txVectoredExceptionHandler(), что сообщил. Люблю его <3
+
+С помощью функции signal() вы можете сами обработать эту ошибку.
+
+#2: TXLib [Ver: 00173a, Rev: 105], Instance: 0x004FB300 (32-bit), Flags: CMdRe0, Thread: 0x387C (Main). 
+
+--------------------------------------------------
+Стек вызовов:
+
+# 0 0x775D2A72 in C:\Windows\SysWOW64\ntdll.dll: RtlQueryPerformanceCounter()
+# 1 0x775D2CFA in C:\Windows\SysWOW64\ntdll.dll: RtlQueryPerformanceCounter()
+# 2 0x775D2BE5 in C:\Windows\SysWOW64\ntdll.dll: RtlQueryPerformanceCounter()
+# 3 0x757498CD in C:\Windows\syswow64\msvcrt.dll: free()
+# 4 0x00420F39 in D:\Документыы\GitHub\MyFiles\_MyOpenGl\Untitled1h.exe: initSphere(double, Triangle*)::{lambda()#1}::operator()()
+# 5 0x00422CFD in D:\Документыы\GitHub\MyFiles\_MyOpenGl\Untitled1h.exe: (anonymous namespace)::TX::_tx_auto_func_<initSphere(double, Triangle*)::{lambda()#1}>::~_tx_auto_func_()
+# 6 0x00421728 in D:\Документыы\GitHub\MyFiles\_MyOpenGl\Untitled1h.exe: initSphere()
+# 7 0x004229AB in D:\Документыы\GitHub\MyFiles\_MyOpenGl\Untitled1h.exe: main()
+
+--------------------------------------------------
+Developed with:
+
+The Dumb Artist Library (TX Library) - TXLib [Ver: 00173a, Rev: 105]
+Copyright (C) Ded (Ilya Dedinsky, http://txlib.ru) <mail@txlib.ru>
+See license on: http://txlib.ru
+
+TXLib file:	G:\TX\TXLib.h
+Compiled:	Dec  4 2017 20:39:49, GNU g++ 4.8.1, std=201103L, MinGW Runtime 3.20, 32-bit, Debug
+Started:	Dec 04 2017 20:39:55
+
+Run file:	D:\Документыы\GitHub\MyFiles\_MyOpenGl\Untitled1h.exe
+Directory:	D:\Документыы\GitHub\MyFiles\_MyOpenGl
+
+--------------------------------------------------
+
+--------------------------------------------------
+TXLib предупреждает:
+
+Программа: D:\Документыы\GitHub\MyFiles\_MyOpenGl\Untitled1h.exe,
+
+ВНЕЗАПНО: Нарушение доступа к памяти.
+
+#1: Исключение EXCEPTION_ACCESS_VIOLATION (0xC0000005) при выполнении кода по адресу 0x755566DB в функции TF_InvalidAssemblyListCacheIfExist(). Попытка прочесть данные по адресу 0x00000014. Спасибо _txVectoredExceptionHandler(), что сообщил. Люблю его <3
+
+#1: TXLib [Ver: 00173a, Rev: 105], Instance: 0x004FB300 (32-bit), Flags: CMdRe0, Thread: 0xFD0 (Canvas). 
+
+--------------------------------------------------
+Стек вызовов:
+
+# 0 0x755566DB in C:\Windows\syswow64\MSCTF.dll: TF_InvalidAssemblyListCacheIfExist()
+# 1 0x7556DFC9 in C:\Windows\syswow64\MSCTF.dll: TF_CreateCicLoadWinStaMutex()
+# 2 0x755558EC in C:\Windows\syswow64\MSCTF.dll: CtfImeAssociateFocus()
+# 3 0x75EC3C57 in C:\Windows\syswow64\USER32.dll: CalcMenuBar()
+# 4 0x775B011A in C:\Windows\SysWOW64\ntdll.dll: KiUserCallbackDispatcher()
+# 5 0x004064B2 in D:\Документыы\GitHub\MyFiles\_MyOpenGl\Untitled1h.exe: (anonymous namespace)::TX::_txCanvas_WndProc()
+# 6 0x75EB62FA in C:\Windows\syswow64\USER32.dll: gapfnScSendMessage()
+# 7 0x75EB7316 in C:\Windows\syswow64\USER32.dll: GetDC()
+# 8 0x75EB77C4 in C:\Windows\syswow64\USER32.dll: CharPrevW()
+# 9 0x75EB7BCA in C:\Windows\syswow64\USER32.dll: DispatchMessageA()
+#10 0x00405539 in D:\Документыы\GitHub\MyFiles\_MyOpenGl\Untitled1h.exe: (anonymous namespace)::TX::_txCanvas_ThreadProc()
+#11 0x75751287 in C:\Windows\syswow64\msvcrt.dll: itow_s()
+#12 0x75751328 in C:\Windows\syswow64\msvcrt.dll: endthreadex()
+#13 0x7707336A in C:\Windows\syswow64\kernel32.dll: BaseThreadInitThunk()
+#14 0x775D98F2 in C:\Windows\SysWOW64\ntdll.dll: RtlInitializeExceptionChain()
+#15 0x775D98C5 in C:\Windows\SysWOW64\ntdll.dll: RtlInitializeExceptionChain()
+
+--------------------------------------------------
+Developed with:
+
+The Dumb Artist Library (TX Library) - TXLib [Ver: 00173a, Rev: 105]
+Copyright (C) Ded (Ilya Dedinsky, http://txlib.ru) <mail@txlib.ru>
+See license on: http://txlib.ru
+
+TXLib file:	G:\TX\TXLib.h
+Compiled:	Dec  4 2017 21:21:09, GNU g++ 4.8.1, std=201103L, MinGW Runtime 3.20, 32-bit, Debug
+Started:	Dec 04 2017 21:21:14
+
+Run file:	D:\Документыы\GitHub\MyFiles\_MyOpenGl\Untitled1h.exe
+Directory:	D:\Документыы\GitHub\MyFiles\_MyOpenGl
+
+--------------------------------------------------
+
+--------------------------------------------------
+TXLib предупреждает:
+
+Программа: D:\Документыы\GitHub\MyFiles\_MyOpenGl\Untitled1h.exe,
+
+ВНЕЗАПНО: Нарушение доступа к памяти.
+
+#1: Исключение EXCEPTION_ACCESS_VIOLATION (0xC0000005) при выполнении кода по адресу 0x775D2A72 в функции RtlQueryPerformanceCounter(). Попытка прочесть данные по адресу 0x00000004. Спасибо _txVectoredExceptionHandler(), что сообщил. Люблю его <3
+
+#1: TXLib [Ver: 00173a, Rev: 105], Instance: 0x004FB300 (32-bit), Flags: CMdRe0, Thread: 0x2DA0 (Main). 
+
+--------------------------------------------------
+Стек вызовов:
+
+# 0 0x775D2A72 in C:\Windows\SysWOW64\ntdll.dll: RtlQueryPerformanceCounter()
+# 1 0x775D2CFA in C:\Windows\SysWOW64\ntdll.dll: RtlQueryPerformanceCounter()
+# 2 0x775D2BE5 in C:\Windows\SysWOW64\ntdll.dll: RtlQueryPerformanceCounter()
+# 3 0x757498CD in C:\Windows\syswow64\msvcrt.dll: free()
+# 4 0x00420F39 in D:\Документыы\GitHub\MyFiles\_MyOpenGl\Untitled1h.exe: initSphere(double, Triangle*)::{lambda()#1}::operator()()
+# 5 0x00422D77 in D:\Документыы\GitHub\MyFiles\_MyOpenGl\Untitled1h.exe: (anonymous namespace)::TX::_tx_auto_func_<initSphere(double, Triangle*)::{lambda()#1}>::~_tx_auto_func_()
+# 6 0x004217A2 in D:\Документыы\GitHub\MyFiles\_MyOpenGl\Untitled1h.exe: initSphere()
+# 7 0x00422A25 in D:\Документыы\GitHub\MyFiles\_MyOpenGl\Untitled1h.exe: main()
+
+--------------------------------------------------
+Developed with:
+
+The Dumb Artist Library (TX Library) - TXLib [Ver: 00173a, Rev: 105]
+Copyright (C) Ded (Ilya Dedinsky, http://txlib.ru) <mail@txlib.ru>
+See license on: http://txlib.ru
+
+TXLib file:	G:\TX\TXLib.h
+Compiled:	Dec  4 2017 21:22:04, GNU g++ 4.8.1, std=201103L, MinGW Runtime 3.20, 32-bit, Debug
+Started:	Dec 04 2017 21:22:09
+
+Run file:	D:\Документыы\GitHub\MyFiles\_MyOpenGl\Untitled1h.exe
+Directory:	D:\Документыы\GitHub\MyFiles\_MyOpenGl
+
+--------------------------------------------------
+
+--------------------------------------------------
+TXLib соболезнует...
+
+Программа: D:\Документыы\GitHub\MyFiles\_MyOpenGl\Untitled1h.exe,
+
+ВНЕЗАПНО: signal (11, 0x00): SIGSEGV: Доступ по неверному указателю. Ставьте ассерты! 
+
+Нарушение доступа к памяти.
+
+#1: Исключение EXCEPTION_ACCESS_VIOLATION (0xC0000005) при выполнении кода по адресу 0x775D2A72 в функции RtlQueryPerformanceCounter(). Попытка прочесть данные по адресу 0x00000004. Спасибо _txVectoredExceptionHandler(), что сообщил. Люблю его <3
+
+С помощью функции signal() вы можете сами обработать эту ошибку.
+
+#2: TXLib [Ver: 00173a, Rev: 105], Instance: 0x004FB300 (32-bit), Flags: CMdRe0, Thread: 0x2DA0 (Main). 
+
+--------------------------------------------------
+Стек вызовов:
+
+# 0 0x775D2A72 in C:\Windows\SysWOW64\ntdll.dll: RtlQueryPerformanceCounter()
+# 1 0x775D2CFA in C:\Windows\SysWOW64\ntdll.dll: RtlQueryPerformanceCounter()
+# 2 0x775D2BE5 in C:\Windows\SysWOW64\ntdll.dll: RtlQueryPerformanceCounter()
+# 3 0x757498CD in C:\Windows\syswow64\msvcrt.dll: free()
+# 4 0x00420F39 in D:\Документыы\GitHub\MyFiles\_MyOpenGl\Untitled1h.exe: initSphere(double, Triangle*)::{lambda()#1}::operator()()
+# 5 0x00422D77 in D:\Документыы\GitHub\MyFiles\_MyOpenGl\Untitled1h.exe: (anonymous namespace)::TX::_tx_auto_func_<initSphere(double, Triangle*)::{lambda()#1}>::~_tx_auto_func_()
+# 6 0x004217A2 in D:\Документыы\GitHub\MyFiles\_MyOpenGl\Untitled1h.exe: initSphere()
+# 7 0x00422A25 in D:\Документыы\GitHub\MyFiles\_MyOpenGl\Untitled1h.exe: main()
+
+--------------------------------------------------
+Developed with:
+
+The Dumb Artist Library (TX Library) - TXLib [Ver: 00173a, Rev: 105]
+Copyright (C) Ded (Ilya Dedinsky, http://txlib.ru) <mail@txlib.ru>
+See license on: http://txlib.ru
+
+TXLib file:	G:\TX\TXLib.h
+Compiled:	Dec  4 2017 21:22:04, GNU g++ 4.8.1, std=201103L, MinGW Runtime 3.20, 32-bit, Debug
+Started:	Dec 04 2017 21:22:09
+
+Run file:	D:\Документыы\GitHub\MyFiles\_MyOpenGl\Untitled1h.exe
+Directory:	D:\Документыы\GitHub\MyFiles\_MyOpenGl
+
+--------------------------------------------------
+
+--------------------------------------------------
+TXLib предупреждает:
+
+Программа: D:\Документыы\GitHub\MyFiles\_MyOpenGl\Untitled1h.exe,
+
+ВНЕЗАПНО: Нарушение доступа к памяти.
+
+#1: Исключение EXCEPTION_ACCESS_VIOLATION (0xC0000005) при выполнении кода по адресу 0x775D2A72 в функции RtlQueryPerformanceCounter(). Попытка прочесть данные по адресу 0x00000004. Спасибо _txVectoredExceptionHandler(), что сообщил. Люблю его <3
+
+#1: TXLib [Ver: 00173a, Rev: 105], Instance: 0x004FB300 (32-bit), Flags: CMdRe0, Thread: 0xFC8 (Main). 
+
+--------------------------------------------------
+Стек вызовов:
+
+# 0 0x775D2A72 in C:\Windows\SysWOW64\ntdll.dll: RtlQueryPerformanceCounter()
+# 1 0x775D2CFA in C:\Windows\SysWOW64\ntdll.dll: RtlQueryPerformanceCounter()
+# 2 0x775D2BE5 in C:\Windows\SysWOW64\ntdll.dll: RtlQueryPerformanceCounter()
+# 3 0x757498CD in C:\Windows\syswow64\msvcrt.dll: free()
+# 4 0x00420F39 in D:\Документыы\GitHub\MyFiles\_MyOpenGl\Untitled1h.exe: initSphere(double, Triangle*)::{lambda()#1}::operator()()
+# 5 0x00422D65 in D:\Документыы\GitHub\MyFiles\_MyOpenGl\Untitled1h.exe: (anonymous namespace)::TX::_tx_auto_func_<initSphere(double, Triangle*)::{lambda()#1}>::~_tx_auto_func_()
+# 6 0x0042178F in D:\Документыы\GitHub\MyFiles\_MyOpenGl\Untitled1h.exe: initSphere()
+# 7 0x00422A13 in D:\Документыы\GitHub\MyFiles\_MyOpenGl\Untitled1h.exe: main()
+
+--------------------------------------------------
+Developed with:
+
+The Dumb Artist Library (TX Library) - TXLib [Ver: 00173a, Rev: 105]
+Copyright (C) Ded (Ilya Dedinsky, http://txlib.ru) <mail@txlib.ru>
+See license on: http://txlib.ru
+
+TXLib file:	G:\TX\TXLib.h
+Compiled:	Dec  4 2017 21:22:26, GNU g++ 4.8.1, std=201103L, MinGW Runtime 3.20, 32-bit, Debug
+Started:	Dec 04 2017 21:22:31
+
+Run file:	D:\Документыы\GitHub\MyFiles\_MyOpenGl\Untitled1h.exe
+Directory:	D:\Документыы\GitHub\MyFiles\_MyOpenGl
+
+--------------------------------------------------
+
+--------------------------------------------------
+TXLib соболезнует...
+
+Программа: D:\Документыы\GitHub\MyFiles\_MyOpenGl\Untitled1h.exe,
+
+ВНЕЗАПНО: signal (11, 0x00): SIGSEGV: Доступ по неверному указателю. Ставьте ассерты! 
+
+Нарушение доступа к памяти.
+
+#1: Исключение EXCEPTION_ACCESS_VIOLATION (0xC0000005) при выполнении кода по адресу 0x775D2A72 в функции RtlQueryPerformanceCounter(). Попытка прочесть данные по адресу 0x00000004. Спасибо _txVectoredExceptionHandler(), что сообщил. Люблю его <3
+
+С помощью функции signal() вы можете сами обработать эту ошибку.
+
+#2: TXLib [Ver: 00173a, Rev: 105], Instance: 0x004FB300 (32-bit), Flags: CMdRe0, Thread: 0xFC8 (Main). 
+
+--------------------------------------------------
+Стек вызовов:
+
+# 0 0x775D2A72 in C:\Windows\SysWOW64\ntdll.dll: RtlQueryPerformanceCounter()
+# 1 0x775D2CFA in C:\Windows\SysWOW64\ntdll.dll: RtlQueryPerformanceCounter()
+# 2 0x775D2BE5 in C:\Windows\SysWOW64\ntdll.dll: RtlQueryPerformanceCounter()
+# 3 0x757498CD in C:\Windows\syswow64\msvcrt.dll: free()
+# 4 0x00420F39 in D:\Документыы\GitHub\MyFiles\_MyOpenGl\Untitled1h.exe: initSphere(double, Triangle*)::{lambda()#1}::operator()()
+# 5 0x00422D65 in D:\Документыы\GitHub\MyFiles\_MyOpenGl\Untitled1h.exe: (anonymous namespace)::TX::_tx_auto_func_<initSphere(double, Triangle*)::{lambda()#1}>::~_tx_auto_func_()
+# 6 0x0042178F in D:\Документыы\GitHub\MyFiles\_MyOpenGl\Untitled1h.exe: initSphere()
+# 7 0x00422A13 in D:\Документыы\GitHub\MyFiles\_MyOpenGl\Untitled1h.exe: main()
+
+--------------------------------------------------
+Developed with:
+
+The Dumb Artist Library (TX Library) - TXLib [Ver: 00173a, Rev: 105]
+Copyright (C) Ded (Ilya Dedinsky, http://txlib.ru) <mail@txlib.ru>
+See license on: http://txlib.ru
+
+TXLib file:	G:\TX\TXLib.h
+Compiled:	Dec  4 2017 21:22:26, GNU g++ 4.8.1, std=201103L, MinGW Runtime 3.20, 32-bit, Debug
+Started:	Dec 04 2017 21:22:30
+
+Run file:	D:\Документыы\GitHub\MyFiles\_MyOpenGl\Untitled1h.exe
+Directory:	D:\Документыы\GitHub\MyFiles\_MyOpenGl
+
+--------------------------------------------------
+
+--------------------------------------------------
+TXLib предупреждает:
+
+Программа: D:\Документыы\GitHub\MyFiles\_MyOpenGl\Untitled1h.exe,
+
+ВНЕЗАПНО: Нарушение доступа к памяти.
+
+#1: Исключение EXCEPTION_ACCESS_VIOLATION (0xC0000005) при выполнении кода по адресу 0x775D2A72 в функции RtlQueryPerformanceCounter(). Попытка прочесть данные по адресу 0x00000004. Спасибо _txVectoredExceptionHandler(), что сообщил. Люблю его <3
+
+#1: TXLib [Ver: 00173a, Rev: 105], Instance: 0x004FB300 (32-bit), Flags: CMdRe0, Thread: 0x3170 (Main). 
+
+--------------------------------------------------
+Стек вызовов:
+
+# 0 0x775D2A72 in C:\Windows\SysWOW64\ntdll.dll: RtlQueryPerformanceCounter()
+# 1 0x775D2CFA in C:\Windows\SysWOW64\ntdll.dll: RtlQueryPerformanceCounter()
+# 2 0x775D2BE5 in C:\Windows\SysWOW64\ntdll.dll: RtlQueryPerformanceCounter()
+# 3 0x757498CD in C:\Windows\syswow64\msvcrt.dll: free()
+# 4 0x00420F39 in D:\Документыы\GitHub\MyFiles\_MyOpenGl\Untitled1h.exe: initSphere(double, Triangle*)::{lambda()#1}::operator()()
+# 5 0x00422D65 in D:\Документыы\GitHub\MyFiles\_MyOpenGl\Untitled1h.exe: (anonymous namespace)::TX::_tx_auto_func_<initSphere(double, Triangle*)::{lambda()#1}>::~_tx_auto_func_()
+# 6 0x0042178F in D:\Документыы\GitHub\MyFiles\_MyOpenGl\Untitled1h.exe: initSphere()
+# 7 0x00422A13 in D:\Документыы\GitHub\MyFiles\_MyOpenGl\Untitled1h.exe: main()
+
+--------------------------------------------------
+Developed with:
+
+The Dumb Artist Library (TX Library) - TXLib [Ver: 00173a, Rev: 105]
+Copyright (C) Ded (Ilya Dedinsky, http://txlib.ru) <mail@txlib.ru>
+See license on: http://txlib.ru
+
+TXLib file:	G:\TX\TXLib.h
+Compiled:	Dec  4 2017 21:22:26, GNU g++ 4.8.1, std=201103L, MinGW Runtime 3.20, 32-bit, Debug
+Started:	Dec 04 2017 21:22:40
+
+Run file:	D:\Документыы\GitHub\MyFiles\_MyOpenGl\Untitled1h.exe
+Directory:	D:\Документыы\GitHub\MyFiles\_MyOpenGl
+
+--------------------------------------------------
+
+--------------------------------------------------
+TXLib соболезнует...
+
+Программа: D:\Документыы\GitHub\MyFiles\_MyOpenGl\Untitled1h.exe,
+
+ВНЕЗАПНО: signal (11, 0x00): SIGSEGV: Доступ по неверному указателю. Ставьте ассерты! 
+
+Нарушение доступа к памяти.
+
+#1: Исключение EXCEPTION_ACCESS_VIOLATION (0xC0000005) при выполнении кода по адресу 0x775D2A72 в функции RtlQueryPerformanceCounter(). Попытка прочесть данные по адресу 0x00000004. Спасибо _txVectoredExceptionHandler(), что сообщил. Люблю его <3
+
+С помощью функции signal() вы можете сами обработать эту ошибку.
+
+#2: TXLib [Ver: 00173a, Rev: 105], Instance: 0x004FB300 (32-bit), Flags: CMdRe0, Thread: 0x3170 (Main). 
+
+--------------------------------------------------
+Стек вызовов:
+
+# 0 0x775D2A72 in C:\Windows\SysWOW64\ntdll.dll: RtlQueryPerformanceCounter()
+# 1 0x775D2CFA in C:\Windows\SysWOW64\ntdll.dll: RtlQueryPerformanceCounter()
+# 2 0x775D2BE5 in C:\Windows\SysWOW64\ntdll.dll: RtlQueryPerformanceCounter()
+# 3 0x757498CD in C:\Windows\syswow64\msvcrt.dll: free()
+# 4 0x00420F39 in D:\Документыы\GitHub\MyFiles\_MyOpenGl\Untitled1h.exe: initSphere(double, Triangle*)::{lambda()#1}::operator()()
+# 5 0x00422D65 in D:\Документыы\GitHub\MyFiles\_MyOpenGl\Untitled1h.exe: (anonymous namespace)::TX::_tx_auto_func_<initSphere(double, Triangle*)::{lambda()#1}>::~_tx_auto_func_()
+# 6 0x0042178F in D:\Документыы\GitHub\MyFiles\_MyOpenGl\Untitled1h.exe: initSphere()
+# 7 0x00422A13 in D:\Документыы\GitHub\MyFiles\_MyOpenGl\Untitled1h.exe: main()
+
+--------------------------------------------------
+Developed with:
+
+The Dumb Artist Library (TX Library) - TXLib [Ver: 00173a, Rev: 105]
+Copyright (C) Ded (Ilya Dedinsky, http://txlib.ru) <mail@txlib.ru>
+See license on: http://txlib.ru
+
+TXLib file:	G:\TX\TXLib.h
+Compiled:	Dec  4 2017 21:22:26, GNU g++ 4.8.1, std=201103L, MinGW Runtime 3.20, 32-bit, Debug
+Started:	Dec 04 2017 21:22:40
+
+Run file:	D:\Документыы\GitHub\MyFiles\_MyOpenGl\Untitled1h.exe
+Directory:	D:\Документыы\GitHub\MyFiles\_MyOpenGl
+
+--------------------------------------------------
+
+--------------------------------------------------
+TXLib предупреждает:
+
+Программа: D:\Документыы\GitHub\MyFiles\_MyOpenGl\Untitled1h.exe,
+
+ВНЕЗАПНО: Нарушение доступа к памяти.
+
+#1: Исключение EXCEPTION_ACCESS_VIOLATION (0xC0000005) при выполнении кода по адресу 0x775D2A72 в функции RtlQueryPerformanceCounter(). Попытка прочесть данные по адресу 0x00000004. Спасибо _txVectoredExceptionHandler(), что сообщил. Люблю его <3
+
+#1: TXLib [Ver: 00173a, Rev: 105], Instance: 0x004FB300 (32-bit), Flags: CMdRe0, Thread: 0x37E0 (Main). 
+
+--------------------------------------------------
+Стек вызовов:
+
+# 0 0x775D2A72 in C:\Windows\SysWOW64\ntdll.dll: RtlQueryPerformanceCounter()
+# 1 0x775D2CFA in C:\Windows\SysWOW64\ntdll.dll: RtlQueryPerformanceCounter()
+# 2 0x775D2BE5 in C:\Windows\SysWOW64\ntdll.dll: RtlQueryPerformanceCounter()
+# 3 0x757498CD in C:\Windows\syswow64\msvcrt.dll: free()
+# 4 0x00420F39 in D:\Документыы\GitHub\MyFiles\_MyOpenGl\Untitled1h.exe: initSphere(double, Triangle*)::{lambda()#1}::operator()()
+# 5 0x00422CFD in D:\Документыы\GitHub\MyFiles\_MyOpenGl\Untitled1h.exe: (anonymous namespace)::TX::_tx_auto_func_<initSphere(double, Triangle*)::{lambda()#1}>::~_tx_auto_func_()
+# 6 0x00421728 in D:\Документыы\GitHub\MyFiles\_MyOpenGl\Untitled1h.exe: initSphere()
+# 7 0x004229AB in D:\Документыы\GitHub\MyFiles\_MyOpenGl\Untitled1h.exe: main()
+
+--------------------------------------------------
+Developed with:
+
+The Dumb Artist Library (TX Library) - TXLib [Ver: 00173a, Rev: 105]
+Copyright (C) Ded (Ilya Dedinsky, http://txlib.ru) <mail@txlib.ru>
+See license on: http://txlib.ru
+
+TXLib file:	G:\TX\TXLib.h
+Compiled:	Dec  4 2017 21:25:30, GNU g++ 4.8.1, std=201103L, MinGW Runtime 3.20, 32-bit, Debug
+Started:	Dec 04 2017 21:25:34
+
+Run file:	D:\Документыы\GitHub\MyFiles\_MyOpenGl\Untitled1h.exe
+Directory:	D:\Документыы\GitHub\MyFiles\_MyOpenGl
+
+--------------------------------------------------
+
+--------------------------------------------------
+TXLib соболезнует...
+
+Программа: D:\Документыы\GitHub\MyFiles\_MyOpenGl\Untitled1h.exe,
+
+ВНЕЗАПНО: signal (11, 0x00): SIGSEGV: Доступ по неверному указателю. Ставьте ассерты! 
+
+Нарушение доступа к памяти.
+
+#1: Исключение EXCEPTION_ACCESS_VIOLATION (0xC0000005) при выполнении кода по адресу 0x775D2A72 в функции RtlQueryPerformanceCounter(). Попытка прочесть данные по адресу 0x00000004. Спасибо _txVectoredExceptionHandler(), что сообщил. Люблю его <3
+
+С помощью функции signal() вы можете сами обработать эту ошибку.
+
+#2: TXLib [Ver: 00173a, Rev: 105], Instance: 0x004FB300 (32-bit), Flags: CMdRe0, Thread: 0x37E0 (Main). 
+
+--------------------------------------------------
+Стек вызовов:
+
+# 0 0x775D2A72 in C:\Windows\SysWOW64\ntdll.dll: RtlQueryPerformanceCounter()
+# 1 0x775D2CFA in C:\Windows\SysWOW64\ntdll.dll: RtlQueryPerformanceCounter()
+# 2 0x775D2BE5 in C:\Windows\SysWOW64\ntdll.dll: RtlQueryPerformanceCounter()
+# 3 0x757498CD in C:\Windows\syswow64\msvcrt.dll: free()
+# 4 0x00420F39 in D:\Документыы\GitHub\MyFiles\_MyOpenGl\Untitled1h.exe: initSphere(double, Triangle*)::{lambda()#1}::operator()()
+# 5 0x00422CFD in D:\Документыы\GitHub\MyFiles\_MyOpenGl\Untitled1h.exe: (anonymous namespace)::TX::_tx_auto_func_<initSphere(double, Triangle*)::{lambda()#1}>::~_tx_auto_func_()
+# 6 0x00421728 in D:\Документыы\GitHub\MyFiles\_MyOpenGl\Untitled1h.exe: initSphere()
+# 7 0x004229AB in D:\Документыы\GitHub\MyFiles\_MyOpenGl\Untitled1h.exe: main()
+
+--------------------------------------------------
+Developed with:
+
+The Dumb Artist Library (TX Library) - TXLib [Ver: 00173a, Rev: 105]
+Copyright (C) Ded (Ilya Dedinsky, http://txlib.ru) <mail@txlib.ru>
+See license on: http://txlib.ru
+
+TXLib file:	G:\TX\TXLib.h
+Compiled:	Dec  4 2017 21:25:30, GNU g++ 4.8.1, std=201103L, MinGW Runtime 3.20, 32-bit, Debug
+Started:	Dec 04 2017 21:25:34
+
+Run file:	D:\Документыы\GitHub\MyFiles\_MyOpenGl\Untitled1h.exe
+Directory:	D:\Документыы\GitHub\MyFiles\_MyOpenGl
+
+--------------------------------------------------
+
+--------------------------------------------------
+TXLib предупреждает:
+
+Программа: D:\Документыы\GitHub\MyFiles\_MyOpenGl\Untitled1h.exe,
+
+ВНЕЗАПНО: Нарушение доступа к памяти.
+
+#1: Исключение EXCEPTION_ACCESS_VIOLATION (0xC0000005) при выполнении кода по адресу 0x0041E77C в функции VEDLine(). Попытка прочесть данные по адресу 0x03E074D0. Спасибо _txVectoredExceptionHandler(), что сообщил. Люблю его <3
+
+#1: TXLib [Ver: 00173a, Rev: 105], Instance: 0x004FB300 (32-bit), Flags: CMdRe0, Thread: 0x3CC4 (Main). 
+
+--------------------------------------------------
+Стек вызовов:
+
+# 0 0x0041E77C in D:\Документыы\GitHub\MyFiles\_MyOpenGl\Untitled1h.exe: VEDLine()
+# 1 0x0041BD7D in D:\Документыы\GitHub\MyFiles\_MyOpenGl\Untitled1h.exe: VEDHorTriangle()
+# 2 0x0041B5D3 in D:\Документыы\GitHub\MyFiles\_MyOpenGl\Untitled1h.exe: VEDTriangle()
+# 3 0x0041DEB0 in D:\Документыы\GitHub\MyFiles\_MyOpenGl\Untitled1h.exe: VED3dTriangle()
+# 4 0x00421D43 in D:\Документыы\GitHub\MyFiles\_MyOpenGl\Untitled1h.exe: VEDFigure()
+# 5 0x00422BFC in D:\Документыы\GitHub\MyFiles\_MyOpenGl\Untitled1h.exe: main()
+
+--------------------------------------------------
+Developed with:
+
+The Dumb Artist Library (TX Library) - TXLib [Ver: 00173a, Rev: 105]
+Copyright (C) Ded (Ilya Dedinsky, http://txlib.ru) <mail@txlib.ru>
+See license on: http://txlib.ru
+
+TXLib file:	G:\TX\TXLib.h
+Compiled:	Dec  5 2017 17:00:07, GNU g++ 4.8.1, std=201103L, MinGW Runtime 3.20, 32-bit, Debug
+Started:	Dec 05 2017 17:00:12
+
+Run file:	D:\Документыы\GitHub\MyFiles\_MyOpenGl\Untitled1h.exe
+Directory:	D:\Документыы\GitHub\MyFiles\_MyOpenGl
+
+--------------------------------------------------
+
+--------------------------------------------------
+TXLib соболезнует...
+
+Программа: D:\Документыы\GitHub\MyFiles\_MyOpenGl\Untitled1h.exe,
+
+ВНЕЗАПНО: signal (11, 0x00): SIGSEGV: Доступ по неверному указателю. Ставьте ассерты! 
+
+Нарушение доступа к памяти.
+
+#1: Исключение EXCEPTION_ACCESS_VIOLATION (0xC0000005) при выполнении кода по адресу 0x0041E77C в функции VEDLine(). Попытка прочесть данные по адресу 0x03E074D0. Спасибо _txVectoredExceptionHandler(), что сообщил. Люблю его <3
+
+С помощью функции signal() вы можете сами обработать эту ошибку.
+
+#2: TXLib [Ver: 00173a, Rev: 105], Instance: 0x004FB300 (32-bit), Flags: CMdRe0, Thread: 0x3CC4 (Main). 
+
+--------------------------------------------------
+Стек вызовов:
+
+# 0 0x0041E77C in D:\Документыы\GitHub\MyFiles\_MyOpenGl\Untitled1h.exe: VEDLine()
+# 1 0x0041BD7D in D:\Документыы\GitHub\MyFiles\_MyOpenGl\Untitled1h.exe: VEDHorTriangle()
+# 2 0x0041B5D3 in D:\Документыы\GitHub\MyFiles\_MyOpenGl\Untitled1h.exe: VEDTriangle()
+# 3 0x0041DEB0 in D:\Документыы\GitHub\MyFiles\_MyOpenGl\Untitled1h.exe: VED3dTriangle()
+# 4 0x00421D43 in D:\Документыы\GitHub\MyFiles\_MyOpenGl\Untitled1h.exe: VEDFigure()
+# 5 0x00422BFC in D:\Документыы\GitHub\MyFiles\_MyOpenGl\Untitled1h.exe: main()
+
+--------------------------------------------------
+Developed with:
+
+The Dumb Artist Library (TX Library) - TXLib [Ver: 00173a, Rev: 105]
+Copyright (C) Ded (Ilya Dedinsky, http://txlib.ru) <mail@txlib.ru>
+See license on: http://txlib.ru
+
+TXLib file:	G:\TX\TXLib.h
+Compiled:	Dec  5 2017 17:00:07, GNU g++ 4.8.1, std=201103L, MinGW Runtime 3.20, 32-bit, Debug
+Started:	Dec 05 2017 17:00:11
+
+Run file:	D:\Документыы\GitHub\MyFiles\_MyOpenGl\Untitled1h.exe
+Directory:	D:\Документыы\GitHub\MyFiles\_MyOpenGl
+
+--------------------------------------------------
+
+--------------------------------------------------
+TXLib предупреждает:
+
+Программа: D:\Документыы\GitHub\MyFiles\_MyOpenGl\Untitled1h.exe,
+
+ВНЕЗАПНО: Нарушение доступа к памяти.
+
+#1: Исключение EXCEPTION_ACCESS_VIOLATION (0xC0000005) при выполнении кода по адресу 0x0041E77C в функции VEDLine(). Попытка прочесть данные по адресу 0x03B936E0. Спасибо _txVectoredExceptionHandler(), что сообщил. Люблю его <3
+
+#1: TXLib [Ver: 00173a, Rev: 105], Instance: 0x004FB300 (32-bit), Flags: CMdRe0, Thread: 0x3C10 (Main). 
+
+--------------------------------------------------
+Стек вызовов:
+
+# 0 0x0041E77C in D:\Документыы\GitHub\MyFiles\_MyOpenGl\Untitled1h.exe: VEDLine()
+# 1 0x0041BD7D in D:\Документыы\GitHub\MyFiles\_MyOpenGl\Untitled1h.exe: VEDHorTriangle()
+# 2 0x0041B5D3 in D:\Документыы\GitHub\MyFiles\_MyOpenGl\Untitled1h.exe: VEDTriangle()
+# 3 0x0041DEB0 in D:\Документыы\GitHub\MyFiles\_MyOpenGl\Untitled1h.exe: VED3dTriangle()
+# 4 0x00421D43 in D:\Документыы\GitHub\MyFiles\_MyOpenGl\Untitled1h.exe: VEDFigure()
+# 5 0x00422BFC in D:\Документыы\GitHub\MyFiles\_MyOpenGl\Untitled1h.exe: main()
+
+--------------------------------------------------
+Developed with:
+
+The Dumb Artist Library (TX Library) - TXLib [Ver: 00173a, Rev: 105]
+Copyright (C) Ded (Ilya Dedinsky, http://txlib.ru) <mail@txlib.ru>
+See license on: http://txlib.ru
+
+TXLib file:	G:\TX\TXLib.h
+Compiled:	Dec  5 2017 17:00:07, GNU g++ 4.8.1, std=201103L, MinGW Runtime 3.20, 32-bit, Debug
+Started:	Dec 05 2017 17:00:43
+
+Run file:	D:\Документыы\GitHub\MyFiles\_MyOpenGl\Untitled1h.exe
+Directory:	D:\Документыы\GitHub\MyFiles\_MyOpenGl
+
+--------------------------------------------------
+
+--------------------------------------------------
+TXLib соболезнует...
+
+Программа: D:\Документыы\GitHub\MyFiles\_MyOpenGl\Untitled1h.exe,
+
+ВНЕЗАПНО: signal (11, 0x00): SIGSEGV: Доступ по неверному указателю. Ставьте ассерты! 
+
+Нарушение доступа к памяти.
+
+#1: Исключение EXCEPTION_ACCESS_VIOLATION (0xC0000005) при выполнении кода по адресу 0x0041E77C в функции VEDLine(). Попытка прочесть данные по адресу 0x03B936E0. Спасибо _txVectoredExceptionHandler(), что сообщил. Люблю его <3
+
+С помощью функции signal() вы можете сами обработать эту ошибку.
+
+#2: TXLib [Ver: 00173a, Rev: 105], Instance: 0x004FB300 (32-bit), Flags: CMdRe0, Thread: 0x3C10 (Main). 
+
+--------------------------------------------------
+Стек вызовов:
+
+# 0 0x0041E77C in D:\Документыы\GitHub\MyFiles\_MyOpenGl\Untitled1h.exe: VEDLine()
+# 1 0x0041BD7D in D:\Документыы\GitHub\MyFiles\_MyOpenGl\Untitled1h.exe: VEDHorTriangle()
+# 2 0x0041B5D3 in D:\Документыы\GitHub\MyFiles\_MyOpenGl\Untitled1h.exe: VEDTriangle()
+# 3 0x0041DEB0 in D:\Документыы\GitHub\MyFiles\_MyOpenGl\Untitled1h.exe: VED3dTriangle()
+# 4 0x00421D43 in D:\Документыы\GitHub\MyFiles\_MyOpenGl\Untitled1h.exe: VEDFigure()
+# 5 0x00422BFC in D:\Документыы\GitHub\MyFiles\_MyOpenGl\Untitled1h.exe: main()
+
+--------------------------------------------------
+Developed with:
+
+The Dumb Artist Library (TX Library) - TXLib [Ver: 00173a, Rev: 105]
+Copyright (C) Ded (Ilya Dedinsky, http://txlib.ru) <mail@txlib.ru>
+See license on: http://txlib.ru
+
+TXLib file:	G:\TX\TXLib.h
+Compiled:	Dec  5 2017 17:00:07, GNU g++ 4.8.1, std=201103L, MinGW Runtime 3.20, 32-bit, Debug
+Started:	Dec 05 2017 17:00:42
+
+Run file:	D:\Документыы\GitHub\MyFiles\_MyOpenGl\Untitled1h.exe
+Directory:	D:\Документыы\GitHub\MyFiles\_MyOpenGl
+
+--------------------------------------------------
+
+--------------------------------------------------
+TXLib соболезнует...
+
+Программа: D:\Документыы\GitHub\MyFiles\_MyOpenGl\Untitled1h.exe, файл: D:\Документыы\GitHub\MyFiles\_MyOpenGl\VEDLibh.h, строка: 894, функция: int initSphere(double, Triangle*),
+
+Сообщение: ВНЕЗАПНО: Логическая ошибка: Неверно, что "latitude + 1 + (longitude + 1) * pointsnum < pointsnum * pointsnum".
+
+#1: TXLib [Ver: 00173a, Rev: 105], Instance: 0x004FB300 (32-bit), Flags: CMdRe0, Thread: 0x3A38 (Main). 
+
+--------------------------------------------------
+Стек вызовов:
+
+# 0 0x00421753 in D:\Документыы\GitHub\MyFiles\_MyOpenGl\Untitled1h.exe: initSphere()
+# 1 0x00422E35 in D:\Документыы\GitHub\MyFiles\_MyOpenGl\Untitled1h.exe: main()
+
+--------------------------------------------------
+Developed with:
+
+The Dumb Artist Library (TX Library) - TXLib [Ver: 00173a, Rev: 105]
+Copyright (C) Ded (Ilya Dedinsky, http://txlib.ru) <mail@txlib.ru>
+See license on: http://txlib.ru
+
+TXLib file:	G:\TX\TXLib.h
+Compiled:	Dec  5 2017 18:19:45, GNU g++ 4.8.1, std=201103L, MinGW Runtime 3.20, 32-bit, Debug
+Started:	Dec 05 2017 18:19:50
+
+Run file:	D:\Документыы\GitHub\MyFiles\_MyOpenGl\Untitled1h.exe
+Directory:	D:\Документыы\GitHub\MyFiles\_MyOpenGl
+
+--------------------------------------------------

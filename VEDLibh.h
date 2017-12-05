@@ -3,6 +3,7 @@
 #define ctg(x) (1/tan(x))
 #define DEGREEMODIFIER 0.01745
 #define PI 3.141593
+
 struct MYP
     {
     double x;
@@ -57,12 +58,44 @@ struct MYP
         {
         return {x + right, y + right, z + right};
         }
+
+    MYP ():
+        x(0),
+        y(0),
+        z(0)
+        {}
+
+    MYP (double first, double second, double third):
+        x(first),
+        y(second),
+        z(third)
+        {}
     };
+
+struct Triangle
+    {
+    MYP f;
+    MYP s;
+    MYP t;
+    Triangle ():
+        f(),
+        s(),
+        t()
+        {}
+
+    Triangle (MYP gf, MYP gs, MYP gt):
+        f(gf),
+        s(gs),
+        t(gt)
+        {}
+
+    };
+
 POINT SzScr = {0, 0};
 int BufferDefault = 5000;
 const double ZScalingCoeff = 0.0015;
 
-const double MaterialReflective = 25;
+const double MaterialReflective = 22;
 
 bool ShowMeZBuffer = false;
 HDC MyScreen = NULL;
@@ -70,7 +103,7 @@ HDC MyScreen = NULL;
 RGBQUAD *MyPixels = NULL;
 double *ZBuffer = NULL;
 #define MyPix(_x, _y, _z, _r, _g, _b)  int thisPixPos = (int)((_x) + (int)(SzScr.y - _y)*SzScr.x);\
-    if (_z < ZBuffer[thisPixPos]) \
+    if (_z < ZBuffer[thisPixPos] && fabs (_z - ZBuffer[thisPixPos]) > 0.0015) \
         {     \
         if (ShowMeZBuffer) MyPixels[thisPixPos] = RGBQUAD {(BYTE)(_z/2), (BYTE)(_z/2), (BYTE)(_z/2)}; \
         else MyPixels[thisPixPos] = RGBQUAD {(BYTE)(_b), (BYTE)(_g), (BYTE)(_r)}; \
@@ -82,7 +115,7 @@ double *ZBuffer = NULL;
         }
 const int ALLMSX = 4;
 const int ALLMSY = 4;
-MYP DefaultLightPos = {4, 4, -2};
+MYP DefaultLightPos = {2, 2, -2};
 struct ARRSIZ
     {
     const int x;
@@ -96,6 +129,10 @@ double TALX = 0;
 double TALY = 0;
 double TALZ = 0;
 
+int initSphere (double stepAngle, Triangle Figure[]);
+void RotateMatrixY (double GaveMatrix[][ALLMSY], double angle);
+MYP RotateVecY (MYP GaveVec, double angle);
+void VEDFigure (Triangle Figure[], int TrianglesAmount);
 MYP makeAllVecDeforms (MYP getVec, bool isper);
 bool control (double speed = 1);
 void drawVec (MYP start, MYP vec, COLORREF color = TX_GREEN, COLORREF pointcolor = TX_RED, int width = 1, int pointrad = 15);
@@ -338,28 +375,28 @@ int VEDTriangle (MYP first, MYP second, MYP third, MYP fcol, MYP scol, MYP tcol)
     txSetColor (TX_WHITE, 1, MyScreen);
     txSetFillColor (RGB(dcol.x, dcol.y, dcol.z), MyScreen);
 
-    txEllipse (down.x - 10, down.y - 10, down.x + 10, down.y + 10, MyScreen);
+    if (GetAsyncKeyState ('C')) txEllipse (down.x - 10, down.y - 10, down.x + 10, down.y + 10, MyScreen);
 
-    char helpch[16] = {};
-    sprintf (helpch, "%f", down.z);
-    txDrawText (down.x - 80, down.y - 50, down.x + 80, down.y - 20, helpch, DT_CENTER, MyScreen);
+    //char helpch[16] = {};
+    //sprintf (helpch, "%f", down.z);
+    //txDrawText (down.x - 80, down.y - 50, down.x + 80, down.y - 20, helpch, DT_CENTER, MyScreen);
 
     txSetFillColor (RGB(mcol.x, mcol.y, mcol.z), MyScreen);
 
-    txEllipse (mid.x - 10, mid.y - 10, mid.x + 10, mid.y + 10, MyScreen);
+    if (GetAsyncKeyState ('C')) txEllipse (mid.x - 10, mid.y - 10, mid.x + 10, mid.y + 10, MyScreen);
 
-    sprintf (helpch, "%f", down.z);
-    txDrawText (mid.x - 80, mid.y - 50, mid.x + 80, mid.y - 20, helpch, DT_CENTER, MyScreen);
+    //sprintf (helpch, "%f", down.z);
+    //txDrawText (mid.x - 80, mid.y - 50, mid.x + 80, mid.y - 20, helpch, DT_CENTER, MyScreen);
 
     txSetFillColor (RGB(ucol.x, ucol.y, ucol.z), MyScreen);
 
-    txEllipse (up.x - 10, up.y - 10, up.x + 10, up.y + 10, MyScreen);
+    if (GetAsyncKeyState ('C')) txEllipse (up.x - 10, up.y - 10, up.x + 10, up.y + 10, MyScreen);
 
-    sprintf (helpch, "%f", down.z);
-    txDrawText (up.x - 80, up.y - 50, up.x + 80, up.y - 20, helpch, DT_CENTER, MyScreen);
+    //sprintf (helpch, "%f", down.z);
+    //txDrawText (up.x - 80, up.y - 50, up.x + 80, up.y - 20, helpch, DT_CENTER, MyScreen);
 
     VEDHorTriangle ({help * allhwidth + down.x,
-                     down.y + sectorheight,
+                     down.y + sectorheight + 1,
                      help * (up.z - down.z) + down.z},
                      mid, down,
                     {help * (ucol.x - dcol.x) + dcol.x,
@@ -451,7 +488,7 @@ void VED3dTriangle (MYP first, MYP second, MYP third, MYP col1, MYP col2, MYP co
 
     MYP VecFS = second - first;
     MYP VecFT = third  - first;
-    MYP VecST = third  - second;
+    //MYP VecST = third  - second;
     MYP Normal  = VectorMultip (VecFS, VecFT);
 
     Normal = makeAllVecDeforms (Normal, false);
@@ -459,6 +496,7 @@ void VED3dTriangle (MYP first, MYP second, MYP third, MYP col1, MYP col2, MYP co
     makeAllDeforms (cord1, false);
     makeAllDeforms (cord2, false);
     makeAllDeforms (cord3, false);
+
     lightpos.x = lightpos.x/ZScalingCoeff/lightpos.z;
     lightpos.y = lightpos.y/ZScalingCoeff/lightpos.z;
 
@@ -496,8 +534,13 @@ void VED3dTriangle (MYP first, MYP second, MYP third, MYP col1, MYP col2, MYP co
     MYP Light2Dir = second - lightpos;
     MYP Light3Dir = third - lightpos;
 
-    if ((Normal^Light1Dir) < 0) lightcol = {0, 0, 0};
-                                      //TODO сгенерировать массив треугольников усечённой сферы и нарисовать его.
+    if ((Normal^Light1Dir) < 0)
+        {
+        col1 = {0, 0, 0};
+        col2 = {0, 0, 0};
+        col3 = {0, 0, 0};                              //TODO сгенерировать массив треугольников усечённой сферы и нарисовать его.
+        }
+
     //if (acos(Normal2^Light1Dir) > PI/2) Normal2 = Normal2 * -1;
     //if (acos(Normal3^Light1Dir) > PI/2) Normal3 = Normal3 * -1;
 
@@ -508,22 +551,30 @@ void VED3dTriangle (MYP first, MYP second, MYP third, MYP col1, MYP col2, MYP co
     MYP Light1DirRef = Normal * 2 * (Light1Dir * Normal) - Light1Dir;
     MYP Light2DirRef = Normal * 2 * (Light2Dir * Normal) - Light2Dir;
     MYP Light3DirRef = Normal * 2 * (Light3Dir * Normal) - Light3Dir;
-    //копипаста названий
-    double Spec1 = Light1DirRef^View1Dir;
-    double Spec2 = Light2DirRef^View2Dir;
-    double Spec3 = Light3DirRef^View3Dir;
-    if (Spec1 < 0) Spec1 = 0;
-    if (Spec2 < 0) Spec2 = 0;
-    if (Spec3 < 0) Spec3 = 0;
+
+    //if (GetAsyncKeyState ('T'))
+    //    {
+    //    Light1DirRef += rand()%100/8000;
+    //    }
+
+    double Spec1 = Light1DirRef^Light1Dir;
+    double Spec2 = Light2DirRef^Light2Dir;
+    double Spec3 = Light3DirRef^Light3Dir;
+
+    //if (Spec1 < 0) Spec1 = 0;
+    //if (Spec2 < 0) Spec2 = 0;
+    //if (Spec3 < 0) Spec3 = 0;
+    //printf ("cos (LightDirRef^ViewDir) == %f\n", Spec1);
     double MatSpec1 = pow (Spec1, MaterialReflective);
     double MatSpec2 = pow (Spec2, MaterialReflective);
     double MatSpec3 = pow (Spec3, MaterialReflective);
 
-    double BrightnessMultiplier = 1;
+    //double BrightnessMultiplier = 1;
 
-    double diffuse1 = Normal^(Light1Dir/Light1Dir.length());
-    double diffuse2 = Normal^(Light2Dir/Light2Dir.length());
-    double diffuse3 = Normal^(Light3Dir/Light3Dir.length());
+    double diffuse1 = Normal^(Light1Dir);
+    double diffuse2 = Normal^(Light2Dir);
+    double diffuse3 = Normal^(Light3Dir);
+
     if (diffuse1 < 0) diffuse1 = 0;
     if (diffuse2 < 0) diffuse2 = 0;
     if (diffuse3 < 0) diffuse3 = 0;
@@ -790,6 +841,127 @@ int printmat (ARRSIZ SM, double m[ALLMSX][ALLMSY])
     return 1;
     }
 
+int initSphere (double stepAngle, Triangle Figure[])
+    {
+    int pointsnum = (int)(PI * 2/stepAngle + 0.5);//округление к большему
+    MYP *rotatedPoints = new MYP[(pointsnum + 2) * (pointsnum + 2)];
+    //Triangle *triangles = new Triangle[pointsnum * pointsnum * pointsnum];
+    //tx_auto_func (delete [] triangles);
+    tx_auto_func (delete [] rotatedPoints);
+    int turnover = 0;
+
+    for (double Angle = 0; Angle <= PI * 2 + stepAngle; Angle += stepAngle)
+        {
+        rotatedPoints[turnover] = {0, sin(Angle), cos(Angle)};
+        turnover++;
+        //assert (turnover != pointsnum);
+        }
+    pointsnum = turnover;
+    //turnover = pointsnum;
+    MYP pointBeforeRotation;
+    for (double Angle = stepAngle; Angle <= PI * 2 + stepAngle; Angle += stepAngle)
+        {
+        for (int i = 0; i < pointsnum; i++)
+            {
+            if (turnover == pointsnum *  (pointsnum + 1)) turnover--;
+            //pointBeforeRotation = rotatedPoints[i];
+            rotatedPoints[turnover] = RotateVecY (rotatedPoints[i], Angle);
+            //pointBeforeRotation = rotatedPoints[turnover] - pointBeforeRotation;
+            //if (fabs (pointBeforeRotation.x) >0.0015) printf ("xisnotthesame\n");
+            if (fabs (pointBeforeRotation.y) > 0.0015) printf ("yisnotthesame\n");
+            //if (fabs (pointBeforeRotation.x) >0.0015) printf ("zisnotthesame\n");
+            //printf ("rotatedpoint%d{%f, %f, %f}\n", turnover, rotatedPoints[turnover].x, rotatedPoints[turnover].y, rotatedPoints[turnover].z);
+            //i++;
+            turnover++;
+            }
+        //turnover++;
+        }    //*/
+
+    turnover = 0;
+    MYP helpPoint;//есть конструктор
+    MYP upperPoint = rotatedPoints[0];
+    VED3dTriangle (upperPoint,
+                  {upperPoint.x + 0.25, upperPoint.y + 0.25, upperPoint.z},
+                  {upperPoint.x - 0.25, upperPoint.y - 0.25, upperPoint.z}, {255, 255, 255}, {255, 255, 255}, {255, 255, 255});
+
+
+    for (int latitude = pointsnum / 4; latitude < (pointsnum)*3/4 - 1; latitude++)
+        {
+        //printf ("с\n");
+        //getch();
+        for (int longitude = 0; longitude < (pointsnum - 1); longitude++)
+            {
+            //assert (latitude + 1 + (longitude + 1) * pointsnum < pointsnum * pointsnum);
+            //assert (turnover + 1 < pointsnum * pointsnum * pointsnum);
+            //printf ("d%d\n", longitude);
+            //getch();
+            Figure[turnover] = {rotatedPoints[latitude + 1 + (longitude + 1) * pointsnum],
+                                rotatedPoints[latitude + 1 +  longitude * pointsnum],
+                                rotatedPoints[latitude +      longitude * pointsnum]};
+
+            //printf ("e%d\n", longitude);
+            //getch();
+
+            //helpPoint = rotatedPoints[latitude + 1 + (longitude + 1) * pointsnum];
+            //printf ("e(%f)%d\n", helpPoint.x, longitude);
+            //getch();
+
+            //helpPoint = rotatedPoints[latitude + longitude * pointsnum];
+            //printf ("e(%f)%d\n", helpPoint.x, longitude);
+            //getch();
+
+            //helpPoint = rotatedPoints[latitude + (longitude + 1) * pointsnum];
+            //printf ("e(%f)%d\n", helpPoint.x, longitude);
+            //getch();
+
+            assert (turnover + 1 < pointsnum * pointsnum * pointsnum);
+            Figure[turnover + 1] = {rotatedPoints[latitude + 1 + (longitude + 1) * pointsnum],
+                                    rotatedPoints[latitude     +  longitude      * pointsnum],
+                                    rotatedPoints[latitude     + (longitude + 1) * pointsnum]};
+            turnover+=2;
+
+            }
+        printf ("f\n");
+        //getch();
+        turnover++;
+        }
+    return turnover;
+    }
+
+MYP RotateVecY (MYP GaveVec, double angle)
+    {
+    double VecMatrix[ALLMSX][ALLMSY] = {{GaveVec.x, 0, 0, 0},
+                                        {GaveVec.y, 0, 0, 0},
+                                        {GaveVec.z, 0, 0, 0},
+                                        {1, 0, 0, 0}};
+    RotateMatrixY (VecMatrix, angle);
+    GaveVec = {VecMatrix[0][0], VecMatrix[1][0], VecMatrix[2][0]};
+    return GaveVec;
+    }
+
+void RotateMatrixY (double GaveMatrix[][ALLMSY], double angle)
+    {
+    double RotationYMatrix[ALLMSX][ALLMSY] = {};
+
+    RotationYMatrix[0][0] = cos(angle);
+    RotationYMatrix[0][2] = sin(angle);
+    RotationYMatrix[1][1] = 1;
+    RotationYMatrix[2][0] =-sin(angle);
+    RotationYMatrix[2][2] = cos(angle);
+    multimat (SAL, RotationYMatrix, SAL, GaveMatrix, SAL, GaveMatrix);
+    }
+
+
+void VEDFigure (Triangle Figure[], int TrianglesAmount)
+    {
+    for (int i = 0; i < TrianglesAmount; i++)
+        {
+        VED3dTriangle (Figure[i].f, Figure[i].s, Figure[i].t, {255, 255, 255}, {255, 255, 255}, {255, 255, 255});
+        //printf ("a\n");
+        }
+    }
+
+
 int makemat (ARRSIZ SM, double A[ALLMSX][ALLMSY], double B[ALLMSX][ALLMSY])
     {
     //printf ("\n");
@@ -936,37 +1108,37 @@ bool control (double speed)
     if (GetAsyncKeyState (VK_RIGHT))
         {
         returning = true;
-        VEDScale (1.3 * speed,   0,     0);
+        VEDScale (1 + 0.1 * speed,   0,     0);
         }
 
     if (GetAsyncKeyState (VK_LEFT))
         {
         returning = true;
-        VEDScale (0.7 * speed,   0,     0);
+        VEDScale (1 - 0.1 * speed,   0,     0);
         }
 
     if (GetAsyncKeyState (VK_UP))
         {
         returning = true;
-        VEDScale (0, 1.3 * speed,     0);
+        VEDScale (0, 1 + 0.1 * speed,     0);
         }
 
     if (GetAsyncKeyState (VK_DOWN))
         {
         returning = true;
-        VEDScale (0, 0.7 * speed,     0);
+        VEDScale (0, 1 - 0.1 * speed,     0);
         }
 
     if (GetAsyncKeyState (VK_RSHIFT))
         {
         returning = true;
-        VEDScale (0,   0,   1.1 * speed);
+        VEDScale (0,   0,   1 + 0.1 * speed);
         }
 
     if (GetAsyncKeyState (VK_RETURN))
         {
         returning = true;
-        VEDScale (0,   0,   0.9 * speed);
+        VEDScale (0,   0,   1 - 0.1 * speed);
         }
 
 
@@ -1017,6 +1189,19 @@ bool control (double speed)
         DefaultLightPos.y -= 0.05 * speed;
         returning = true;
         }
+
+    if (GetAsyncKeyState ('U'))
+        {
+        DefaultLightPos.z -= 0.05 * speed;
+        returning = true;
+        }
+
+    if (GetAsyncKeyState ('O'))
+        {
+        DefaultLightPos.z += 0.05 * speed;
+        returning = true;
+        }
+
 
     if (GetAsyncKeyState ('Q'))
         {

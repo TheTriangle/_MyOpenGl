@@ -1,20 +1,29 @@
 
 #include "VEDLibh.h"
-bool control (double speed = 1);
 
 
 int main()
     {
     tx_auto_func(delete [] ZBuffer);
     tx_auto_func(txDeleteDC(MyScreen));
+
     SzScr = POINT{GetSystemMetrics(SM_CXSCREEN), GetSystemMetrics(SM_CYSCREEN)};
+
     ZBuffer = new double[SzScr.x * SzScr.y];
+
     MakeBufferDefault();
+
     txCreateWindow (SzScr.x, SzScr.y);
+
     MyScreen = txCreateDIBSection(SzScr.x, SzScr.y, &MyPixels);
+
     VEDTranslate (0, 0, 100);
     VEDScale (40, 40, 20);
-    VEDCube(false);
+    //VEDCube(false);
+
+    Triangle Sphere[] = {};
+    initS
+    
     while (!GetAsyncKeyState (VK_ESCAPE))
         {
 
@@ -31,7 +40,7 @@ int main()
         if (control(3))
             {
             txClear(MyScreen);
-            VEDCube(false);
+            //VEDCube(false);
             }
         if (GetAsyncKeyState (VK_LSHIFT)) control (5);
         txBitBlt (0, 0, MyScreen);
@@ -40,6 +49,7 @@ int main()
 
     return 0;
     }
+
 
 
 

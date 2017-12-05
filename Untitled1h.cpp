@@ -16,12 +16,20 @@ int main()
     txCreateWindow (SzScr.x, SzScr.y);
 
     MyScreen = txCreateDIBSection(SzScr.x, SzScr.y, &MyPixels);
+
     VEDTranslate (0, 0, 100);
-    VEDScale (40, 40, 20);
-    VEDCube(false);
+    VEDScale (40, 40, 40);
+    //VEDCube(false);
+
+    Triangle Sphere[1000] = {};
+    //printf ("a\n");
+    //getch();
+    int SpherePointsAmount = initSphere(PI/12, Sphere);
+    //printf ("a\n");
+    VEDFigure (Sphere, SpherePointsAmount);
+
     while (!GetAsyncKeyState (VK_ESCAPE))
         {
-
         txSleep (10);
         //getch();
         txSetFillColor (TX_BLACK, MyScreen);
@@ -35,8 +43,10 @@ int main()
         if (control(3))
             {
             txClear(MyScreen);
-            VEDCube(false);
+            VEDFigure (Sphere, SpherePointsAmount);
+            //VEDCube(false);
             }
+
         if (GetAsyncKeyState (VK_LSHIFT)) control (5);
         txBitBlt (0, 0, MyScreen);
         MakeBufferDefault();
