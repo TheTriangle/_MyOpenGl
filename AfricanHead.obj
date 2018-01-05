@@ -1,0 +1,44 @@
+
+#include "VEDLibh.h"
+#include <vector>
+
+void drawVec (MYP Vector[]);
+int FillVec (MYP Vector[]);
+
+int main()
+    {
+    VEDStart ();
+
+    tx_auto_func(delete [] ZBuffer);
+    tx_auto_func(txDeleteDC(MyScreen));
+
+    //VEDTranslate (8000, 6000, 1);
+    VEDTranslate (0, 0, 400);
+    VEDScale (100, 100, 100);
+
+    Triangle Head [10000] = {};
+    int HeadSize = makeObjFigure (Head, "african_head.obj");
+    txSetFillColor(TX_BLACK);
+    while(!GetAsyncKeyState(VK_ESCAPE))
+        {
+        control(5);
+        if (GetAsyncKeyState('F'))
+            {
+            txSetFillColor (TX_BLACK, MyScreen);
+            txClear(MyScreen);
+            }
+
+
+        txSetFillColor (TX_WHITE, MyScreen);
+        txSetColor (TX_WHITE, 1, MyScreen);
+        VEDFigure (Head, HeadSize);
+        txBitBlt (0, 0, MyScreen);
+
+
+        if (GetAsyncKeyState(VK_LSHIFT)) control (5);
+        txSleep(10);
+        //control(30);
+        //getch();
+        }
+    return 0;
+    }

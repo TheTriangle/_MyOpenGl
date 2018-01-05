@@ -1,20 +1,71 @@
 
 #include "VEDLibh.h"
+#include "Windows.h"
 #include <vector>
 
 void drawVec (MYP Vector[]);
 int FillVec (MYP Vector[]);
+
 int main()
     {
-    using namespace std;
-    txCreateWindow (800, 600);
-    MYP PointsVec[500];
-    FillVec (PointsVec);
+    VEDStart ();
+    //VEDTranslate (8000, 6000, 1);
+    VEDTranslate (0, 0, 100);
+    VEDScale (50, 50, 50);
+
+    MYP texturesizes = {1024, 1024, 0}; //недостаток bmp->hdc->rgbquad(DIB), а не чтения файла.
+    RGBQUAD *TexturePixels = VEDLoadRGBQUADImage ("african_head_diffuse.bmp", texturesizes);
+    RGBQUAD *NormalsPixels = VEDLoadRGBQUADImage ("african_head_nm.bmp", texturesizes);
+    RGBQUAD *SpecsPixels   = VEDLoadRGBQUADImage ("african_head_spec.bmp", texturesizes);
+
+    //for (int x = 0; x < 1024; x++)
+    //    {
+    //   for (int y = 0; y < 1024; y++)
+    //        {
+    //        MyPixels[x + y * 1024] = TexturePixels[x + y * 1024];
+    //        }
+    //    }
+    //txBitBlt (0, 0, MyScreen);
+    //Vgetch();
+
+    ObjTriangle *Head = new ObjTriangle[10000];
+
+    int HeadSize = makeObjFigure (Head, "african_head.obj");
+    printf ("iamhere1\n");
+    getch();
+    txSetFillColor(TX_BLACK);
     while(!GetAsyncKeyState(VK_ESCAPE))
         {
-        drawVec (PointsVec);
+        control(5);
+        if (GetAsyncKeyState('F'))
+            {
+            txSetFillColor (TX_BLACK, MyScreen);
+            txClear(MyScreen);
+            }
+        printf ("iamhere2\n");
+        getch();
+
+        if (GetAsyncKeyState('V'))
+            {
+            txSetFillColor (TX_BLACK, MyScreen);
+            VEDObjFigure (Head, HeadSize, TexturePixels, NormalsPixels, SpecsPixels, texturesizes);
+            printf ("iamhere4\n");
+            getch();
+            txBitBlt (0, 0, MyScreen);
+            }
+
+        printf ("iamhere3\n");
+        getch();
+        if (GetAsyncKeyState(VK_LSHIFT)) control (0.1);
         txSleep(10);
+        //control(30);
+        //getch();
+        makeBufferDefault();
         }
+    delete [] ZBuffer;
+    delete [] Head;
+    delete [] TexturePixels;
+    txDeleteDC(MyScreen);
     return 0;
     }
 
@@ -34,20 +85,21 @@ int FillVec (MYP Vector[])
     while (!feof(model))
         {
         fscanf (model, "%s%lf%lf%lf", type, &ScX, &ScY, &ScZ);
-        fprin
-        if (type[0] == 'v' && type[1] != 't' && type[1] != 'n')
+        //printf("%s", type);
+        //getch();
+        if (type[0] == 'v' && type[1] == 0)
             {
             //getch();
             Vector[i].x = ScX;
             Vector[i].y = ScY;
             Vector[i].z = ScZ;
-            printf ("%s %f %f %f\n", type, Vector[i].x, Vector[i].y, Vector[i].z);
-
+            //printf (" %f %f %f\n", Vector[i].x, Vector[i].y, Vector[i].z);
+            //getch();
             }
         else
             {
-            getch();
-            printf ("'%s'!= 'v'\n", type);
+            //getch();
+            //printf ("'!= 'v'\n");
             }
         i++;
         }
@@ -64,18 +116,42 @@ void drawVec (MYP Vector[])
         exit(1);
         }
     char type[20];
-    int fnum;
-    int snum;
-    int tnum;
-    int i = 0;
+    int fnum = 0;
+    int snum = 0;
+    int tnum = 0;
+
+    int fonum = 0;
+    int finum = 0;
+    int sinum = 0;
+
+    int senum = 0;
+    int einum = 0;
+    int ninum = 0;
+    //int i = 0;
     while (!feof(model))
         {
-        fscanf (model, "%s%d/%d/%d", type, &fnum, &snum, &tnum);
-        if (type[0] == 'f')
+        fscanf (model, "%s%d/%d/%d %d/%d/%d %d/%d/%d", type, &fnum, &snum, &tnum,
+                                                             &fonum, &finum, &sinum,
+                                                             &senum, &einum, &ninum);
+        if (type[0] == 'f' && type[1] == 0)
             {
-            VEDTriangle (Vector[fnum], Vector[snum], Vector[tnum]);
-            printf ("%s %d/%d/%d", type, fnum, snum, tnum);
+            //VEDTriangle ({Vector[fnum].x + SzScr.x/2, Vector[fnum].y + SzScr.y/2, Vector[fnum].z},
+            //             {Vector[snum].x + SzScr.x/2, Vector[snum].y + SzScr.y/2, Vector[snum].z},
+            //             {Vector[tnum].x + SzScr.x/2, Vector[tnum].y + SzScr.y/2, Vector[tnum].z}, {255, 255, 255}, {255, 255, 255}, {255, 255, 255});
+            VEDTriangle (Vector[fnum],
+                         Vector[snum],
+                         Vector[tnum], {255, 255, 255}, {255, 255, 255}, {255, 255, 255});
+
+            VEDTriangle (Vector[fonum],
+                         Vector[finum],
+                         Vector[sinum], {255, 255, 255}, {255, 255, 255}, {255, 255, 255});
+
+            VEDTriangle (Vector[senum],
+                         Vector[einum],
+                         Vector[ninum], {255, 255, 255}, {255, 255, 255}, {255, 255, 255});
+            //printf ("%s %d/%d/%d\n", type, fnum, snum, tnum);
+            //getch();
             }
-        else printf ("'%s' != 'f'", type);
+        //else printf ("'%s' != 'f'", type);
         }
     }
