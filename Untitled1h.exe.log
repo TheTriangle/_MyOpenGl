@@ -17421,3 +17421,143 @@ Run file:	D:\Документыы\GitHub\MyFiles\_MyOpenGl\Untitled1h.exe
 Directory:	D:\Документыы\GitHub\MyFiles\_MyOpenGl
 
 --------------------------------------------------
+
+--------------------------------------------------
+TXLib предупреждает:
+
+Программа: D:\Документыы\GitHub\MyFiles\_MyOpenGl\Untitled1h.exe,
+
+ВНЕЗАПНО: Нарушение доступа к памяти.
+
+#1: Исключение EXCEPTION_ACCESS_VIOLATION (0xC0000005) при выполнении кода по адресу 0x004241E0 в функции initSphere(). Попытка записать данные по адресу 0x03E6D000. Спасибо _txVectoredExceptionHandler(), что сообщил. Люблю его <3
+
+#1: TXLib [Ver: 00173a, Rev: 105], Instance: 0x00501340 (32-bit), Flags: CMdRe0, Thread: 0x1500 (Main). 
+
+--------------------------------------------------
+Стек вызовов:
+
+# 0 0x004241E0 in D:\Документыы\GitHub\MyFiles\_MyOpenGl\Untitled1h.exe: initSphere()
+# 1 0x004270E8 in D:\Документыы\GitHub\MyFiles\_MyOpenGl\Untitled1h.exe: main()
+
+--------------------------------------------------
+Developed with:
+
+The Dumb Artist Library (TX Library) - TXLib [Ver: 00173a, Rev: 105]
+Copyright (C) Ded (Ilya Dedinsky, http://txlib.ru) <mail@txlib.ru>
+See license on: http://txlib.ru
+
+TXLib file:	G:\TX\TXLib.h
+Compiled:	Feb 12 2018 19:34:36, GNU g++ 4.8.1, std=201103L, MinGW Runtime 3.20, 32-bit, Debug
+Started:	Feb 12 2018 19:34:46
+
+Run file:	D:\Документыы\GitHub\MyFiles\_MyOpenGl\Untitled1h.exe
+Directory:	D:\Документыы\GitHub\MyFiles\_MyOpenGl
+
+--------------------------------------------------
+
+--------------------------------------------------
+TXLib соболезнует...
+
+Программа: D:\Документыы\GitHub\MyFiles\_MyOpenGl\Untitled1h.exe,
+
+ВНЕЗАПНО: signal (11, 0x00): SIGSEGV: Доступ по неверному указателю. Ставьте ассерты! 
+
+Нарушение доступа к памяти.
+
+#1: Исключение EXCEPTION_ACCESS_VIOLATION (0xC0000005) при выполнении кода по адресу 0x004241E0 в функции initSphere(). Попытка записать данные по адресу 0x03E6D000. Спасибо _txVectoredExceptionHandler(), что сообщил. Люблю его <3
+
+С помощью функции signal() вы можете сами обработать эту ошибку.
+
+#2: TXLib [Ver: 00173a, Rev: 105], Instance: 0x00501340 (32-bit), Flags: CMdRe0, Thread: 0x1500 (Main). 
+
+--------------------------------------------------
+Стек вызовов:
+
+# 0 0x004241E0 in D:\Документыы\GitHub\MyFiles\_MyOpenGl\Untitled1h.exe: initSphere()
+# 1 0x004270E8 in D:\Документыы\GitHub\MyFiles\_MyOpenGl\Untitled1h.exe: main()
+
+--------------------------------------------------
+Developed with:
+
+The Dumb Artist Library (TX Library) - TXLib [Ver: 00173a, Rev: 105]
+Copyright (C) Ded (Ilya Dedinsky, http://txlib.ru) <mail@txlib.ru>
+See license on: http://txlib.ru
+
+TXLib file:	G:\TX\TXLib.h
+Compiled:	Feb 12 2018 19:34:36, GNU g++ 4.8.1, std=201103L, MinGW Runtime 3.20, 32-bit, Debug
+Started:	Feb 12 2018 19:34:47
+
+Run file:	D:\Документыы\GitHub\MyFiles\_MyOpenGl\Untitled1h.exe
+Directory:	D:\Документыы\GitHub\MyFiles\_MyOpenGl
+
+--------------------------------------------------
+
+--------------------------------------------------
+TXLib предупреждает:
+
+Программа: D:\Документыы\GitHub\MyFiles\_MyOpenGl\Untitled1h.exe,
+
+ВНЕЗАПНО: Нарушение доступа к памяти.
+
+#1: Исключение EXCEPTION_ACCESS_VIOLATION (0xC0000005) при выполнении кода по адресу 0x004241E0 в функции initSphere(). Попытка записать данные по адресу 0x03E7D000. Спасибо _txVectoredExceptionHandler(), что сообщил. Люблю его <3
+
+#1: TXLib [Ver: 00173a, Rev: 105], Instance: 0x00501340 (32-bit), Flags: CMdRe0, Thread: 0x1630 (Main). 
+
+--------------------------------------------------
+Стек вызовов:
+
+# 0 0x004241E0 in D:\Документыы\GitHub\MyFiles\_MyOpenGl\Untitled1h.exe: initSphere()
+# 1 0x004270E8 in D:\Документыы\GitHub\MyFiles\_MyOpenGl\Untitled1h.exe: main()
+
+--------------------------------------------------
+Developed with:
+
+The Dumb Artist Library (TX Library) - TXLib [Ver: 00173a, Rev: 105]
+Copyright (C) Ded (Ilya Dedinsky, http://txlib.ru) <mail@txlib.ru>
+See license on: http://txlib.ru
+
+TXLib file:	G:\TX\TXLib.h
+Compiled:	Feb 12 2018 19:34:36, GNU g++ 4.8.1, std=201103L, MinGW Runtime 3.20, 32-bit, Debug
+Started:	Feb 20 2018 17:10:17
+
+Run file:	D:\Документыы\GitHub\MyFiles\_MyOpenGl\Untitled1h.exe
+Directory:	D:\Документыы\GitHub\MyFiles\_MyOpenGl
+
+--------------------------------------------------
+
+--------------------------------------------------
+TXLib соболезнует...
+
+Программа: D:\Документыы\GitHub\MyFiles\_MyOpenGl\Untitled1h.exe,
+
+ВНЕЗАПНО: signal (11, 0x00): SIGSEGV: Доступ по неверному указателю. Ставьте ассерты! 
+
+Нарушение доступа к памяти.
+
+#1: Исключение EXCEPTION_ACCESS_VIOLATION (0xC0000005) при выполнении кода по адресу 0x004241E0 в функции initSphere(). Попытка записать данные по адресу 0x03E7D000. Спасибо _txVectoredExceptionHandler(), что сообщил. Люблю его <3
+
+С помощью функции signal() вы можете сами обработать эту ошибку.
+
+#2: TXLib [Ver: 00173a, Rev: 105], Instance: 0x00501340 (32-bit), Flags: CMdRe0, Thread: 0x1630 (Main). 
+
+--------------------------------------------------
+Стек вызовов:
+
+# 0 0x004241E0 in D:\Документыы\GitHub\MyFiles\_MyOpenGl\Untitled1h.exe: initSphere()
+# 1 0x004270E8 in D:\Документыы\GitHub\MyFiles\_MyOpenGl\Untitled1h.exe: main()
+
+--------------------------------------------------
+Developed with:
+
+The Dumb Artist Library (TX Library) - TXLib [Ver: 00173a, Rev: 105]
+Copyright (C) Ded (Ilya Dedinsky, http://txlib.ru) <mail@txlib.ru>
+See license on: http://txlib.ru
+
+TXLib file:	G:\TX\TXLib.h
+Compiled:	Feb 12 2018 19:34:36, GNU g++ 4.8.1, std=201103L, MinGW Runtime 3.20, 32-bit, Debug
+Started:	Feb 20 2018 17:10:17
+
+Run file:	D:\Документыы\GitHub\MyFiles\_MyOpenGl\Untitled1h.exe
+Directory:	D:\Документыы\GitHub\MyFiles\_MyOpenGl
+
+--------------------------------------------------

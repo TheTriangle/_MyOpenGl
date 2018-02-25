@@ -1,6 +1,7 @@
 
 #include "VEDLibh.h"
 
+const int TriangleSphereSize = 8000;
 
 int main()
     {
@@ -13,11 +14,11 @@ int main()
     VEDScale (40, 40, 40);
     //VEDCube(false);
 
-    Triangle *Sphere = new Triangle[4000];
+    Triangle *Sphere = new Triangle[TriangleSphereSize];
     tx_auto_func (delete [] Sphere);
     //printf ("a\n");
     //getch();
-    int SpherePointsAmount = initSphere(PI/26, Sphere);
+    int SpherePointsAmount = initSphere(PI/50, Sphere);
     //printf ("a\n");
     VEDFigure (Sphere, SpherePointsAmount);
 

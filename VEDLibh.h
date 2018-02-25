@@ -20,17 +20,17 @@ struct MYP
         return sqrt(x * x + y * y + z * z);
         }
 
-    MYP operator- (MYP right)
+    MYP operator- (const MYP& right)
         {
         return {x - right.x, y - right.y, z - right.z};
         }
 
-    MYP operator+ (MYP right)
+    MYP operator+ (const MYP& right)
         {
         return {x + right.x, y + right.y, z + right.z};
         }
 
-    double operator^ (MYP right)
+    double operator^ (MYP& right)
         {
         return (*this * right)/this->length()/right.length();
         }
@@ -50,12 +50,12 @@ struct MYP
         return {x * right, y * right, z * right};
         }
 
-    double operator* (MYP right)
+    double operator* (const MYP& right)
         {
         return {x * right.x + y * right.y + z * right.z};
         }
 
-    MYP operator% (MYP right)
+    MYP operator% (const MYP& right)
         {
         return {x * right.x, y * right.y, z * right.z};
         }
@@ -77,10 +77,10 @@ struct MYP
         z(third)
         {}
 
-    MYP (RGBQUAD ILoveWindowsH):
-        x(ILoveWindowsH.rgbRed),
-        y(ILoveWindowsH.rgbGreen),
-        z(ILoveWindowsH.rgbBlue)
+    MYP (RGBQUAD ILoveMSDN):
+        x(ILoveMSDN.rgbRed),
+        y(ILoveMSDN.rgbGreen),
+        z(ILoveMSDN.rgbBlue)
         {}
     };
 
@@ -119,12 +119,15 @@ POINT SzScr = {0, 0};
 double BufferDefault = 4000;
 const double ZScalingCoeff = 0.0015;
 const double defaultnormal = -5;
-const double MaterialReflective = 15;
+const double MaterialReflective = 25;
 
+bool MakingShadowBuffer = false;
 bool ShowMeZBuffer = false;
 HDC MyScreen = NULL;
 
-RGBQUAD *MyPixels = NULL;
+RGBQUAD *MyPixels     = NULL;
+double  *ShadowBuffer = NULL;
+
 double *ZBuffer = NULL;
 #define MyPix(_x, _y, _z, _r, _g, _b)  int thisPixPos = (int)((_x) + (int)(SzScr.y - _y)*SzScr.x); \
                                                                                                     \
@@ -143,7 +146,7 @@ double *ZBuffer = NULL;
 const int ALLMSX = 4;
 const int ALLMSY = 4;
 
-MYP DefaultLightPos = {0, 0, -2};
+MYP DefaultLightPos = {0, 0, 0.01};
 MYP DefaultLightCol = {255, 255, 255};
 MYP DefaultViewPos  = {0, 0, -5};
 
@@ -162,7 +165,10 @@ double TALZ = 0;
 
 void VEDStart ();
 void VEDLineFigure (Triangle Figure[], int amount);
-void VEDObjFigure  (ObjTriangle Figure[], int TrianglesAmount, RGBQUAD* texture, RGBQUAD* normales, RGBQUAD* specular, MYP texturesize);
+void VEDObjShadowFigure (ObjTriangle Figure[], int TrianglesAmount, RGBQUAD* texture, RGBQUAD* normales, RGBQUAD* specular, MYP texturesize,
+                   MYP lightpos = DefaultLightPos, MYP lightcol = DefaultLightCol, MYP viewpos = DefaultViewPos, MYP viewdir = (MYP){0, 0, 0});
+void VEDObjFigure (ObjTriangle Figure[], int TrianglesAmount, RGBQUAD* texture, RGBQUAD* normales, RGBQUAD* specular, MYP texturesize,
+                   MYP lightpos = DefaultLightPos, MYP lightcol = DefaultLightCol, MYP viewpos = DefaultViewPos, MYP viewdir = (MYP){0, 0, 0});
 int  VEDRotateZ    (double   a);
 int  VEDjVertex    (double   x, double y, double z, double x1, double y1, double z1);
 int  VEDRotateY    (double   a);
@@ -189,14 +195,9 @@ void VED3dTriangle (MYP first, MYP second, MYP third,
                     MYP  col1,   MYP col2,  MYP col3,
                     MYP lightpos = DefaultLightPos, MYP lightcol = DefaultLightCol, MYP viewpos = DefaultViewPos);
 
-//void VED3dObjTriangle (MYP first, MYP second, MYP third,
-//                    MYP  col1,   MYP col2,  MYP col3, RGBQUAD* texture, MYP textsize,
-//                    MYP lightpos = DefaultLightPos, MYP lightcol = {255, 155, 155}, MYP viewpos = {0, 0, -5},
-//                    MYP Normal1 = {defaultnormal, 0, 0}, MYP Normal2 = {defaultnormal, 0, 0}, MYP Normal3 = {defaultnormal, 0, 0});
-
 void VED3dObjTriangle (ObjTriangle givenTriangle,
                        RGBQUAD* texture, RGBQUAD* normales, RGBQUAD* specular, MYP texturesize,
-                       MYP lightpos = DefaultLightPos, MYP lightcol = {255, 155, 155}, MYP viewpos = {0, 0, -5});
+                       MYP lightpos = DefaultLightPos, MYP lightcol = {255, 155, 155}, MYP viewpos = {0, 0, -5}, MYP viewdir = {0, 0, 0});
 
 void VEDFigure     (Triangle Figure[], int TrianglesAmount);
 RGBQUAD* VEDLoadRGBQUADImage (string getName, MYP sizes);
@@ -204,14 +205,20 @@ RGBQUAD* VEDLoadRGBQUADImage (string getName, MYP sizes);
 
 int initSphere (double stepAngle, Triangle Figure[]);
 
-RGBQUAD makeColorWithLight (MYP pos, MYP color, MYP normal, int matspec, MYP viewpos = DefaultViewPos, MYP lightpos = DefaultLightPos, MYP lightcol = DefaultLightCol);
-MYP  makeAllVecDeforms (MYP getVec, bool isper = false, bool istran = true, bool issized = true, bool isrot = true);
+RGBQUAD makeColorWithLight (MYP pos, MYP color, MYP normal, int matspec, double brightness, MYP viewpos = DefaultViewPos, MYP lightpos = DefaultLightPos, MYP lightcol = DefaultLightCol);
+MYP  makeAllVecViewDeforms (MYP cord, MYP viewpos, MYP viewdir);
+MYP  makeAllVecDeforms (MYP getVec, bool isper = false, bool istran = true, bool issized = true, bool isrot = true, bool isdiv = true);
 void makeBufferDefault ();
-void makeAllDeforms (double cord [ALLMSX][ALLMSY], bool isper = false, bool istran = true, bool issized = true, bool isrot = true);
+void makeShadowBufferDefault ();
+void makeAllDeforms (double cord [ALLMSX][ALLMSY], bool isper = false, bool istran = true, bool issized = true, bool isrot = true, bool isdiv = true);
 int  makeObjFigure (ObjTriangle Figure[], string getName);
 int  makemat (ARRSIZ SM, double A[ALLMSX][ALLMSY], double B[ALLMSX][ALLMSY]);
 
 void RotateMatrixY (double GaveMatrix[][ALLMSY], double angle);
+void RotateMatrixX (double GaveMatrix[][ALLMSY], double angle);
+void RotateMatrixZ (double GaveMatrix[][ALLMSY], double angle);
+MYP  RotateVecX (MYP GaveVec, double angle);
+MYP  RotateVecZ (MYP GaveVec, double angle);
 MYP  RotateVecY (MYP GaveVec, double angle);
 
 bool control (double speed = 1);
@@ -231,7 +238,6 @@ void copymatrix (ARRSIZ size, double To[ALLMSX][ALLMSY], double From[ALLMSX][ALL
 int  printmat (ARRSIZ sm, double m[ALLMSX][ALLMSY]);
 void multimat  (ARRSIZ sa, double A[ALLMSX][ALLMSY], ARRSIZ sb, double B[ALLMSX][ALLMSY], ARRSIZ sc, double C[ALLMSX][ALLMSY]);
 
-//double SM [ALLMSX][ALLMSY] = {{1, 0, 0, 0}, {0, 1, 0, 0}, {0, 0, 1, 0}, {0, 0, 0, 1}};
 double TRAN [ALLMSX][ALLMSY] = {{1, 0, 0, 0},
                                 {0, 1, 0, 0},
                                 {0, 0, 1, 0},
@@ -241,8 +247,7 @@ double ALY [ALLMSX][ALLMSY] = {{1, 0, 0, 0}, {0, 1, 0, 0}, {0, 0, 1, 0}, {0, 0, 
 double ALZ [ALLMSX][ALLMSY] = {{1, 0, 0, 0}, {0, 1, 0, 0}, {0, 0, 1, 0}, {0, 0, 0, 1}};
 
 ARRSIZ SCORD = {1, 4};
-                                   //TODO merge all deformation matrix into one,
-                                   //TODO make arrays dynamic
+
 double FPLANE = 5;
 double NPLANE = 4;
 double PERSPECTIVE [ALLMSX][ALLMSY] = {{ctg(50 * 0.01745)/(4/3), 0, 0, 0},
@@ -335,14 +340,16 @@ int VEDTranslate (double x, double y, double z)
 
 void VED3dObjTriangle  (ObjTriangle givenTriangle,
                         RGBQUAD* texture, RGBQUAD* normales, RGBQUAD* specular, MYP texturesize,
-                        MYP lightpos, MYP lightcol, MYP viewpos)
-    {           //TODO use this *@$!@$ parameters
+                        MYP lightpos, MYP lightcol, MYP viewpos, MYP viewdir)
+    {
+    //makeShadowBuffer(lightpos, {0, 0, 0}, viewpos);
+
     lightpos.x = lightpos.x/ZScalingCoeff/lightpos.z;
     lightpos.y = lightpos.y/ZScalingCoeff/lightpos.z;
 
-    MYP first  = makeAllVecDeforms(givenTriangle.cords.f);
-    MYP second = makeAllVecDeforms(givenTriangle.cords.s);
-    MYP third  = makeAllVecDeforms(givenTriangle.cords.t);
+    MYP first  = makeAllVecViewDeforms(givenTriangle.cords.f, viewpos, viewdir);
+    MYP second = makeAllVecViewDeforms(givenTriangle.cords.s, viewpos, viewdir);
+    MYP third  = makeAllVecViewDeforms(givenTriangle.cords.t, viewpos, viewdir);
 
     //printf ("iamhere6\n");
     //getch();
@@ -355,13 +362,6 @@ void VED3dObjTriangle  (ObjTriangle givenTriangle,
         drawVec (third, lightpos - third);
         }
 
-    assert (givenTriangle.textures.f.x >= 0);
-    assert (givenTriangle.textures.f.y >= 0);
-    assert (givenTriangle.textures.s.x >= 0);
-    assert (givenTriangle.textures.s.y >= 0);
-    assert (givenTriangle.textures.t.x >= 0);
-    assert (givenTriangle.textures.t.y >= 0);
-
     VEDObjTriangle ({SzScr.x/2 + first.x, SzScr.y/2 + first.y, first.z},
                     {SzScr.x/2 + second.x, SzScr.y/2 + second.y, second.z},
                     {SzScr.x/2 + third.x, SzScr.y/2 + third.y, third.z},
@@ -371,16 +371,27 @@ void VED3dObjTriangle  (ObjTriangle givenTriangle,
     //getch();
     }
 
+MYP makeAllVecViewDeforms (MYP cord, MYP viewpos, MYP viewdir)
+    {
+    cord = makeAllVecDeforms (cord, false, false, true, true, false);
+    //double oldx = cord.x;
+    //double oldy = cord.y;
+    //double oldz = cord.z;
+    cord = cord - viewpos;
+    cord.x = cord.x/cord.z/ZScalingCoeff;
+    cord.y = cord.y/cord.z/ZScalingCoeff;
+    //cord = RotateVecY(cord, atan(oldx/oldz));
+    //cord = RotateVecX(cord, atan(oldy/oldz));
+    return cord;
+    //MYP cord1 = viewpos - cord;             TODO add view direction
+    //cord1 = cord1/(cord1.length());
+    //MYP viewdirnorm = viewdir/(viewdir.length());
+    //double xang = acos((MYP){cord1
+    }
+
 
 int VEDObjTriangle (MYP first, MYP second, MYP third, MYP ftext, MYP stext, MYP ttext, RGBQUAD* texture, RGBQUAD* normales, RGBQUAD* specular, MYP textsize)
     {
-    //txSettextor (TX_GREEN);
-    //VEDVertex (first, second, false);
-    //txSettextor (RGB(0, 204, 204));
-    //VEDVertex (second, third, false);
-    //txSettextor (TX_WHITE);
-    //VEDVertex (first, third, false);
-
     MYP down;
     MYP mid;
     MYP up;
@@ -388,12 +399,12 @@ int VEDObjTriangle (MYP first, MYP second, MYP third, MYP ftext, MYP stext, MYP 
     MYP mtext;
     MYP utext;
 
-    assert (ftext.x >= 0);
-    assert (ftext.y >= 0);
-    assert (stext.x >= 0);
-    assert (stext.y >= 0);
-    assert (ttext.x >= 0);
-    assert (ttext.y >= 0);
+    //assert (ftext.x >= 0);
+    //assert (ftext.y >= 0);
+    //assert (stext.x >= 0);
+    //assert (stext.y >= 0);
+    //assert (ttext.x >= 0);
+    //assert (ttext.y >= 0);
 
 //--------------------------------------
     if (first.y < second.y)           //
@@ -485,101 +496,75 @@ int VEDObjTriangle (MYP first, MYP second, MYP third, MYP ftext, MYP stext, MYP 
     if (fabs (allheight) < 1) return 0;
 
     double help = sectorheight/allheight;
-
-    //printf ("mid.y == %f, down.y == %f\n", mid.y, down.y);
-    //printf ("sech == %f\n", sectorheight);
-
     txSetColor (TX_WHITE, 1, MyScreen);
-    //txSetFilltextor (RGB(dtext.x, dtext.y, dtext.z), MyScreen);
 
-    //if (GetAsyncKeyState ('C')) txEllipse (down.x - 10, down.y - 10, down.x + 10, down.y + 10, MyScreen);
-
-    //char helpch[16] = {};
-    //sprintf (helpch, "%f", down.z);
-    //txDrawText (down.x - 80, down.y - 50, down.x + 80, down.y - 20, helpch, DT_CENTER, MyScreen);
-
-    //txSetFilltextor (RGB(mtext.x, mtext.y, mtext.z), MyScreen);
-
-    //if (GetAsyncKeyState ('C')) txEllipse (mid.x - 10, mid.y - 10, mid.x + 10, mid.y + 10, MyScreen);
-
-    //sprintf (helpch, "%f", down.z);
-    //txDrawText (mid.x - 80, mid.y - 50, mid.x + 80, mid.y - 20, helpch, DT_CENTER, MyScreen);
-
-    //txSetFilltextor (RGB(utext.x, utext.y, utext.z), MyScreen);
-
-    //if (GetAsyncKeyState ('C')) txEllipse (up.x - 10, up.y - 10, up.x + 10, up.y + 10, MyScreen);
-
-    //sprintf (helpch, "%f", down.z);
-    //txDrawText (up.x - 80, up.y - 50, up.x + 80, up.y - 20, helpch, DT_CENTER, MyScreen);
-
-    //printf ("iamhere7\n");
-    //getch();
-    assert (utext.x >= 0);
-    assert (utext.y >= 0);
-    assert (dtext.x >= 0);
-    assert (dtext.y >= 0);
-    assert (mtext.x >= 0);
-    assert (mtext.y >= 0);
+    //assert (utext.x >= 0);
+    //assert (utext.y >= 0);
+    //assert (dtext.x >= 0);
+    //assert (dtext.y >= 0);
+    //assert (mtext.x >= 0);
+    //assert (mtext.y >= 0);
 
     VEDObjHorTriangle ({help * allhwidth + down.x,
                        down.y + sectorheight + 1,
                        help * (up.z - down.z) + down.z},
-                       mid, down,
+                       mid + (MYP){0, 1, 0}, down,
                       {help * (utext.x - dtext.x) + dtext.x,
                        help * (utext.y - dtext.y) + dtext.y, 0},
                        mtext, dtext, texture, normales, specular, textsize);
 
     VEDObjHorTriangle ({down.x + help * allhwidth,
-                       down.y + sectorheight,
+                       down.y + sectorheight - 1,
                        down.z + help * (up.z - down.z)},
-                       mid, up,
+                       mid - (MYP){0, 1, 0}, up,
                       {help * (utext.x - dtext.x) + dtext.x,
                        help * (utext.y - dtext.y) + dtext.y, 0},
                        mtext, utext, texture, normales, specular, textsize);
-    return 0;                                                               //линейна€ интерпол€ци€
-    }                                                                         //x = x0 + t*(x1-x0)
+    return 0;
+    }
 
 
 int VEDObjHorTriangle(MYP left, MYP right, MYP third, MYP ltext, MYP rtext, MYP ttext, RGBQUAD* texture, RGBQUAD* normales, RGBQUAD* specular, MYP textsize)
     {
     double allheight = third.y - left.y;
-    //printf ("third.y == %f\n left.y == %f", third.y, left.y);
+
     if (fabs (allheight) <= 1)
         {
-        //getch();
         VEDLine (left.x, left.y, left.z, right.x, right.y, right.z, ltext, rtext);
         return 0;
-        //printf ("i've returned");
         }
-    //printf ("allh == %f\n", allheight);
-    //printf ("a\n");
-    //getch();
+
     double signum = allheight/fabs(allheight);
+
     int lbr = (left.x > right.x)? -1:1;
+
     bool exit = true;
+
     double nowheight = 0;
     double leftwidth = third.x - left.x;
     double rightwidth = third.x - right.x;
+
+    //int lrorder = (rtext - ltext)/fabs(rtext-ltext);
+
     double help = 0;
+
     for (double nowy = left.y; exit; nowy += signum)
         {
-        //txSleep(10);
-        nowheight = third.y - nowy;
+        //assert (ltext.x >= 0);
+        //assert (ltext.y >= 0);
+        //assert (ttext.x >= 0);
+        //assert (ttext.y >= 0);
+        //assert (rtext.x >= 0);
+        //assert (rtext.y >= 0);
+
         if (signum > 0 && nowy + signum >= third.y) exit = false;
         if (signum < 0 && nowy + signum <= third.y) exit = false;
-        //printf ("b\n");
-        //getch();
+
+        nowheight = third.y - nowy;
         help = nowheight/allheight;
-        //printf ("iamhere8\n");
-        //getch();
-        assert (ltext.x >= 0);
-        assert (ltext.y >= 0);
-        assert (ttext.x >= 0);
-        assert (ttext.y >= 0);
-        assert (rtext.x >= 0);
-        assert (rtext.y >= 0);
-        VEDObjLine ( left.x + help*leftwidth - 1 * lbr,   left.y + nowheight,  left.z + help*(third.z -  left.z),
-                    right.x + help*rightwidth + 1 * lbr, right.y + nowheight, right.z + help*(third.z - right.z),
+
+        VEDObjLine ( left.x + help*leftwidth  - 2 * lbr,  left.y + nowheight,  left.z + help*(third.z -  left.z),
+                    right.x + help*rightwidth + 2 * lbr, right.y + nowheight, right.z + help*(third.z - right.z),
                    {ltext.x + help*(ttext.x - ltext.x), ltext.y + help*(ttext.y - ltext.y), 0},
                    {rtext.x + help*(ttext.x - rtext.x), rtext.y + help*(ttext.y - rtext.y), 0}, texture, normales, specular, textsize);
         }
@@ -590,16 +575,10 @@ int VEDObjHorTriangle(MYP left, MYP right, MYP third, MYP ltext, MYP rtext, MYP 
 
 int VEDTriangle (MYP first, MYP second, MYP third, MYP fcol, MYP scol, MYP tcol)
     {
-    //txSetColor (TX_GREEN);
-    //VEDVertex (first, second, false);
-    //txSetColor (RGB(0, 204, 204));
-    //VEDVertex (second, third, false);
-    //txSetColor (TX_WHITE);
-    //VEDVertex (first, third, false);
-
     MYP down;
     MYP mid;
     MYP up;
+
     MYP dcol;
     MYP mcol;
     MYP ucol;
@@ -695,31 +674,7 @@ int VEDTriangle (MYP first, MYP second, MYP third, MYP fcol, MYP scol, MYP tcol)
 
     double help = sectorheight/allheight;
 
-    //printf ("mid.y == %f, down.y == %f\n", mid.y, down.y);
-    //printf ("sech == %f\n", sectorheight);
-
     txSetColor (TX_WHITE, 1, MyScreen);
-    //txSetFillColor (RGB(dcol.x, dcol.y, dcol.z), MyScreen);
-
-    //if (GetAsyncKeyState ('C')) txEllipse (down.x - 10, down.y - 10, down.x + 10, down.y + 10, MyScreen);
-
-    //char helpch[16] = {};
-    //sprintf (helpch, "%f", down.z);
-    //txDrawText (down.x - 80, down.y - 50, down.x + 80, down.y - 20, helpch, DT_CENTER, MyScreen);
-
-    //txSetFillColor (RGB(mcol.x, mcol.y, mcol.z), MyScreen);
-
-    //if (GetAsyncKeyState ('C')) txEllipse (mid.x - 10, mid.y - 10, mid.x + 10, mid.y + 10, MyScreen);
-
-    //sprintf (helpch, "%f", down.z);
-    //txDrawText (mid.x - 80, mid.y - 50, mid.x + 80, mid.y - 20, helpch, DT_CENTER, MyScreen);
-
-    //txSetFillColor (RGB(ucol.x, ucol.y, ucol.z), MyScreen);
-
-    //if (GetAsyncKeyState ('C')) txEllipse (up.x - 10, up.y - 10, up.x + 10, up.y + 10, MyScreen);
-
-    //sprintf (helpch, "%f", down.z);
-    //txDrawText (up.x - 80, up.y - 50, up.x + 80, up.y - 20, helpch, DT_CENTER, MyScreen);
 
     VEDHorTriangle ({help * allhwidth + down.x,
                      down.y + sectorheight + 1,
@@ -745,32 +700,32 @@ int VEDTriangle (MYP first, MYP second, MYP third, MYP fcol, MYP scol, MYP tcol)
 int VEDHorTriangle(MYP left, MYP right, MYP third, MYP lcol, MYP rcol, MYP tcol)
     {
     double allheight = third.y - left.y;
-    //printf ("third.y == %f\n left.y == %f", third.y, left.y);
+
     if (fabs (allheight) <= 1)
         {
-        //getch();
         VEDLine (left.x, left.y, left.z, right.x, right.y, right.z, lcol, rcol);
         return 0;
-        //printf ("i've returned");
         }
-    //printf ("allh == %f\n", allheight);
-    //printf ("a\n");
-    //getch();
+
     double signum = allheight/fabs(allheight);
+
     bool exit = true;
+
     double nowheight = 0;
+
     double leftwidth = third.x - left.x;
     double rightwidth = third.x - right.x;
+
     double help = 0;
+
     for (double nowy = left.y; exit; nowy += signum)
         {
-        //txSleep(10);
         nowheight = third.y - nowy;
+        help = nowheight/allheight;
+
         if (signum > 0 && nowy + signum >= third.y) exit = false;
         if (signum < 0 && nowy + signum <= third.y) exit = false;
-        //printf ("b\n");
-        //getch();
-        help = nowheight/allheight;
+
         VEDLine ( left.x + help* leftwidth - 1,  left.y + nowheight,  left.z + help*(third.z -  left.z),
                  right.x + help*rightwidth + 1, right.y + nowheight, right.z + help*(third.z - right.z),
                  {lcol.x + help*(tcol.x - lcol.x), lcol.y + help*(tcol.y - lcol.y), lcol.z + help*(tcol.z - lcol.z)},
@@ -798,19 +753,14 @@ void VED3dTriangle (MYP first, MYP second, MYP third,
                     MYP  col1, MYP   col2, MYP  col3,
                     MYP lightpos, MYP lightcol, MYP viewpos)
     {
-    //viewpos = {0, 0, 0};
-    //viewpos = viewpos; // i hate warnings
     double cord1 [ALLMSX][ALLMSY] = {{first.x, 0, 0, 0}, {first.y, 0, 0, 0}, {first.z, 0, 0, 0}, {1, 0, 0, 0}};
     double cord2 [ALLMSX][ALLMSY] = {{second.x, 0, 0, 0}, {second.y, 0, 0, 0}, {second.z, 0, 0, 0}, {1, 0, 0, 0}};
     double cord3 [ALLMSX][ALLMSY] = {{third.x, 0, 0, 0}, {third.y, 0, 0, 0}, {third.z, 0, 0, 0}, {1, 0, 0, 0}};
 
-    col1 = col1 / 255;//1/255
+    col1 = col1 / 255;
     col2 = col2 / 255;
     col3 = col3 / 255;
     lightcol = lightcol / 255;
-    //MYP environmentcol = {0.2, 0.2, 0.2};
-    //printf ("before1col1 == %f, %f, %f\n", col1.x, col1.y, col1.z);
-    //makeAllVecDeforms (Normal);
 
     MYP VecFS = second - first;
     MYP VecFT = third  - first;
@@ -830,18 +780,6 @@ void VED3dTriangle (MYP first, MYP second, MYP third,
     second = {cord2[0][0], cord2[1][0], cord2[2][0]};
     third  = {cord3[0][0], cord3[1][0], cord3[2][0]};
 
-
-    //if (GetAsyncKeyState ('N'))
-    //    {
-    //    drawVec (first, Normal);
-    //    drawVec (second, Normal);
-    //    drawVec (third, Normal);
-    //    }
-    //MYP Normal2 = VectorMultip (VecFSVecFS * -1, VecST);
-    //MYP Normal3 = VectorMultip (VecST * -1, VecFT * -1);
-    //Normal = Normal / Normal.length();
-    //txLine (SzScr.x/2 + first.x, SzScr.y/2 + first.y, SzScr.x/2 + first.x - Normal.x/ZScalingCoeff/Normal.z * 100, SzScr.y/2 + first.y - Normal.y/ZScalingCoeff/Normal.z * 100, MyScreen);
-    //txLine (SzScr.x/2 + first.x, SzScr.y/2 + first.y, SzScr.x/2 + first.x + Normal.x/ZScalingCoeff/Normal.z * 100, SzScr.y/2 + first.y + Normal.y/ZScalingCoeff/Normal.z * 100, MyScreen);
     if (GetAsyncKeyState('M'))
         {
         txSetColor (TX_YELLOW, 10, MyScreen);
@@ -849,11 +787,6 @@ void VED3dTriangle (MYP first, MYP second, MYP third,
         drawVec (second, lightpos - second);
         drawVec (third, lightpos - third);
         }
-        //txLine (SzScr.x/2 + lightpos.x/ZScalingCoeff/lightpos.z, SzScr.y/2 + lightpos.y/ZScalingCoeff/lightpos.z, SzScr.x/2, SzScr.y/2, MyScreen);
-
-    //MYP View1Dir = viewpos - first;
-    //MYP View2Dir = viewpos - second;
-    //MYP View3Dir = viewpos - third;
 
     MYP Light1Dir = first - lightpos;
     MYP Light2Dir = second - lightpos;
@@ -862,21 +795,10 @@ void VED3dTriangle (MYP first, MYP second, MYP third,
     MYP View1Dir = first - viewpos;
     MYP View2Dir = second - viewpos;
     MYP View3Dir = third - viewpos;
-    //if (acos(Normal2^Light1Dir) > PI/2) Normal2 = Normal2 * -1;
-    //if (acos(Normal3^Light1Dir) > PI/2) Normal3 = Normal3 * -1;
-
-    //assert (fabs (Normal2.x - Normal.x) < 0.00015 && fabs (Normal3.x - Normal.x) < 0.00015);
-    //assert (fabs (Normal2.z - Normal.z) < 0.00015 && fabs (Normal3.z - Normal.z) < 0.00015);
-    //assert (fabs (Normal2.y - Normal.y) < 0.00015 && fabs (Normal3.y - Normal.y) < 0.00015);
 
     MYP Light1DirRef = Normal * 2 * (Light1Dir * Normal) - Light1Dir;
     MYP Light2DirRef = Normal * 2 * (Light2Dir * Normal) - Light2Dir;
     MYP Light3DirRef = Normal * 2 * (Light3Dir * Normal) - Light3Dir;
-
-    //if (GetAsyncKeyState ('T'))
-    //    {
-    //    Light1DirRef += rand()%100/8000;
-    //    }
 
     double Spec1 = Light1DirRef^View1Dir;
     double Spec2 = Light2DirRef^View2Dir;
@@ -885,12 +807,10 @@ void VED3dTriangle (MYP first, MYP second, MYP third,
     if (Spec1 < 0) Spec1 = 0;
     if (Spec2 < 0) Spec2 = 0;
     if (Spec3 < 0) Spec3 = 0;
-    //printf ("cos (LightDirRef^ViewDir) == %f\n", Spec1);
+
     double MatSpec1 = pow (Spec1, MaterialReflective);
     double MatSpec2 = pow (Spec2, MaterialReflective);
     double MatSpec3 = pow (Spec3, MaterialReflective);
-
-    //double BrightnessMultiplier = 1;
 
     double diffuse1 = Normal^(Light1Dir);
     double diffuse2 = Normal^(Light2Dir);
@@ -900,12 +820,10 @@ void VED3dTriangle (MYP first, MYP second, MYP third,
     if (diffuse2 < 0) diffuse2 = 0;
     if (diffuse3 < 0) diffuse3 = 0;
 
-    col1 = /*(environmentcol % col1) + */col1 % lightcol * diffuse1 + lightcol * MatSpec1; //*/
-    col2 = /*(environmentcol % col2) + */col2 % lightcol * diffuse2 + lightcol * MatSpec2; //*/
-    col3 = /*(environmentcol % col3) + */col3 % lightcol * diffuse3 + lightcol * MatSpec3; //*/
+    col1 = /*(environmentcol % col1) + */col1 % lightcol * diffuse1;/* + lightcol * MatSpec1; //*/
+    col2 = /*(environmentcol % col2) + */col2 % lightcol * diffuse2;/* + lightcol * MatSpec2; //*/
+    col3 = /*(environmentcol % col3) + */col3 % lightcol * diffuse3;/* + lightcol * MatSpec3; //*/
 
-    //printf ("after  col1 == %f, %f, %f\n", col1.x, col1.y, col1.z);
-    //getch();
     col1 = col1 *  255;
     col2 = col2 *  255;
     col3 = col3 *  255;
@@ -927,10 +845,10 @@ void VED3dTriangle (MYP first, MYP second, MYP third,
                  {SzScr.x/2 + cord3[0][0], SzScr.y/2 + cord3[1][0], cord3[2][0]}, col1, col2, col3);
     }
 
-MYP makeAllVecDeforms (MYP getVec, bool isper, bool istran, bool issized, bool isrot)
+MYP makeAllVecDeforms (MYP getVec, bool isper, bool istran, bool issized, bool isrot, bool isdiv)
     {
     double getVecMat[ALLMSX][ALLMSY] = {{getVec.x, 0, 0, 0}, {getVec.y, 0, 0, 0}, {getVec.z, 0, 0, 0}, {1, 0, 0, 0}};
-    makeAllDeforms (getVecMat, isper, istran, issized, isrot);
+    makeAllDeforms (getVecMat, isper, istran, issized, isrot, isdiv);
     getVec.x = getVecMat[0][0];
     getVec.y = getVecMat[1][0];
     getVec.z = getVecMat[2][0];
@@ -939,7 +857,7 @@ MYP makeAllVecDeforms (MYP getVec, bool isper, bool istran, bool issized, bool i
 
 
 
-void makeAllDeforms (double cord[ALLMSX][ALLMSY], bool isper, bool istran, bool issized, bool isrot)
+void makeAllDeforms (double cord[ALLMSX][ALLMSY], bool isper, bool istran, bool issized, bool isrot, bool isdiv)
     {
     if (issized) multimat (SAL, DEFORMATION, SCORD, cord, SCORD, cord);
 
@@ -959,9 +877,12 @@ void makeAllDeforms (double cord[ALLMSX][ALLMSY], bool isper, bool istran, bool 
 
     if (isper)  multimat (STRAN, PERSPECTIVE, SCORD, cord, SCORD, cord);
 
-    if (fabs(cord[2][0]) <= 0.0015) cord[2][0] = ZScalingCoeff;
-    cord[0][0] = cord[0][0]/ZScalingCoeff/cord[2][0];
-    cord[1][0] = cord[1][0]/ZScalingCoeff/cord[2][0];
+    if (isdiv)
+        {
+        if (fabs(cord[2][0]) <= 0.0015) cord[2][0] = ZScalingCoeff;
+        cord[0][0] = cord[0][0]/ZScalingCoeff/cord[2][0];
+        cord[1][0] = cord[1][0]/ZScalingCoeff/cord[2][0];
+        }
     }
 
 
@@ -985,17 +906,18 @@ int VEDObjLine (int x1, int y1, double z1, int x2, int y2, double z2, MYP text1,
         }
 
     double help = 0;
-    for (int xn = (int)x1; xn < (int)(x2 - 0.5); xn++)
+    for (int xn = (int)x1; xn < (int)(x2 + 1.5); xn++)
         {
         help = (double)(xn - x1)/(double)(x2 - x1);   //
-        assert (help >= 0 && help <= 1);
-        assert (text2.x >= 0);
-        assert (text2.y >= 0);
-        assert (text1.x >= 0);
-        assert (text1.y >= 0);
+        //assert (help >= 0 && help <= 1);
+        //assert (text2.x >= 0);
+        //assert (text2.y >= 0);
+        //assert (text1.x >= 0);
+        //assert (text1.y >= 0);
         if (swapped)
             {                       //
-            VEDObjPix ((int)(y1 + help * (y2 - y1)), (int)xn, (int)((help*(z2 - z1) + z1)*10),
+            VEDObjPix ((int)(y1 + help * (y2 - y1)), (int)xn,
+                       (int)((help * (z2 - z1) + z1)),
                        (int)((help * (text2.x - text1.x) + text1.x) * (texturesize.x - 1)),
                        (int)((help * (text2.y - text1.y) + text1.y) * (texturesize.y - 1)), texture, normales, specular, (int)texturesize.x, (int)texturesize.y);
             //(int x, int y, int z, int textx, int texty, RGBQUAD* texture, RGBQUAD* normales, RGBQUAD* specular, int textsizex, int textsizey, MYP viewpos, MYP lightpos)
@@ -1004,8 +926,8 @@ int VEDObjLine (int x1, int y1, double z1, int x2, int y2, double z2, MYP text1,
         else
             {
             VEDObjPix ((int)xn, (int)(y1 + help * (y2 - y1)), (int)((help*(z2 - z1) + z1)*10),
-                       (int)((help * (text2.x - text1.x) + text1.x) * (texturesize.x - 1)),
-                       (int)((help * (text2.y - text1.y) + text1.y) * (texturesize.y - 1)), texture, normales, specular, (int)texturesize.x, (int)texturesize.y);
+                       (int)((help * (double)(text2.x - text1.x) + text1.x) * (texturesize.x - 1)),
+                       (int)((help * (double)(text2.y - text1.y) + text1.y) * (texturesize.y - 1)), texture, normales, specular, (int)texturesize.x, (int)texturesize.y);
             }
         }
     return 0;
@@ -1014,14 +936,6 @@ int VEDObjLine (int x1, int y1, double z1, int x2, int y2, double z2, MYP text1,
 
 int VEDLine (double x1, double y1, double z1, double x2, double y2, double z2, MYP col1, MYP col2)
     {
-    //printf ("%f, %f, %f, %f\n", x2, y2, x1, y1);
-    //txSetFillColor (RGB (col1.x, col1.y, col1.z));
-    //txSetColor (RGB (col1.x, col1.y, col1.z));
-    //txCircle (x1, y1, 10);
-    //txSetFillColor (RGB (col2.x, col2.y, col2.z));
-    //txSetColor (RGB (col2.x, col2.y, col2.z));
-    //txCircle (x2, y2, 10);
-    //getch();
     if (x1 > x2)
         {
         swap (&x1, &x2);
@@ -1029,17 +943,6 @@ int VEDLine (double x1, double y1, double z1, double x2, double y2, double z2, M
         swap (&y1, &y2);
         swap (&z1, &z2);
         }
-
-    //assert (x1 >= 0);
-    //assert (x1 <= SzScr.x);
-    //assert (y1 >= 0);
-    //assert (y1 <= SzScr.y);
-
-    //assert (x2 >= 0);
-    //assert (x2 <= SzScr.x);
-    //assert (y2 >= 0);
-    //assert (y2 <= SzScr.y);
-
 
     if (fabs(x2 - x1) < 1 && fabs (y2 - y1) < 1) return 0;
     bool swapped = false;
@@ -1263,7 +1166,7 @@ int initSphere (double stepAngle, Triangle Figure[])
                                 rotatedPoints[latitude +      longitude * pointsnum]};
 
 
-            assert (turnover + 1 < pointsnum * pointsnum * pointsnum);
+            //assert (turnover + 1 < pointsnum * pointsnum * pointsnum);
             Figure[turnover + 1] = {rotatedPoints[latitude + 1 + (longitude + 1) * pointsnum],
                                     rotatedPoints[latitude     +  longitude      * pointsnum],
                                     rotatedPoints[latitude     + (longitude + 1) * pointsnum]};
@@ -1288,6 +1191,40 @@ MYP RotateVecY (MYP GaveVec, double angle)
     return GaveVec;
     }
 
+MYP RotateVecX (MYP GaveVec, double angle)
+    {
+    double VecMatrix[ALLMSX][ALLMSY] = {{GaveVec.x, 0, 0, 0},
+                                        {GaveVec.y, 0, 0, 0},
+                                        {GaveVec.z, 0, 0, 0},
+                                        {1, 0, 0, 0}};
+    RotateMatrixX (VecMatrix, angle);
+    GaveVec = {VecMatrix[0][0], VecMatrix[1][0], VecMatrix[2][0]};
+    return GaveVec;
+    }
+
+MYP RotateVecZ (MYP GaveVec, double angle)
+    {
+    double VecMatrix[ALLMSX][ALLMSY] = {{GaveVec.x, 0, 0, 0},
+                                        {GaveVec.y, 0, 0, 0},
+                                        {GaveVec.z, 0, 0, 0},
+                                        {1, 0, 0, 0}};
+    RotateMatrixZ (VecMatrix, angle);
+    GaveVec = {VecMatrix[0][0], VecMatrix[1][0], VecMatrix[2][0]};
+    return GaveVec;
+    }
+
+void RotateMatrixX (double GaveMatrix[][ALLMSY], double angle)
+    {
+    double RotationYMatrix[ALLMSX][ALLMSY] = {};
+
+    RotationYMatrix[0][0] = 1;
+    RotationYMatrix[2][1] = sin(angle);
+    RotationYMatrix[1][2] =-sin(angle);
+    RotationYMatrix[1][1] = cos(angle);
+    RotationYMatrix[2][2] = cos(angle);
+    multimat (SAL, RotationYMatrix, SAL, GaveMatrix, SAL, GaveMatrix);
+    }
+
 void RotateMatrixY (double GaveMatrix[][ALLMSY], double angle)
     {
     double RotationYMatrix[ALLMSX][ALLMSY] = {};
@@ -1301,6 +1238,20 @@ void RotateMatrixY (double GaveMatrix[][ALLMSY], double angle)
     }
 
 
+void RotateMatrixZ (double GaveMatrix[][ALLMSY], double angle)
+    {
+    double RotationYMatrix[ALLMSX][ALLMSY] = {};
+
+    RotationYMatrix[0][0] = cos(angle);
+    RotationYMatrix[1][0] = sin(angle);
+    RotationYMatrix[2][2] = 1;
+    RotationYMatrix[0][1] =-sin(angle);
+    RotationYMatrix[1][1] = cos(angle);
+    multimat (SAL, RotationYMatrix, SAL, GaveMatrix, SAL, GaveMatrix);
+    }
+
+
+
 void VEDFigure (Triangle Figure[], int TrianglesAmount)
     {
     for (int i = 0; i < TrianglesAmount; i++)
@@ -1311,18 +1262,31 @@ void VEDFigure (Triangle Figure[], int TrianglesAmount)
     }
 
 
-void VEDObjFigure (ObjTriangle Figure[], int TrianglesAmount, RGBQUAD* texture, RGBQUAD* normales, RGBQUAD* specular, MYP texturesize)
+void VEDObjFigure (ObjTriangle Figure[], int TrianglesAmount, RGBQUAD* texture, RGBQUAD* normales, RGBQUAD* specular, MYP texturesize, MYP lightpos, MYP lightcol, MYP viewpos, MYP viewdir)
     {
-    for (int i = 0; i < TrianglesAmount; i++)
+    makeShadowBufferDefault();
+    MakingShadowBuffer = true;
+    VEDObjShadowFigure (Figure, TrianglesAmount, texture, normales, specular, texturesize, lightpos, lightcol, lightpos * -1, viewdir);
+    makeBufferDefault();
+    MakingShadowBuffer = false;
+    if (GetAsyncKeyState ('Y'))
         {
-        VED3dObjTriangle (Figure[i], texture, normales, specular, texturesize);
-        //printf ("iamhere5\n");
-        //getch();
-        //printf ("a\n");
+        VEDObjShadowFigure (Figure, TrianglesAmount, texture, normales, specular, texturesize, lightpos, lightcol, lightpos * -1, viewdir);
+        }
+    else
+        {
+        VEDObjShadowFigure (Figure, TrianglesAmount, texture, normales, specular, texturesize, lightpos, lightcol, viewpos, viewdir);
         }
     }
 
 
+void VEDObjShadowFigure (ObjTriangle Figure[], int TrianglesAmount, RGBQUAD* texture, RGBQUAD* normales, RGBQUAD* specular, MYP texturesize, MYP lightpos, MYP lightcol, MYP viewpos, MYP viewdir)
+    {
+    for (int i = 0; i < TrianglesAmount; i++)
+        {
+        VED3dObjTriangle (Figure[i], texture, normales, specular, texturesize, lightpos, lightcol, viewpos, viewdir);
+        }
+    }
 
 int makemat (ARRSIZ SM, double A[ALLMSX][ALLMSY], double B[ALLMSX][ALLMSY])
     {
@@ -1382,11 +1346,21 @@ void copymatrix (ARRSIZ size, double To[ALLMSX][ALLMSY], double From[ALLMSX][ALL
         }
     }
 
+void makeShadowBufferDefault()
+    {
+    for (int i = 0; i < SzScr.x * SzScr.y; i++)
+        {
+        //ShadowBuffer[i] = BufferDefault;
+        ShadowBuffer[i] = 0;
+        }
+    }
+
 void makeBufferDefault ()
     {
     for (int i = 0; i < SzScr.x * SzScr.y; i++)
         {
         ZBuffer[i] = BufferDefault;
+        //ShadowBuffer[i] = 0;
         }
     }
 
@@ -1400,25 +1374,25 @@ MYP VectorMultip (MYP a, MYP b)
 void drawVec (MYP start, MYP vec, COLORREF color, COLORREF pointcolor, int width, int pointrad)
     {
     txSetColor (color, width);
-    txLine (SzScr.x/2 + start.x, SzScr.y/2 + start.y,
-            SzScr.x/2 + start.x + vec.x,
-            SzScr.y/2 + start.y + vec.y, MyScreen);
+    txLine (start.x, start.y,
+            start.x + vec.x,
+            start.y + vec.y, MyScreen);
 
     txSetColor (pointcolor, 1);
     txSetFillColor (pointcolor);
-    txEllipse (SzScr.x/2 + start.x + vec.x + pointrad,
-               SzScr.y/2 + start.y + vec.y + pointrad,
-               SzScr.x/2 + start.x + vec.x - pointrad,
-               SzScr.y/2 + start.y + vec.y - pointrad, MyScreen);
+    txEllipse (start.x + vec.x + pointrad,
+               start.y + vec.y + pointrad,
+               start.x + vec.x - pointrad,
+               start.y + vec.y - pointrad, MyScreen);
     }
 
 bool control (double speed)
     {
     bool returning = false;
-    static POINT OldMousePos = txMousePos();
+    static POINT OldMousePos = {0, 0};
     POINT NewMousePos = txMousePos();
-    if (NewMousePos.x != OldMousePos.x)
-        {
+    //if (NewMousePos.x != OldMousePos.x)
+    //    {
         if (GetAsyncKeyState (VK_LBUTTON))
             {
             VEDRotateY (0.036 * speed * (OldMousePos.x - NewMousePos.x));
@@ -1429,10 +1403,10 @@ bool control (double speed)
             OldMousePos.x = txMousePos().x;
             }
         returning = true;
-        }
+    //    }
 
-    if (NewMousePos.y != OldMousePos.y)
-        {
+    //if (NewMousePos.y != OldMousePos.y)
+    //    {
         if (GetAsyncKeyState (VK_LBUTTON))
             {
             VEDRotateX (0.036 * speed * (NewMousePos.y - OldMousePos.y));
@@ -1443,7 +1417,9 @@ bool control (double speed)
             OldMousePos.y = txMousePos().y;
             }
         returning = true;
-        }
+    //    }
+
+    OldMousePos = NewMousePos;
 
     if (GetAsyncKeyState ('Z'))
         {
@@ -1530,25 +1506,25 @@ bool control (double speed)
 
     if (GetAsyncKeyState ('L'))
         {
-        DefaultLightPos.x -= 0.05 * speed;
+        DefaultLightPos.x -= 0.5 * speed;
         returning = true;
         }
 
     if (GetAsyncKeyState ('J'))
         {
-        DefaultLightPos.x += 0.05 * speed;
+        DefaultLightPos.x += 0.5 * speed;
         returning = true;
         }
 
     if (GetAsyncKeyState ('I'))
         {
-        DefaultLightPos.y += 0.05 * speed;
+        DefaultLightPos.y += 0.5 * speed;
         returning = true;
         }
 
     if (GetAsyncKeyState ('K'))
         {
-        DefaultLightPos.y -= 0.05 * speed;
+        DefaultLightPos.y -= 0.5 * speed;
         returning = true;
         }
 
@@ -1584,11 +1560,13 @@ bool control (double speed)
 int makeObjFigure (ObjTriangle Figure[], string getName)
     {
     FILE *model;
+
     if ((model = fopen (getName.c_str(), "r")) == NULL)
         {
         printf ("Cannot open obj");
         exit(1);
         }
+
     double ScX = 0;
     double ScY = 0;
     double ScZ = 0;
@@ -1605,10 +1583,6 @@ int makeObjFigure (ObjTriangle Figure[], string getName)
     MYP *getPoints = new MYP[10000];
     MYP *getTextures = new MYP[10000];
     MYP *getNormals = new MYP[10000];
-
-
-    //int help = 0;
-    //int counter = 0;
 
     int pointsturnover = 0;
     int texturesturnover = 0;
@@ -1627,81 +1601,69 @@ int makeObjFigure (ObjTriangle Figure[], string getName)
     int ttt = 0;
 
     int figurecounter = 0;
-    //int lastspacepos = 0;
-
 
     while (!feof(model))
         {
         fscanf (model, "%[^\n]\n", allline);
         if (allline[0] != 0 && allline[0] != '#')
             {
-            if (allline[0] == 'v' && allline[0] == 't')
+            sscanf (allline, "%s %s %s %s", getType, partone, parttwo, partthree);
+            //printf ("%s %s %s %s\n", getType, partone, parttwo, partthree);
+            if (getType[0] == 'v')
                 {
-                sscanf (allline, "%s %s %s", getType, partone, parttwo);
-
+                //getch();
                 ScX = atof (partone);
                 ScY = atof (parttwo);
+                ScZ = atof (partthree);
 
-                getTextures[texturesturnover].x = ScX;
-                getTextures[texturesturnover].y = ScY;
-                texturesturnover++;
-                }
-            else
-                {
-                sscanf (allline, "%s %s %s %s", getType, partone, parttwo, partthree);
-                //printf ("%s %s %s %s\n", getType, partone, parttwo, partthree);
-                if (getType[0] == 'v')
+                if (getType[1] == 0)
                     {
-                    //getch();
-                    ScX = atof (partone);
-                    ScY = atof (parttwo);
-                    ScZ = atof (partthree);
-
-                    if (getType[1] == 0)
+                    getPoints[pointsturnover].x = ScX;
+                    getPoints[pointsturnover].y = -ScY;
+                    getPoints[pointsturnover].z = -ScZ;
+                    pointsturnover++;
+                    }
+                else
+                    {
+                    if (getType[1] == 'n')
                         {
-                        getPoints[pointsturnover].x = ScX;
-                        getPoints[pointsturnover].y = -ScY;
-                        getPoints[pointsturnover].z = -ScZ;
-                        pointsturnover++;
+                        getNormals[normalsturnover].x = ScX;
+                        getNormals[normalsturnover].y = ScY;
+                        getNormals[normalsturnover].z = ScZ;
+                        normalsturnover++;
                         }
                     else
+                    if (getType[1] == 't')
                         {
-                        if (getType[1] == 'n')
-                            {
-                            getNormals[normalsturnover].x = ScX;
-                            getNormals[normalsturnover].y = ScY;
-                            getNormals[normalsturnover].z = ScZ;
-                            normalsturnover++;
-                            }
-                        else
-                        if (getType[1] == 't')
-                            {
-                            getTextures[texturesturnover].x = ScX;
-                            getTextures[texturesturnover].y = ScY;
-                            getTextures[texturesturnover].z = ScZ;
-                            texturesturnover++;
-                            }
+                        getTextures[texturesturnover].x = ScX;
+                        getTextures[texturesturnover].y = ScY;
+                        getTextures[texturesturnover].z = ScZ;
+                        texturesturnover++;
                         }
                     }
-                if (getType[0] == 'f')
-                    {
-                    sscanf (partone, "%d/%d/%d", &fft, &sft, &tft);
-                    sscanf (parttwo, "%d/%d/%d", &fst, &sst, &tst);
-                    sscanf (partthree, "%d/%d/%d", &ftt, &stt, &ttt);
-
-                    Figure[figurecounter].cords = {getPoints[fft - 1], getPoints[fst - 1], getPoints[ftt - 1]};
-
-                    Figure[figurecounter].textures = {getTextures[sft - 1], getTextures[sst - 1], getTextures[stt - 1]};
-
-                    Figure[figurecounter].normales = {getNormals[tft - 1], getNormals[tst - 1], getNormals[ttt - 1]};
-                    figurecounter++;
-                    }                         //*/
                 }
+            if (getType[0] == 'f')
+                {
+                sscanf (partone, "%d/%d/%d", &fft, &sft, &tft);
+                sscanf (parttwo, "%d/%d/%d", &fst, &sst, &tst);
+                sscanf (partthree, "%d/%d/%d", &ftt, &stt, &ttt);
+
+                Figure[figurecounter].cords = {getPoints[fft - 1], getPoints[fst - 1], getPoints[ftt - 1]};
+
+                Figure[figurecounter].textures = {getTextures[sft - 1], getTextures[sst - 1], getTextures[stt - 1]};
+
+                Figure[figurecounter].normales = {getNormals[tft - 1], getNormals[tst - 1], getNormals[ttt - 1]};
+                figurecounter++;
+                }                         //*/
             }
         }
-    printf ("this is the end... i shall return %d, while pturnover == %d\n", figurecounter, pointsturnover);
+    printf ("this is the end... there are %d triangles contained of %d points\n", figurecounter, pointsturnover);
     getch();
-    //delete [] getPoints;
+
+    delete [] getPoints;
+    delete [] getTextures;
+    delete [] getNormals;
+
     return figurecounter;
     }   //*/
 
@@ -1736,8 +1698,12 @@ RGBQUAD* VEDLoadRGBQUADImage (string getName, MYP sizes)
 
     txClearConsole();
     txSetFillColor(TX_BLACK);
-
+    //RGBQUAD *helpret = returning;
+    //helpret = returning;
+    txDeleteDC(helpDC);
+    //txDeleteDC(retDC);
     txClear();
+
     return returning;
     }
 
@@ -1764,16 +1730,20 @@ void VEDStart ()
 
     ZBuffer = new double[(SzScr.x + 1) * (SzScr.y + 1)];
 
+    ShadowBuffer = new double[(SzScr.x + 1) * (SzScr.y + 1)];
+
     makeBufferDefault();
+    //makeShadowBufferDefault();
 
     txCreateWindow (SzScr.x, SzScr.y);
 
     MyScreen = txCreateDIBSection(SzScr.x, SzScr.y, &MyPixels);
     }
 
-int VEDObjPix(int x, int y, int z, int textx, int texty, RGBQUAD* texture, RGBQUAD* normales, RGBQUAD* specular, int textsizex, int textsizey, MYP viewpos, MYP lightpos, MYP lightcol)
+int VEDObjPix(int x, int y, int z, int textx, int texty, RGBQUAD* texture, RGBQUAD* normales, RGBQUAD* specular,
+              int textsizex, int textsizey, MYP viewpos, MYP lightpos, MYP lightcol)
     {
-    int thisPixPos = (int)((x) + (int)(SzScr.y - y)*SzScr.x);
+    int thisPixPos = (int)((x) + (SzScr.y - y)*SzScr.x);
 
 
     if (thisPixPos > SzScr.x * SzScr.y || thisPixPos < 0) return 0;
@@ -1781,48 +1751,51 @@ int VEDObjPix(int x, int y, int z, int textx, int texty, RGBQUAD* texture, RGBQU
     //printf ("iamheree1\n");
     //getch();
 
-    if (z <= ZBuffer[thisPixPos] || fabs (ZBuffer[thisPixPos] - z) < 0.01)
+    if (z <= ZBuffer[thisPixPos] || fabs (ZBuffer[thisPixPos] - z) < 0.015)
         {
-        if (ShowMeZBuffer) MyPixels[thisPixPos] = RGBQUAD {(BYTE)(z/2), (BYTE)(z/2), (BYTE)(z/2)};
+        int textpos = (int)(textx + texty * textsizex);
+        if (MakingShadowBuffer)
+            {
+            double thisbright = 500000.0/(double)(z)/(double)(z);
+            ShadowBuffer[textpos] = thisbright;
+            ShadowBuffer[textpos + 1] = thisbright;
+            ShadowBuffer[textpos - 1] = thisbright;
+            ShadowBuffer[textpos + textsizex] = thisbright;
+            ShadowBuffer[textpos - textsizex] = thisbright;
+            ShadowBuffer[textpos - textsizex + 1] = thisbright;
+            ShadowBuffer[textpos - textsizex - 1] = thisbright;
+            ShadowBuffer[textpos + textsizex - 1] = thisbright;
+            ShadowBuffer[textpos + textsizex + 1] = thisbright;
+            ZBuffer[thisPixPos] = z + 143;
+            }
         else
             {
             RGBQUAD needcol;
 
-            int textpos = (int)(textx + texty * textsizex);
-            assert (textpos >= 0);
             if (texty >= 1024) return 0;
-            //assert (textpos < 1024 * 1024);
-            //printf ("<%d == textx(%d) + texty(%d) * textsizex(%d)>\n of this norm == {%d, %d, %d}\n", textpos, textx, texty, textsizex, normales[textpos].rgbRed, normales[textpos].rgbGreen, normales[textpos].rgbBlue);
             RGBQUAD textcol = texture[textpos];
-            //printf ("iamheree3\n");
-            //getch();           //TODO hier hereee
             needcol = makeColorWithLight ({(double)x, (double)y, (double)z},
-                                          {(double)textcol.rgbRed, (double)textcol.rgbGreen, (double)textcol.rgbBlue},
-                                          {(double)normales[textpos].rgbRed, (double)normales[textpos].rgbGreen, normales[textpos].rgbBlue},
-                                          (double)(specular[textpos].rgbRed), viewpos, lightpos, lightcol); //!!!!!!!TODO why 255 - ?!!!!!!!!!!!!!!!!!!!!!!
-
-            //printf ("iamheree2\n");
-            //getch();
-
+                                          {(double)textcol.rgbRed - 1, (double)textcol.rgbGreen - 1, (double)textcol.rgbBlue - 1},
+                                          {(double)normales[textpos].rgbRed - 128, (double)normales[textpos].rgbGreen - 128, normales[textpos].rgbBlue - 128},
+                                          (double)(specular[textpos].rgbRed - 1), ShadowBuffer[textpos], viewpos, lightpos, lightcol);
+            //printf ("%d\n", z);
             MyPixels[thisPixPos] = needcol;
-            //if (x < SzScr.x - 1 && textx < textsizex + 1) plusassig (&MyPixels[thisPixPos + 1], texture[(int)(textx + texty * textsizex + 1)], 0.154);
-
-            //if (x >= 1 && textx >= 1) plusassig (&MyPixels[thisPixPos - 1], texture[(int)(textx + texty * textsizex - 1)], 0.154);
-
-            //if (y < SzScr.y - 1 && texty < textsizey + 1) plusassig (&MyPixels[thisPixPos + SzScr.x], texture[(int)(textx + (texty + 1) * textsizex)], 0.154);
-
-            //if (y >= 1 && texty >= 1) plusassig (&MyPixels[thisPixPos - SzScr.x], texture[(int)(textx + (texty - 1) * textsizex)], 0.154);
+            ZBuffer[thisPixPos] = z;
             }
-        ZBuffer[thisPixPos] = z;
+        if (ShowMeZBuffer) MyPixels[thisPixPos] = RGBQUAD {(BYTE)(z/2), (BYTE)(z/2), (BYTE)(z/2)};
         }
     return 1;
     }
 
-RGBQUAD makeColorWithLight (MYP pos, MYP color, MYP normal, int matspec, MYP viewpos, MYP lightpos, MYP lightcol)
+RGBQUAD makeColorWithLight (MYP pos, MYP color, MYP normal, int matspec, double brightness, MYP viewpos, MYP lightpos, MYP lightcol)
     {
     color = color/255;
     lightcol = lightcol/255;
 
+    //printf ("%f %f %f\n", normal);
+
+    normal = makeAllVecDeforms (normal, false, false, false, true, false);
+                    ///
     if (fabs (normal.length()) < 0.001)
         {
         printf ("ZeroNormal");
@@ -1835,6 +1808,8 @@ RGBQUAD makeColorWithLight (MYP pos, MYP color, MYP normal, int matspec, MYP vie
         normal = normal/normal.length();
         }
 
+
+
     if (fabs (lightpos.z) < 0.0015)
         {
         printf ("ZeroLightZ");
@@ -1846,17 +1821,31 @@ RGBQUAD makeColorWithLight (MYP pos, MYP color, MYP normal, int matspec, MYP vie
     lightpos.y = lightpos.y/ZScalingCoeff/lightpos.z;
 
     MYP lightdir = pos - lightpos;
-    MYP viewdir = pos - lightpos;
+    MYP viewdir = pos - viewpos;
 
     MYP lightdirref = normal * 2 * (lightdir * normal) - lightdir;
 
     double glare = lightdirref^viewdir;
-    double matglare = pow (glare, matspec + 10); //слишком сильно бликует
+    if (glare < 0) glare = 0;
+    //printf ("glare == %f\n", glare);
+    //assert (matspec != 0);
+    double matglare = pow (glare, matspec + 1);
+    //printf ("%d\n", matspec);
+
+
 
     double illum = normal^lightdir;
     if (illum < 0) illum = 0;
 
-    color = color % lightcol * illum + lightcol * matglare;
+    if (matglare < 0) matglare = 0;
+
+    //printf ("%f\n", brightness);
+
+    color = (color % (MYP){0.15, 0.15, 0.15} +
+             color % lightcol * illum % (MYP){0.6, 0.6, 0.6} +
+             lightcol * matglare      % (MYP){0.14, 0.14, 0.14}) * (0.4 + brightness * 0.85) * 1.2; //*/
+    //color = {brightness/2, brightness/2, brightness/2};
+
     color = color * 255;
 
     if (color.x > 254) color.x = 254;
@@ -1868,6 +1857,12 @@ RGBQUAD makeColorWithLight (MYP pos, MYP color, MYP normal, int matspec, MYP vie
     if (color.z < 0) color.z = 0;
 
     return {(BYTE)color.z, (BYTE)color.y, (BYTE)color.x};
+    }
+
+void VEDFinish()
+    {
+
+    txDeleteDC(MyScreen);
     }
 
 

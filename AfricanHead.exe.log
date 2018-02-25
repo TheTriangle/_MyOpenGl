@@ -12226,3 +12226,1917 @@ Run file:	D:\Документыы\GitHub\MyFiles\_MyOpenGl\AfricanHead.exe
 Directory:	D:\Документыы\GitHub\MyFiles\_MyOpenGl
 
 --------------------------------------------------
+
+--------------------------------------------------
+TXLib предупреждает:
+
+Программа: D:\Документыы\GitHub\MyFiles\_MyOpenGl\AfricanHead.exe,
+
+ВНЕЗАПНО: Нарушение доступа к памяти.
+
+#1: Исключение EXCEPTION_ACCESS_VIOLATION (0xC0000005) при выполнении кода по адресу 0x00426312 в функции VEDObjPix(). Попытка прочесть данные по адресу 0x05974A04. Спасибо _txVectoredExceptionHandler(), что сообщил. Люблю его <3
+
+#1: TXLib [Ver: 00173a, Rev: 105], Instance: 0x00501340 (32-bit), Flags: CMdrE0, Thread: 0x111C (Main), GetLastError(): 87 (Параметр задан неверно). 
+
+--------------------------------------------------
+Стек вызовов:
+
+# 0 0x00426312 in D:\Документыы\GitHub\MyFiles\_MyOpenGl\AfricanHead.exe: VEDObjPix()
+# 1 0x004210FE in D:\Документыы\GitHub\MyFiles\_MyOpenGl\AfricanHead.exe: VEDObjLine()
+# 2 0x0041CF61 in D:\Документыы\GitHub\MyFiles\_MyOpenGl\AfricanHead.exe: VEDObjHorTriangle()
+# 3 0x0041C435 in D:\Документыы\GitHub\MyFiles\_MyOpenGl\AfricanHead.exe: VEDObjTriangle()
+# 4 0x0041AD34 in D:\Документыы\GitHub\MyFiles\_MyOpenGl\AfricanHead.exe: VED3dObjTriangle()
+# 5 0x0042494D in D:\Документыы\GitHub\MyFiles\_MyOpenGl\AfricanHead.exe: VEDObjFigure()
+# 6 0x0042735B in D:\Документыы\GitHub\MyFiles\_MyOpenGl\AfricanHead.exe: main()
+
+--------------------------------------------------
+Developed with:
+
+The Dumb Artist Library (TX Library) - TXLib [Ver: 00173a, Rev: 105]
+Copyright (C) Ded (Ilya Dedinsky, http://txlib.ru) <mail@txlib.ru>
+See license on: http://txlib.ru
+
+TXLib file:	G:\TX\TXLib.h
+Compiled:	Feb 12 2018 19:36:10, GNU g++ 4.8.1, std=201103L, MinGW Runtime 3.20, 32-bit, Debug
+Started:	Feb 12 2018 19:36:16
+
+Run file:	D:\Документыы\GitHub\MyFiles\_MyOpenGl\AfricanHead.exe
+Directory:	D:\Документыы\GitHub\MyFiles\_MyOpenGl
+
+--------------------------------------------------
+
+--------------------------------------------------
+TXLib предупреждает:
+
+Программа: D:\Документыы\GitHub\MyFiles\_MyOpenGl\AfricanHead.exe,
+
+ВНЕЗАПНО: Деление на ноль при операции с плавающей точкой.
+
+#1: Исключение EXCEPTION_FLT_DIVIDE_BY_ZERO (0xC000008E) при выполнении кода по адресу 0x7493C54F в функции RaiseException(). Спасибо _txVectoredExceptionHandler(), что сообщил. Люблю его <3
+
+#1: TXLib [Ver: 00173a, Rev: 105], Instance: 0x00501340 (32-bit), Flags: CMdRe0, Thread: 0x19CC (Main). 
+
+--------------------------------------------------
+Стек вызовов:
+
+# 0 0x7493C54F in C:\Windows\syswow64\KERNELBASE.dll: RaiseException()
+# 1 0x74FA940C in C:\Windows\syswow64\msvcrt.dll: ldexp()
+# 2 0x74FA94E1 in C:\Windows\syswow64\msvcrt.dll: ldexp()
+# 3 0x74F5FD5F in C:\Windows\syswow64\msvcrt.dll: ftol2_sse_excpt()
+# 4 0x74F1F0EA in C:\Windows\syswow64\msvcrt.dll: CIcos()
+# 5 0x74F214A2 in C:\Windows\syswow64\msvcrt.dll: snwprintf_s()
+# 6 0x004265C6 in D:\Документыы\GitHub\MyFiles\_MyOpenGl\AfricanHead.exe: VEDObjPix()
+# 7 0x004210FE in D:\Документыы\GitHub\MyFiles\_MyOpenGl\AfricanHead.exe: VEDObjLine()
+# 8 0x0041CF61 in D:\Документыы\GitHub\MyFiles\_MyOpenGl\AfricanHead.exe: VEDObjHorTriangle()
+# 9 0x0041C435 in D:\Документыы\GitHub\MyFiles\_MyOpenGl\AfricanHead.exe: VEDObjTriangle()
+#10 0x0041AD34 in D:\Документыы\GitHub\MyFiles\_MyOpenGl\AfricanHead.exe: VED3dObjTriangle()
+#11 0x0042494D in D:\Документыы\GitHub\MyFiles\_MyOpenGl\AfricanHead.exe: VEDObjFigure()
+#12 0x004273CD in D:\Документыы\GitHub\MyFiles\_MyOpenGl\AfricanHead.exe: main()
+
+--------------------------------------------------
+Developed with:
+
+The Dumb Artist Library (TX Library) - TXLib [Ver: 00173a, Rev: 105]
+Copyright (C) Ded (Ilya Dedinsky, http://txlib.ru) <mail@txlib.ru>
+See license on: http://txlib.ru
+
+TXLib file:	G:\TX\TXLib.h
+Compiled:	Feb 12 2018 19:56:13, GNU g++ 4.8.1, std=201103L, MinGW Runtime 3.20, 32-bit, Debug
+Started:	Feb 12 2018 19:56:17
+
+Run file:	D:\Документыы\GitHub\MyFiles\_MyOpenGl\AfricanHead.exe
+Directory:	D:\Документыы\GitHub\MyFiles\_MyOpenGl
+
+--------------------------------------------------
+
+--------------------------------------------------
+TXLib соболезнует...
+
+Программа: D:\Документыы\GitHub\MyFiles\_MyOpenGl\AfricanHead.exe,
+
+ВНЕЗАПНО: signal (8, 0x00): SIGFPE: Грубая ошибка в вычислениях. 
+
+Деление на ноль при операции с плавающей точкой.
+
+#1: Исключение EXCEPTION_FLT_DIVIDE_BY_ZERO (0xC000008E) при выполнении кода по адресу 0x7493C54F в функции RaiseException(). Спасибо _txVectoredExceptionHandler(), что сообщил. Люблю его <3
+
+С помощью функции signal() вы можете сами обработать эту ошибку.
+
+#2: TXLib [Ver: 00173a, Rev: 105], Instance: 0x00501340 (32-bit), Flags: CMdRe0, Thread: 0x19CC (Main). 
+
+--------------------------------------------------
+Стек вызовов:
+
+# 0 0x7493C54F in C:\Windows\syswow64\KERNELBASE.dll: RaiseException()
+# 1 0x74FA940C in C:\Windows\syswow64\msvcrt.dll: ldexp()
+# 2 0x74FA94E1 in C:\Windows\syswow64\msvcrt.dll: ldexp()
+# 3 0x74F5FD5F in C:\Windows\syswow64\msvcrt.dll: ftol2_sse_excpt()
+# 4 0x74F1F0EA in C:\Windows\syswow64\msvcrt.dll: CIcos()
+# 5 0x74F214A2 in C:\Windows\syswow64\msvcrt.dll: snwprintf_s()
+# 6 0x004265C6 in D:\Документыы\GitHub\MyFiles\_MyOpenGl\AfricanHead.exe: VEDObjPix()
+# 7 0x004210FE in D:\Документыы\GitHub\MyFiles\_MyOpenGl\AfricanHead.exe: VEDObjLine()
+# 8 0x0041CF61 in D:\Документыы\GitHub\MyFiles\_MyOpenGl\AfricanHead.exe: VEDObjHorTriangle()
+# 9 0x0041C435 in D:\Документыы\GitHub\MyFiles\_MyOpenGl\AfricanHead.exe: VEDObjTriangle()
+#10 0x0041AD34 in D:\Документыы\GitHub\MyFiles\_MyOpenGl\AfricanHead.exe: VED3dObjTriangle()
+#11 0x0042494D in D:\Документыы\GitHub\MyFiles\_MyOpenGl\AfricanHead.exe: VEDObjFigure()
+#12 0x004273CD in D:\Документыы\GitHub\MyFiles\_MyOpenGl\AfricanHead.exe: main()
+
+--------------------------------------------------
+Developed with:
+
+The Dumb Artist Library (TX Library) - TXLib [Ver: 00173a, Rev: 105]
+Copyright (C) Ded (Ilya Dedinsky, http://txlib.ru) <mail@txlib.ru>
+See license on: http://txlib.ru
+
+TXLib file:	G:\TX\TXLib.h
+Compiled:	Feb 12 2018 19:56:13, GNU g++ 4.8.1, std=201103L, MinGW Runtime 3.20, 32-bit, Debug
+Started:	Feb 12 2018 19:56:18
+
+Run file:	D:\Документыы\GitHub\MyFiles\_MyOpenGl\AfricanHead.exe
+Directory:	D:\Документыы\GitHub\MyFiles\_MyOpenGl
+
+--------------------------------------------------
+
+--------------------------------------------------
+TXLib предупреждает:
+
+Программа: D:\Документыы\GitHub\MyFiles\_MyOpenGl\AfricanHead.exe,
+
+ВНЕЗАПНО: Деление на ноль при операции с плавающей точкой.
+
+#1: Исключение EXCEPTION_FLT_DIVIDE_BY_ZERO (0xC000008E) при выполнении кода по адресу 0x7493C54F в функции RaiseException(). Спасибо _txVectoredExceptionHandler(), что сообщил. Люблю его <3
+
+#1: TXLib [Ver: 00173a, Rev: 105], Instance: 0x00501340 (32-bit), Flags: CMdRe0, Thread: 0x1808 (Main). 
+
+--------------------------------------------------
+Стек вызовов:
+
+# 0 0x7493C54F in C:\Windows\syswow64\KERNELBASE.dll: RaiseException()
+# 1 0x74FA940C in C:\Windows\syswow64\msvcrt.dll: ldexp()
+# 2 0x74FA94E1 in C:\Windows\syswow64\msvcrt.dll: ldexp()
+# 3 0x74F5FD5F in C:\Windows\syswow64\msvcrt.dll: ftol2_sse_excpt()
+# 4 0x74F1F0EA in C:\Windows\syswow64\msvcrt.dll: CIcos()
+# 5 0x74F214A2 in C:\Windows\syswow64\msvcrt.dll: snwprintf_s()
+# 6 0x004265C6 in D:\Документыы\GitHub\MyFiles\_MyOpenGl\AfricanHead.exe: VEDObjPix()
+# 7 0x004210FE in D:\Документыы\GitHub\MyFiles\_MyOpenGl\AfricanHead.exe: VEDObjLine()
+# 8 0x0041CF61 in D:\Документыы\GitHub\MyFiles\_MyOpenGl\AfricanHead.exe: VEDObjHorTriangle()
+# 9 0x0041C435 in D:\Документыы\GitHub\MyFiles\_MyOpenGl\AfricanHead.exe: VEDObjTriangle()
+#10 0x0041AD34 in D:\Документыы\GitHub\MyFiles\_MyOpenGl\AfricanHead.exe: VED3dObjTriangle()
+#11 0x0042494D in D:\Документыы\GitHub\MyFiles\_MyOpenGl\AfricanHead.exe: VEDObjFigure()
+#12 0x0042734B in D:\Документыы\GitHub\MyFiles\_MyOpenGl\AfricanHead.exe: main()
+
+--------------------------------------------------
+Developed with:
+
+The Dumb Artist Library (TX Library) - TXLib [Ver: 00173a, Rev: 105]
+Copyright (C) Ded (Ilya Dedinsky, http://txlib.ru) <mail@txlib.ru>
+See license on: http://txlib.ru
+
+TXLib file:	G:\TX\TXLib.h
+Compiled:	Feb 12 2018 19:56:32, GNU g++ 4.8.1, std=201103L, MinGW Runtime 3.20, 32-bit, Debug
+Started:	Feb 12 2018 19:56:37
+
+Run file:	D:\Документыы\GitHub\MyFiles\_MyOpenGl\AfricanHead.exe
+Directory:	D:\Документыы\GitHub\MyFiles\_MyOpenGl
+
+--------------------------------------------------
+
+--------------------------------------------------
+TXLib соболезнует...
+
+Программа: D:\Документыы\GitHub\MyFiles\_MyOpenGl\AfricanHead.exe,
+
+ВНЕЗАПНО: signal (8, 0x00): SIGFPE: Грубая ошибка в вычислениях. 
+
+Деление на ноль при операции с плавающей точкой.
+
+#1: Исключение EXCEPTION_FLT_DIVIDE_BY_ZERO (0xC000008E) при выполнении кода по адресу 0x7493C54F в функции RaiseException(). Спасибо _txVectoredExceptionHandler(), что сообщил. Люблю его <3
+
+С помощью функции signal() вы можете сами обработать эту ошибку.
+
+#2: TXLib [Ver: 00173a, Rev: 105], Instance: 0x00501340 (32-bit), Flags: CMdRe0, Thread: 0x1808 (Main). 
+
+--------------------------------------------------
+Стек вызовов:
+
+# 0 0x7493C54F in C:\Windows\syswow64\KERNELBASE.dll: RaiseException()
+# 1 0x74FA940C in C:\Windows\syswow64\msvcrt.dll: ldexp()
+# 2 0x74FA94E1 in C:\Windows\syswow64\msvcrt.dll: ldexp()
+# 3 0x74F5FD5F in C:\Windows\syswow64\msvcrt.dll: ftol2_sse_excpt()
+# 4 0x74F1F0EA in C:\Windows\syswow64\msvcrt.dll: CIcos()
+# 5 0x74F214A2 in C:\Windows\syswow64\msvcrt.dll: snwprintf_s()
+# 6 0x004265C6 in D:\Документыы\GitHub\MyFiles\_MyOpenGl\AfricanHead.exe: VEDObjPix()
+# 7 0x004210FE in D:\Документыы\GitHub\MyFiles\_MyOpenGl\AfricanHead.exe: VEDObjLine()
+# 8 0x0041CF61 in D:\Документыы\GitHub\MyFiles\_MyOpenGl\AfricanHead.exe: VEDObjHorTriangle()
+# 9 0x0041C435 in D:\Документыы\GitHub\MyFiles\_MyOpenGl\AfricanHead.exe: VEDObjTriangle()
+#10 0x0041AD34 in D:\Документыы\GitHub\MyFiles\_MyOpenGl\AfricanHead.exe: VED3dObjTriangle()
+#11 0x0042494D in D:\Документыы\GitHub\MyFiles\_MyOpenGl\AfricanHead.exe: VEDObjFigure()
+#12 0x0042734B in D:\Документыы\GitHub\MyFiles\_MyOpenGl\AfricanHead.exe: main()
+
+--------------------------------------------------
+Developed with:
+
+The Dumb Artist Library (TX Library) - TXLib [Ver: 00173a, Rev: 105]
+Copyright (C) Ded (Ilya Dedinsky, http://txlib.ru) <mail@txlib.ru>
+See license on: http://txlib.ru
+
+TXLib file:	G:\TX\TXLib.h
+Compiled:	Feb 12 2018 19:56:32, GNU g++ 4.8.1, std=201103L, MinGW Runtime 3.20, 32-bit, Debug
+Started:	Feb 12 2018 19:56:37
+
+Run file:	D:\Документыы\GitHub\MyFiles\_MyOpenGl\AfricanHead.exe
+Directory:	D:\Документыы\GitHub\MyFiles\_MyOpenGl
+
+--------------------------------------------------
+
+--------------------------------------------------
+TXLib предупреждает:
+
+Программа: D:\Документыы\GitHub\MyFiles\_MyOpenGl\AfricanHead.exe,
+
+ВНЕЗАПНО: Деление на ноль при операции с плавающей точкой.
+
+#1: Исключение EXCEPTION_FLT_DIVIDE_BY_ZERO (0xC000008E) при выполнении кода по адресу 0x7493C54F в функции RaiseException(). Спасибо _txVectoredExceptionHandler(), что сообщил. Люблю его <3
+
+#1: TXLib [Ver: 00173a, Rev: 105], Instance: 0x00501340 (32-bit), Flags: CMdRe0, Thread: 0x26EC (Main). 
+
+--------------------------------------------------
+Стек вызовов:
+
+# 0 0x7493C54F in C:\Windows\syswow64\KERNELBASE.dll: RaiseException()
+# 1 0x74FA940C in C:\Windows\syswow64\msvcrt.dll: ldexp()
+# 2 0x74FA94E1 in C:\Windows\syswow64\msvcrt.dll: ldexp()
+# 3 0x74F5FD5F in C:\Windows\syswow64\msvcrt.dll: ftol2_sse_excpt()
+# 4 0x74F1F0EA in C:\Windows\syswow64\msvcrt.dll: CIcos()
+# 5 0x74F214A2 in C:\Windows\syswow64\msvcrt.dll: snwprintf_s()
+# 6 0x004265C6 in D:\Документыы\GitHub\MyFiles\_MyOpenGl\AfricanHead.exe: VEDObjPix()
+# 7 0x004210FE in D:\Документыы\GitHub\MyFiles\_MyOpenGl\AfricanHead.exe: VEDObjLine()
+# 8 0x0041CF61 in D:\Документыы\GitHub\MyFiles\_MyOpenGl\AfricanHead.exe: VEDObjHorTriangle()
+# 9 0x0041C435 in D:\Документыы\GitHub\MyFiles\_MyOpenGl\AfricanHead.exe: VEDObjTriangle()
+#10 0x0041AD34 in D:\Документыы\GitHub\MyFiles\_MyOpenGl\AfricanHead.exe: VED3dObjTriangle()
+#11 0x0042494D in D:\Документыы\GitHub\MyFiles\_MyOpenGl\AfricanHead.exe: VEDObjFigure()
+#12 0x004273CD in D:\Документыы\GitHub\MyFiles\_MyOpenGl\AfricanHead.exe: main()
+
+--------------------------------------------------
+Developed with:
+
+The Dumb Artist Library (TX Library) - TXLib [Ver: 00173a, Rev: 105]
+Copyright (C) Ded (Ilya Dedinsky, http://txlib.ru) <mail@txlib.ru>
+See license on: http://txlib.ru
+
+TXLib file:	G:\TX\TXLib.h
+Compiled:	Feb 12 2018 19:59:41, GNU g++ 4.8.1, std=201103L, MinGW Runtime 3.20, 32-bit, Debug
+Started:	Feb 12 2018 19:59:46
+
+Run file:	D:\Документыы\GitHub\MyFiles\_MyOpenGl\AfricanHead.exe
+Directory:	D:\Документыы\GitHub\MyFiles\_MyOpenGl
+
+--------------------------------------------------
+
+--------------------------------------------------
+TXLib соболезнует...
+
+Программа: D:\Документыы\GitHub\MyFiles\_MyOpenGl\AfricanHead.exe,
+
+ВНЕЗАПНО: signal (8, 0x00): SIGFPE: Грубая ошибка в вычислениях. 
+
+Деление на ноль при операции с плавающей точкой.
+
+#1: Исключение EXCEPTION_FLT_DIVIDE_BY_ZERO (0xC000008E) при выполнении кода по адресу 0x7493C54F в функции RaiseException(). Спасибо _txVectoredExceptionHandler(), что сообщил. Люблю его <3
+
+С помощью функции signal() вы можете сами обработать эту ошибку.
+
+#2: TXLib [Ver: 00173a, Rev: 105], Instance: 0x00501340 (32-bit), Flags: CMdRe0, Thread: 0x26EC (Main). 
+
+--------------------------------------------------
+Стек вызовов:
+
+# 0 0x7493C54F in C:\Windows\syswow64\KERNELBASE.dll: RaiseException()
+# 1 0x74FA940C in C:\Windows\syswow64\msvcrt.dll: ldexp()
+# 2 0x74FA94E1 in C:\Windows\syswow64\msvcrt.dll: ldexp()
+# 3 0x74F5FD5F in C:\Windows\syswow64\msvcrt.dll: ftol2_sse_excpt()
+# 4 0x74F1F0EA in C:\Windows\syswow64\msvcrt.dll: CIcos()
+# 5 0x74F214A2 in C:\Windows\syswow64\msvcrt.dll: snwprintf_s()
+# 6 0x004265C6 in D:\Документыы\GitHub\MyFiles\_MyOpenGl\AfricanHead.exe: VEDObjPix()
+# 7 0x004210FE in D:\Документыы\GitHub\MyFiles\_MyOpenGl\AfricanHead.exe: VEDObjLine()
+# 8 0x0041CF61 in D:\Документыы\GitHub\MyFiles\_MyOpenGl\AfricanHead.exe: VEDObjHorTriangle()
+# 9 0x0041C435 in D:\Документыы\GitHub\MyFiles\_MyOpenGl\AfricanHead.exe: VEDObjTriangle()
+#10 0x0041AD34 in D:\Документыы\GitHub\MyFiles\_MyOpenGl\AfricanHead.exe: VED3dObjTriangle()
+#11 0x0042494D in D:\Документыы\GitHub\MyFiles\_MyOpenGl\AfricanHead.exe: VEDObjFigure()
+#12 0x004273CD in D:\Документыы\GitHub\MyFiles\_MyOpenGl\AfricanHead.exe: main()
+
+--------------------------------------------------
+Developed with:
+
+The Dumb Artist Library (TX Library) - TXLib [Ver: 00173a, Rev: 105]
+Copyright (C) Ded (Ilya Dedinsky, http://txlib.ru) <mail@txlib.ru>
+See license on: http://txlib.ru
+
+TXLib file:	G:\TX\TXLib.h
+Compiled:	Feb 12 2018 19:59:41, GNU g++ 4.8.1, std=201103L, MinGW Runtime 3.20, 32-bit, Debug
+Started:	Feb 12 2018 19:59:46
+
+Run file:	D:\Документыы\GitHub\MyFiles\_MyOpenGl\AfricanHead.exe
+Directory:	D:\Документыы\GitHub\MyFiles\_MyOpenGl
+
+--------------------------------------------------
+
+--------------------------------------------------
+TXLib предупреждает:
+
+Программа: D:\Документыы\GitHub\MyFiles\_MyOpenGl\AfricanHead.exe,
+
+ВНЕЗАПНО: Деление на ноль при операции с плавающей точкой.
+
+#1: Исключение EXCEPTION_FLT_DIVIDE_BY_ZERO (0xC000008E) при выполнении кода по адресу 0x7493C54F в функции RaiseException(). Спасибо _txVectoredExceptionHandler(), что сообщил. Люблю его <3
+
+#1: TXLib [Ver: 00173a, Rev: 105], Instance: 0x00501340 (32-bit), Flags: CMdRe0, Thread: 0x2764 (Main). 
+
+--------------------------------------------------
+Стек вызовов:
+
+# 0 0x7493C54F in C:\Windows\syswow64\KERNELBASE.dll: RaiseException()
+# 1 0x74FA940C in C:\Windows\syswow64\msvcrt.dll: ldexp()
+# 2 0x74FA94E1 in C:\Windows\syswow64\msvcrt.dll: ldexp()
+# 3 0x74F5FD5F in C:\Windows\syswow64\msvcrt.dll: ftol2_sse_excpt()
+# 4 0x74F1F0EA in C:\Windows\syswow64\msvcrt.dll: CIcos()
+# 5 0x74F214A2 in C:\Windows\syswow64\msvcrt.dll: snwprintf_s()
+# 6 0x004265C6 in D:\Документыы\GitHub\MyFiles\_MyOpenGl\AfricanHead.exe: VEDObjPix()
+# 7 0x004210FE in D:\Документыы\GitHub\MyFiles\_MyOpenGl\AfricanHead.exe: VEDObjLine()
+# 8 0x0041CF61 in D:\Документыы\GitHub\MyFiles\_MyOpenGl\AfricanHead.exe: VEDObjHorTriangle()
+# 9 0x0041C435 in D:\Документыы\GitHub\MyFiles\_MyOpenGl\AfricanHead.exe: VEDObjTriangle()
+#10 0x0041AD34 in D:\Документыы\GitHub\MyFiles\_MyOpenGl\AfricanHead.exe: VED3dObjTriangle()
+#11 0x0042494D in D:\Документыы\GitHub\MyFiles\_MyOpenGl\AfricanHead.exe: VEDObjFigure()
+#12 0x00427434 in D:\Документыы\GitHub\MyFiles\_MyOpenGl\AfricanHead.exe: main()
+
+--------------------------------------------------
+Developed with:
+
+The Dumb Artist Library (TX Library) - TXLib [Ver: 00173a, Rev: 105]
+Copyright (C) Ded (Ilya Dedinsky, http://txlib.ru) <mail@txlib.ru>
+See license on: http://txlib.ru
+
+TXLib file:	G:\TX\TXLib.h
+Compiled:	Feb 12 2018 20:00:11, GNU g++ 4.8.1, std=201103L, MinGW Runtime 3.20, 32-bit, Debug
+Started:	Feb 12 2018 20:00:15
+
+Run file:	D:\Документыы\GitHub\MyFiles\_MyOpenGl\AfricanHead.exe
+Directory:	D:\Документыы\GitHub\MyFiles\_MyOpenGl
+
+--------------------------------------------------
+
+--------------------------------------------------
+TXLib соболезнует...
+
+Программа: D:\Документыы\GitHub\MyFiles\_MyOpenGl\AfricanHead.exe,
+
+ВНЕЗАПНО: signal (8, 0x00): SIGFPE: Грубая ошибка в вычислениях. 
+
+Деление на ноль при операции с плавающей точкой.
+
+#1: Исключение EXCEPTION_FLT_DIVIDE_BY_ZERO (0xC000008E) при выполнении кода по адресу 0x7493C54F в функции RaiseException(). Спасибо _txVectoredExceptionHandler(), что сообщил. Люблю его <3
+
+С помощью функции signal() вы можете сами обработать эту ошибку.
+
+#2: TXLib [Ver: 00173a, Rev: 105], Instance: 0x00501340 (32-bit), Flags: CMdRe0, Thread: 0x2764 (Main). 
+
+--------------------------------------------------
+Стек вызовов:
+
+# 0 0x7493C54F in C:\Windows\syswow64\KERNELBASE.dll: RaiseException()
+# 1 0x74FA940C in C:\Windows\syswow64\msvcrt.dll: ldexp()
+# 2 0x74FA94E1 in C:\Windows\syswow64\msvcrt.dll: ldexp()
+# 3 0x74F5FD5F in C:\Windows\syswow64\msvcrt.dll: ftol2_sse_excpt()
+# 4 0x74F1F0EA in C:\Windows\syswow64\msvcrt.dll: CIcos()
+# 5 0x74F214A2 in C:\Windows\syswow64\msvcrt.dll: snwprintf_s()
+# 6 0x004265C6 in D:\Документыы\GitHub\MyFiles\_MyOpenGl\AfricanHead.exe: VEDObjPix()
+# 7 0x004210FE in D:\Документыы\GitHub\MyFiles\_MyOpenGl\AfricanHead.exe: VEDObjLine()
+# 8 0x0041CF61 in D:\Документыы\GitHub\MyFiles\_MyOpenGl\AfricanHead.exe: VEDObjHorTriangle()
+# 9 0x0041C435 in D:\Документыы\GitHub\MyFiles\_MyOpenGl\AfricanHead.exe: VEDObjTriangle()
+#10 0x0041AD34 in D:\Документыы\GitHub\MyFiles\_MyOpenGl\AfricanHead.exe: VED3dObjTriangle()
+#11 0x0042494D in D:\Документыы\GitHub\MyFiles\_MyOpenGl\AfricanHead.exe: VEDObjFigure()
+#12 0x00427434 in D:\Документыы\GitHub\MyFiles\_MyOpenGl\AfricanHead.exe: main()
+
+--------------------------------------------------
+Developed with:
+
+The Dumb Artist Library (TX Library) - TXLib [Ver: 00173a, Rev: 105]
+Copyright (C) Ded (Ilya Dedinsky, http://txlib.ru) <mail@txlib.ru>
+See license on: http://txlib.ru
+
+TXLib file:	G:\TX\TXLib.h
+Compiled:	Feb 12 2018 20:00:11, GNU g++ 4.8.1, std=201103L, MinGW Runtime 3.20, 32-bit, Debug
+Started:	Feb 12 2018 20:00:16
+
+Run file:	D:\Документыы\GitHub\MyFiles\_MyOpenGl\AfricanHead.exe
+Directory:	D:\Документыы\GitHub\MyFiles\_MyOpenGl
+
+--------------------------------------------------
+
+--------------------------------------------------
+TXLib предупреждает:
+
+Программа: D:\Документыы\GitHub\MyFiles\_MyOpenGl\AfricanHead.exe,
+
+ВНЕЗАПНО: Деление на ноль при операции с плавающей точкой.
+
+#1: Исключение EXCEPTION_FLT_DIVIDE_BY_ZERO (0xC000008E) при выполнении кода по адресу 0x7493C54F в функции RaiseException(). Спасибо _txVectoredExceptionHandler(), что сообщил. Люблю его <3
+
+#1: TXLib [Ver: 00173a, Rev: 105], Instance: 0x00501340 (32-bit), Flags: CMdRe0, Thread: 0x269C (Main). 
+
+--------------------------------------------------
+Стек вызовов:
+
+# 0 0x7493C54F in C:\Windows\syswow64\KERNELBASE.dll: RaiseException()
+# 1 0x74FA940C in C:\Windows\syswow64\msvcrt.dll: ldexp()
+# 2 0x74FA94E1 in C:\Windows\syswow64\msvcrt.dll: ldexp()
+# 3 0x74F5FD5F in C:\Windows\syswow64\msvcrt.dll: ftol2_sse_excpt()
+# 4 0x74F1F0EA in C:\Windows\syswow64\msvcrt.dll: CIcos()
+# 5 0x74F214A2 in C:\Windows\syswow64\msvcrt.dll: snwprintf_s()
+# 6 0x004265C6 in D:\Документыы\GitHub\MyFiles\_MyOpenGl\AfricanHead.exe: VEDObjPix()
+# 7 0x004210FE in D:\Документыы\GitHub\MyFiles\_MyOpenGl\AfricanHead.exe: VEDObjLine()
+# 8 0x0041CF61 in D:\Документыы\GitHub\MyFiles\_MyOpenGl\AfricanHead.exe: VEDObjHorTriangle()
+# 9 0x0041C435 in D:\Документыы\GitHub\MyFiles\_MyOpenGl\AfricanHead.exe: VEDObjTriangle()
+#10 0x0041AD34 in D:\Документыы\GitHub\MyFiles\_MyOpenGl\AfricanHead.exe: VED3dObjTriangle()
+#11 0x0042494D in D:\Документыы\GitHub\MyFiles\_MyOpenGl\AfricanHead.exe: VEDObjFigure()
+#12 0x00427434 in D:\Документыы\GitHub\MyFiles\_MyOpenGl\AfricanHead.exe: main()
+
+--------------------------------------------------
+Developed with:
+
+The Dumb Artist Library (TX Library) - TXLib [Ver: 00173a, Rev: 105]
+Copyright (C) Ded (Ilya Dedinsky, http://txlib.ru) <mail@txlib.ru>
+See license on: http://txlib.ru
+
+TXLib file:	G:\TX\TXLib.h
+Compiled:	Feb 12 2018 20:00:33, GNU g++ 4.8.1, std=201103L, MinGW Runtime 3.20, 32-bit, Debug
+Started:	Feb 12 2018 20:00:38
+
+Run file:	D:\Документыы\GitHub\MyFiles\_MyOpenGl\AfricanHead.exe
+Directory:	D:\Документыы\GitHub\MyFiles\_MyOpenGl
+
+--------------------------------------------------
+
+--------------------------------------------------
+TXLib соболезнует...
+
+Программа: D:\Документыы\GitHub\MyFiles\_MyOpenGl\AfricanHead.exe,
+
+ВНЕЗАПНО: signal (8, 0x00): SIGFPE: Грубая ошибка в вычислениях. 
+
+Деление на ноль при операции с плавающей точкой.
+
+#1: Исключение EXCEPTION_FLT_DIVIDE_BY_ZERO (0xC000008E) при выполнении кода по адресу 0x7493C54F в функции RaiseException(). Спасибо _txVectoredExceptionHandler(), что сообщил. Люблю его <3
+
+С помощью функции signal() вы можете сами обработать эту ошибку.
+
+#2: TXLib [Ver: 00173a, Rev: 105], Instance: 0x00501340 (32-bit), Flags: CMdRe0, Thread: 0x269C (Main). 
+
+--------------------------------------------------
+Стек вызовов:
+
+# 0 0x7493C54F in C:\Windows\syswow64\KERNELBASE.dll: RaiseException()
+# 1 0x74FA940C in C:\Windows\syswow64\msvcrt.dll: ldexp()
+# 2 0x74FA94E1 in C:\Windows\syswow64\msvcrt.dll: ldexp()
+# 3 0x74F5FD5F in C:\Windows\syswow64\msvcrt.dll: ftol2_sse_excpt()
+# 4 0x74F1F0EA in C:\Windows\syswow64\msvcrt.dll: CIcos()
+# 5 0x74F214A2 in C:\Windows\syswow64\msvcrt.dll: snwprintf_s()
+# 6 0x004265C6 in D:\Документыы\GitHub\MyFiles\_MyOpenGl\AfricanHead.exe: VEDObjPix()
+# 7 0x004210FE in D:\Документыы\GitHub\MyFiles\_MyOpenGl\AfricanHead.exe: VEDObjLine()
+# 8 0x0041CF61 in D:\Документыы\GitHub\MyFiles\_MyOpenGl\AfricanHead.exe: VEDObjHorTriangle()
+# 9 0x0041C435 in D:\Документыы\GitHub\MyFiles\_MyOpenGl\AfricanHead.exe: VEDObjTriangle()
+#10 0x0041AD34 in D:\Документыы\GitHub\MyFiles\_MyOpenGl\AfricanHead.exe: VED3dObjTriangle()
+#11 0x0042494D in D:\Документыы\GitHub\MyFiles\_MyOpenGl\AfricanHead.exe: VEDObjFigure()
+#12 0x00427434 in D:\Документыы\GitHub\MyFiles\_MyOpenGl\AfricanHead.exe: main()
+
+--------------------------------------------------
+Developed with:
+
+The Dumb Artist Library (TX Library) - TXLib [Ver: 00173a, Rev: 105]
+Copyright (C) Ded (Ilya Dedinsky, http://txlib.ru) <mail@txlib.ru>
+See license on: http://txlib.ru
+
+TXLib file:	G:\TX\TXLib.h
+Compiled:	Feb 12 2018 20:00:33, GNU g++ 4.8.1, std=201103L, MinGW Runtime 3.20, 32-bit, Debug
+Started:	Feb 12 2018 20:00:39
+
+Run file:	D:\Документыы\GitHub\MyFiles\_MyOpenGl\AfricanHead.exe
+Directory:	D:\Документыы\GitHub\MyFiles\_MyOpenGl
+
+--------------------------------------------------
+
+--------------------------------------------------
+TXLib соболезнует...
+
+Программа: D:\Документыы\GitHub\MyFiles\_MyOpenGl\AfricanHead.exe, файл: D:\Документыы\GitHub\MyFiles\_MyOpenGl\VEDLibh.h, строка: 1721, функция: RGBQUAD makeColorWithLight(MYP, MYP, MYP, int, MYP, MYP, MYP),
+
+Сообщение: ВНЕЗАПНО: Логическая ошибка: Неверно, что "matspec > 0".
+
+#1: TXLib [Ver: 00173a, Rev: 105], Instance: 0x00501340 (32-bit), Flags: CMdRe0, Thread: 0x25B8 (Main). 
+
+--------------------------------------------------
+Стек вызовов:
+
+# 0 0x00426C37 in D:\Документыы\GitHub\MyFiles\_MyOpenGl\AfricanHead.exe: makeColorWithLight()
+# 1 0x004265C6 in D:\Документыы\GitHub\MyFiles\_MyOpenGl\AfricanHead.exe: VEDObjPix()
+# 2 0x004210FE in D:\Документыы\GitHub\MyFiles\_MyOpenGl\AfricanHead.exe: VEDObjLine()
+# 3 0x0041CF61 in D:\Документыы\GitHub\MyFiles\_MyOpenGl\AfricanHead.exe: VEDObjHorTriangle()
+# 4 0x0041C435 in D:\Документыы\GitHub\MyFiles\_MyOpenGl\AfricanHead.exe: VEDObjTriangle()
+# 5 0x0041AD34 in D:\Документыы\GitHub\MyFiles\_MyOpenGl\AfricanHead.exe: VED3dObjTriangle()
+# 6 0x0042494D in D:\Документыы\GitHub\MyFiles\_MyOpenGl\AfricanHead.exe: VEDObjFigure()
+# 7 0x00427434 in D:\Документыы\GitHub\MyFiles\_MyOpenGl\AfricanHead.exe: main()
+
+--------------------------------------------------
+Developed with:
+
+The Dumb Artist Library (TX Library) - TXLib [Ver: 00173a, Rev: 105]
+Copyright (C) Ded (Ilya Dedinsky, http://txlib.ru) <mail@txlib.ru>
+See license on: http://txlib.ru
+
+TXLib file:	G:\TX\TXLib.h
+Compiled:	Feb 12 2018 20:00:52, GNU g++ 4.8.1, std=201103L, MinGW Runtime 3.20, 32-bit, Debug
+Started:	Feb 12 2018 20:00:57
+
+Run file:	D:\Документыы\GitHub\MyFiles\_MyOpenGl\AfricanHead.exe
+Directory:	D:\Документыы\GitHub\MyFiles\_MyOpenGl
+
+--------------------------------------------------
+
+--------------------------------------------------
+TXLib предупреждает:
+
+Программа: D:\Документыы\GitHub\MyFiles\_MyOpenGl\AfricanHead.exe,
+
+ВНЕЗАПНО: Нарушение доступа к памяти.
+
+#1: Исключение EXCEPTION_ACCESS_VIOLATION (0xC0000005) при выполнении кода по адресу 0x00426312 в функции VEDObjPix(). Попытка прочесть данные по адресу 0x05897B38. Спасибо _txVectoredExceptionHandler(), что сообщил. Люблю его <3
+
+#1: TXLib [Ver: 00173a, Rev: 105], Instance: 0x00501340 (32-bit), Flags: CMdrE0, Thread: 0x1890 (Main), GetLastError(): 87 (Параметр задан неверно). 
+
+--------------------------------------------------
+Стек вызовов:
+
+# 0 0x00426312 in D:\Документыы\GitHub\MyFiles\_MyOpenGl\AfricanHead.exe: VEDObjPix()
+# 1 0x004210FE in D:\Документыы\GitHub\MyFiles\_MyOpenGl\AfricanHead.exe: VEDObjLine()
+# 2 0x0041CF61 in D:\Документыы\GitHub\MyFiles\_MyOpenGl\AfricanHead.exe: VEDObjHorTriangle()
+# 3 0x0041C435 in D:\Документыы\GitHub\MyFiles\_MyOpenGl\AfricanHead.exe: VEDObjTriangle()
+# 4 0x0041AD34 in D:\Документыы\GitHub\MyFiles\_MyOpenGl\AfricanHead.exe: VED3dObjTriangle()
+# 5 0x0042494D in D:\Документыы\GitHub\MyFiles\_MyOpenGl\AfricanHead.exe: VEDObjFigure()
+# 6 0x004273EF in D:\Документыы\GitHub\MyFiles\_MyOpenGl\AfricanHead.exe: main()
+
+--------------------------------------------------
+TXLib соболезнует...
+
+Программа: D:\Документыы\GitHub\MyFiles\_MyOpenGl\AfricanHead.exe, файл: D:\Документыы\GitHub\MyFiles\_MyOpenGl\VEDLibh.h, строка: 889, функция: int VEDObjLine(int, int, double, int, int, double, MYP, MYP, RGBQUAD*, RGBQUAD*, RGBQUAD*, MYP),
+
+Сообщение: ВНЕЗАПНО: Логическая ошибка: Неверно, что "text2.y >= 0".
+
+#1: TXLib [Ver: 00173a, Rev: 105], Instance: 0x00500340 (32-bit), Flags: CMdRe0, Thread: 0xA98 (Main). 
+
+--------------------------------------------------
+Стек вызовов:
+
+# 0 0x00420766 in D:\Документыы\GitHub\MyFiles\_MyOpenGl\AfricanHead.exe: VEDObjLine()
+# 1 0x0041CF99 in D:\Документыы\GitHub\MyFiles\_MyOpenGl\AfricanHead.exe: VEDObjHorTriangle()
+# 2 0x0041C6AF in D:\Документыы\GitHub\MyFiles\_MyOpenGl\AfricanHead.exe: VEDObjTriangle()
+# 3 0x0041ACB6 in D:\Документыы\GitHub\MyFiles\_MyOpenGl\AfricanHead.exe: VED3dObjTriangle()
+# 4 0x004244D3 in D:\Документыы\GitHub\MyFiles\_MyOpenGl\AfricanHead.exe: VEDObjFigure()
+# 5 0x00426E7A in D:\Документыы\GitHub\MyFiles\_MyOpenGl\AfricanHead.exe: main()
+
+--------------------------------------------------
+Developed with:
+
+The Dumb Artist Library (TX Library) - TXLib [Ver: 00173a, Rev: 105]
+Copyright (C) Ded (Ilya Dedinsky, http://txlib.ru) <mail@txlib.ru>
+See license on: http://txlib.ru
+
+TXLib file:	G:\TX\TXLib.h
+Compiled:	Feb 12 2018 21:36:47, GNU g++ 4.8.1, std=201103L, MinGW Runtime 3.20, 32-bit, Debug
+Started:	Feb 12 2018 21:36:51
+
+Run file:	D:\Документыы\GitHub\MyFiles\_MyOpenGl\AfricanHead.exe
+Directory:	D:\Документыы\GitHub\MyFiles\_MyOpenGl
+
+--------------------------------------------------
+
+--------------------------------------------------
+TXLib предупреждает:
+
+Программа: D:\Документыы\GitHub\MyFiles\_MyOpenGl\AfricanHead.exe,
+
+ВНЕЗАПНО: Нарушение доступа к памяти.
+
+#1: Исключение EXCEPTION_ACCESS_VIOLATION (0xC0000005) при выполнении кода по адресу 0x00423F18 в функции makeBufferDefault(). Попытка записать данные по адресу NULL. Спасибо _txVectoredExceptionHandler(), что сообщил. Люблю его <3
+
+#1: TXLib [Ver: 00173a, Rev: 105], Instance: 0x00500340 (32-bit), Flags: Cmdre0, Thread: 0x25F4 (Main). 
+
+--------------------------------------------------
+Стек вызовов:
+
+# 0 0x00423F18 in D:\Документыы\GitHub\MyFiles\_MyOpenGl\AfricanHead.exe: makeBufferDefault()
+# 1 0x0042546A in D:\Документыы\GitHub\MyFiles\_MyOpenGl\AfricanHead.exe: VEDStart()
+# 2 0x004262E4 in D:\Документыы\GitHub\MyFiles\_MyOpenGl\AfricanHead.exe: main()
+
+--------------------------------------------------
+Developed with:
+
+The Dumb Artist Library (TX Library) - TXLib [Ver: 00173a, Rev: 105]
+Copyright (C) Ded (Ilya Dedinsky, http://txlib.ru) <mail@txlib.ru>
+See license on: http://txlib.ru
+
+TXLib file:	G:\TX\TXLib.h
+Compiled:	Feb 20 2018 21:20:51, GNU g++ 4.8.1, std=201103L, MinGW Runtime 3.20, 32-bit, Debug
+Started:	Feb 20 2018 21:20:57
+
+Run file:	D:\Документыы\GitHub\MyFiles\_MyOpenGl\AfricanHead.exe
+Directory:	D:\Документыы\GitHub\MyFiles\_MyOpenGl
+
+--------------------------------------------------
+
+--------------------------------------------------
+TXLib соболезнует...
+
+Программа: D:\Документыы\GitHub\MyFiles\_MyOpenGl\AfricanHead.exe,
+
+ВНЕЗАПНО: signal (11, 0x00): SIGSEGV: Доступ по неверному указателю. Ставьте ассерты! 
+
+Нарушение доступа к памяти.
+
+#1: Исключение EXCEPTION_ACCESS_VIOLATION (0xC0000005) при выполнении кода по адресу 0x00423F18 в функции makeBufferDefault(). Попытка записать данные по адресу NULL. Спасибо _txVectoredExceptionHandler(), что сообщил. Люблю его <3
+
+С помощью функции signal() вы можете сами обработать эту ошибку.
+
+#2: TXLib [Ver: 00173a, Rev: 105], Instance: 0x00500340 (32-bit), Flags: Cmdre0, Thread: 0x25F4 (Main). 
+
+--------------------------------------------------
+Стек вызовов:
+
+# 0 0x00423F18 in D:\Документыы\GitHub\MyFiles\_MyOpenGl\AfricanHead.exe: makeBufferDefault()
+# 1 0x0042546A in D:\Документыы\GitHub\MyFiles\_MyOpenGl\AfricanHead.exe: VEDStart()
+# 2 0x004262E4 in D:\Документыы\GitHub\MyFiles\_MyOpenGl\AfricanHead.exe: main()
+
+--------------------------------------------------
+Developed with:
+
+The Dumb Artist Library (TX Library) - TXLib [Ver: 00173a, Rev: 105]
+Copyright (C) Ded (Ilya Dedinsky, http://txlib.ru) <mail@txlib.ru>
+See license on: http://txlib.ru
+
+TXLib file:	G:\TX\TXLib.h
+Compiled:	Feb 20 2018 21:20:51, GNU g++ 4.8.1, std=201103L, MinGW Runtime 3.20, 32-bit, Debug
+Started:	Feb 20 2018 21:20:57
+
+Run file:	D:\Документыы\GitHub\MyFiles\_MyOpenGl\AfricanHead.exe
+Directory:	D:\Документыы\GitHub\MyFiles\_MyOpenGl
+
+--------------------------------------------------
+
+--------------------------------------------------
+TXLib предупреждает:
+
+Программа: D:\Документыы\GitHub\MyFiles\_MyOpenGl\AfricanHead.exe,
+
+ВНЕЗАПНО: Нарушение доступа к памяти.
+
+#1: Исключение EXCEPTION_ACCESS_VIOLATION (0xC0000005) при выполнении кода по адресу 0x004256FF в функции VEDObjPix(). Попытка прочесть данные по адресу 0x086C1F7C. Спасибо _txVectoredExceptionHandler(), что сообщил. Люблю его <3
+
+#1: TXLib [Ver: 00173a, Rev: 105], Instance: 0x00500340 (32-bit), Flags: CMdrE0, Thread: 0x9FC (Main), GetLastError(): 87 (Параметр задан неверно). 
+
+--------------------------------------------------
+Стек вызовов:
+
+# 0 0x004256FF in D:\Документыы\GitHub\MyFiles\_MyOpenGl\AfricanHead.exe: VEDObjPix()
+# 1 0x0041FDC8 in D:\Документыы\GitHub\MyFiles\_MyOpenGl\AfricanHead.exe: VEDObjLine()
+# 2 0x0041C38D in D:\Документыы\GitHub\MyFiles\_MyOpenGl\AfricanHead.exe: VEDObjHorTriangle()
+# 3 0x0041BB1F in D:\Документыы\GitHub\MyFiles\_MyOpenGl\AfricanHead.exe: VEDObjTriangle()
+# 4 0x0041A9BC in D:\Документыы\GitHub\MyFiles\_MyOpenGl\AfricanHead.exe: VED3dObjTriangle()
+# 5 0x00423CDF in D:\Документыы\GitHub\MyFiles\_MyOpenGl\AfricanHead.exe: VEDObjShadowFigure()
+# 6 0x004239AA in D:\Документыы\GitHub\MyFiles\_MyOpenGl\AfricanHead.exe: VEDObjFigure()
+# 7 0x00426782 in D:\Документыы\GitHub\MyFiles\_MyOpenGl\AfricanHead.exe: main()
+
+--------------------------------------------------
+TXLib предупреждает:
+
+Программа: D:\Документыы\GitHub\MyFiles\_MyOpenGl\AfricanHead.exe,
+
+ВНЕЗАПНО: Нарушение доступа к памяти.
+
+#1: Исключение EXCEPTION_ACCESS_VIOLATION (0xC0000005) при выполнении кода по адресу 0x00425CA5 в функции VEDObjPix(). Попытка записать данные по адресу 0x066F9000. Спасибо _txVectoredExceptionHandler(), что сообщил. Люблю его <3
+
+#1: TXLib [Ver: 00173a, Rev: 105], Instance: 0x00500340 (32-bit), Flags: CMdRe0, Thread: 0x1E10 (Main). 
+
+--------------------------------------------------
+Стек вызовов:
+
+# 0 0x00425CA5 in D:\Документыы\GitHub\MyFiles\_MyOpenGl\AfricanHead.exe: VEDObjPix()
+# 1 0x0042003D in D:\Документыы\GitHub\MyFiles\_MyOpenGl\AfricanHead.exe: VEDObjLine()
+# 2 0x0041C6A5 in D:\Документыы\GitHub\MyFiles\_MyOpenGl\AfricanHead.exe: VEDObjHorTriangle()
+# 3 0x0041BE37 in D:\Документыы\GitHub\MyFiles\_MyOpenGl\AfricanHead.exe: VEDObjTriangle()
+# 4 0x0041AAF4 in D:\Документыы\GitHub\MyFiles\_MyOpenGl\AfricanHead.exe: VED3dObjTriangle()
+# 5 0x0042400B in D:\Документыы\GitHub\MyFiles\_MyOpenGl\AfricanHead.exe: VEDObjShadowFigure()
+# 6 0x00423C86 in D:\Документыы\GitHub\MyFiles\_MyOpenGl\AfricanHead.exe: VEDObjFigure()
+# 7 0x0042695C in D:\Документыы\GitHub\MyFiles\_MyOpenGl\AfricanHead.exe: main()
+
+--------------------------------------------------
+Developed with:
+
+The Dumb Artist Library (TX Library) - TXLib [Ver: 00173a, Rev: 105]
+Copyright (C) Ded (Ilya Dedinsky, http://txlib.ru) <mail@txlib.ru>
+See license on: http://txlib.ru
+
+TXLib file:	G:\TX\TXLib.h
+Compiled:	Feb 21 2018 14:23:15, GNU g++ 4.8.1, std=201103L, MinGW Runtime 3.20, 32-bit, Debug
+Started:	Feb 21 2018 14:23:19
+
+Run file:	D:\Документыы\GitHub\MyFiles\_MyOpenGl\AfricanHead.exe
+Directory:	D:\Документыы\GitHub\MyFiles\_MyOpenGl
+
+--------------------------------------------------
+
+--------------------------------------------------
+TXLib соболезнует...
+
+Программа: D:\Документыы\GitHub\MyFiles\_MyOpenGl\AfricanHead.exe,
+
+ВНЕЗАПНО: signal (11, 0x00): SIGSEGV: Доступ по неверному указателю. Ставьте ассерты! 
+
+Нарушение доступа к памяти.
+
+#1: Исключение EXCEPTION_ACCESS_VIOLATION (0xC0000005) при выполнении кода по адресу 0x00425CA5 в функции VEDObjPix(). Попытка записать данные по адресу 0x066F9000. Спасибо _txVectoredExceptionHandler(), что сообщил. Люблю его <3
+
+С помощью функции signal() вы можете сами обработать эту ошибку.
+
+#2: TXLib [Ver: 00173a, Rev: 105], Instance: 0x00500340 (32-bit), Flags: CMdRe0, Thread: 0x1E10 (Main). 
+
+--------------------------------------------------
+Стек вызовов:
+
+# 0 0x00425CA5 in D:\Документыы\GitHub\MyFiles\_MyOpenGl\AfricanHead.exe: VEDObjPix()
+# 1 0x0042003D in D:\Документыы\GitHub\MyFiles\_MyOpenGl\AfricanHead.exe: VEDObjLine()
+# 2 0x0041C6A5 in D:\Документыы\GitHub\MyFiles\_MyOpenGl\AfricanHead.exe: VEDObjHorTriangle()
+# 3 0x0041BE37 in D:\Документыы\GitHub\MyFiles\_MyOpenGl\AfricanHead.exe: VEDObjTriangle()
+# 4 0x0041AAF4 in D:\Документыы\GitHub\MyFiles\_MyOpenGl\AfricanHead.exe: VED3dObjTriangle()
+# 5 0x0042400B in D:\Документыы\GitHub\MyFiles\_MyOpenGl\AfricanHead.exe: VEDObjShadowFigure()
+# 6 0x00423C86 in D:\Документыы\GitHub\MyFiles\_MyOpenGl\AfricanHead.exe: VEDObjFigure()
+# 7 0x0042695C in D:\Документыы\GitHub\MyFiles\_MyOpenGl\AfricanHead.exe: main()
+
+--------------------------------------------------
+Developed with:
+
+The Dumb Artist Library (TX Library) - TXLib [Ver: 00173a, Rev: 105]
+Copyright (C) Ded (Ilya Dedinsky, http://txlib.ru) <mail@txlib.ru>
+See license on: http://txlib.ru
+
+TXLib file:	G:\TX\TXLib.h
+Compiled:	Feb 21 2018 14:23:15, GNU g++ 4.8.1, std=201103L, MinGW Runtime 3.20, 32-bit, Debug
+Started:	Feb 21 2018 14:23:19
+
+Run file:	D:\Документыы\GitHub\MyFiles\_MyOpenGl\AfricanHead.exe
+Directory:	D:\Документыы\GitHub\MyFiles\_MyOpenGl
+
+--------------------------------------------------
+
+--------------------------------------------------
+TXLib предупреждает:
+
+Программа: D:\Документыы\GitHub\MyFiles\_MyOpenGl\AfricanHead.exe,
+
+ВНЕЗАПНО: Нарушение доступа к памяти.
+
+#1: Исключение EXCEPTION_ACCESS_VIOLATION (0xC0000005) при выполнении кода по адресу 0x00425CA5 в функции VEDObjPix(). Попытка записать данные по адресу 0x064B9000. Спасибо _txVectoredExceptionHandler(), что сообщил. Люблю его <3
+
+#1: TXLib [Ver: 00173a, Rev: 105], Instance: 0x00500340 (32-bit), Flags: CMdRe0, Thread: 0x2820 (Main). 
+
+--------------------------------------------------
+Стек вызовов:
+
+# 0 0x00425CA5 in D:\Документыы\GitHub\MyFiles\_MyOpenGl\AfricanHead.exe: VEDObjPix()
+# 1 0x0042003D in D:\Документыы\GitHub\MyFiles\_MyOpenGl\AfricanHead.exe: VEDObjLine()
+# 2 0x0041C6A5 in D:\Документыы\GitHub\MyFiles\_MyOpenGl\AfricanHead.exe: VEDObjHorTriangle()
+# 3 0x0041BE37 in D:\Документыы\GitHub\MyFiles\_MyOpenGl\AfricanHead.exe: VEDObjTriangle()
+# 4 0x0041AAF4 in D:\Документыы\GitHub\MyFiles\_MyOpenGl\AfricanHead.exe: VED3dObjTriangle()
+# 5 0x0042400B in D:\Документыы\GitHub\MyFiles\_MyOpenGl\AfricanHead.exe: VEDObjShadowFigure()
+# 6 0x00423C86 in D:\Документыы\GitHub\MyFiles\_MyOpenGl\AfricanHead.exe: VEDObjFigure()
+# 7 0x0042695C in D:\Документыы\GitHub\MyFiles\_MyOpenGl\AfricanHead.exe: main()
+
+--------------------------------------------------
+Developed with:
+
+The Dumb Artist Library (TX Library) - TXLib [Ver: 00173a, Rev: 105]
+Copyright (C) Ded (Ilya Dedinsky, http://txlib.ru) <mail@txlib.ru>
+See license on: http://txlib.ru
+
+TXLib file:	G:\TX\TXLib.h
+Compiled:	Feb 21 2018 14:24:15, GNU g++ 4.8.1, std=201103L, MinGW Runtime 3.20, 32-bit, Debug
+Started:	Feb 21 2018 14:24:19
+
+Run file:	D:\Документыы\GitHub\MyFiles\_MyOpenGl\AfricanHead.exe
+Directory:	D:\Документыы\GitHub\MyFiles\_MyOpenGl
+
+--------------------------------------------------
+
+--------------------------------------------------
+TXLib соболезнует...
+
+Программа: D:\Документыы\GitHub\MyFiles\_MyOpenGl\AfricanHead.exe,
+
+ВНЕЗАПНО: signal (11, 0x00): SIGSEGV: Доступ по неверному указателю. Ставьте ассерты! 
+
+Нарушение доступа к памяти.
+
+#1: Исключение EXCEPTION_ACCESS_VIOLATION (0xC0000005) при выполнении кода по адресу 0x00425CA5 в функции VEDObjPix(). Попытка записать данные по адресу 0x064B9000. Спасибо _txVectoredExceptionHandler(), что сообщил. Люблю его <3
+
+С помощью функции signal() вы можете сами обработать эту ошибку.
+
+#2: TXLib [Ver: 00173a, Rev: 105], Instance: 0x00500340 (32-bit), Flags: CMdRe0, Thread: 0x2820 (Main). 
+
+--------------------------------------------------
+Стек вызовов:
+
+# 0 0x00425CA5 in D:\Документыы\GitHub\MyFiles\_MyOpenGl\AfricanHead.exe: VEDObjPix()
+# 1 0x0042003D in D:\Документыы\GitHub\MyFiles\_MyOpenGl\AfricanHead.exe: VEDObjLine()
+# 2 0x0041C6A5 in D:\Документыы\GitHub\MyFiles\_MyOpenGl\AfricanHead.exe: VEDObjHorTriangle()
+# 3 0x0041BE37 in D:\Документыы\GitHub\MyFiles\_MyOpenGl\AfricanHead.exe: VEDObjTriangle()
+# 4 0x0041AAF4 in D:\Документыы\GitHub\MyFiles\_MyOpenGl\AfricanHead.exe: VED3dObjTriangle()
+# 5 0x0042400B in D:\Документыы\GitHub\MyFiles\_MyOpenGl\AfricanHead.exe: VEDObjShadowFigure()
+# 6 0x00423C86 in D:\Документыы\GitHub\MyFiles\_MyOpenGl\AfricanHead.exe: VEDObjFigure()
+# 7 0x0042695C in D:\Документыы\GitHub\MyFiles\_MyOpenGl\AfricanHead.exe: main()
+
+--------------------------------------------------
+Developed with:
+
+The Dumb Artist Library (TX Library) - TXLib [Ver: 00173a, Rev: 105]
+Copyright (C) Ded (Ilya Dedinsky, http://txlib.ru) <mail@txlib.ru>
+See license on: http://txlib.ru
+
+TXLib file:	G:\TX\TXLib.h
+Compiled:	Feb 21 2018 14:24:15, GNU g++ 4.8.1, std=201103L, MinGW Runtime 3.20, 32-bit, Debug
+Started:	Feb 21 2018 14:24:19
+
+Run file:	D:\Документыы\GitHub\MyFiles\_MyOpenGl\AfricanHead.exe
+Directory:	D:\Документыы\GitHub\MyFiles\_MyOpenGl
+
+--------------------------------------------------
+
+--------------------------------------------------
+TXLib предупреждает:
+
+Программа: D:\Документыы\GitHub\MyFiles\_MyOpenGl\AfricanHead.exe,
+
+ВНЕЗАПНО: Нарушение доступа к памяти.
+
+#1: Исключение EXCEPTION_ACCESS_VIOLATION (0xC0000005) при выполнении кода по адресу 0x00425C07 в функции VEDObjPix(). Попытка записать данные по адресу 0x06219000. Спасибо _txVectoredExceptionHandler(), что сообщил. Люблю его <3
+
+#1: TXLib [Ver: 00173a, Rev: 105], Instance: 0x00500340 (32-bit), Flags: CMdRe0, Thread: 0x96C (Main). 
+
+--------------------------------------------------
+Стек вызовов:
+
+# 0 0x00425C07 in D:\Документыы\GitHub\MyFiles\_MyOpenGl\AfricanHead.exe: VEDObjPix()
+# 1 0x0041FF9F in D:\Документыы\GitHub\MyFiles\_MyOpenGl\AfricanHead.exe: VEDObjLine()
+# 2 0x0041C607 in D:\Документыы\GitHub\MyFiles\_MyOpenGl\AfricanHead.exe: VEDObjHorTriangle()
+# 3 0x0041BD99 in D:\Документыы\GitHub\MyFiles\_MyOpenGl\AfricanHead.exe: VEDObjTriangle()
+# 4 0x0041AAF4 in D:\Документыы\GitHub\MyFiles\_MyOpenGl\AfricanHead.exe: VED3dObjTriangle()
+# 5 0x00423F6D in D:\Документыы\GitHub\MyFiles\_MyOpenGl\AfricanHead.exe: VEDObjShadowFigure()
+# 6 0x00423BE8 in D:\Документыы\GitHub\MyFiles\_MyOpenGl\AfricanHead.exe: VEDObjFigure()
+# 7 0x004268A4 in D:\Документыы\GitHub\MyFiles\_MyOpenGl\AfricanHead.exe: main()
+
+--------------------------------------------------
+Developed with:
+
+The Dumb Artist Library (TX Library) - TXLib [Ver: 00173a, Rev: 105]
+Copyright (C) Ded (Ilya Dedinsky, http://txlib.ru) <mail@txlib.ru>
+See license on: http://txlib.ru
+
+TXLib file:	G:\TX\TXLib.h
+Compiled:	Feb 21 2018 17:21:46, GNU g++ 4.8.1, std=201103L, MinGW Runtime 3.20, 32-bit, Debug
+Started:	Feb 21 2018 17:21:51
+
+Run file:	D:\Документыы\GitHub\MyFiles\_MyOpenGl\AfricanHead.exe
+Directory:	D:\Документыы\GitHub\MyFiles\_MyOpenGl
+
+--------------------------------------------------
+
+--------------------------------------------------
+TXLib соболезнует...
+
+Программа: D:\Документыы\GitHub\MyFiles\_MyOpenGl\AfricanHead.exe,
+
+ВНЕЗАПНО: signal (11, 0x00): SIGSEGV: Доступ по неверному указателю. Ставьте ассерты! 
+
+Нарушение доступа к памяти.
+
+#1: Исключение EXCEPTION_ACCESS_VIOLATION (0xC0000005) при выполнении кода по адресу 0x00425C07 в функции VEDObjPix(). Попытка записать данные по адресу 0x06219000. Спасибо _txVectoredExceptionHandler(), что сообщил. Люблю его <3
+
+С помощью функции signal() вы можете сами обработать эту ошибку.
+
+#2: TXLib [Ver: 00173a, Rev: 105], Instance: 0x00500340 (32-bit), Flags: CMdRe0, Thread: 0x96C (Main). 
+
+--------------------------------------------------
+Стек вызовов:
+
+# 0 0x00425C07 in D:\Документыы\GitHub\MyFiles\_MyOpenGl\AfricanHead.exe: VEDObjPix()
+# 1 0x0041FF9F in D:\Документыы\GitHub\MyFiles\_MyOpenGl\AfricanHead.exe: VEDObjLine()
+# 2 0x0041C607 in D:\Документыы\GitHub\MyFiles\_MyOpenGl\AfricanHead.exe: VEDObjHorTriangle()
+# 3 0x0041BD99 in D:\Документыы\GitHub\MyFiles\_MyOpenGl\AfricanHead.exe: VEDObjTriangle()
+# 4 0x0041AAF4 in D:\Документыы\GitHub\MyFiles\_MyOpenGl\AfricanHead.exe: VED3dObjTriangle()
+# 5 0x00423F6D in D:\Документыы\GitHub\MyFiles\_MyOpenGl\AfricanHead.exe: VEDObjShadowFigure()
+# 6 0x00423BE8 in D:\Документыы\GitHub\MyFiles\_MyOpenGl\AfricanHead.exe: VEDObjFigure()
+# 7 0x004268A4 in D:\Документыы\GitHub\MyFiles\_MyOpenGl\AfricanHead.exe: main()
+
+--------------------------------------------------
+Developed with:
+
+The Dumb Artist Library (TX Library) - TXLib [Ver: 00173a, Rev: 105]
+Copyright (C) Ded (Ilya Dedinsky, http://txlib.ru) <mail@txlib.ru>
+See license on: http://txlib.ru
+
+TXLib file:	G:\TX\TXLib.h
+Compiled:	Feb 21 2018 17:21:46, GNU g++ 4.8.1, std=201103L, MinGW Runtime 3.20, 32-bit, Debug
+Started:	Feb 21 2018 17:21:51
+
+Run file:	D:\Документыы\GitHub\MyFiles\_MyOpenGl\AfricanHead.exe
+Directory:	D:\Документыы\GitHub\MyFiles\_MyOpenGl
+
+--------------------------------------------------
+
+--------------------------------------------------
+TXLib предупреждает:
+
+Программа: D:\Документыы\GitHub\MyFiles\_MyOpenGl\AfricanHead.exe,
+
+ВНЕЗАПНО: Деление на ноль при операции с плавающей точкой.
+
+#1: Исключение EXCEPTION_FLT_DIVIDE_BY_ZERO (0xC000008E) при выполнении кода по адресу 0x004258A5 в функции VEDObjPix(). Спасибо _txVectoredExceptionHandler(), что сообщил. Люблю его <3
+
+#1: TXLib [Ver: 00173a, Rev: 105], Instance: 0x00500340 (32-bit), Flags: CMdRe0, Thread: 0x71C (Main). 
+
+--------------------------------------------------
+Стек вызовов:
+
+# 0 0x004258A5 in D:\Документыы\GitHub\MyFiles\_MyOpenGl\AfricanHead.exe: VEDObjPix()
+# 1 0x0041FF99 in D:\Документыы\GitHub\MyFiles\_MyOpenGl\AfricanHead.exe: VEDObjLine()
+# 2 0x0041C601 in D:\Документыы\GitHub\MyFiles\_MyOpenGl\AfricanHead.exe: VEDObjHorTriangle()
+# 3 0x0041BD93 in D:\Документыы\GitHub\MyFiles\_MyOpenGl\AfricanHead.exe: VEDObjTriangle()
+# 4 0x0041AAF4 in D:\Документыы\GitHub\MyFiles\_MyOpenGl\AfricanHead.exe: VED3dObjTriangle()
+# 5 0x00423F67 in D:\Документыы\GitHub\MyFiles\_MyOpenGl\AfricanHead.exe: VEDObjShadowFigure()
+# 6 0x00423BE2 in D:\Документыы\GitHub\MyFiles\_MyOpenGl\AfricanHead.exe: VEDObjFigure()
+# 7 0x0042689E in D:\Документыы\GitHub\MyFiles\_MyOpenGl\AfricanHead.exe: main()
+
+--------------------------------------------------
+Developed with:
+
+The Dumb Artist Library (TX Library) - TXLib [Ver: 00173a, Rev: 105]
+Copyright (C) Ded (Ilya Dedinsky, http://txlib.ru) <mail@txlib.ru>
+See license on: http://txlib.ru
+
+TXLib file:	G:\TX\TXLib.h
+Compiled:	Feb 21 2018 17:22:05, GNU g++ 4.8.1, std=201103L, MinGW Runtime 3.20, 32-bit, Debug
+Started:	Feb 21 2018 17:22:10
+
+Run file:	D:\Документыы\GitHub\MyFiles\_MyOpenGl\AfricanHead.exe
+Directory:	D:\Документыы\GitHub\MyFiles\_MyOpenGl
+
+--------------------------------------------------
+
+--------------------------------------------------
+TXLib соболезнует...
+
+Программа: D:\Документыы\GitHub\MyFiles\_MyOpenGl\AfricanHead.exe,
+
+ВНЕЗАПНО: signal (8, 0x00): SIGFPE: Грубая ошибка в вычислениях. 
+
+Деление на ноль при операции с плавающей точкой.
+
+#1: Исключение EXCEPTION_FLT_DIVIDE_BY_ZERO (0xC000008E) при выполнении кода по адресу 0x004258A5 в функции VEDObjPix(). Спасибо _txVectoredExceptionHandler(), что сообщил. Люблю его <3
+
+С помощью функции signal() вы можете сами обработать эту ошибку.
+
+#2: TXLib [Ver: 00173a, Rev: 105], Instance: 0x00500340 (32-bit), Flags: CMdRe0, Thread: 0x71C (Main). 
+
+--------------------------------------------------
+Стек вызовов:
+
+# 0 0x004258A5 in D:\Документыы\GitHub\MyFiles\_MyOpenGl\AfricanHead.exe: VEDObjPix()
+# 1 0x0041FF99 in D:\Документыы\GitHub\MyFiles\_MyOpenGl\AfricanHead.exe: VEDObjLine()
+# 2 0x0041C601 in D:\Документыы\GitHub\MyFiles\_MyOpenGl\AfricanHead.exe: VEDObjHorTriangle()
+# 3 0x0041BD93 in D:\Документыы\GitHub\MyFiles\_MyOpenGl\AfricanHead.exe: VEDObjTriangle()
+# 4 0x0041AAF4 in D:\Документыы\GitHub\MyFiles\_MyOpenGl\AfricanHead.exe: VED3dObjTriangle()
+# 5 0x00423F67 in D:\Документыы\GitHub\MyFiles\_MyOpenGl\AfricanHead.exe: VEDObjShadowFigure()
+# 6 0x00423BE2 in D:\Документыы\GitHub\MyFiles\_MyOpenGl\AfricanHead.exe: VEDObjFigure()
+# 7 0x0042689E in D:\Документыы\GitHub\MyFiles\_MyOpenGl\AfricanHead.exe: main()
+
+--------------------------------------------------
+Developed with:
+
+The Dumb Artist Library (TX Library) - TXLib [Ver: 00173a, Rev: 105]
+Copyright (C) Ded (Ilya Dedinsky, http://txlib.ru) <mail@txlib.ru>
+See license on: http://txlib.ru
+
+TXLib file:	G:\TX\TXLib.h
+Compiled:	Feb 21 2018 17:22:05, GNU g++ 4.8.1, std=201103L, MinGW Runtime 3.20, 32-bit, Debug
+Started:	Feb 21 2018 17:22:10
+
+Run file:	D:\Документыы\GitHub\MyFiles\_MyOpenGl\AfricanHead.exe
+Directory:	D:\Документыы\GitHub\MyFiles\_MyOpenGl
+
+--------------------------------------------------
+
+--------------------------------------------------
+TXLib предупреждает:
+
+Программа: D:\Документыы\GitHub\MyFiles\_MyOpenGl\AfricanHead.exe,
+
+ВНЕЗАПНО: Нарушение доступа к памяти.
+
+#1: Исключение EXCEPTION_ACCESS_VIOLATION (0xC0000005) при выполнении кода по адресу 0x00425C07 в функции VEDObjPix(). Попытка записать данные по адресу 0x060F9000. Спасибо _txVectoredExceptionHandler(), что сообщил. Люблю его <3
+
+#1: TXLib [Ver: 00173a, Rev: 105], Instance: 0x00500340 (32-bit), Flags: CMdRe0, Thread: 0x1720 (Main). 
+
+--------------------------------------------------
+Стек вызовов:
+
+# 0 0x00425C07 in D:\Документыы\GitHub\MyFiles\_MyOpenGl\AfricanHead.exe: VEDObjPix()
+# 1 0x0041FF9F in D:\Документыы\GitHub\MyFiles\_MyOpenGl\AfricanHead.exe: VEDObjLine()
+# 2 0x0041C607 in D:\Документыы\GitHub\MyFiles\_MyOpenGl\AfricanHead.exe: VEDObjHorTriangle()
+# 3 0x0041BD99 in D:\Документыы\GitHub\MyFiles\_MyOpenGl\AfricanHead.exe: VEDObjTriangle()
+# 4 0x0041AAF4 in D:\Документыы\GitHub\MyFiles\_MyOpenGl\AfricanHead.exe: VED3dObjTriangle()
+# 5 0x00423F6D in D:\Документыы\GitHub\MyFiles\_MyOpenGl\AfricanHead.exe: VEDObjShadowFigure()
+# 6 0x00423BE8 in D:\Документыы\GitHub\MyFiles\_MyOpenGl\AfricanHead.exe: VEDObjFigure()
+# 7 0x004268A4 in D:\Документыы\GitHub\MyFiles\_MyOpenGl\AfricanHead.exe: main()
+
+--------------------------------------------------
+Developed with:
+
+The Dumb Artist Library (TX Library) - TXLib [Ver: 00173a, Rev: 105]
+Copyright (C) Ded (Ilya Dedinsky, http://txlib.ru) <mail@txlib.ru>
+See license on: http://txlib.ru
+
+TXLib file:	G:\TX\TXLib.h
+Compiled:	Feb 21 2018 17:27:38, GNU g++ 4.8.1, std=201103L, MinGW Runtime 3.20, 32-bit, Debug
+Started:	Feb 21 2018 17:27:43
+
+Run file:	D:\Документыы\GitHub\MyFiles\_MyOpenGl\AfricanHead.exe
+Directory:	D:\Документыы\GitHub\MyFiles\_MyOpenGl
+
+--------------------------------------------------
+
+--------------------------------------------------
+TXLib соболезнует...
+
+Программа: D:\Документыы\GitHub\MyFiles\_MyOpenGl\AfricanHead.exe,
+
+ВНЕЗАПНО: signal (11, 0x00): SIGSEGV: Доступ по неверному указателю. Ставьте ассерты! 
+
+Нарушение доступа к памяти.
+
+#1: Исключение EXCEPTION_ACCESS_VIOLATION (0xC0000005) при выполнении кода по адресу 0x00425C07 в функции VEDObjPix(). Попытка записать данные по адресу 0x060F9000. Спасибо _txVectoredExceptionHandler(), что сообщил. Люблю его <3
+
+С помощью функции signal() вы можете сами обработать эту ошибку.
+
+#2: TXLib [Ver: 00173a, Rev: 105], Instance: 0x00500340 (32-bit), Flags: CMdRe0, Thread: 0x1720 (Main). 
+
+--------------------------------------------------
+Стек вызовов:
+
+# 0 0x00425C07 in D:\Документыы\GitHub\MyFiles\_MyOpenGl\AfricanHead.exe: VEDObjPix()
+# 1 0x0041FF9F in D:\Документыы\GitHub\MyFiles\_MyOpenGl\AfricanHead.exe: VEDObjLine()
+# 2 0x0041C607 in D:\Документыы\GitHub\MyFiles\_MyOpenGl\AfricanHead.exe: VEDObjHorTriangle()
+# 3 0x0041BD99 in D:\Документыы\GitHub\MyFiles\_MyOpenGl\AfricanHead.exe: VEDObjTriangle()
+# 4 0x0041AAF4 in D:\Документыы\GitHub\MyFiles\_MyOpenGl\AfricanHead.exe: VED3dObjTriangle()
+# 5 0x00423F6D in D:\Документыы\GitHub\MyFiles\_MyOpenGl\AfricanHead.exe: VEDObjShadowFigure()
+# 6 0x00423BE8 in D:\Документыы\GitHub\MyFiles\_MyOpenGl\AfricanHead.exe: VEDObjFigure()
+# 7 0x004268A4 in D:\Документыы\GitHub\MyFiles\_MyOpenGl\AfricanHead.exe: main()
+
+--------------------------------------------------
+Developed with:
+
+The Dumb Artist Library (TX Library) - TXLib [Ver: 00173a, Rev: 105]
+Copyright (C) Ded (Ilya Dedinsky, http://txlib.ru) <mail@txlib.ru>
+See license on: http://txlib.ru
+
+TXLib file:	G:\TX\TXLib.h
+Compiled:	Feb 21 2018 17:27:38, GNU g++ 4.8.1, std=201103L, MinGW Runtime 3.20, 32-bit, Debug
+Started:	Feb 21 2018 17:27:43
+
+Run file:	D:\Документыы\GitHub\MyFiles\_MyOpenGl\AfricanHead.exe
+Directory:	D:\Документыы\GitHub\MyFiles\_MyOpenGl
+
+--------------------------------------------------
+
+--------------------------------------------------
+TXLib предупреждает:
+
+Программа: D:\Документыы\GitHub\MyFiles\_MyOpenGl\AfricanHead.exe,
+
+ВНЕЗАПНО: Нарушение доступа к памяти.
+
+#1: Исключение EXCEPTION_ACCESS_VIOLATION (0xC0000005) при выполнении кода по адресу 0x00425C07 в функции VEDObjPix(). Попытка записать данные по адресу 0x05F89000. Спасибо _txVectoredExceptionHandler(), что сообщил. Люблю его <3
+
+#1: TXLib [Ver: 00173a, Rev: 105], Instance: 0x00500340 (32-bit), Flags: CMdRe0, Thread: 0xBC0 (Main). 
+
+--------------------------------------------------
+Стек вызовов:
+
+# 0 0x00425C07 in D:\Документыы\GitHub\MyFiles\_MyOpenGl\AfricanHead.exe: VEDObjPix()
+# 1 0x0041FF9F in D:\Документыы\GitHub\MyFiles\_MyOpenGl\AfricanHead.exe: VEDObjLine()
+# 2 0x0041C607 in D:\Документыы\GitHub\MyFiles\_MyOpenGl\AfricanHead.exe: VEDObjHorTriangle()
+# 3 0x0041BD99 in D:\Документыы\GitHub\MyFiles\_MyOpenGl\AfricanHead.exe: VEDObjTriangle()
+# 4 0x0041AAF4 in D:\Документыы\GitHub\MyFiles\_MyOpenGl\AfricanHead.exe: VED3dObjTriangle()
+# 5 0x00423F6D in D:\Документыы\GitHub\MyFiles\_MyOpenGl\AfricanHead.exe: VEDObjShadowFigure()
+# 6 0x00423BE8 in D:\Документыы\GitHub\MyFiles\_MyOpenGl\AfricanHead.exe: VEDObjFigure()
+# 7 0x004268A4 in D:\Документыы\GitHub\MyFiles\_MyOpenGl\AfricanHead.exe: main()
+
+--------------------------------------------------
+Developed with:
+
+The Dumb Artist Library (TX Library) - TXLib [Ver: 00173a, Rev: 105]
+Copyright (C) Ded (Ilya Dedinsky, http://txlib.ru) <mail@txlib.ru>
+See license on: http://txlib.ru
+
+TXLib file:	G:\TX\TXLib.h
+Compiled:	Feb 21 2018 17:27:38, GNU g++ 4.8.1, std=201103L, MinGW Runtime 3.20, 32-bit, Debug
+Started:	Feb 21 2018 17:30:44
+
+Run file:	D:\Документыы\GitHub\MyFiles\_MyOpenGl\AfricanHead.exe
+Directory:	D:\Документыы\GitHub\MyFiles\_MyOpenGl
+
+--------------------------------------------------
+
+--------------------------------------------------
+TXLib соболезнует...
+
+Программа: D:\Документыы\GitHub\MyFiles\_MyOpenGl\AfricanHead.exe,
+
+ВНЕЗАПНО: signal (11, 0x00): SIGSEGV: Доступ по неверному указателю. Ставьте ассерты! 
+
+Нарушение доступа к памяти.
+
+#1: Исключение EXCEPTION_ACCESS_VIOLATION (0xC0000005) при выполнении кода по адресу 0x00425C07 в функции VEDObjPix(). Попытка записать данные по адресу 0x05F89000. Спасибо _txVectoredExceptionHandler(), что сообщил. Люблю его <3
+
+С помощью функции signal() вы можете сами обработать эту ошибку.
+
+#2: TXLib [Ver: 00173a, Rev: 105], Instance: 0x00500340 (32-bit), Flags: CMdRe0, Thread: 0xBC0 (Main). 
+
+--------------------------------------------------
+Стек вызовов:
+
+# 0 0x00425C07 in D:\Документыы\GitHub\MyFiles\_MyOpenGl\AfricanHead.exe: VEDObjPix()
+# 1 0x0041FF9F in D:\Документыы\GitHub\MyFiles\_MyOpenGl\AfricanHead.exe: VEDObjLine()
+# 2 0x0041C607 in D:\Документыы\GitHub\MyFiles\_MyOpenGl\AfricanHead.exe: VEDObjHorTriangle()
+# 3 0x0041BD99 in D:\Документыы\GitHub\MyFiles\_MyOpenGl\AfricanHead.exe: VEDObjTriangle()
+# 4 0x0041AAF4 in D:\Документыы\GitHub\MyFiles\_MyOpenGl\AfricanHead.exe: VED3dObjTriangle()
+# 5 0x00423F6D in D:\Документыы\GitHub\MyFiles\_MyOpenGl\AfricanHead.exe: VEDObjShadowFigure()
+# 6 0x00423BE8 in D:\Документыы\GitHub\MyFiles\_MyOpenGl\AfricanHead.exe: VEDObjFigure()
+# 7 0x004268A4 in D:\Документыы\GitHub\MyFiles\_MyOpenGl\AfricanHead.exe: main()
+
+--------------------------------------------------
+Developed with:
+
+The Dumb Artist Library (TX Library) - TXLib [Ver: 00173a, Rev: 105]
+Copyright (C) Ded (Ilya Dedinsky, http://txlib.ru) <mail@txlib.ru>
+See license on: http://txlib.ru
+
+TXLib file:	G:\TX\TXLib.h
+Compiled:	Feb 21 2018 17:27:38, GNU g++ 4.8.1, std=201103L, MinGW Runtime 3.20, 32-bit, Debug
+Started:	Feb 21 2018 17:30:44
+
+Run file:	D:\Документыы\GitHub\MyFiles\_MyOpenGl\AfricanHead.exe
+Directory:	D:\Документыы\GitHub\MyFiles\_MyOpenGl
+
+--------------------------------------------------
+
+--------------------------------------------------
+TXLib предупреждает:
+
+Программа: D:\Документыы\GitHub\MyFiles\_MyOpenGl\AfricanHead.exe,
+
+ВНЕЗАПНО: Нарушение доступа к памяти.
+
+#1: Исключение EXCEPTION_ACCESS_VIOLATION (0xC0000005) при выполнении кода по адресу 0x00426027 в функции VEDObjPix(). Попытка записать данные по адресу 0x06099000. Спасибо _txVectoredExceptionHandler(), что сообщил. Люблю его <3
+
+#1: TXLib [Ver: 00173a, Rev: 105], Instance: 0x00500340 (32-bit), Flags: CMdRe0, Thread: 0xE04 (Main). 
+
+--------------------------------------------------
+Стек вызовов:
+
+# 0 0x00426027 in D:\Документыы\GitHub\MyFiles\_MyOpenGl\AfricanHead.exe: VEDObjPix()
+# 1 0x004203C0 in D:\Документыы\GitHub\MyFiles\_MyOpenGl\AfricanHead.exe: VEDObjLine()
+# 2 0x0041C640 in D:\Документыы\GitHub\MyFiles\_MyOpenGl\AfricanHead.exe: VEDObjHorTriangle()
+# 3 0x0041C069 in D:\Документыы\GitHub\MyFiles\_MyOpenGl\AfricanHead.exe: VEDObjTriangle()
+# 4 0x0041AAF4 in D:\Документыы\GitHub\MyFiles\_MyOpenGl\AfricanHead.exe: VED3dObjTriangle()
+# 5 0x0042438D in D:\Документыы\GitHub\MyFiles\_MyOpenGl\AfricanHead.exe: VEDObjShadowFigure()
+# 6 0x00424008 in D:\Документыы\GitHub\MyFiles\_MyOpenGl\AfricanHead.exe: VEDObjFigure()
+# 7 0x00426D18 in D:\Документыы\GitHub\MyFiles\_MyOpenGl\AfricanHead.exe: main()
+
+--------------------------------------------------
+Developed with:
+
+The Dumb Artist Library (TX Library) - TXLib [Ver: 00173a, Rev: 105]
+Copyright (C) Ded (Ilya Dedinsky, http://txlib.ru) <mail@txlib.ru>
+See license on: http://txlib.ru
+
+TXLib file:	G:\TX\TXLib.h
+Compiled:	Feb 21 2018 17:35:04, GNU g++ 4.8.1, std=201103L, MinGW Runtime 3.20, 32-bit, Debug
+Started:	Feb 21 2018 17:35:09
+
+Run file:	D:\Документыы\GitHub\MyFiles\_MyOpenGl\AfricanHead.exe
+Directory:	D:\Документыы\GitHub\MyFiles\_MyOpenGl
+
+--------------------------------------------------
+
+--------------------------------------------------
+TXLib соболезнует...
+
+Программа: D:\Документыы\GitHub\MyFiles\_MyOpenGl\AfricanHead.exe,
+
+ВНЕЗАПНО: signal (11, 0x00): SIGSEGV: Доступ по неверному указателю. Ставьте ассерты! 
+
+Нарушение доступа к памяти.
+
+#1: Исключение EXCEPTION_ACCESS_VIOLATION (0xC0000005) при выполнении кода по адресу 0x00426027 в функции VEDObjPix(). Попытка записать данные по адресу 0x06099000. Спасибо _txVectoredExceptionHandler(), что сообщил. Люблю его <3
+
+С помощью функции signal() вы можете сами обработать эту ошибку.
+
+#2: TXLib [Ver: 00173a, Rev: 105], Instance: 0x00500340 (32-bit), Flags: CMdRe0, Thread: 0xE04 (Main). 
+
+--------------------------------------------------
+Стек вызовов:
+
+# 0 0x00426027 in D:\Документыы\GitHub\MyFiles\_MyOpenGl\AfricanHead.exe: VEDObjPix()
+# 1 0x004203C0 in D:\Документыы\GitHub\MyFiles\_MyOpenGl\AfricanHead.exe: VEDObjLine()
+# 2 0x0041C640 in D:\Документыы\GitHub\MyFiles\_MyOpenGl\AfricanHead.exe: VEDObjHorTriangle()
+# 3 0x0041C069 in D:\Документыы\GitHub\MyFiles\_MyOpenGl\AfricanHead.exe: VEDObjTriangle()
+# 4 0x0041AAF4 in D:\Документыы\GitHub\MyFiles\_MyOpenGl\AfricanHead.exe: VED3dObjTriangle()
+# 5 0x0042438D in D:\Документыы\GitHub\MyFiles\_MyOpenGl\AfricanHead.exe: VEDObjShadowFigure()
+# 6 0x00424008 in D:\Документыы\GitHub\MyFiles\_MyOpenGl\AfricanHead.exe: VEDObjFigure()
+# 7 0x00426D18 in D:\Документыы\GitHub\MyFiles\_MyOpenGl\AfricanHead.exe: main()
+
+--------------------------------------------------
+Developed with:
+
+The Dumb Artist Library (TX Library) - TXLib [Ver: 00173a, Rev: 105]
+Copyright (C) Ded (Ilya Dedinsky, http://txlib.ru) <mail@txlib.ru>
+See license on: http://txlib.ru
+
+TXLib file:	G:\TX\TXLib.h
+Compiled:	Feb 21 2018 17:35:04, GNU g++ 4.8.1, std=201103L, MinGW Runtime 3.20, 32-bit, Debug
+Started:	Feb 21 2018 17:35:09
+
+Run file:	D:\Документыы\GitHub\MyFiles\_MyOpenGl\AfricanHead.exe
+Directory:	D:\Документыы\GitHub\MyFiles\_MyOpenGl
+
+--------------------------------------------------
+
+--------------------------------------------------
+TXLib сообщает:
+
+Программа: D:\Документыы\GitHub\MyFiles\_MyOpenGl\AfricanHead.exe, файл: G:\TX\TXLib.h, строка: 10582, функция: HPEN__* {anonymous}::TX::txSetColor(COLORREF, double, HDC),
+
+Сообщение: Параметр "dc" неверен. Возможно, этот холст не создан, или уже уничтожен, или не загрузилась картинка.
+
+#1: TXLib [Ver: 00173a, Rev: 105], Instance: 0x00500340 (32-bit), Flags: CMdrE0, Thread: 0x1A38 (Main), GetLastError(): 13 (Недопустимые данные). 
+
+--------------------------------------------------
+Стек вызовов:
+
+# 0 0x0041048A in D:\Документыы\GitHub\MyFiles\_MyOpenGl\AfricanHead.exe: (anonymous namespace)::TX::txSetColor()
+# 1 0x0041BAFF in D:\Документыы\GitHub\MyFiles\_MyOpenGl\AfricanHead.exe: VEDObjTriangle()
+# 2 0x0041AAF4 in D:\Документыы\GitHub\MyFiles\_MyOpenGl\AfricanHead.exe: VED3dObjTriangle()
+# 3 0x0042438D in D:\Документыы\GitHub\MyFiles\_MyOpenGl\AfricanHead.exe: VEDObjShadowFigure()
+# 4 0x00424008 in D:\Документыы\GitHub\MyFiles\_MyOpenGl\AfricanHead.exe: VEDObjFigure()
+# 5 0x00426D2E in D:\Документыы\GitHub\MyFiles\_MyOpenGl\AfricanHead.exe: main()
+
+--------------------------------------------------
+TXLib предупреждает:
+
+Программа: D:\Документыы\GitHub\MyFiles\_MyOpenGl\AfricanHead.exe,
+
+ВНЕЗАПНО: Нарушение доступа к памяти.
+
+#1: Исключение EXCEPTION_ACCESS_VIOLATION (0xC0000005) при выполнении кода по адресу 0x00425FF7 в функции VEDObjPix(). Попытка записать данные по адресу 0x05CD3E5C. Спасибо _txVectoredExceptionHandler(), что сообщил. Люблю его <3
+
+#1: TXLib [Ver: 00173a, Rev: 105], Instance: 0x00500340 (32-bit), Flags: CMdrE0, Thread: 0x1638 (Main). 
+
+--------------------------------------------------
+Стек вызовов:
+
+# 0 0x00425FF7 in D:\Документыы\GitHub\MyFiles\_MyOpenGl\AfricanHead.exe: VEDObjPix()
+# 1 0x00420390 in D:\Документыы\GitHub\MyFiles\_MyOpenGl\AfricanHead.exe: VEDObjLine()
+# 2 0x0041C610 in D:\Документыы\GitHub\MyFiles\_MyOpenGl\AfricanHead.exe: VEDObjHorTriangle()
+# 3 0x0041BDA2 in D:\Документыы\GitHub\MyFiles\_MyOpenGl\AfricanHead.exe: VEDObjTriangle()
+# 4 0x0041AAF4 in D:\Документыы\GitHub\MyFiles\_MyOpenGl\AfricanHead.exe: VED3dObjTriangle()
+# 5 0x0042435D in D:\Документыы\GitHub\MyFiles\_MyOpenGl\AfricanHead.exe: VEDObjShadowFigure()
+# 6 0x00423FD8 in D:\Документыы\GitHub\MyFiles\_MyOpenGl\AfricanHead.exe: VEDObjFigure()
+# 7 0x00426CFE in D:\Документыы\GitHub\MyFiles\_MyOpenGl\AfricanHead.exe: main()
+
+--------------------------------------------------
+TXLib предупреждает:
+
+Программа: D:\Документыы\GitHub\MyFiles\_MyOpenGl\AfricanHead.exe,
+
+ВНЕЗАПНО: Нарушение доступа к памяти.
+
+#1: Исключение EXCEPTION_ACCESS_VIOLATION (0xC0000005) при выполнении кода по адресу 0x00425D09 в функции VEDObjPix(). Попытка прочесть данные по адресу 0x0692A80C. Спасибо _txVectoredExceptionHandler(), что сообщил. Люблю его <3
+
+#1: TXLib [Ver: 00173a, Rev: 105], Instance: 0x00500340 (32-bit), Flags: CMdrE0, Thread: 0xCE4 (Main), GetLastError(): 87 (Параметр задан неверно). 
+
+--------------------------------------------------
+Стек вызовов:
+
+# 0 0x00425D09 in D:\Документыы\GitHub\MyFiles\_MyOpenGl\AfricanHead.exe: VEDObjPix()
+# 1 0x00420381 in D:\Документыы\GitHub\MyFiles\_MyOpenGl\AfricanHead.exe: VEDObjLine()
+# 2 0x0041C610 in D:\Документыы\GitHub\MyFiles\_MyOpenGl\AfricanHead.exe: VEDObjHorTriangle()
+# 3 0x0041BDA2 in D:\Документыы\GitHub\MyFiles\_MyOpenGl\AfricanHead.exe: VEDObjTriangle()
+# 4 0x0041AAF4 in D:\Документыы\GitHub\MyFiles\_MyOpenGl\AfricanHead.exe: VED3dObjTriangle()
+# 5 0x0042434F in D:\Документыы\GitHub\MyFiles\_MyOpenGl\AfricanHead.exe: VEDObjShadowFigure()
+# 6 0x00423FCA in D:\Документыы\GitHub\MyFiles\_MyOpenGl\AfricanHead.exe: VEDObjFigure()
+# 7 0x00426CF0 in D:\Документыы\GitHub\MyFiles\_MyOpenGl\AfricanHead.exe: main()
+
+--------------------------------------------------
+TXLib предупреждает:
+
+Программа: D:\Документыы\GitHub\MyFiles\_MyOpenGl\AfricanHead.exe,
+
+ВНЕЗАПНО: Нарушение доступа к памяти.
+
+#1: Исключение EXCEPTION_ACCESS_VIOLATION (0xC0000005) при выполнении кода по адресу 0x00425D39 в функции VEDObjPix(). Попытка прочесть данные по адресу 0x06AD38B0. Спасибо _txVectoredExceptionHandler(), что сообщил. Люблю его <3
+
+#1: TXLib [Ver: 00173a, Rev: 105], Instance: 0x00500340 (32-bit), Flags: CMdrE0, Thread: 0x271C (Main), GetLastError(): 87 (Параметр задан неверно). 
+
+--------------------------------------------------
+Стек вызовов:
+
+# 0 0x00425D39 in D:\Документыы\GitHub\MyFiles\_MyOpenGl\AfricanHead.exe: VEDObjPix()
+# 1 0x004203B1 in D:\Документыы\GitHub\MyFiles\_MyOpenGl\AfricanHead.exe: VEDObjLine()
+# 2 0x0041C640 in D:\Документыы\GitHub\MyFiles\_MyOpenGl\AfricanHead.exe: VEDObjHorTriangle()
+# 3 0x0041BDD2 in D:\Документыы\GitHub\MyFiles\_MyOpenGl\AfricanHead.exe: VEDObjTriangle()
+# 4 0x0041AAF4 in D:\Документыы\GitHub\MyFiles\_MyOpenGl\AfricanHead.exe: VED3dObjTriangle()
+# 5 0x0042437F in D:\Документыы\GitHub\MyFiles\_MyOpenGl\AfricanHead.exe: VEDObjShadowFigure()
+# 6 0x00423FFA in D:\Документыы\GitHub\MyFiles\_MyOpenGl\AfricanHead.exe: VEDObjFigure()
+# 7 0x00426D20 in D:\Документыы\GitHub\MyFiles\_MyOpenGl\AfricanHead.exe: main()
+
+--------------------------------------------------
+Developed with:
+
+The Dumb Artist Library (TX Library) - TXLib [Ver: 00173a, Rev: 105]
+Copyright (C) Ded (Ilya Dedinsky, http://txlib.ru) <mail@txlib.ru>
+See license on: http://txlib.ru
+
+TXLib file:	G:\TX\TXLib.h
+Compiled:	Feb 21 2018 17:39:39, GNU g++ 4.8.1, std=201103L, MinGW Runtime 3.20, 32-bit, Debug
+Started:	Feb 21 2018 17:39:44
+
+Run file:	D:\Документыы\GitHub\MyFiles\_MyOpenGl\AfricanHead.exe
+Directory:	D:\Документыы\GitHub\MyFiles\_MyOpenGl
+
+--------------------------------------------------
+
+--------------------------------------------------
+TXLib сообщает:
+
+Программа: D:\Документыы\GitHub\MyFiles\_MyOpenGl\AfricanHead.exe, файл: G:\TX\TXLib.h, строка: 10582, функция: HPEN__* {anonymous}::TX::txSetColor(COLORREF, double, HDC),
+
+Сообщение: Параметр "dc" неверен. Возможно, этот холст не создан, или уже уничтожен, или не загрузилась картинка.
+
+#1: TXLib [Ver: 00173a, Rev: 105], Instance: 0x00500340 (32-bit), Flags: CMdrE0, Thread: 0xB84 (Main), GetLastError(): 13 (Недопустимые данные). 
+
+--------------------------------------------------
+Стек вызовов:
+
+# 0 0x0041048A in D:\Документыы\GitHub\MyFiles\_MyOpenGl\AfricanHead.exe: (anonymous namespace)::TX::txSetColor()
+# 1 0x0041BAFF in D:\Документыы\GitHub\MyFiles\_MyOpenGl\AfricanHead.exe: VEDObjTriangle()
+# 2 0x0041AAF4 in D:\Документыы\GitHub\MyFiles\_MyOpenGl\AfricanHead.exe: VED3dObjTriangle()
+# 3 0x0042437F in D:\Документыы\GitHub\MyFiles\_MyOpenGl\AfricanHead.exe: VEDObjShadowFigure()
+# 4 0x00423FFA in D:\Документыы\GitHub\MyFiles\_MyOpenGl\AfricanHead.exe: VEDObjFigure()
+# 5 0x00426D20 in D:\Документыы\GitHub\MyFiles\_MyOpenGl\AfricanHead.exe: main()
+
+--------------------------------------------------
+TXLib предупреждает:
+
+Программа: D:\Документыы\GitHub\MyFiles\_MyOpenGl\AfricanHead.exe,
+
+ВНЕЗАПНО: Нарушение доступа к памяти.
+
+#1: Исключение EXCEPTION_ACCESS_VIOLATION (0xC0000005) при выполнении кода по адресу 0x00425D09 в функции VEDObjPix(). Попытка прочесть данные по адресу 0x06E127FC. Спасибо _txVectoredExceptionHandler(), что сообщил. Люблю его <3
+
+#1: TXLib [Ver: 00173a, Rev: 105], Instance: 0x00500340 (32-bit), Flags: CMdrE0, Thread: 0x1EA4 (Main), GetLastError(): 87 (Параметр задан неверно). 
+
+--------------------------------------------------
+Стек вызовов:
+
+# 0 0x00425D09 in D:\Документыы\GitHub\MyFiles\_MyOpenGl\AfricanHead.exe: VEDObjPix()
+# 1 0x00420381 in D:\Документыы\GitHub\MyFiles\_MyOpenGl\AfricanHead.exe: VEDObjLine()
+# 2 0x0041C610 in D:\Документыы\GitHub\MyFiles\_MyOpenGl\AfricanHead.exe: VEDObjHorTriangle()
+# 3 0x0041BDA2 in D:\Документыы\GitHub\MyFiles\_MyOpenGl\AfricanHead.exe: VEDObjTriangle()
+# 4 0x0041AAF4 in D:\Документыы\GitHub\MyFiles\_MyOpenGl\AfricanHead.exe: VED3dObjTriangle()
+# 5 0x0042434F in D:\Документыы\GitHub\MyFiles\_MyOpenGl\AfricanHead.exe: VEDObjShadowFigure()
+# 6 0x00423FCA in D:\Документыы\GitHub\MyFiles\_MyOpenGl\AfricanHead.exe: VEDObjFigure()
+# 7 0x00426CF0 in D:\Документыы\GitHub\MyFiles\_MyOpenGl\AfricanHead.exe: main()
+
+--------------------------------------------------
+TXLib предупреждает:
+
+Программа: D:\Документыы\GitHub\MyFiles\_MyOpenGl\AfricanHead.exe,
+
+ВНЕЗАПНО: Деление на ноль при операции с плавающей точкой.
+
+#1: Исключение EXCEPTION_FLT_DIVIDE_BY_ZERO (0xC000008E) при выполнении кода по адресу 0x0042596B в функции VEDObjPix(). Спасибо _txVectoredExceptionHandler(), что сообщил. Люблю его <3
+
+#1: TXLib [Ver: 00173a, Rev: 105], Instance: 0x00500340 (32-bit), Flags: CMdRe0, Thread: 0xB80 (Main). 
+
+--------------------------------------------------
+Стек вызовов:
+
+# 0 0x0042596B in D:\Документыы\GitHub\MyFiles\_MyOpenGl\AfricanHead.exe: VEDObjPix()
+# 1 0x0042005F in D:\Документыы\GitHub\MyFiles\_MyOpenGl\AfricanHead.exe: VEDObjLine()
+# 2 0x0041C624 in D:\Документыы\GitHub\MyFiles\_MyOpenGl\AfricanHead.exe: VEDObjHorTriangle()
+# 3 0x0041BDB6 in D:\Документыы\GitHub\MyFiles\_MyOpenGl\AfricanHead.exe: VEDObjTriangle()
+# 4 0x0041AAF4 in D:\Документыы\GitHub\MyFiles\_MyOpenGl\AfricanHead.exe: VED3dObjTriangle()
+# 5 0x0042402D in D:\Документыы\GitHub\MyFiles\_MyOpenGl\AfricanHead.exe: VEDObjShadowFigure()
+# 6 0x00423CA8 in D:\Документыы\GitHub\MyFiles\_MyOpenGl\AfricanHead.exe: VEDObjFigure()
+# 7 0x00426AEE in D:\Документыы\GitHub\MyFiles\_MyOpenGl\AfricanHead.exe: main()
+
+--------------------------------------------------
+Developed with:
+
+The Dumb Artist Library (TX Library) - TXLib [Ver: 00173a, Rev: 105]
+Copyright (C) Ded (Ilya Dedinsky, http://txlib.ru) <mail@txlib.ru>
+See license on: http://txlib.ru
+
+TXLib file:	G:\TX\TXLib.h
+Compiled:	Feb 21 2018 17:46:34, GNU g++ 4.8.1, std=201103L, MinGW Runtime 3.20, 32-bit, Debug
+Started:	Feb 21 2018 17:46:38
+
+Run file:	D:\Документыы\GitHub\MyFiles\_MyOpenGl\AfricanHead.exe
+Directory:	D:\Документыы\GitHub\MyFiles\_MyOpenGl
+
+--------------------------------------------------
+
+--------------------------------------------------
+TXLib соболезнует...
+
+Программа: D:\Документыы\GitHub\MyFiles\_MyOpenGl\AfricanHead.exe,
+
+ВНЕЗАПНО: signal (8, 0x00): SIGFPE: Грубая ошибка в вычислениях. 
+
+Деление на ноль при операции с плавающей точкой.
+
+#1: Исключение EXCEPTION_FLT_DIVIDE_BY_ZERO (0xC000008E) при выполнении кода по адресу 0x0042596B в функции VEDObjPix(). Спасибо _txVectoredExceptionHandler(), что сообщил. Люблю его <3
+
+С помощью функции signal() вы можете сами обработать эту ошибку.
+
+#2: TXLib [Ver: 00173a, Rev: 105], Instance: 0x00500340 (32-bit), Flags: CMdRe0, Thread: 0xB80 (Main). 
+
+--------------------------------------------------
+Стек вызовов:
+
+# 0 0x0042596B in D:\Документыы\GitHub\MyFiles\_MyOpenGl\AfricanHead.exe: VEDObjPix()
+# 1 0x0042005F in D:\Документыы\GitHub\MyFiles\_MyOpenGl\AfricanHead.exe: VEDObjLine()
+# 2 0x0041C624 in D:\Документыы\GitHub\MyFiles\_MyOpenGl\AfricanHead.exe: VEDObjHorTriangle()
+# 3 0x0041BDB6 in D:\Документыы\GitHub\MyFiles\_MyOpenGl\AfricanHead.exe: VEDObjTriangle()
+# 4 0x0041AAF4 in D:\Документыы\GitHub\MyFiles\_MyOpenGl\AfricanHead.exe: VED3dObjTriangle()
+# 5 0x0042402D in D:\Документыы\GitHub\MyFiles\_MyOpenGl\AfricanHead.exe: VEDObjShadowFigure()
+# 6 0x00423CA8 in D:\Документыы\GitHub\MyFiles\_MyOpenGl\AfricanHead.exe: VEDObjFigure()
+# 7 0x00426AEE in D:\Документыы\GitHub\MyFiles\_MyOpenGl\AfricanHead.exe: main()
+
+--------------------------------------------------
+Developed with:
+
+The Dumb Artist Library (TX Library) - TXLib [Ver: 00173a, Rev: 105]
+Copyright (C) Ded (Ilya Dedinsky, http://txlib.ru) <mail@txlib.ru>
+See license on: http://txlib.ru
+
+TXLib file:	G:\TX\TXLib.h
+Compiled:	Feb 21 2018 17:46:34, GNU g++ 4.8.1, std=201103L, MinGW Runtime 3.20, 32-bit, Debug
+Started:	Feb 21 2018 17:46:38
+
+Run file:	D:\Документыы\GitHub\MyFiles\_MyOpenGl\AfricanHead.exe
+Directory:	D:\Документыы\GitHub\MyFiles\_MyOpenGl
+
+--------------------------------------------------
+
+--------------------------------------------------
+TXLib предупреждает:
+
+Программа: D:\Документыы\GitHub\MyFiles\_MyOpenGl\AfricanHead.exe,
+
+ВНЕЗАПНО: Нарушение доступа к памяти.
+
+#1: Исключение EXCEPTION_ACCESS_VIOLATION (0xC0000005) при выполнении кода по адресу 0x004259C8 в функции VEDObjPix(). Попытка прочесть данные по адресу 0x05BD352C. Спасибо _txVectoredExceptionHandler(), что сообщил. Люблю его <3
+
+#1: TXLib [Ver: 00173a, Rev: 105], Instance: 0x00500340 (32-bit), Flags: CMdrE0, Thread: 0x27BC (Main), GetLastError(): 87 (Параметр задан неверно). 
+
+--------------------------------------------------
+Стек вызовов:
+
+# 0 0x004259C8 in D:\Документыы\GitHub\MyFiles\_MyOpenGl\AfricanHead.exe: VEDObjPix()
+# 1 0x0042005F in D:\Документыы\GitHub\MyFiles\_MyOpenGl\AfricanHead.exe: VEDObjLine()
+# 2 0x0041C624 in D:\Документыы\GitHub\MyFiles\_MyOpenGl\AfricanHead.exe: VEDObjHorTriangle()
+# 3 0x0041BDB6 in D:\Документыы\GitHub\MyFiles\_MyOpenGl\AfricanHead.exe: VEDObjTriangle()
+# 4 0x0041AAF4 in D:\Документыы\GitHub\MyFiles\_MyOpenGl\AfricanHead.exe: VED3dObjTriangle()
+# 5 0x0042402D in D:\Документыы\GitHub\MyFiles\_MyOpenGl\AfricanHead.exe: VEDObjShadowFigure()
+# 6 0x00423DB1 in D:\Документыы\GitHub\MyFiles\_MyOpenGl\AfricanHead.exe: VEDObjFigure()
+# 7 0x004269A9 in D:\Документыы\GitHub\MyFiles\_MyOpenGl\AfricanHead.exe: main()
+
+--------------------------------------------------
+TXLib предупреждает:
+
+Программа: D:\Документыы\GitHub\MyFiles\_MyOpenGl\AfricanHead.exe,
+
+ВНЕЗАПНО: Деление на ноль при операции с плавающей точкой.
+
+#1: Исключение EXCEPTION_FLT_DIVIDE_BY_ZERO (0xC000008E) при выполнении кода по адресу 0x0042599D в функции VEDObjPix(). Спасибо _txVectoredExceptionHandler(), что сообщил. Люблю его <3
+
+#1: TXLib [Ver: 00173a, Rev: 105], Instance: 0x00500340 (32-bit), Flags: CMdRe0, Thread: 0xBBC (Main). 
+
+--------------------------------------------------
+Стек вызовов:
+
+# 0 0x0042599D in D:\Документыы\GitHub\MyFiles\_MyOpenGl\AfricanHead.exe: VEDObjPix()
+# 1 0x0042005F in D:\Документыы\GitHub\MyFiles\_MyOpenGl\AfricanHead.exe: VEDObjLine()
+# 2 0x0041C624 in D:\Документыы\GitHub\MyFiles\_MyOpenGl\AfricanHead.exe: VEDObjHorTriangle()
+# 3 0x0041C04D in D:\Документыы\GitHub\MyFiles\_MyOpenGl\AfricanHead.exe: VEDObjTriangle()
+# 4 0x0041AAF4 in D:\Документыы\GitHub\MyFiles\_MyOpenGl\AfricanHead.exe: VED3dObjTriangle()
+# 5 0x00424037 in D:\Документыы\GitHub\MyFiles\_MyOpenGl\AfricanHead.exe: VEDObjShadowFigure()
+# 6 0x00423CAD in D:\Документыы\GitHub\MyFiles\_MyOpenGl\AfricanHead.exe: VEDObjFigure()
+# 7 0x00426996 in D:\Документыы\GitHub\MyFiles\_MyOpenGl\AfricanHead.exe: main()
+
+--------------------------------------------------
+Developed with:
+
+The Dumb Artist Library (TX Library) - TXLib [Ver: 00173a, Rev: 105]
+Copyright (C) Ded (Ilya Dedinsky, http://txlib.ru) <mail@txlib.ru>
+See license on: http://txlib.ru
+
+TXLib file:	G:\TX\TXLib.h
+Compiled:	Feb 21 2018 18:25:42, GNU g++ 4.8.1, std=201103L, MinGW Runtime 3.20, 32-bit, Debug
+Started:	Feb 21 2018 18:25:47
+
+Run file:	D:\Документыы\GitHub\MyFiles\_MyOpenGl\AfricanHead.exe
+Directory:	D:\Документыы\GitHub\MyFiles\_MyOpenGl
+
+--------------------------------------------------
+
+--------------------------------------------------
+TXLib соболезнует...
+
+Программа: D:\Документыы\GitHub\MyFiles\_MyOpenGl\AfricanHead.exe,
+
+ВНЕЗАПНО: signal (8, 0x00): SIGFPE: Грубая ошибка в вычислениях. 
+
+Деление на ноль при операции с плавающей точкой.
+
+#1: Исключение EXCEPTION_FLT_DIVIDE_BY_ZERO (0xC000008E) при выполнении кода по адресу 0x0042599D в функции VEDObjPix(). Спасибо _txVectoredExceptionHandler(), что сообщил. Люблю его <3
+
+С помощью функции signal() вы можете сами обработать эту ошибку.
+
+#2: TXLib [Ver: 00173a, Rev: 105], Instance: 0x00500340 (32-bit), Flags: CMdRe0, Thread: 0xBBC (Main). 
+
+--------------------------------------------------
+Стек вызовов:
+
+# 0 0x0042599D in D:\Документыы\GitHub\MyFiles\_MyOpenGl\AfricanHead.exe: VEDObjPix()
+# 1 0x0042005F in D:\Документыы\GitHub\MyFiles\_MyOpenGl\AfricanHead.exe: VEDObjLine()
+# 2 0x0041C624 in D:\Документыы\GitHub\MyFiles\_MyOpenGl\AfricanHead.exe: VEDObjHorTriangle()
+# 3 0x0041C04D in D:\Документыы\GitHub\MyFiles\_MyOpenGl\AfricanHead.exe: VEDObjTriangle()
+# 4 0x0041AAF4 in D:\Документыы\GitHub\MyFiles\_MyOpenGl\AfricanHead.exe: VED3dObjTriangle()
+# 5 0x00424037 in D:\Документыы\GitHub\MyFiles\_MyOpenGl\AfricanHead.exe: VEDObjShadowFigure()
+# 6 0x00423CAD in D:\Документыы\GitHub\MyFiles\_MyOpenGl\AfricanHead.exe: VEDObjFigure()
+# 7 0x00426996 in D:\Документыы\GitHub\MyFiles\_MyOpenGl\AfricanHead.exe: main()
+
+--------------------------------------------------
+Developed with:
+
+The Dumb Artist Library (TX Library) - TXLib [Ver: 00173a, Rev: 105]
+Copyright (C) Ded (Ilya Dedinsky, http://txlib.ru) <mail@txlib.ru>
+See license on: http://txlib.ru
+
+TXLib file:	G:\TX\TXLib.h
+Compiled:	Feb 21 2018 18:25:42, GNU g++ 4.8.1, std=201103L, MinGW Runtime 3.20, 32-bit, Debug
+Started:	Feb 21 2018 18:25:48
+
+Run file:	D:\Документыы\GitHub\MyFiles\_MyOpenGl\AfricanHead.exe
+Directory:	D:\Документыы\GitHub\MyFiles\_MyOpenGl
+
+--------------------------------------------------
+
+--------------------------------------------------
+TXLib предупреждает:
+
+Программа: D:\Документыы\GitHub\MyFiles\_MyOpenGl\AfricanHead.exe,
+
+ВНЕЗАПНО: Деление на ноль при операции с плавающей точкой.
+
+#1: Исключение EXCEPTION_FLT_DIVIDE_BY_ZERO (0xC000008E) при выполнении кода по адресу 0x00425C1A в функции VEDObjPix(). Спасибо _txVectoredExceptionHandler(), что сообщил. Люблю его <3
+
+#1: TXLib [Ver: 00173a, Rev: 105], Instance: 0x00500340 (32-bit), Flags: CMdRe0, Thread: 0x1970 (Main). 
+
+--------------------------------------------------
+Стек вызовов:
+
+# 0 0x00425C1A in D:\Документыы\GitHub\MyFiles\_MyOpenGl\AfricanHead.exe: VEDObjPix()
+# 1 0x004201C1 in D:\Документыы\GitHub\MyFiles\_MyOpenGl\AfricanHead.exe: VEDObjLine()
+# 2 0x0041C786 in D:\Документыы\GitHub\MyFiles\_MyOpenGl\AfricanHead.exe: VEDObjHorTriangle()
+# 3 0x0041BF18 in D:\Документыы\GitHub\MyFiles\_MyOpenGl\AfricanHead.exe: VEDObjTriangle()
+# 4 0x0041AAF4 in D:\Документыы\GitHub\MyFiles\_MyOpenGl\AfricanHead.exe: VED3dObjTriangle()
+# 5 0x004242BD in D:\Документыы\GitHub\MyFiles\_MyOpenGl\AfricanHead.exe: VEDObjShadowFigure()
+# 6 0x00423E0F in D:\Документыы\GitHub\MyFiles\_MyOpenGl\AfricanHead.exe: VEDObjFigure()
+# 7 0x00426CF5 in D:\Документыы\GitHub\MyFiles\_MyOpenGl\AfricanHead.exe: main()
+
+--------------------------------------------------
+Developed with:
+
+The Dumb Artist Library (TX Library) - TXLib [Ver: 00173a, Rev: 105]
+Copyright (C) Ded (Ilya Dedinsky, http://txlib.ru) <mail@txlib.ru>
+See license on: http://txlib.ru
+
+TXLib file:	G:\TX\TXLib.h
+Compiled:	Feb 21 2018 19:15:20, GNU g++ 4.8.1, std=201103L, MinGW Runtime 3.20, 32-bit, Debug
+Started:	Feb 21 2018 19:15:25
+
+Run file:	D:\Документыы\GitHub\MyFiles\_MyOpenGl\AfricanHead.exe
+Directory:	D:\Документыы\GitHub\MyFiles\_MyOpenGl
+
+--------------------------------------------------
+
+--------------------------------------------------
+TXLib соболезнует...
+
+Программа: D:\Документыы\GitHub\MyFiles\_MyOpenGl\AfricanHead.exe,
+
+ВНЕЗАПНО: signal (8, 0x00): SIGFPE: Грубая ошибка в вычислениях. 
+
+Деление на ноль при операции с плавающей точкой.
+
+#1: Исключение EXCEPTION_FLT_DIVIDE_BY_ZERO (0xC000008E) при выполнении кода по адресу 0x00425C1A в функции VEDObjPix(). Спасибо _txVectoredExceptionHandler(), что сообщил. Люблю его <3
+
+С помощью функции signal() вы можете сами обработать эту ошибку.
+
+#2: TXLib [Ver: 00173a, Rev: 105], Instance: 0x00500340 (32-bit), Flags: CMdRe0, Thread: 0x1970 (Main). 
+
+--------------------------------------------------
+Стек вызовов:
+
+# 0 0x00425C1A in D:\Документыы\GitHub\MyFiles\_MyOpenGl\AfricanHead.exe: VEDObjPix()
+# 1 0x004201C1 in D:\Документыы\GitHub\MyFiles\_MyOpenGl\AfricanHead.exe: VEDObjLine()
+# 2 0x0041C786 in D:\Документыы\GitHub\MyFiles\_MyOpenGl\AfricanHead.exe: VEDObjHorTriangle()
+# 3 0x0041BF18 in D:\Документыы\GitHub\MyFiles\_MyOpenGl\AfricanHead.exe: VEDObjTriangle()
+# 4 0x0041AAF4 in D:\Документыы\GitHub\MyFiles\_MyOpenGl\AfricanHead.exe: VED3dObjTriangle()
+# 5 0x004242BD in D:\Документыы\GitHub\MyFiles\_MyOpenGl\AfricanHead.exe: VEDObjShadowFigure()
+# 6 0x00423E0F in D:\Документыы\GitHub\MyFiles\_MyOpenGl\AfricanHead.exe: VEDObjFigure()
+# 7 0x00426CF5 in D:\Документыы\GitHub\MyFiles\_MyOpenGl\AfricanHead.exe: main()
+
+--------------------------------------------------
+Developed with:
+
+The Dumb Artist Library (TX Library) - TXLib [Ver: 00173a, Rev: 105]
+Copyright (C) Ded (Ilya Dedinsky, http://txlib.ru) <mail@txlib.ru>
+See license on: http://txlib.ru
+
+TXLib file:	G:\TX\TXLib.h
+Compiled:	Feb 21 2018 19:15:20, GNU g++ 4.8.1, std=201103L, MinGW Runtime 3.20, 32-bit, Debug
+Started:	Feb 21 2018 19:15:25
+
+Run file:	D:\Документыы\GitHub\MyFiles\_MyOpenGl\AfricanHead.exe
+Directory:	D:\Документыы\GitHub\MyFiles\_MyOpenGl
+
+--------------------------------------------------
+
+--------------------------------------------------
+TXLib предупреждает:
+
+Программа: D:\Документыы\GitHub\MyFiles\_MyOpenGl\AfricanHead.exe,
+
+ВНЕЗАПНО: Деление на ноль при операции с плавающей точкой.
+
+#1: Исключение EXCEPTION_FLT_DIVIDE_BY_ZERO (0xC000008E) при выполнении кода по адресу 0x00425C1A в функции VEDObjPix(). Спасибо _txVectoredExceptionHandler(), что сообщил. Люблю его <3
+
+#1: TXLib [Ver: 00173a, Rev: 105], Instance: 0x00500340 (32-bit), Flags: CMdRe0, Thread: 0x2750 (Main). 
+
+--------------------------------------------------
+Стек вызовов:
+
+# 0 0x00425C1A in D:\Документыы\GitHub\MyFiles\_MyOpenGl\AfricanHead.exe: VEDObjPix()
+# 1 0x004201C1 in D:\Документыы\GitHub\MyFiles\_MyOpenGl\AfricanHead.exe: VEDObjLine()
+# 2 0x0041C786 in D:\Документыы\GitHub\MyFiles\_MyOpenGl\AfricanHead.exe: VEDObjHorTriangle()
+# 3 0x0041BF18 in D:\Документыы\GitHub\MyFiles\_MyOpenGl\AfricanHead.exe: VEDObjTriangle()
+# 4 0x0041AAF4 in D:\Документыы\GitHub\MyFiles\_MyOpenGl\AfricanHead.exe: VED3dObjTriangle()
+# 5 0x004242BD in D:\Документыы\GitHub\MyFiles\_MyOpenGl\AfricanHead.exe: VEDObjShadowFigure()
+# 6 0x00423E0F in D:\Документыы\GitHub\MyFiles\_MyOpenGl\AfricanHead.exe: VEDObjFigure()
+# 7 0x00426CF5 in D:\Документыы\GitHub\MyFiles\_MyOpenGl\AfricanHead.exe: main()
+
+--------------------------------------------------
+Developed with:
+
+The Dumb Artist Library (TX Library) - TXLib [Ver: 00173a, Rev: 105]
+Copyright (C) Ded (Ilya Dedinsky, http://txlib.ru) <mail@txlib.ru>
+See license on: http://txlib.ru
+
+TXLib file:	G:\TX\TXLib.h
+Compiled:	Feb 21 2018 19:15:20, GNU g++ 4.8.1, std=201103L, MinGW Runtime 3.20, 32-bit, Debug
+Started:	Feb 21 2018 19:16:13
+
+Run file:	D:\Документыы\GitHub\MyFiles\_MyOpenGl\AfricanHead.exe
+Directory:	D:\Документыы\GitHub\MyFiles\_MyOpenGl
+
+--------------------------------------------------
+
+--------------------------------------------------
+TXLib соболезнует...
+
+Программа: D:\Документыы\GitHub\MyFiles\_MyOpenGl\AfricanHead.exe,
+
+ВНЕЗАПНО: signal (8, 0x00): SIGFPE: Грубая ошибка в вычислениях. 
+
+Деление на ноль при операции с плавающей точкой.
+
+#1: Исключение EXCEPTION_FLT_DIVIDE_BY_ZERO (0xC000008E) при выполнении кода по адресу 0x00425C1A в функции VEDObjPix(). Спасибо _txVectoredExceptionHandler(), что сообщил. Люблю его <3
+
+С помощью функции signal() вы можете сами обработать эту ошибку.
+
+#2: TXLib [Ver: 00173a, Rev: 105], Instance: 0x00500340 (32-bit), Flags: CMdRe0, Thread: 0x2750 (Main). 
+
+--------------------------------------------------
+Стек вызовов:
+
+# 0 0x00425C1A in D:\Документыы\GitHub\MyFiles\_MyOpenGl\AfricanHead.exe: VEDObjPix()
+# 1 0x004201C1 in D:\Документыы\GitHub\MyFiles\_MyOpenGl\AfricanHead.exe: VEDObjLine()
+# 2 0x0041C786 in D:\Документыы\GitHub\MyFiles\_MyOpenGl\AfricanHead.exe: VEDObjHorTriangle()
+# 3 0x0041BF18 in D:\Документыы\GitHub\MyFiles\_MyOpenGl\AfricanHead.exe: VEDObjTriangle()
+# 4 0x0041AAF4 in D:\Документыы\GitHub\MyFiles\_MyOpenGl\AfricanHead.exe: VED3dObjTriangle()
+# 5 0x004242BD in D:\Документыы\GitHub\MyFiles\_MyOpenGl\AfricanHead.exe: VEDObjShadowFigure()
+# 6 0x00423E0F in D:\Документыы\GitHub\MyFiles\_MyOpenGl\AfricanHead.exe: VEDObjFigure()
+# 7 0x00426CF5 in D:\Документыы\GitHub\MyFiles\_MyOpenGl\AfricanHead.exe: main()
+
+--------------------------------------------------
+Developed with:
+
+The Dumb Artist Library (TX Library) - TXLib [Ver: 00173a, Rev: 105]
+Copyright (C) Ded (Ilya Dedinsky, http://txlib.ru) <mail@txlib.ru>
+See license on: http://txlib.ru
+
+TXLib file:	G:\TX\TXLib.h
+Compiled:	Feb 21 2018 19:15:20, GNU g++ 4.8.1, std=201103L, MinGW Runtime 3.20, 32-bit, Debug
+Started:	Feb 21 2018 19:16:12
+
+Run file:	D:\Документыы\GitHub\MyFiles\_MyOpenGl\AfricanHead.exe
+Directory:	D:\Документыы\GitHub\MyFiles\_MyOpenGl
+
+--------------------------------------------------
+
+--------------------------------------------------
+TXLib предупреждает:
+
+Программа: D:\Документыы\GitHub\MyFiles\_MyOpenGl\AfricanHead.exe,
+
+ВНЕЗАПНО: Нарушение доступа к памяти.
+
+#1: Исключение EXCEPTION_ACCESS_VIOLATION (0xC0000005) при выполнении кода по адресу 0x7776E0A4 в функции RtlFreeHeap(). Попытка прочесть данные по адресу 0x054DFFFF. Спасибо _txVectoredExceptionHandler(), что сообщил. Люблю его <3
+
+#1: TXLib [Ver: 00173a, Rev: 105], Instance: 0x00500340 (32-bit), Flags: CMdRe0, Thread: 0x1F0C (Main). 
+
+--------------------------------------------------
+Стек вызовов:
+
+# 0 0x7776E0A4 in C:\Windows\SysWOW64\ntdll.dll: RtlFreeHeap()
+# 1 0x76EB98CD in C:\Windows\syswow64\msvcrt.dll: free()
+# 2 0x00425746 in D:\Документыы\GitHub\MyFiles\_MyOpenGl\AfricanHead.exe: VEDLoadRGBQUADImage()
+# 3 0x00426B48 in D:\Документыы\GitHub\MyFiles\_MyOpenGl\AfricanHead.exe: main()
+
+--------------------------------------------------
+Developed with:
+
+The Dumb Artist Library (TX Library) - TXLib [Ver: 00173a, Rev: 105]
+Copyright (C) Ded (Ilya Dedinsky, http://txlib.ru) <mail@txlib.ru>
+See license on: http://txlib.ru
+
+TXLib file:	G:\TX\TXLib.h
+Compiled:	Feb 25 2018 14:32:04, GNU g++ 4.8.1, std=201103L, MinGW Runtime 3.20, 32-bit, Debug
+Started:	Feb 25 2018 14:32:08
+
+Run file:	D:\Документыы\GitHub\MyFiles\_MyOpenGl\AfricanHead.exe
+Directory:	D:\Документыы\GitHub\MyFiles\_MyOpenGl
+
+--------------------------------------------------
+
+--------------------------------------------------
+TXLib соболезнует...
+
+Программа: D:\Документыы\GitHub\MyFiles\_MyOpenGl\AfricanHead.exe,
+
+ВНЕЗАПНО: signal (11, 0x00): SIGSEGV: Доступ по неверному указателю. Ставьте ассерты! 
+
+Нарушение доступа к памяти.
+
+#1: Исключение EXCEPTION_ACCESS_VIOLATION (0xC0000005) при выполнении кода по адресу 0x7776E0A4 в функции RtlFreeHeap(). Попытка прочесть данные по адресу 0x054DFFFF. Спасибо _txVectoredExceptionHandler(), что сообщил. Люблю его <3
+
+С помощью функции signal() вы можете сами обработать эту ошибку.
+
+#2: TXLib [Ver: 00173a, Rev: 105], Instance: 0x00500340 (32-bit), Flags: CMdRe0, Thread: 0x1F0C (Main). 
+
+--------------------------------------------------
+Стек вызовов:
+
+# 0 0x7776E0A4 in C:\Windows\SysWOW64\ntdll.dll: RtlFreeHeap()
+# 1 0x76EB98CD in C:\Windows\syswow64\msvcrt.dll: free()
+# 2 0x00425746 in D:\Документыы\GitHub\MyFiles\_MyOpenGl\AfricanHead.exe: VEDLoadRGBQUADImage()
+# 3 0x00426B48 in D:\Документыы\GitHub\MyFiles\_MyOpenGl\AfricanHead.exe: main()
+
+--------------------------------------------------
+Developed with:
+
+The Dumb Artist Library (TX Library) - TXLib [Ver: 00173a, Rev: 105]
+Copyright (C) Ded (Ilya Dedinsky, http://txlib.ru) <mail@txlib.ru>
+See license on: http://txlib.ru
+
+TXLib file:	G:\TX\TXLib.h
+Compiled:	Feb 25 2018 14:32:04, GNU g++ 4.8.1, std=201103L, MinGW Runtime 3.20, 32-bit, Debug
+Started:	Feb 25 2018 14:32:08
+
+Run file:	D:\Документыы\GitHub\MyFiles\_MyOpenGl\AfricanHead.exe
+Directory:	D:\Документыы\GitHub\MyFiles\_MyOpenGl
+
+--------------------------------------------------
+
+--------------------------------------------------
+TXLib предупреждает:
+
+Программа: D:\Документыы\GitHub\MyFiles\_MyOpenGl\AfricanHead.exe,
+
+ВНЕЗАПНО: Нарушение доступа к памяти.
+
+#1: Исключение EXCEPTION_ACCESS_VIOLATION (0xC0000005) при выполнении кода по адресу 0x00425D45 в функции VEDObjPix(). Попытка прочесть данные по адресу 0x058AA88C. Спасибо _txVectoredExceptionHandler(), что сообщил. Люблю его <3
+
+#1: TXLib [Ver: 00173a, Rev: 105], Instance: 0x00500340 (32-bit), Flags: CMdRe0, Thread: 0x844 (Main). 
+
+--------------------------------------------------
+Стек вызовов:
+
+# 0 0x00425D45 in D:\Документыы\GitHub\MyFiles\_MyOpenGl\AfricanHead.exe: VEDObjPix()
+# 1 0x00420085 in D:\Документыы\GitHub\MyFiles\_MyOpenGl\AfricanHead.exe: VEDObjLine()
+# 2 0x0041C64A in D:\Документыы\GitHub\MyFiles\_MyOpenGl\AfricanHead.exe: VEDObjHorTriangle()
+# 3 0x0041BDDC in D:\Документыы\GitHub\MyFiles\_MyOpenGl\AfricanHead.exe: VEDObjTriangle()
+# 4 0x0041AAF4 in D:\Документыы\GitHub\MyFiles\_MyOpenGl\AfricanHead.exe: VED3dObjTriangle()
+# 5 0x00424223 in D:\Документыы\GitHub\MyFiles\_MyOpenGl\AfricanHead.exe: VEDObjShadowFigure()
+# 6 0x00423FA7 in D:\Документыы\GitHub\MyFiles\_MyOpenGl\AfricanHead.exe: VEDObjFigure()
+# 7 0x00426F0A in D:\Документыы\GitHub\MyFiles\_MyOpenGl\AfricanHead.exe: main()
+
+--------------------------------------------------
+Developed with:
+
+The Dumb Artist Library (TX Library) - TXLib [Ver: 00173a, Rev: 105]
+Copyright (C) Ded (Ilya Dedinsky, http://txlib.ru) <mail@txlib.ru>
+See license on: http://txlib.ru
+
+TXLib file:	G:\TX\TXLib.h
+Compiled:	Feb 25 2018 14:32:20, GNU g++ 4.8.1, std=201103L, MinGW Runtime 3.20, 32-bit, Debug
+Started:	Feb 25 2018 14:32:24
+
+Run file:	D:\Документыы\GitHub\MyFiles\_MyOpenGl\AfricanHead.exe
+Directory:	D:\Документыы\GitHub\MyFiles\_MyOpenGl
+
+--------------------------------------------------
+
+--------------------------------------------------
+TXLib соболезнует...
+
+Программа: D:\Документыы\GitHub\MyFiles\_MyOpenGl\AfricanHead.exe,
+
+ВНЕЗАПНО: signal (11, 0x00): SIGSEGV: Доступ по неверному указателю. Ставьте ассерты! 
+
+Нарушение доступа к памяти.
+
+#1: Исключение EXCEPTION_ACCESS_VIOLATION (0xC0000005) при выполнении кода по адресу 0x00425D45 в функции VEDObjPix(). Попытка прочесть данные по адресу 0x058AA88C. Спасибо _txVectoredExceptionHandler(), что сообщил. Люблю его <3
+
+С помощью функции signal() вы можете сами обработать эту ошибку.
+
+#2: TXLib [Ver: 00173a, Rev: 105], Instance: 0x00500340 (32-bit), Flags: CMdRe0, Thread: 0x844 (Main). 
+
+--------------------------------------------------
+Стек вызовов:
+
+# 0 0x00425D45 in D:\Документыы\GitHub\MyFiles\_MyOpenGl\AfricanHead.exe: VEDObjPix()
+# 1 0x00420085 in D:\Документыы\GitHub\MyFiles\_MyOpenGl\AfricanHead.exe: VEDObjLine()
+# 2 0x0041C64A in D:\Документыы\GitHub\MyFiles\_MyOpenGl\AfricanHead.exe: VEDObjHorTriangle()
+# 3 0x0041BDDC in D:\Документыы\GitHub\MyFiles\_MyOpenGl\AfricanHead.exe: VEDObjTriangle()
+# 4 0x0041AAF4 in D:\Документыы\GitHub\MyFiles\_MyOpenGl\AfricanHead.exe: VED3dObjTriangle()
+# 5 0x00424223 in D:\Документыы\GitHub\MyFiles\_MyOpenGl\AfricanHead.exe: VEDObjShadowFigure()
+# 6 0x00423FA7 in D:\Документыы\GitHub\MyFiles\_MyOpenGl\AfricanHead.exe: VEDObjFigure()
+# 7 0x00426F0A in D:\Документыы\GitHub\MyFiles\_MyOpenGl\AfricanHead.exe: main()
+
+--------------------------------------------------
+Developed with:
+
+The Dumb Artist Library (TX Library) - TXLib [Ver: 00173a, Rev: 105]
+Copyright (C) Ded (Ilya Dedinsky, http://txlib.ru) <mail@txlib.ru>
+See license on: http://txlib.ru
+
+TXLib file:	G:\TX\TXLib.h
+Compiled:	Feb 25 2018 14:32:20, GNU g++ 4.8.1, std=201103L, MinGW Runtime 3.20, 32-bit, Debug
+Started:	Feb 25 2018 14:32:24
+
+Run file:	D:\Документыы\GitHub\MyFiles\_MyOpenGl\AfricanHead.exe
+Directory:	D:\Документыы\GitHub\MyFiles\_MyOpenGl
+
+--------------------------------------------------
