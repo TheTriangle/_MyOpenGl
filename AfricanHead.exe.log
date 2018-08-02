@@ -14140,3 +14140,77 @@ Run file:	D:\Документыы\GitHub\MyFiles\_MyOpenGl\AfricanHead.exe
 Directory:	D:\Документыы\GitHub\MyFiles\_MyOpenGl
 
 --------------------------------------------------
+
+--------------------------------------------------
+TXLib предупреждает:
+
+Программа: C:\Users\Egor(R)\Documents\GitHub\_MyOpenGl\AfricanHead.exe,
+
+ВНЕЗАПНО: Нарушение доступа к памяти.
+
+#1: Исключение EXCEPTION_ACCESS_VIOLATION (0xC0000005) при выполнении кода по адресу 0x77D2F301 в функции RtlFreeHeap(). Попытка прочесть данные по адресу 0x0801FFFF. Спасибо _txVectoredExceptionHandler(), что сообщил. Люблю его <3
+
+#1: TXLib [Ver: 00173a, Rev: 105, Date: 2018-03-19 00:00:00 +0300], Instance: 0x004FF340 (32-bit), Flags: CMdRe0, Thread: 0x2A90 (Main). 
+
+--------------------------------------------------
+Стек вызовов:
+
+# 0 0x77D2F301 in C:\WINDOWS\SYSTEM32\ntdll.dll: RtlFreeHeap()
+# 1 0x74FA7065 in C:\WINDOWS\System32\msvcrt.dll: free()
+# 2 0x00426C6A in C:\Users\Egor(R)\Documents\GitHub\_MyOpenGl\AfricanHead.exe: main()
+
+--------------------------------------------------
+Developed with:
+
+The Dumb Artist Library (TX Library)
+TXLib [Ver: 00173a, Rev: 105, Date: 2018-03-19 00:00:00 +0300]
+Copyright (C) Ded (Ilya Dedinsky, http://txlib.ru) <mail@txlib.ru>
+See license on: http://txlib.ru
+
+TXLib file:	C:\Users\Egor(R)\_Egor\TX_LIB\TX\TXLib.h
+Compiled:	May 27 2018 11:59:45, GNU g++ 4.8.1, std=201103L, MinGW Runtime 3.20, 32-bit, Debug
+Started:	May 27 2018 11:59:54
+
+Run file:	C:\Users\Egor(R)\Documents\GitHub\_MyOpenGl\AfricanHead.exe
+Directory:	C:\Users\Egor(R)\Documents\GitHub\_MyOpenGl
+
+--------------------------------------------------
+
+--------------------------------------------------
+TXLib соболезнует...
+
+Программа: C:\Users\Egor(R)\Documents\GitHub\_MyOpenGl\AfricanHead.exe,
+
+ВНЕЗАПНО: signal (11, 0x00): SIGSEGV: Доступ по неверному указателю. Ставьте ассерты! 
+
+Нарушение доступа к памяти.
+
+#1: Исключение EXCEPTION_ACCESS_VIOLATION (0xC0000005) при выполнении кода по адресу 0x77D2F301 в функции RtlFreeHeap(). Попытка прочесть данные по адресу 0x0801FFFF. Спасибо _txVectoredExceptionHandler(), что сообщил. Люблю его <3
+
+С помощью функции signal() вы можете сами обработать эту ошибку.
+
+#2: TXLib [Ver: 00173a, Rev: 105, Date: 2018-03-19 00:00:00 +0300], Instance: 0x004FF340 (32-bit), Flags: CMdRe0, Thread: 0x2A90 (Main). 
+
+--------------------------------------------------
+Стек вызовов:
+
+# 0 0x77D2F301 in C:\WINDOWS\SYSTEM32\ntdll.dll: RtlFreeHeap()
+# 1 0x74FA7065 in C:\WINDOWS\System32\msvcrt.dll: free()
+# 2 0x00426C6A in C:\Users\Egor(R)\Documents\GitHub\_MyOpenGl\AfricanHead.exe: main()
+
+--------------------------------------------------
+Developed with:
+
+The Dumb Artist Library (TX Library)
+TXLib [Ver: 00173a, Rev: 105, Date: 2018-03-19 00:00:00 +0300]
+Copyright (C) Ded (Ilya Dedinsky, http://txlib.ru) <mail@txlib.ru>
+See license on: http://txlib.ru
+
+TXLib file:	C:\Users\Egor(R)\_Egor\TX_LIB\TX\TXLib.h
+Compiled:	May 27 2018 11:59:45, GNU g++ 4.8.1, std=201103L, MinGW Runtime 3.20, 32-bit, Debug
+Started:	May 27 2018 11:59:54
+
+Run file:	C:\Users\Egor(R)\Documents\GitHub\_MyOpenGl\AfricanHead.exe
+Directory:	C:\Users\Egor(R)\Documents\GitHub\_MyOpenGl
+
+--------------------------------------------------

@@ -374,19 +374,10 @@ void VED3dObjTriangle  (ObjTriangle givenTriangle,
 MYP makeAllVecViewDeforms (MYP cord, MYP viewpos, MYP viewdir)
     {
     cord = makeAllVecDeforms (cord, false, false, true, true, false);
-    //double oldx = cord.x;
-    //double oldy = cord.y;
-    //double oldz = cord.z;
     cord = cord - viewpos;
     cord.x = cord.x/cord.z/ZScalingCoeff;
     cord.y = cord.y/cord.z/ZScalingCoeff;
-    //cord = RotateVecY(cord, atan(oldx/oldz));
-    //cord = RotateVecX(cord, atan(oldy/oldz));
     return cord;
-    //MYP cord1 = viewpos - cord;             TODO add view direction
-    //cord1 = cord1/(cord1.length());
-    //MYP viewdirnorm = viewdir/(viewdir.length());
-    //double xang = acos((MYP){cord1
     }
 
 
@@ -399,90 +390,83 @@ int VEDObjTriangle (MYP first, MYP second, MYP third, MYP ftext, MYP stext, MYP 
     MYP mtext;
     MYP utext;
 
-    //assert (ftext.x >= 0);
-    //assert (ftext.y >= 0);
-    //assert (stext.x >= 0);
-    //assert (stext.y >= 0);
-    //assert (ttext.x >= 0);
-    //assert (ttext.y >= 0);
-
 //--------------------------------------
     if (first.y < second.y)           //
         {                              //
-        if (first.y < third.y)        //
-            {                         //
-            down = first;             //
+        if (first.y < third.y)         //
+            {                          //
+            down = first;              //
             dtext = ftext;              //
-            if (second.y < third.y)   //
-                {                     //
-                mid = second;         //
+            if (second.y < third.y)     //
+                {                       //
+                mid = second;           //
                 mtext = stext;          //
-                up = third;           //
+                up = third;             //
                 utext = ttext;          //
-                }                     //
-            else                      //
-                {                     //
-                mid = third;          //
+                }                       //
+            else                        //
+                {                       //
+                mid = third;            //
                 mtext = ttext;          //
-                up = second;          //
+                up = second;            //
                 utext = stext;          //
-                }                     //
-            }                         //
-        else                          //
-            {                         //
-            down = third;             //
+                }                       //
+            }                           //
+        else                            //
+            {                           //
+            down = third;               //
             dtext = ttext;              //
-            if (first.y < second.y)   //
-                {                     //
-                mid = first;          //
+            if (first.y < second.y)     //
+                {                       //
+                mid = first;            //
                 mtext = ftext;          //
-                up = second;          //
+                up = second;            //
                 utext = stext;          //
-                }                     //
-            else                      //
-                {                     //
-                mid = second;         //
+                }                       //
+            else                        //
+                {                       //
+                mid = second;           //
                 mtext = stext;          //
-                up = first;           //
+                up = first;             //
                 utext = ftext;          //
-                }                     //
-            }                         //
-        }                             //
+                }                       //
+            }                           //
+        }                               //
     else if (second.y < third.y)        // sorting
         {                               // points
-        down = second;                //
+        down = second;                  //
         dtext = stext;                  //
-        if (first.y < third.y)        //
-            {                         //
-            mid = first;              //
+        if (first.y < third.y)          //
+            {                           //
+            mid = first;                //
             mtext = ftext;              //
-            up = third;               //
+            up = third;                 //
             utext = ttext;              //
-            }                         //
-        else                          //
-            {                         //
-            mid = third;              //
+            }                           //
+        else                            //
+            {                           //
+            mid = third;                //
             mtext = ttext;              //
-            up = first;               //
+            up = first;                 //
             utext = ftext;              //
-            }                         //
-        }                             //
+            }                           //
+        }                               //
     else                               //
         {                             //
-        down = third;                 //
+        down = third;                   //
         dtext = ttext;                  //
-        if (first.y < second.y)       //
-            {                         //
-            mid = first;              //
+        if (first.y < second.y)         //
+            {                           //
+            mid = first;                //
             mtext = ftext;              //
-            up = second;              //
+            up = second;                //
             utext = stext;              //
-            }                         //
-        else                          //
-            {                         //
-            mid = second;             //
+            }                           //
+        else                            //
+            {                           //
+            mid = second;               //
             mtext = stext;              //
-            up = first;               //
+            up = first;                 //
             utext = ftext;              //
             }                         //
         }                             //
@@ -498,12 +482,6 @@ int VEDObjTriangle (MYP first, MYP second, MYP third, MYP ftext, MYP stext, MYP 
     double help = sectorheight/allheight;
     txSetColor (TX_WHITE, 1, MyScreen);
 
-    //assert (utext.x >= 0);
-    //assert (utext.y >= 0);
-    //assert (dtext.x >= 0);
-    //assert (dtext.y >= 0);
-    //assert (mtext.x >= 0);
-    //assert (mtext.y >= 0);
 
     VEDObjHorTriangle ({help * allhwidth + down.x,
                        down.y + sectorheight + 1,
@@ -544,18 +522,11 @@ int VEDObjHorTriangle(MYP left, MYP right, MYP third, MYP ltext, MYP rtext, MYP 
     double leftwidth = third.x - left.x;
     double rightwidth = third.x - right.x;
 
-    //int lrorder = (rtext - ltext)/fabs(rtext-ltext);
 
     double help = 0;
 
     for (double nowy = left.y; exit; nowy += signum)
         {
-        //assert (ltext.x >= 0);
-        //assert (ltext.y >= 0);
-        //assert (ttext.x >= 0);
-        //assert (ttext.y >= 0);
-        //assert (rtext.x >= 0);
-        //assert (rtext.y >= 0);
 
         if (signum > 0 && nowy + signum >= third.y) exit = false;
         if (signum < 0 && nowy + signum <= third.y) exit = false;
@@ -820,9 +791,9 @@ void VED3dTriangle (MYP first, MYP second, MYP third,
     if (diffuse2 < 0) diffuse2 = 0;
     if (diffuse3 < 0) diffuse3 = 0;
 
-    col1 = /*(environmentcol % col1) + */col1 % lightcol * diffuse1;/* + lightcol * MatSpec1; //*/
-    col2 = /*(environmentcol % col2) + */col2 % lightcol * diffuse2;/* + lightcol * MatSpec2; //*/
-    col3 = /*(environmentcol % col3) + */col3 % lightcol * diffuse3;/* + lightcol * MatSpec3; //*/
+    col1 = /*(environmentcol % col1) + */col1 % lightcol * diffuse1 + lightcol * MatSpec1; //*/
+    col2 = /*(environmentcol % col2) + */col2 % lightcol * diffuse2 + lightcol * MatSpec2; //*/
+    col3 = /*(environmentcol % col3) + */col3 % lightcol * diffuse3 + lightcol * MatSpec3; //*/
 
     col1 = col1 *  255;
     col2 = col2 *  255;

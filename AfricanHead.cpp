@@ -6,7 +6,6 @@
 int main()
     {
     VEDStart ();
-    //VEDTranslate (0, 0, 200);
     VEDScale (50, 50, 50);
 
     MYP texturesizes = {1024, 1024, 0}; //недостаток bmp->hdc->rgbquad(DIB), а не чтения файла.
@@ -29,15 +28,10 @@ int main()
         txSetFillColor (TX_BLACK, MyScreen);
         txClear(MyScreen);
 
-        //getch();
-
         txSetFillColor (TX_BLACK, MyScreen);
         VEDObjFigure (Head, HeadSize, TexturePixels, NormalsPixels, SpecsPixels, texturesizes);
         txBitBlt (0, 0, MyScreen);
 
-        //getch();
-
-        //if (GetAsyncKeyState(VK_LSHIFT)) control (20);
         txSleep(1);
         makeBufferDefault();
         }
